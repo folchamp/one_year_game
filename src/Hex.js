@@ -12,6 +12,7 @@ class Hex {
         this.humans = 0.1;
         // ecology attributes
         // this.health = 100;
+        this.isExplored = false;
 
         this.resources = [];
         // this.size = Settings.hexSize;
@@ -29,11 +30,10 @@ class Hex {
             }
         });
     }
-    harvest(resourceName) {
-        console.log(this);
+    harvest(resourceName, actionName) {
         this.resources.forEach((resource) => {
             if (resource.resourceData.resourceName === resourceName) {
-                resource.fatigue += resource.resourceData.harvest.fatigue;
+                resource.fatigue += resource.resourceData.actions[actionName].fatigue;
                 resource.isAvailable = false;
                 resource.regeneratesIn = resource.resourceData.regeneration;
             }

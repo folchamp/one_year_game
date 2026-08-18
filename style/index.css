@@ -53,6 +53,9 @@ body {
     bottom: 0;
 
     .hexSelectorContainer {
+        display: flex;
+        align-items: center;
+        /* justify-content: flex-start; */
         min-width: 300px;
         min-height: 210px;
 
@@ -71,23 +74,49 @@ body {
         .hexResourcesContainer {
             display: flex;
             justify-content: center;
+            flex-direction: column;
 
-            .resourceImage {
-                padding: 3px;
-                background: rgba(255, 255, 255, 0.045);
-                border: 1px solid rgba(220, 210, 180, 0.12);
-                border-radius: 4px;
-                margin: 4px;
-            }
+            .hexResourceContainer {
+                display: flex;
 
-            .resourceUnknown {
-                opacity: 0.2;
-                filter: grayscale(1);
-            }
+                .resourceActionsContainer {
+                    display: flex;
+                    flex-direction: column;
+                    flex-wrap: wrap;
 
-            .resourceUnavailable {
-                opacity: 0.45;
-                filter: grayscale(1);
+                    .actionButton {
+                        cursor: pointer;
+                        padding: 12px;
+                        margin: 4px;
+                        border: 1px solid #ddd8c8;
+                        border-radius: 8px;
+                        background: rgba(38, 43, 38, 0.94);
+                    }
+
+                    .actionButton:hover {
+                        background: rgba(52, 58, 52, 0.94);
+                    }
+                }
+
+                .resourceImage {
+                    width: 64px;
+                    height: 64px;
+                    padding: 3px;
+                    background: rgba(255, 255, 255, 0.045);
+                    border: 1px solid rgba(220, 210, 180, 0.12);
+                    border-radius: 4px;
+                    margin: 4px;
+                }
+
+                .resourceUnknown {
+                    opacity: 0.2;
+                    filter: grayscale(1);
+                }
+
+                .resourceUnavailable {
+                    opacity: 0.45;
+                    filter: grayscale(1);
+                }
             }
         }
     }

@@ -17,8 +17,6 @@ class Hotkeys {
                 event.preventDefault();
                 action.f();
             }
-
-            console.log(event.code);
         });
     }
     getHotkeys() {

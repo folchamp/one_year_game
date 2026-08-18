@@ -75,19 +75,30 @@ Créer une fatigue des tuiles
 UI des ressources possédées
 ramasser des ressources
 UI doesn't need ECS !!!
+harvesters harvest only once per tick
+explore
+les explorateurs ne font qu'un seul "harvest" par tour (c'est pas encore très clair)
+les reources proposent plusieurs options
+ajouter d'autres actions que harvest (explore, observe...)
+les explorateurs peuvent explorer des hexes (et découvrir quelles ressources s'y cachent)
+Prélever des ressources
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
-ajoute d'autres actions que harvest (observe...)
+population
+nourir le village
+nouveaux explorateurs
+
+gagner de l'expérience en sciences (biologie, metallurgie etc. pour débloquer de nouvelles actions)
+séparer explorateurs, récolteurs, expérimentateurs etc. ?
+message d'erreur quand on essaye de récolter et qu'on a déjà récolté avec cet explorateur
 afficher la fatigue sur les tuiles ?
 afficher les ressources disponibles sur les tuiles déjà explorées, en tout petit en dessous
 petit feedback à hauteur de souris
 adversaire sous la forme d'une entité non contrôlée par le joueur
-les explorateurs peuvent explorer des hexes (et découvrir quelles ressources s'y cachent)
 Écrire des rencontres, des lieux, des morceaux d’histoire pour les tuiles
-Prélever des ressources
 Gagner en connaissances
 Créer un coût logistique (en “humains”)
 Créer une fatigue du village

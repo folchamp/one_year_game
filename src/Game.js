@@ -12,7 +12,7 @@ class Game {
             zoomOut: { description: "Zoom out to see everything", f: () => this.camera.zoomOut() }
         };
         this.uiActions = {
-            harvestResource: (hex, resourceName) => this.harvestResource(hex, resourceName) // { description: "The player harvests a resource from a tile", f: (hex, resourceName) => this.harvestResource(hex, resourceName) }
+            actionButtonClick: (hex, resource, actionName) => this.actionButtonClick(hex, resource, actionName) // { description: "The player harvests a resource from a tile", f: (hex, resourceName) => this.harvestResource(hex, resourceName) }
         }
         this.inventory = new Map();
 
@@ -32,6 +32,7 @@ class Game {
 
 
         // components (entity-components system)
+        this.ECS.Explorer = new Map();
         this.ECS.Harvester = new Map();
         this.ECS.Name = new Map();
         this.ECS.Position = new Map();
@@ -56,13 +57,18 @@ class Game {
         // start
         this.loop();
     }
-    harvestResource(hex, resourceName) {
+    actionButtonClick(hex, resource, actionName) {
+        let resourceName = resource.resourceData.resourceName;
         this.ECS.Harvester.forEach((value, index, map) => {
             let harvesterPosition = this.ECS.Position.get(index);
-            if (hex.q === harvesterPosition.q && hex.r === harvesterPosition.r) {
-                let amount = this.inventory.get(resourceName) ?? 0;
-                this.inventory.set(resourceName, amount + 1);
-                hex.harvest(resourceName);
+            if (hex.q === harvesterPosition.q && hex.r === harvesterPosition.r && !value.hasHarvested) {
+                let get = resource.resourceData.actions[actionName].get; // which resource does the action "get" (harvest)
+                if (get !== undefined) {
+                    let amount = this.inventory.get(get) ?? 0;
+                    this.inventory.set(get, amount + 1);
+                    hex.harvest(resourceName, actionName);
+                    value.hasHarvested = true;
+                }
                 this.ui.update();
             }
         });
@@ -81,7 +87,8 @@ class Game {
     }
     createExplorer(q, r) {
         let entity = this.newEntity();
-        this.ECS.Harvester.set(entity, true);
+        this.ECS.Harvester.set(entity, { hasHarvested: false });
+        this.ECS.Explorer.set(entity, true);
         this.ECS.Name.set(entity, "explorer");
         this.ECS.Position.set(entity, { q: q, r: r });
         this.ECS.Movement.set(entity, { path: [] });
@@ -143,9 +150,16 @@ class Game {
         return this.nextID++;
     }
     tick() {
-        console.log("tick");
         this.movementSystem.update();
         this.world.update();
+        this.ECS.Harvester.forEach((value, index, map) => {
+            value.hasHarvested = false;
+        });
+        this.ECS.Explorer.forEach((value, key, map) => {
+            this.world.exploreTile(this.ECS.Position.get(key));
+        });
+
+        // toujours en dernier
         this.ui.update();
     }
     loop() {

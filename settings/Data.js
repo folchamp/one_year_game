@@ -24,73 +24,130 @@ class Data {
         "plastic",
         "water",
         "wood",
-        "oil"
+        "oil",
+        "unknownResource"
     ]);
 
     static resources = {
         "concrete": {
             resourceName: "concrete",
             imageName: "concrete",
-            harvest: {
-                fatigue: 1
+            actions: {
+                salvage: {
+                    fatigue: 10,
+                    get: "concrete"
+                },
+                destroy: {
+                    fatigue: 20,
+                    get: "concrete"
+                },
+                recycle: {
+                    fatigue: 5,
+                    get: "concrete"
+                }
             },
-            regeneration: 10
+            regeneration: 1
         },
         "electronics": {
             resourceName: "electronics",
             imageName: "electronics",
-            harvest: {
-                fatigue: 1
+            actions: {
+                salvage: {
+                    fatigue: 10,
+                    get: "electronics"
+                },
+                destroy: {
+                    fatigue: 20,
+                    get: "metal"
+                },
+                recycle: {
+                    fatigue: 5,
+                    get: "metal"
+                }
             },
-            regeneration: 10
+            regeneration: 1
         },
         "iron": {
             resourceName: "iron",
             imageName: "iron",
-            harvest: {
-                fatigue: 8
+            actions: {
+                mine: {
+                    fatigue: 8,
+                    get: "iron"
+                }
             },
             regeneration: 10
         },
         "metal": {
             resourceName: "metal",
             imageName: "metal",
-            harvest: {
-                fatigue: 1
+            actions: {
+                salvage: {
+                    fatigue: 10,
+                    get: "metal"
+                },
+                destroy: {
+                    fatigue: 20,
+                    get: "metal"
+                },
+                recycle: {
+                    fatigue: 5,
+                    get: "metal"
+                }
             },
-            regeneration: 10
+            regeneration: 1
         },
         "plastic": {
             resourceName: "plastic",
             imageName: "plastic",
-            harvest: {
-                fatigue: 1
+            actions: {
+                salvage: {
+                    fatigue: 10,
+                    get: "plastic"
+                },
+                destroy: {
+                    fatigue: 20,
+                    get: "plastic"
+                },
+                recycle: {
+                    fatigue: 5,
+                    get: "plastic"
+                }
             },
-            regeneration: 10
+            regeneration: 1
         },
         "water": {
             resourceName: "water",
             imageName: "water",
-            harvest: {
-                fatigue: 2
+            actions: {
+                fetch: {
+                    fatigue: 2,
+                    get: "water"
+                }
             },
             regeneration: 2
         },
         "wood": {
             resourceName: "wood",
             imageName: "wood",
-            harvest: {
-                fatigue: 4
+            actions: {
+                cut: {
+                    fatigue: 2,
+                    get: "wood"
+                }
             },
             regeneration: 2
         },
         "oil": {
             resourceName: "oil",
             imageName: "oil",
-            harvest: {
-                fatigue: 5
+            actions: {
+                drill: {
+                    fatigue: 5,
+                    get: "oil"
+                }
             },
-            regeneration: 3
+            regeneration: 4
         }
     }
 

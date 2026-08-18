@@ -47,15 +47,32 @@ class UI {
         Util.show(this.uiContainer);
         Util.show(this.hexSelectorContainer);
         hex.resources.forEach((resource) => {
-            let image = Util.createDOMElement("resourceImage", "img", this.hexResourcesContainer);
-            image.src = Data.resourceImages[resource.resourceData.imageName].src;
-            image.addEventListener("click", (event) => {
-                this.uiActions.harvestResource(hex, resource.resourceData.resourceName);
-            });
-            if (!resource.isAvailable) {
-                image.classList.add("resourceUnavailable");
+            Util.quickStructure(this.hexResourcesContainer, this,
+                ["hexResourceContainer",
+                    "resourceImage",
+                    "resourceActionsContainer"
+                ]
+            );
+            if (hex.isExplored) {
+                this.addResource(hex, resource);
+            } else {
+                this.resourceImage.src = Data.resourceImages["unknownResource"].src;
             }
         });
+    }
+    addResource(hex, resource) {
+        this.resourceImage.src = Data.resourceImages[resource.resourceData.imageName].src;
+        if (!resource.isAvailable) {
+            this.resourceImage.classList.add("resourceUnavailable");
+        }
+        for (let actionName in resource.resourceData.actions) {
+            let actionButton = Util.createDOMElement("actionButton", "span", this.resourceActionsContainer);
+            actionButton.innerText = Util.texts[actionName];
+            actionButton.addEventListener("click", (event) => {
+                this.uiActions.actionButtonClick(hex, resource, actionName);
+            });
+        };
+
     }
     update() {
         Util.hide(this.uiContainer);

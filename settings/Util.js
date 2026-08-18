@@ -1,7 +1,17 @@
 "use strict";
 
 class Util {
-    static texts = {};
+    static texts = {
+        harvest: "récolte",
+        salvage: "récupèrer",
+        mine: "extraire",
+        fetch: "puiser",
+        cut: "couper",
+        drill: "forer",
+        destroy: "détruire",
+        recycle: "recycler"
+
+    };
 
     static hide(element) {
         element.classList.add("hidden");

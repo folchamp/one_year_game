@@ -18,6 +18,9 @@ class World {
         this.fillBiomes();
         this.fillResources();
     }
+    exploreTile(position) {
+        this.hexes.get(`${position.q}, ${position.r}`).isExplored = true;
+    }
     update() {
         this.hexes.forEach((hex) => {
             hex.update();
