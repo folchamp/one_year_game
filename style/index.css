@@ -1,0 +1,103 @@
+.hidden {
+    display: none !important;
+}
+
+body {
+    margin: 0px;
+    line-height: 0;
+    position: relative;
+}
+
+.gameCanvas {
+    background: black;
+}
+
+.logContainer {
+    position: absolute;
+    right: 0;
+    display: flex;
+    line-height: 12px;
+    overflow: scroll;
+    background-color: aliceblue;
+    width: 400px;
+    flex-wrap: wrap;
+    max-height: 85vh;
+
+    .log {
+        background-color: bisque;
+        margin: 2px;
+    }
+}
+
+.uiContainer,
+.uiTwoContainer {
+    position: absolute;
+    line-height: 12px;
+    padding-bottom: 10px;
+    background: rgba(24, 27, 24, 0.94);
+    color: #ddd8c8;
+    border: 1px solid rgba(220, 210, 180, 0.25);
+    border-radius: 6px;
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.45),
+        inset 0 0 30px rgba(255, 255, 255, 0.025);
+    backdrop-filter: blur(5px);
+}
+
+.uiTwoContainer {
+    top: 0;
+    right: 0;
+}
+
+.uiContainer {
+    bottom: 0;
+
+    .hexSelectorContainer {
+        min-width: 300px;
+        min-height: 210px;
+
+        .hexImageContainer {
+            width: 100px;
+            height: 100px;
+            background-position: center;
+            padding: 3px;
+            border: 1px solid rgba(220, 210, 180, 0.12);
+            border-radius: 4px;
+            margin: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .hexResourcesContainer {
+            display: flex;
+            justify-content: center;
+
+            .resourceImage {
+                padding: 3px;
+                background: rgba(255, 255, 255, 0.045);
+                border: 1px solid rgba(220, 210, 180, 0.12);
+                border-radius: 4px;
+                margin: 4px;
+            }
+
+            .resourceUnknown {
+                opacity: 0.2;
+                filter: grayscale(1);
+            }
+
+            .resourceUnavailable {
+                opacity: 0.45;
+                filter: grayscale(1);
+            }
+        }
+    }
+
+    .unitSelectorContainer {
+
+        .unitImage {
+            display: block;
+            width: 64px;
+            margin: auto;
+        }
+    }
+}

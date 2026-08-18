@@ -1,0 +1,119 @@
+♥ 04/08/2026 - 06/08/2026
+draw hex grid
+move camera
+zoom camera
+screenToWorld
+create world class
+select a tile
+create a player
+canvasManager -> Display
+more biomes
+highlight hovered tile
+create a unit
+sélectionner une unité
+corriger l'affichage, que chaque méthode qui draw remette à zéro le contexte
+worldToHex
+♥ 07/08/2026
+reset camera hotkey
+reset zoom hotkey
+open debug hotkey
+open hotkeys hotkey
+create turnSystem (ticks)
+next tick hotkey
+create movement
+previsualisation of path
+pathfinding
+better pathfinding
+♥ 08/08/2026
+even better pathfinding
+renderer
+refactor renderer
+sélection des unités plus lisible
+resources images (iron, wood, electonics, metal, plastic, concrete)
+new city biome
+♥ 13/08/2026
+mountain placement is realistic (elevation)
+génération de tous les biomes (woop woop)
+biome frequency
+biome rules (forests together, cities appart etc.)
+biomes depend on temperature, humidity etc.
+♥ 14/08/2026
+bugfixes world generator (remplacer plutôt qu'ajouter)
+bugfixes world generator (breadt first au lieu de depth first)
+performances world generator (while avec index plutôt que récursion avec shift())
+better debug lisibility for hex positions
+resources
+resource water
+resource oil
+spaceship instead of medieval caravan
+lisibility of entities (red circle)
+UI qui affiche l'entité sélectionnée
+♥ 15/08/2026
+réflexion sur le game design
+les villes peuvent avoir plusieurs ressources
+♥ 16/08/2026
+grosse réflexion sur le game design à l'aide de ChatGPT
+bugfix : désélectionner une entité l'enlève de l'UI de sélection
+UI de sélection d'entité améliorée
+UI de sélection d'hex (et affichage de ses ressources)
+amélioration de l'encodage des resources
+changer le dessin des explorateurs
+♥ 17/08/2026
+afficher la communauté de départ
+correction d'un bug de hitbox
+style de l'UI de sélection (c'était vraiment moche)
+correction de quelques images pour mieux fonctionner dans l'UI
+startPosition est maintenant un setting
+le feu de camp apparaît toujours sur une plaine
+on peut cliquer sur les resources des tuiles (mais ça ne les ramasse pas encore :P )
+♥ 18/08/2026
+griser les ressources déjà récoltées
+fatiguer les tuiles après un harvest
+régénérer les tuiles
+Créer un UI de tuiles sélectionnées
+Créer une fatigue des tuiles
+UI des ressources possédées
+ramasser des ressources
+UI doesn't need ECS !!!
+
+********************
+TODO
+********************
+---------- MUST ----------
+ajoute d'autres actions que harvest (observe...)
+afficher la fatigue sur les tuiles ?
+afficher les ressources disponibles sur les tuiles déjà explorées, en tout petit en dessous
+petit feedback à hauteur de souris
+adversaire sous la forme d'une entité non contrôlée par le joueur
+les explorateurs peuvent explorer des hexes (et découvrir quelles ressources s'y cachent)
+Écrire des rencontres, des lieux, des morceaux d’histoire pour les tuiles
+Prélever des ressources
+Gagner en connaissances
+Créer un coût logistique (en “humains”)
+Créer une fatigue du village
+Créer une diversité génétique (=condition de victoire)
+
+Ajouter des biomes “en déclin”
+♦ Forêt, friche, désert
+♦ Marais, broussailles, désert
+♦ Plaines, landes, désert
+♦ Montagne, butte, désert
+♦ Île, grève, désert
+
+---------- SHOULD ----------
+create fog of war
+line of sight
+construire des bâtiments
+fabriquer des explorateurs
+composant WorldPosition qui est recalculée tout le temps (plutôt que de recalculer pour le rendu, le hitbox, les particules, les animations etc.)
+garder en mémoire la destination au cas où le path devient interrompu for some reason
+decide the next steps
+
+---------- COULD ----------
+refactor everything
+hotkey settings
+all drawings by me
+
+---------- WONT ----------
+créer un arbre de dépendance des resources (une voiture contient des pneus, un moteur etc. et peut être utilisée pour remplacer n'importe lequel de ces éléments)
+multiplayer
