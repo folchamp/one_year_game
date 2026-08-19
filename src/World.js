@@ -18,6 +18,14 @@ class World {
         this.fillBiomes();
         this.fillResources();
     }
+    seeNeightbours(position) {
+        const neightbors = World.getNeightbors(position.q, position.r);
+        this.hexes.get(`${position.q}, ${position.r}`).isSeenThroughFog = true;
+        neightbors.forEach((neightbor) => {
+            this.hexes.get(`${neightbor.q}, ${neightbor.r}`).isSeenThroughFog = true;
+        });
+
+    }
     exploreTile(position) {
         this.hexes.get(`${position.q}, ${position.r}`).isExplored = true;
     }

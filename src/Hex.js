@@ -13,6 +13,7 @@ class Hex {
         // ecology attributes
         // this.health = 100;
         this.isExplored = false;
+        this.isSeenThroughFog = false;
 
         this.resources = [];
         // this.size = Settings.hexSize;

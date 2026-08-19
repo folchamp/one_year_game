@@ -12,7 +12,8 @@ class Game {
             zoomOut: { description: "Zoom out to see everything", f: () => this.camera.zoomOut() }
         };
         this.uiActions = {
-            actionButtonClick: (hex, resource, actionName) => this.actionButtonClick(hex, resource, actionName) // { description: "The player harvests a resource from a tile", f: (hex, resourceName) => this.harvestResource(hex, resourceName) }
+            actionButtonClick: (hex, resource, actionName) => this.actionButtonClick(hex, resource, actionName), // { description: "The player harvests a resource from a tile", f: (hex, resourceName) => this.harvestResource(hex, resourceName) }
+            feedCommunityClick: (resourceName) => this.feedCommunityClick(resourceName)
         }
         this.inventory = new Map();
 
@@ -56,8 +57,31 @@ class Game {
         this.createExplorer(Settings.startHexPosition.q, Settings.startHexPosition.r);
 
         // start
-        this.ui.update();
+        this.tick();
         this.loop();
+    }
+    isHexPositionOccupied(hexPosition) {
+        let isOccupied = false;
+        for (const [entity, position] of this.ECS.Movement) {
+            if (position.q === hexPosition.q && position.r === hexPosition.r) {
+                console.log("tile busy");
+                isOccupied = true;
+            }
+        }
+        return isOccupied;
+    }
+    born() {
+        if (!this.isHexPositionOccupied({ q: Settings.startHexPosition.q, r: Settings.startHexPosition.r })) {
+            this.createExplorer(Settings.startHexPosition.q, Settings.startHexPosition.r);
+        }
+    }
+    feedCommunityClick(resourceName) {
+        let amount = this.inventory.get(resourceName);
+        if (amount > 0) { // check a priori inutile parce que le bouton disparaît dans l'UI quand l'inventaire est vide mais... you never know
+            this.community.feed(resourceName);
+            this.inventory.set(resourceName, amount - 1);
+        }
+        this.ui.update();
     }
     actionButtonClick(hex, resource, actionName) {
         let resourceName = resource.resourceData.resourceName;
@@ -160,7 +184,11 @@ class Game {
         });
         this.ECS.Explorer.forEach((value, key, map) => {
             this.world.exploreTile(this.ECS.Position.get(key));
+            this.world.seeNeightbours(this.ECS.Position.get(key));
         });
+        if (this.ECS.Explorer.size <= Math.floor(this.community.population / 100)) {
+            this.born();
+        }
 
         // toujours en dernier
         this.ui.update();

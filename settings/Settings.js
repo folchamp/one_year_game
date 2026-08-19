@@ -11,4 +11,6 @@ class Settings {
     static tileHeight = 226;
     static resourceImageSize = 64
     static startHexPosition = { q: 0, r: 0 };
+    static startingPopulation = 80;
+    static lengthOfFoodMemory = 10;
 }

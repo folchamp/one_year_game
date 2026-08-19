@@ -31,17 +31,20 @@ class UI {
         Util.hide(this.uiContainer);
     }
     updatePopulation() {
-        this.populationText.innerText = `${Util.texts["population"]} : ${this.community.population}`;
+        this.populationText.innerText = `${Util.texts["population"]} : ${Math.round(this.community.population)}`;
     }
     updateInventory() {
         this.uiInventoryContainer.replaceChildren();
-        this.inventory.forEach((value, key, map) => {
+        this.inventory.forEach((amountInInventory, resourceName, map) => {
             Util.quickStructure(this.uiInventoryContainer, this, [
                 "inventoryResourceContainer",
                 "resourceText",
                 "giveResourceButtonText"
             ]);
-            this.resourceText.innerText = `${key} : ${value}`;
+            this.resourceText.innerText = `${resourceName} : ${amountInInventory}`;
+            this.giveResourceButtonText.addEventListener("click", (event) => {
+                this.uiActions.feedCommunityClick(resourceName);
+            });
         });
     }
     updateUnit() {
@@ -52,22 +55,26 @@ class UI {
     updateHex() {
         let hex = this.selection.selectedHex;
         this.hexResourcesContainer.replaceChildren();
-        this.hexImageContainer.style["background-image"] = `url("${Data.tileImages[this.selection.selectedHex.biome.imageName].src}")`;
         Util.show(this.uiContainer);
         Util.show(this.hexSelectorContainer);
-        hex.resources.forEach((resource) => {
-            Util.quickStructure(this.hexResourcesContainer, this,
-                ["hexResourceContainer",
-                    "resourceImage",
-                    "resourceActionsContainer"
-                ]
-            );
-            if (hex.isExplored) {
-                this.addResource(hex, resource);
-            } else {
-                this.resourceImage.src = Data.resourceImages["unknownResource"].src;
-            }
-        });
+        if (hex.isSeenThroughFog || !Settings.production) {
+            this.hexImageContainer.style["background-image"] = `url("${Data.tileImages[this.selection.selectedHex.biome.imageName].src}")`;
+            hex.resources.forEach((resource) => {
+                Util.quickStructure(this.hexResourcesContainer, this,
+                    ["hexResourceContainer",
+                        "resourceImage",
+                        "resourceActionsContainer"
+                    ]
+                );
+                if (hex.isExplored) {
+                    this.addResource(hex, resource);
+                } else {
+                    this.resourceImage.src = Data.resourceImages["unknownResource"].src;
+                }
+            });
+        } else {
+            this.hexImageContainer.style["background-image"] = `url("${Data.tileImages["fog_of_war"].src}")`;
+        }
     }
     addResource(hex, resource) {
         this.resourceImage.src = Data.resourceImages[resource.resourceData.imageName].src;

@@ -90,25 +90,26 @@ afficher les ressources disponibles sur les tuiles déjà explorées, en tout pe
 corriger la tuile plaine (placement des plantes)
 population
 afficher la population
+nourir le village
+nouveaux explorateurs
+create fog of war
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
-nourir le village
-nouveaux explorateurs
-max trois ressources par tuile
-select next available explorer
-change the explore action to a whole-tick-action instead of automatic at tile entering ?
-change tick system ? not sure ? 
-- civilisations : explorers have one movement and move immediatly, they recover their movement after the tick
-- Uciana : issue orders, units obbey during next tick
+ajouter mille ressources + les interactions entre ressources
+ajouter des méchants
 
+halo vert sur les explorateurs qui n'ont encore rien harvest ce tour-ci
+coût de harvest ?
+max trois ressources par tuile
+select next available explorer hotkey
 gagner de l'expérience en sciences (biologie, metallurgie etc. pour débloquer de nouvelles actions)
 séparer explorateurs, récolteurs, expérimentateurs etc. ?
 message d'erreur quand on essaye de récolter et qu'on a déjà récolté avec cet explorateur
 afficher la fatigue sur les tuiles ?
-petit feedback à hauteur de souris
+petit feedback à hauteur de souris quand un action ne fonctionne pas 
 adversaire sous la forme d'une entité non contrôlée par le joueur
 Écrire des rencontres, des lieux, des morceaux d’histoire pour les tuiles
 Gagner en connaissances
@@ -116,7 +117,7 @@ Créer un coût logistique (en “humains”)
 Créer une fatigue du village
 Créer une diversité génétique (=condition de victoire)
 
-Ajouter des biomes “en déclin”
+Ajouter des biomes "en déclin"
 ♦ Forêt, friche, désert
 ♦ Marais, broussailles, désert
 ♦ Plaines, landes, désert
@@ -124,7 +125,6 @@ Ajouter des biomes “en déclin”
 ♦ Île, grève, désert
 
 ---------- SHOULD ----------
-create fog of war
 line of sight
 construire des bâtiments
 fabriquer des explorateurs
@@ -136,6 +136,11 @@ decide the next steps
 refactor everything
 hotkey settings
 all drawings by me
+
+change the explore action to a whole-tick-action instead of automatic at tile entering ?
+change tick system ? not sure ? 
+- civilisations : explorers have one movement and move immediatly, they recover their movement after the tick
+- Uciana : issue orders, units obbey during next tick
 
 ---------- WONT ----------
 créer un arbre de dépendance des resources (une voiture contient des pneus, un moteur etc. et peut être utilisée pour remplacer n'importe lequel de ces éléments)

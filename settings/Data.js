@@ -7,7 +7,8 @@ class Data {
         "swamp",
         "mountain",
         "forest",
-        "city"
+        "city",
+        "fog_of_war"
     ]);
 
     static unitImages = Util.loadImages("units/", [
@@ -32,6 +33,7 @@ class Data {
         "concrete": {
             resourceName: "concrete",
             imageName: "concrete",
+            popGrowth: 3,
             actions: {
                 salvage: {
                     fatigue: 10,
@@ -51,6 +53,7 @@ class Data {
         "electronics": {
             resourceName: "electronics",
             imageName: "electronics",
+            popGrowth: 3,
             actions: {
                 salvage: {
                     fatigue: 10,
@@ -70,6 +73,7 @@ class Data {
         "iron": {
             resourceName: "iron",
             imageName: "iron",
+            popGrowth: 3,
             actions: {
                 mine: {
                     fatigue: 8,
@@ -81,6 +85,7 @@ class Data {
         "metal": {
             resourceName: "metal",
             imageName: "metal",
+            popGrowth: 3,
             actions: {
                 salvage: {
                     fatigue: 10,
@@ -100,6 +105,7 @@ class Data {
         "plastic": {
             resourceName: "plastic",
             imageName: "plastic",
+            popGrowth: 3,
             actions: {
                 salvage: {
                     fatigue: 10,
@@ -119,6 +125,7 @@ class Data {
         "water": {
             resourceName: "water",
             imageName: "water",
+            popGrowth: 3,
             actions: {
                 fetch: {
                     fatigue: 2,
@@ -130,6 +137,7 @@ class Data {
         "wood": {
             resourceName: "wood",
             imageName: "wood",
+            popGrowth: 3,
             actions: {
                 cut: {
                     fatigue: 2,
@@ -141,6 +149,7 @@ class Data {
         "oil": {
             resourceName: "oil",
             imageName: "oil",
+            popGrowth: 3,
             actions: {
                 drill: {
                     fatigue: 5,
