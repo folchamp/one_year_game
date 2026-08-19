@@ -2,6 +2,7 @@
 
 class Util {
     static texts = {
+        // actions
         harvest: "récolte",
         salvage: "récupèrer",
         mine: "extraire",
@@ -9,8 +10,11 @@ class Util {
         cut: "couper",
         drill: "forer",
         destroy: "détruire",
-        recycle: "recycler"
+        recycle: "recycler",
 
+        // HTML elements 
+        giveResourceButtonText: "village",
+        population: "population"
     };
 
     static hide(element) {

@@ -120,17 +120,38 @@ class Render {
         }
         this.context.closePath();
     }
-    drawHex(hex) {
+    drawResources(hex) {
         const pos = this.getWorldPosition(hex);
-
-        this.context.drawImage(Data.tileImages[hex.biome.imageName], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);
-
+        const amount = hex.resources.length;
+        const smallSize = Settings.resourceImageSize / 2;
+        const resourcesWidth = Settings.resourceImageSize / 2 * amount;
+        const firstPosition = pos.x - resourcesWidth / 2;
+        const height = pos.y + Settings.hexSize * 0.45;
+        let index = 0;
         // display resource
+        hex.resources.forEach((resource) => {
+            this.context.fillStyle = "rgba(24, 27, 24, 0.8)";
+            this.context.fillRect(firstPosition + index * smallSize, height, smallSize, smallSize);
+            if (hex.isExplored) {
+                this.context.drawImage(Data.resourceImages[resource.resourceData.imageName], firstPosition + index * smallSize, height, smallSize, smallSize);
+            } else {
+                this.context.drawImage(Data.resourceImages["unknownResource"], firstPosition + index * smallSize, height, smallSize, smallSize);
+            }
+            index++;
+            // console.log(`${hex.q}, ${hex.r} : ${resource.resourceData.resourceName}`);
+        });
+
+
         // if (hex.resource !== "nothing") {
         //     this.context.fillStyle = "white";
         //     this.context.fillRect(pos.x, pos.y, Settings.resourceImageSize, Settings.resourceImageSize);
         //     this.context.drawImage(Data.resourceImages[Data.resources[hex.resource].imageName], pos.x, pos.y);
         // }
+    }
+    drawHex(hex) {
+        const pos = this.getWorldPosition(hex);
+        this.context.drawImage(Data.tileImages[hex.biome.imageName], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);
+        this.drawResources(hex);
 
         // TODO make lines bigger when zoomed out 
         // lineWhidth = Math.round(3 * (1 / this.camera.zoom));

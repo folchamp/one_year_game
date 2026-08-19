@@ -22,10 +22,11 @@ class Game {
         this.display = new Display();
         this.selection = new Selection();
         this.hotkeys = new Hotkeys();
+        this.community = new Community();
         this.camera = new Camera(this.display.getCanvas());
         this.context = this.display.getContext();
         this.ECS = {};
-        this.ui = new UI(this.selection, this.uiActions, this.inventory);
+        this.ui = new UI(this.selection, this.uiActions, this.inventory, this.community);
 
         this.movementSystem = new MovementSystem(this.world, this.ECS);
         this.render = new Render(this.context, this.display, this.camera, this.world, this.ECS, this.selection);
@@ -55,6 +56,7 @@ class Game {
         this.createExplorer(Settings.startHexPosition.q, Settings.startHexPosition.r);
 
         // start
+        this.ui.update();
         this.loop();
     }
     actionButtonClick(hex, resource, actionName) {
@@ -82,8 +84,8 @@ class Game {
         this.ECS.Name.set(entity, "campfire");
         this.ECS.Position.set(entity, { q: q, r: r });
         this.ECS.Sprite.set(entity, { imageName: "campfire", width: 170, height: 170, radius: 100 });
-        this.ECS.Hitbox.set(entity, { type: "circle", radius: 100 });
-
+        // this.ECS.Hitbox.set(entity, { type: "circle", radius: 100 });
+        return entity;
     }
     createExplorer(q, r) {
         let entity = this.newEntity();
@@ -94,6 +96,7 @@ class Game {
         this.ECS.Movement.set(entity, { path: [] });
         this.ECS.Sprite.set(entity, { imageName: "explorer", width: 64, height: 64, radius: 48 });
         this.ECS.Hitbox.set(entity, { type: "circle", radius: 48 });
+        return entity;
     }
     getMouseWorldPosition(event) {
         let mousePosition = Util.getMousePosition(this.display.getCanvas(), event);

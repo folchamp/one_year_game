@@ -81,21 +81,33 @@ les explorateurs ne font qu'un seul "harvest" par tour (c'est pas encore très c
 les reources proposent plusieurs options
 ajouter d'autres actions que harvest (explore, observe...)
 les explorateurs peuvent explorer des hexes (et découvrir quelles ressources s'y cachent)
-Prélever des ressources
+prélever des ressources
+♥ 19/08/2026
+trouver une date crédible pour l'histoire
+remaster city tile asset
+remaster island tile asset
+afficher les ressources disponibles sur les tuiles déjà explorées, en tout petit en dessous
+corriger la tuile plaine (placement des plantes)
+population
+afficher la population
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
-population
 nourir le village
 nouveaux explorateurs
+max trois ressources par tuile
+select next available explorer
+change the explore action to a whole-tick-action instead of automatic at tile entering ?
+change tick system ? not sure ? 
+- civilisations : explorers have one movement and move immediatly, they recover their movement after the tick
+- Uciana : issue orders, units obbey during next tick
 
 gagner de l'expérience en sciences (biologie, metallurgie etc. pour débloquer de nouvelles actions)
 séparer explorateurs, récolteurs, expérimentateurs etc. ?
 message d'erreur quand on essaye de récolter et qu'on a déjà récolté avec cet explorateur
 afficher la fatigue sur les tuiles ?
-afficher les ressources disponibles sur les tuiles déjà explorées, en tout petit en dessous
 petit feedback à hauteur de souris
 adversaire sous la forme d'une entité non contrôlée par le joueur
 Écrire des rencontres, des lieux, des morceaux d’histoire pour les tuiles

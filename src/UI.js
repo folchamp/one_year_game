@@ -1,10 +1,11 @@
 "use strict";
 
 class UI {
-    constructor(selection, uiActions, inventory) {
+    constructor(selection, uiActions, inventory, community) {
         this.selection = selection;
         this.uiActions = uiActions;
         this.inventory = inventory;
+        this.community = community;
         Util.quickStructure(document.body, this,
             [
                 "uiContainer",
@@ -22,17 +23,25 @@ class UI {
 
         Util.quickStructure(document.body, this,
             ["uiTwoContainer",
+                "populationText",
                 "uiInventoryContainer"
             ]
         );
 
         Util.hide(this.uiContainer);
     }
+    updatePopulation() {
+        this.populationText.innerText = `${Util.texts["population"]} : ${this.community.population}`;
+    }
     updateInventory() {
         this.uiInventoryContainer.replaceChildren();
         this.inventory.forEach((value, key, map) => {
-            let element = Util.createDOMElement("resourceText", "p", this.uiInventoryContainer);
-            element.innerText = `${key} : ${value}`;
+            Util.quickStructure(this.uiInventoryContainer, this, [
+                "inventoryResourceContainer",
+                "resourceText",
+                "giveResourceButtonText"
+            ]);
+            this.resourceText.innerText = `${key} : ${value}`;
         });
     }
     updateUnit() {
@@ -84,5 +93,6 @@ class UI {
             this.updateHex();
         }
         this.updateInventory();
+        this.updatePopulation();
     }
 }
