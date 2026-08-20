@@ -310,7 +310,7 @@ class Data {
             ]
         },
         mountain: {
-            degradation: "moutain",
+            degradation: "butte",
             imageName: "mountain",
             attribute: "elevation",
             amount: 3,
