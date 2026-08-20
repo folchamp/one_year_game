@@ -8,11 +8,16 @@ class Data {
         "mountain",
         "forest",
         "city",
-        "fog_of_war"
+        "fog_of_war",
+        "broussailles",
+        "butte",
+        "friche",
+        "greve",
+        "landes",
+        "desert"
     ]);
 
     static unitImages = Util.loadImages("units/", [
-        "caravan",
         "explorer",
         "campfire"
     ]);
@@ -29,143 +34,218 @@ class Data {
         "unknownResource"
     ]);
 
+    // static getActionsToUnlock() {
+    //     const actionsToUnlock = {};
+    //     for (let resourceName in Data.resources) {
+    //         let resourceData = Data.resources[resourceName];
+    //         let actions = resourceData.actions;
+    //         actionsToUnlock[resourceName] = {};
+    //         for (let actionName in actions) {
+    //             if (actions[actionName].starterAction !== true) {
+    //                 actionsToUnlock[resourceName][actionName] = "locked";
+    //             }
+    //         }
+    //     }
+    //     console.log(actionsToUnlock);
+    //     return actionsToUnlock;
+    // }
+
     static resources = {
         "concrete": {
             resourceName: "concrete",
             imageName: "concrete",
             popGrowth: 3,
+            seeResourceCondition: "concrete",
             actions: {
                 salvage: {
                     fatigue: 10,
-                    get: "concrete"
+                    get: "concrete",
+                    unlockCondition: "salvage_concrete"
                 },
                 destroy: {
                     fatigue: 20,
-                    get: "concrete"
+                    get: "concrete",
+                    unlockCondition: "destroy_concrete"
                 },
                 recycle: {
                     fatigue: 5,
-                    get: "concrete"
+                    get: "concrete",
+                    unlockCondition: "recycle_concrete"
                 }
             },
-            regeneration: 1
+            regeneration: 1,
+            fatigueRecovery: 0
         },
         "electronics": {
             resourceName: "electronics",
             imageName: "electronics",
             popGrowth: 3,
+            seeResourceCondition: "electronics",
             actions: {
                 salvage: {
                     fatigue: 10,
-                    get: "electronics"
+                    get: "electronics",
+                    unlockCondition: "salvage_electronics"
                 },
                 destroy: {
                     fatigue: 20,
-                    get: "metal"
+                    get: "metal",
+                    unlockCondition: "destroy_electronics"
                 },
                 recycle: {
                     fatigue: 5,
-                    get: "metal"
+                    get: "metal",
+                    unlockCondition: "recycle_electronics"
                 }
             },
-            regeneration: 1
+            regeneration: 1,
+            fatigueRecovery: 0
         },
         "iron": {
             resourceName: "iron",
             imageName: "iron",
             popGrowth: 3,
+            seeResourceCondition: "iron",
             actions: {
                 mine: {
                     fatigue: 8,
-                    get: "iron"
+                    get: "iron",
+                    unlockCondition: "mine_iron"
                 }
             },
-            regeneration: 10
+            regeneration: 1,
+            fatigueRecovery: 1
         },
         "metal": {
             resourceName: "metal",
             imageName: "metal",
             popGrowth: 3,
+            seeResourceCondition: "metal",
             actions: {
                 salvage: {
                     fatigue: 10,
-                    get: "metal"
+                    get: "metal",
+                    unlockCondition: "salvage_metal"
                 },
                 destroy: {
                     fatigue: 20,
-                    get: "metal"
+                    get: "metal",
+                    unlockCondition: "destroy_metal"
                 },
                 recycle: {
                     fatigue: 5,
-                    get: "metal"
+                    get: "metal",
+                    unlockCondition: "recycle_metal"
                 }
             },
-            regeneration: 1
+            regeneration: 1,
+            fatigueRecovery: 0
         },
         "plastic": {
             resourceName: "plastic",
             imageName: "plastic",
             popGrowth: 3,
+            seeResourceCondition: "plastic",
             actions: {
                 salvage: {
                     fatigue: 10,
-                    get: "plastic"
+                    get: "plastic",
+                    unlockCondition: "salvage_plastic"
                 },
                 destroy: {
                     fatigue: 20,
-                    get: "plastic"
+                    get: "plastic",
+                    unlockCondition: "destroy_plastic"
                 },
                 recycle: {
                     fatigue: 5,
-                    get: "plastic"
+                    get: "plastic",
+                    unlockCondition: "recycle_plastic"
                 }
             },
-            regeneration: 1
+            regeneration: 1,
+            fatigueRecovery: 0
         },
         "water": {
             resourceName: "water",
             imageName: "water",
             popGrowth: 3,
+            seeResourceCondition: "starter",
             actions: {
                 fetch: {
                     fatigue: 2,
-                    get: "water"
+                    get: "water",
+                    unlockCondition: "starter"
                 }
             },
-            regeneration: 2
+            regeneration: 1,
+            fatigueRecovery: 2
         },
         "wood": {
             resourceName: "wood",
             imageName: "wood",
             popGrowth: 3,
+            seeResourceCondition: "starter",
             actions: {
                 cut: {
                     fatigue: 2,
-                    get: "wood"
+                    get: "wood",
+                    unlockCondition: "starter"
                 }
             },
-            regeneration: 2
+            regeneration: 1,
+            fatigueRecovery: 1
         },
         "oil": {
             resourceName: "oil",
             imageName: "oil",
             popGrowth: 3,
+            seeResourceCondition: "oil",
             actions: {
                 drill: {
                     fatigue: 5,
-                    get: "oil"
+                    get: "oil",
+                    unlockCondition: "drill_oil"
                 }
             },
-            regeneration: 4
+            regeneration: 1,
+            fatigueRecovery: 1
         }
     }
 
-    static biomeNames = [
-        "city", "plains", "island", "swamp", "mountain", "forest"
+    static biomeNamesForGeneration = [
+        "city", "island", "swamp", "mountain", "forest"
     ];
 
     static biomes = {
+        desert: {
+            degradation: "desert",
+            imageName: "desert"
+        },
+
+        broussailles: {
+            degradation: "desert",
+            imageName: "broussailles",
+        },
+        butte: {
+            degradation: "desert",
+            imageName: "butte",
+        },
+        friche: {
+            degradation: "desert",
+            imageName: "friche",
+        },
+        greve: {
+            degradation: "desert",
+            imageName: "greve",
+        },
+        landes: {
+            degradation: "desert",
+            imageName: "landes",
+        },
+
         plains: {
+            degradation: "landes",
             imageName: "plains",
             attribute: "elevation",
             amount: 0,
@@ -178,6 +258,7 @@ class Data {
             ]
         },
         swamp: {
+            degradation: "broussailles",
             imageName: "swamp",
             attribute: "humidity",
             amount: 2,
@@ -198,6 +279,7 @@ class Data {
             ]
         },
         island: {
+            degradation: "greve",
             imageName: "island",
             attribute: "humidity",
             amount: 2,
@@ -210,6 +292,7 @@ class Data {
             ]
         },
         forest: {
+            degradation: "friche",
             imageName: "forest",
             attribute: "life",
             amount: 10,
@@ -227,12 +310,13 @@ class Data {
             ]
         },
         mountain: {
+            degradation: "moutain",
             imageName: "mountain",
             attribute: "elevation",
             amount: 3,
             propagation: { min: 0.15, max: 0.18 },
             minimum: 0,
-            treshold: 0.35,
+            treshold: 0.45,
             amountOfResources: 1,
             resources: [
                 "water",
@@ -243,6 +327,7 @@ class Data {
             ]
         },
         city: {
+            degradation: "desert",
             imageName: "city",
             attribute: "humanInfluence",
             amount: 10,

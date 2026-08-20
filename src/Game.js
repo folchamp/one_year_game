@@ -30,7 +30,7 @@ class Game {
         this.ui = new UI(this.selection, this.uiActions, this.inventory, this.community);
 
         this.movementSystem = new MovementSystem(this.world, this.ECS);
-        this.render = new Render(this.context, this.display, this.camera, this.world, this.ECS, this.selection);
+        this.render = new Render(this.context, this.display, this.camera, this.world, this.ECS, this.selection, this.community);
 
 
         // components (entity-components system)
@@ -41,6 +41,7 @@ class Game {
         this.ECS.Sprite = new Map();
         this.ECS.Hitbox = new Map();
         this.ECS.Movement = new Map();
+        this.ECS.Order = new Map();
         // hotkeys
         this.hotkeys.bind("KeyR", this.actions.resetCamera);
         this.hotkeys.bind("KeyW", this.actions.resetZoom);
@@ -64,7 +65,6 @@ class Game {
         let isOccupied = false;
         for (const [entity, position] of this.ECS.Movement) {
             if (position.q === hexPosition.q && position.r === hexPosition.r) {
-                console.log("tile busy");
                 isOccupied = true;
             }
         }
@@ -83,21 +83,40 @@ class Game {
         }
         this.ui.update();
     }
+    cleanOrders() {
+        this.ECS.Order.forEach((order, entity) => {
+            const stillThere = order.hex.resources.some((resource) => {
+                return resource.resourceData.resourceName === order.resource.resourceData.resourceName;
+            });
+            if (!stillThere) {
+                // la ressource a été supprimée de la tuile, l'ordre ne peut plus être exécuté
+                this.ECS.Order.delete(entity);
+            }
+        });
+    }
     actionButtonClick(hex, resource, actionName) {
+        this.ECS.Harvester.forEach((value, entity, map) => {
+            let harvesterPosition = this.ECS.Position.get(entity);
+            if (hex.q === harvesterPosition.q && hex.r === harvesterPosition.r) {
+                this.ECS.Order.set(entity, { hex: hex, resource: resource, actionName: actionName });
+                this.ECS.Movement.set(entity, { path: [] });
+            }
+        });
+    }
+    action(hex, resource, actionName) {
         let resourceName = resource.resourceData.resourceName;
-        this.ECS.Harvester.forEach((value, index, map) => {
-            let harvesterPosition = this.ECS.Position.get(index);
-            if (hex.q === harvesterPosition.q && hex.r === harvesterPosition.r && !value.hasHarvested) {
+        this.ECS.Harvester.forEach((value, entity, map) => {
+            let harvesterPosition = this.ECS.Position.get(entity);
+            if (hex.q === harvesterPosition.q && hex.r === harvesterPosition.r && resource.isAvailable) {
                 let get = resource.resourceData.actions[actionName].get; // which resource does the action "get" (harvest)
                 if (get !== undefined) {
                     let amount = this.inventory.get(get) ?? 0;
                     this.inventory.set(get, amount + 1);
-                    hex.harvest(resourceName, actionName);
-                    value.hasHarvested = true;
                 }
-                this.ui.update();
+                hex.harvest(resourceName, actionName);
             }
         });
+        this.ui.update();
     }
     toggleDev() {
         this.log.toggle();
@@ -113,7 +132,7 @@ class Game {
     }
     createExplorer(q, r) {
         let entity = this.newEntity();
-        this.ECS.Harvester.set(entity, { hasHarvested: false });
+        this.ECS.Harvester.set(entity, {});
         this.ECS.Explorer.set(entity, true);
         this.ECS.Name.set(entity, "explorer");
         this.ECS.Position.set(entity, { q: q, r: r });
@@ -137,6 +156,7 @@ class Game {
             if (movement !== undefined) {
                 let position = this.ECS.Position.get(entity);
                 movement.path = Pathfinding.find(position, hex);
+                this.ECS.Order.delete(entity);
             }
         }
     }
@@ -178,17 +198,20 @@ class Game {
     }
     tick() {
         this.movementSystem.update();
-        this.world.update();
-        this.ECS.Harvester.forEach((value, index, map) => {
-            value.hasHarvested = false;
+        this.ECS.Order.forEach((order, entity, map) => {
+            this.action(order.hex, order.resource, order.actionName);
         });
-        this.ECS.Explorer.forEach((value, key, map) => {
-            this.world.exploreTile(this.ECS.Position.get(key));
-            this.world.seeNeightbours(this.ECS.Position.get(key));
+        this.ECS.Explorer.forEach((value, entity, map) => {
+            this.world.exploreTile(this.ECS.Position.get(entity));
+            this.world.seeNeightbours(this.ECS.Position.get(entity));
         });
         if (this.ECS.Explorer.size <= Math.floor(this.community.population / 100)) {
             this.born();
         }
+        this.world.update();
+
+        // au cas où des ressources ont disparu, les explorateurs doivent arrêter de travailler
+        this.cleanOrders()
 
         // toujours en dernier
         this.ui.update();

@@ -93,14 +93,33 @@ afficher la population
 nourir le village
 nouveaux explorateurs
 create fog of war
+♥ 20/08/2026
+les actions et ressources ont des conditions 
+conditions pour les actions et ressources
+on donne un ordre à un explorateur, il répète l'ordre à chaque tick
+animation pour les explorateurs au travail
+le débug affiche les ressources de toutes les tuiles
+les ressources des tuiles surexploitées disparaissent
+Ajouter des biomes "en déclin"
+♦ Forêt, friche, désert
+♦ Marais, broussailles, désert
+♦ Plaines, landes, désert
+♦ Montagne, butte, désert
+♦ Île, grève, désert
+effondrement et déclin des tuiles
+transformation en désert des tuiles surexploitées
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
+ajouter le gain de knowledge dans le moteur
+ajouter les gain de knowledge dans les data
 ajouter mille ressources + les interactions entre ressources
-ajouter des méchants
 
+on ne peut pas déplacer un explorateur sur une tuile occupée
+nettoyer et optimiser Render.js
+ajouter des méchants
 halo vert sur les explorateurs qui n'ont encore rien harvest ce tour-ci
 coût de harvest ?
 max trois ressources par tuile
@@ -116,13 +135,6 @@ Gagner en connaissances
 Créer un coût logistique (en “humains”)
 Créer une fatigue du village
 Créer une diversité génétique (=condition de victoire)
-
-Ajouter des biomes "en déclin"
-♦ Forêt, friche, désert
-♦ Marais, broussailles, désert
-♦ Plaines, landes, désert
-♦ Montagne, butte, désert
-♦ Île, grève, désert
 
 ---------- SHOULD ----------
 line of sight

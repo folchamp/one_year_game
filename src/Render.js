@@ -1,13 +1,14 @@
 "use strict";
 
 class Render {
-    constructor(context, display, camera, world, ECS, selection) {
+    constructor(context, display, camera, world, ECS, selection, community) {
         this.context = context;
         this.display = display;
         this.camera = camera;
         this.world = world;
         this.ECS = ECS;
         this.selection = selection;
+        this.community = community;
     }
     drawArrow(fromHex, toHex) {
         // merci ChatGPT
@@ -54,9 +55,12 @@ class Render {
         }
 
         // draw entities
-        this.ECS.Sprite.forEach((sprite, key, map) => {
-            let hexPosition = this.ECS.Position.get(key);
+        this.ECS.Sprite.forEach((sprite, entity, map) => {
+            let hexPosition = this.ECS.Position.get(entity);
             this.drawEntity(sprite, hexPosition);
+            if (this.ECS.Order.get(entity) !== undefined) {
+                this.drawOrder(entity);
+            }
         });
 
         if (this.selection.selectedEntity !== undefined) {
@@ -120,6 +124,18 @@ class Render {
         }
         this.context.closePath();
     }
+    drawOrder(entity) {
+        const order = this.ECS.Order.get(entity);
+        const hexPosition = this.ECS.Position.get(entity);
+        const worldPosition = this.getWorldPosition(hexPosition);
+        const height = worldPosition.y - Settings.hexSize * 0.55;
+        const smallSize = Settings.resourceImageSize / 2;
+        const offsetY = Math.sin(performance.now() / 150) * 3;
+
+        this.context.drawImage(Data.resourceImages[order.resource.resourceData.imageName], worldPosition.x - smallSize / 2, height + offsetY, smallSize, smallSize);
+
+        // console.log(order);
+    }
     drawResources(hex) {
         const pos = this.getWorldPosition(hex);
         const amount = hex.resources.length;
@@ -132,7 +148,7 @@ class Render {
         hex.resources.forEach((resource) => {
             this.context.fillStyle = "rgba(24, 27, 24, 0.8)";
             this.context.fillRect(firstPosition + index * smallSize, height, smallSize, smallSize);
-            if (hex.isExplored) {
+            if ((hex.isExplored && this.community.hasKnowledge(resource.resourceData.seeResourceCondition)) || !Settings.production) {
                 this.context.drawImage(Data.resourceImages[resource.resourceData.imageName], firstPosition + index * smallSize, height, smallSize, smallSize);
             } else {
                 this.context.drawImage(Data.resourceImages["unknownResource"], firstPosition + index * smallSize, height, smallSize, smallSize);

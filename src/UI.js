@@ -66,7 +66,7 @@ class UI {
                         "resourceActionsContainer"
                     ]
                 );
-                if (hex.isExplored) {
+                if ((hex.isExplored && this.community.hasKnowledge(resource.resourceData.seeResourceCondition)) || !Settings.production) {
                     this.addResource(hex, resource);
                 } else {
                     this.resourceImage.src = Data.resourceImages["unknownResource"].src;
@@ -82,13 +82,15 @@ class UI {
             this.resourceImage.classList.add("resourceUnavailable");
         }
         for (let actionName in resource.resourceData.actions) {
-            let actionButton = Util.createDOMElement("actionButton", "span", this.resourceActionsContainer);
-            actionButton.innerText = Util.texts[actionName];
-            actionButton.addEventListener("click", (event) => {
-                this.uiActions.actionButtonClick(hex, resource, actionName);
-            });
+            let action = resource.resourceData.actions[actionName];
+            if (this.community.hasKnowledge(action.unlockCondition) || !Settings.production) {
+                let actionButton = Util.createDOMElement("actionButton", "span", this.resourceActionsContainer);
+                actionButton.innerText = Util.texts[actionName];
+                actionButton.addEventListener("click", (event) => {
+                    this.uiActions.actionButtonClick(hex, resource, actionName);
+                });
+            }
         };
-
     }
     update() {
         Util.hide(this.uiContainer);
