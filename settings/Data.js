@@ -39,22 +39,22 @@ class Data {
             resourceName: "concrete",
             imageName: "concrete",
             popGrowth: 3,
-            seeResourceCondition: "concrete",
+            seeResourceConditions: [{ knwoledge: "concrete" }],
             actions: {
                 salvage: {
                     fatigue: 10,
                     get: "concrete",
-                    unlockCondition: "salvage_concrete"
+                    unlockConditions: [{ knowledge: "salvage_concrete" }]
                 },
                 destroy: {
                     fatigue: 20,
                     get: "concrete",
-                    unlockCondition: "destroy_concrete"
+                    unlockConditions: [{ knowledge: "destroy_concrete" }]
                 },
                 recycle: {
                     fatigue: 5,
                     get: "concrete",
-                    unlockCondition: "recycle_concrete"
+                    unlockConditions: [{ knowledge: "recycle_concrete" }]
                 }
             },
             regeneration: 1,
@@ -64,22 +64,22 @@ class Data {
             resourceName: "electronics",
             imageName: "electronics",
             popGrowth: 3,
-            seeResourceCondition: "electronics",
+            seeResourceConditions: [{ knowledge: "electronics" }],
             actions: {
                 salvage: {
                     fatigue: 10,
                     get: "electronics",
-                    unlockCondition: "salvage_electronics"
+                    unlockConditions: [{ knowledge: "salvage_electronics" }]
                 },
                 destroy: {
                     fatigue: 20,
                     get: "metal",
-                    unlockCondition: "destroy_electronics"
+                    unlockConditions: [{ knowledge: "destroy_electronics" }]
                 },
                 recycle: {
                     fatigue: 5,
                     get: "metal",
-                    unlockCondition: "recycle_electronics"
+                    unlockConditions: [{ knowledge: "recycle_electronics" }]
                 }
             },
             regeneration: 1,
@@ -89,12 +89,12 @@ class Data {
             resourceName: "iron",
             imageName: "iron",
             popGrowth: 3,
-            seeResourceCondition: "iron",
+            seeResourceConditions: [{ knowledge: "iron" }],
             actions: {
                 mine: {
                     fatigue: 8,
                     get: "iron",
-                    unlockCondition: "mine_iron"
+                    unlockConditions: [{ knowledge: "mine_iron" }]
                 }
             },
             regeneration: 1,
@@ -104,22 +104,22 @@ class Data {
             resourceName: "metal",
             imageName: "metal",
             popGrowth: 3,
-            seeResourceCondition: "metal",
+            seeResourceConditions: [{ knowledge: "metal" }],
             actions: {
                 salvage: {
                     fatigue: 10,
                     get: "metal",
-                    unlockCondition: "salvage_metal"
+                    unlockConditions: [{ knowledge: "salvage_metal" }]
                 },
                 destroy: {
                     fatigue: 20,
                     get: "metal",
-                    unlockCondition: "destroy_metal"
+                    unlockConditions: [{ knowledge: "destroy_metal" }]
                 },
                 recycle: {
                     fatigue: 5,
                     get: "metal",
-                    unlockCondition: "recycle_metal"
+                    unlockConditions: [{ knowledge: "recycle_metal" }]
                 }
             },
             regeneration: 1,
@@ -129,48 +129,58 @@ class Data {
             resourceName: "plastic",
             imageName: "plastic",
             popGrowth: 3,
-            seeResourceCondition: "plastic",
+            seeResourceConditions: [{ knowledge: "plastic" }],
             actions: {
                 salvage: {
                     fatigue: 10,
                     get: "plastic",
-                    unlockCondition: "salvage_plastic"
+                    unlockConditions: [{ knowledge: "salvage_plastic" }]
                 },
                 destroy: {
                     fatigue: 20,
                     get: "plastic",
-                    unlockCondition: "destroy_plastic"
+                    unlockConditions: [{ knowledge: "destroy_plastic" }]
                 },
                 recycle: {
                     fatigue: 5,
                     get: "plastic",
-                    unlockCondition: "recycle_plastic"
+                    unlockConditions: [{ knowledge: "recycle_plastic" }]
                 }
             },
             regeneration: 1,
             fatigueRecovery: 0
         },
+        "clean_water": {
+            resourceName: "clean_water",
+            imageName: "water",
+            popGrowth: 5,
+            seeResourceConditions: [],
+            actions: {
+            },
+            regeneration: 1,
+            fatigueRecovery: 2
+        },
         "water": {
             resourceName: "water",
             imageName: "water",
             popGrowth: 3,
-            seeResourceCondition: "starter",
+            seeResourceConditions: [{ knowledge: "starter" }],
             actions: {
                 fetch: {
                     fatigue: 2,
                     get: "water",
-                    unlockCondition: "starter",
-                    learn: "water_collection"
+                    unlockConditions: [{ knowledge: "starter" }],
+                    learn: ["water_collection"]
+                },
+                observation: {
+                    fatigue: 0,
+                    unlockConditions: [{ knowledge: "water_collection" }],
+                    learn: ["hydrology"]
                 },
                 filtration: {
                     fatigue: 1,
                     get: "clean_water",
-                    unlockCondition: "hydrology",
-                },
-                observation: {
-                    fatigue: 0,
-                    unlockCondition: "water_collection",
-                    learn: "hydrology"
+                    unlockConditions: [{ knowledge: "hydrology" }],
                 }
             },
             regeneration: 1,
@@ -180,12 +190,12 @@ class Data {
             resourceName: "wood",
             imageName: "wood",
             popGrowth: 3,
-            seeResourceCondition: "starter",
+            seeResourceConditions: [{ knowledge: "starter" }],
             actions: {
                 cut: {
                     fatigue: 2,
                     get: "wood",
-                    unlockCondition: "starter"
+                    unlockConditions: [{ knowledge: "starter" }]
                 }
             },
             regeneration: 1,
@@ -195,12 +205,12 @@ class Data {
             resourceName: "oil",
             imageName: "oil",
             popGrowth: 3,
-            seeResourceCondition: "oil",
+            seeResourceConditions: [{ knowledge: "oil" }],
             actions: {
                 drill: {
                     fatigue: 5,
                     get: "oil",
-                    unlockCondition: "drill_oil"
+                    unlockConditions: [{ knowledge: "drill_oil" }]
                 }
             },
             regeneration: 1,

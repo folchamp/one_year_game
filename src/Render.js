@@ -148,7 +148,7 @@ class Render {
         hex.resources.forEach((resource) => {
             this.context.fillStyle = "rgba(24, 27, 24, 0.8)";
             this.context.fillRect(firstPosition + index * smallSize, height, smallSize, smallSize);
-            if ((hex.isExplored && this.community.hasKnowledge(resource.resourceData.seeResourceCondition)) || !Settings.production) {
+            if ((hex.isExplored && this.community.fillsConditions(resource.resourceData.seeResourceConditions)) || !Settings.production) {
                 this.context.drawImage(Data.resourceImages[resource.resourceData.imageName], firstPosition + index * smallSize, height, smallSize, smallSize);
             } else {
                 this.context.drawImage(Data.resourceImages["unknownResource"], firstPosition + index * smallSize, height, smallSize, smallSize);

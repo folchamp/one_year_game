@@ -113,11 +113,17 @@ refactor setBiome()
 ajouter le gain de knowledge dans le moteur
 ajouter les gain de knowledge dans les data
 fatigue + aucune ressources -> désert
+commencer à lister des ressources, actions, connaissanes
+les connaissances sont dans des tableaux pour learn et conditions 
+les conditions peuvent aussi être une population minimale
+gagner de l'expérience en sciences (biologie, metallurgie etc. pour débloquer de nouvelles actions)
+Gagner en connaissances
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
+retirer fillsConditions de Render.js pour optimiser 
 certaines ressources sont "plantables" ?
 ajouter mille ressources + les interactions entre ressources
 les biomes peuvent récupérer
@@ -131,14 +137,12 @@ halo vert sur les explorateurs qui n'ont encore rien harvest ce tour-ci
 coût de harvest ?
 max trois ressources par tuile
 select next available explorer hotkey
-gagner de l'expérience en sciences (biologie, metallurgie etc. pour débloquer de nouvelles actions)
 séparer explorateurs, récolteurs, expérimentateurs etc. ?
 message d'erreur quand on essaye de récolter et qu'on a déjà récolté avec cet explorateur
 afficher la fatigue sur les tuiles ?
 petit feedback à hauteur de souris quand un action ne fonctionne pas 
 adversaire sous la forme d'une entité non contrôlée par le joueur
 Écrire des rencontres, des lieux, des morceaux d’histoire pour les tuiles
-Gagner en connaissances
 Créer un coût logistique (en “humains”)
 Créer une fatigue du village
 Créer une diversité génétique (=condition de victoire)

@@ -8,10 +8,19 @@ class Community {
         this.knowledge = ["starter"];
     }
     learn(knowledge) {
-        this.knowledge.push(knowledge);
+        this.knowledge.push(...knowledge);
     }
-    hasKnowledge(knowledge) {
-        return this.knowledge.includes(knowledge);
+    fillsConditions(conditions) {
+        let fills = true;
+        conditions.forEach((condition) => {
+            if (condition.knowledge !== undefined && !this.knowledge.includes(condition.knowledge)) {
+                fills = false;
+            }
+            if (condition.population !== undefined && this.population < condition.population) {
+                fills = false;
+            }
+        })
+        return fills;
     }
     feed(resourceName) {
         const basicGrowth = Data.resources[resourceName].popGrowth;
