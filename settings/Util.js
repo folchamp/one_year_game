@@ -11,6 +11,16 @@ class Util {
         drill: "forer",
         destroy: "détruire",
         recycle: "recycler",
+        filtration: "filtration",
+        observation: "observation",
+
+        // knowledge 
+        hydrology: "hydrologie",
+        water_collection: "récolte d'eau",
+
+        // resources 
+        water: "eau",
+        clean_water: "eau potable",
 
         // HTML elements 
         giveResourceButtonText: "village",

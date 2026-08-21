@@ -34,22 +34,6 @@ class Data {
         "unknownResource"
     ]);
 
-    // static getActionsToUnlock() {
-    //     const actionsToUnlock = {};
-    //     for (let resourceName in Data.resources) {
-    //         let resourceData = Data.resources[resourceName];
-    //         let actions = resourceData.actions;
-    //         actionsToUnlock[resourceName] = {};
-    //         for (let actionName in actions) {
-    //             if (actions[actionName].starterAction !== true) {
-    //                 actionsToUnlock[resourceName][actionName] = "locked";
-    //             }
-    //         }
-    //     }
-    //     console.log(actionsToUnlock);
-    //     return actionsToUnlock;
-    // }
-
     static resources = {
         "concrete": {
             resourceName: "concrete",
@@ -175,7 +159,18 @@ class Data {
                 fetch: {
                     fatigue: 2,
                     get: "water",
-                    unlockCondition: "starter"
+                    unlockCondition: "starter",
+                    learn: "water_collection"
+                },
+                filtration: {
+                    fatigue: 1,
+                    get: "clean_water",
+                    unlockCondition: "hydrology",
+                },
+                observation: {
+                    fatigue: 0,
+                    unlockCondition: "water_collection",
+                    learn: "hydrology"
                 }
             },
             regeneration: 1,

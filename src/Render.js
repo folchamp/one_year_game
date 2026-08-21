@@ -165,8 +165,8 @@ class Render {
         // }
     }
     drawHex(hex) {
+        const pos = this.getWorldPosition(hex);
         try {
-            const pos = this.getWorldPosition(hex);
             if (hex.isSeenThroughFog || !Settings.production) {
                 this.context.drawImage(Data.tileImages[hex.biome.imageName], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);
                 this.drawResources(hex);

@@ -109,9 +109,13 @@ class Game {
             let harvesterPosition = this.ECS.Position.get(entity);
             if (hex.q === harvesterPosition.q && hex.r === harvesterPosition.r && resource.isAvailable) {
                 let get = resource.resourceData.actions[actionName].get; // which resource does the action "get" (harvest)
+                let knowledge = resource.resourceData.actions[actionName].learn;
                 if (get !== undefined) {
                     let amount = this.inventory.get(get) ?? 0;
                     this.inventory.set(get, amount + 1);
+                }
+                if (knowledge !== undefined) {
+                    this.community.learn(knowledge);
                 }
                 hex.harvest(resourceName, actionName);
             }

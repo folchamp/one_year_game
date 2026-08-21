@@ -108,14 +108,21 @@ Ajouter des biomes "en déclin"
 ♦ Île, grève, désert
 effondrement et déclin des tuiles
 transformation en désert des tuiles surexploitées
+♥ 21/08/2026
+refactor setBiome()
+ajouter le gain de knowledge dans le moteur
+ajouter les gain de knowledge dans les data
+fatigue + aucune ressources -> désert
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
-ajouter le gain de knowledge dans le moteur
-ajouter les gain de knowledge dans les data
+certaines ressources sont "plantables" ?
 ajouter mille ressources + les interactions entre ressources
+les biomes peuvent récupérer
+passer le tour avec un explorateur inoccupé provoque une alerte
+coût logistique en fonction de la distance avec la communauté (récolter des ressources plus loin coûte plus cher)
 
 on ne peut pas déplacer un explorateur sur une tuile occupée
 nettoyer et optimiser Render.js

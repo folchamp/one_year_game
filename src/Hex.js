@@ -4,7 +4,7 @@ class Hex {
     constructor(q, r, biome) {
         this.q = q;
         this.r = r;
-        this.biome = biome;
+        this.setBiome(biome);
 
         // biomeAttributes
         this.elevation = 0.1;
@@ -22,12 +22,22 @@ class Hex {
         this.resources = [];
         // this.size = Settings.hexSize;
     }
+    setBiome(biome) {
+        // évite que biome ait accès aux Data.biomes
+        this.biome = {
+            degradation: biome.degradation,
+            imageName: biome.imageName
+        }
+    }
     evolveBiome() {
         if (this.isDegraded) {
             // quand le biome original est trop dégradé, il change de nature et recommence son cycle
             this.isDegraded = false;
             this.fatigue = 0;
-            this.biome = Data.biomes[this.biome.degradation];
+            this.setBiome(Data.biomes[this.biome.degradation]);
+            if (this.resources.length < 1) {
+                this.setBiome(Data.biomes["desert"]);
+            }
         }
     }
     cleanResources() {

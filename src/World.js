@@ -44,7 +44,7 @@ class World {
             let biomeCenter = this.getRandomHex();
             let tilesVisited = new Map();
             tilesVisited.set(`${biomeCenter.q}, ${biomeCenter.r}`, true);
-            biomeCenter.biome = biome;
+            biomeCenter.setBiome(biome);
             this.propagate(
                 [{ hexPosition: { q: biomeCenter.q, r: biomeCenter.r }, attributeValue: 1 }],
                 tilesVisited,
@@ -76,14 +76,14 @@ class World {
         return Math.round((attributeValue - random) * 100) / 100;
     }
     fillBiomes() {
-        this.hexes.forEach((value, key, map) => {
-            value.biome = Data.biomes["plains"];
+        this.hexes.forEach((hex, key, map) => {
+            hex.biome = Data.biomes["plains"];
             for (let biomeName in Data.biomes) {
                 let biome = Data.biomes[biomeName];
                 // console.log(biome)
                 // console.log(value[biome.attribute], biome.treshold);
-                if (value[biome.attribute] > biome.treshold) {
-                    value.biome = biome;
+                if (hex[biome.attribute] > biome.treshold) {
+                    hex.biome = biome;
                 }
             }
         });
@@ -97,6 +97,7 @@ class World {
                     hex.addResource((Data.resources[resourceName]));
                 }
             }
+            hex.setBiome(hex.biome);
         });
     }
     getRandomBiome() {

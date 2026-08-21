@@ -7,6 +7,9 @@ class Community {
         // this.actionsToUnlock = Data.getActionsToUnlock();
         this.knowledge = ["starter"];
     }
+    learn(knowledge) {
+        this.knowledge.push(knowledge);
+    }
     hasKnowledge(knowledge) {
         return this.knowledge.includes(knowledge);
     }
