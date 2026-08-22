@@ -100,7 +100,7 @@ on donne un ordre à un explorateur, il répète l'ordre à chaque tick
 animation pour les explorateurs au travail
 le débug affiche les ressources de toutes les tuiles
 les ressources des tuiles surexploitées disparaissent
-Ajouter des biomes "en déclin"
+ajouter des biomes "en déclin"
 ♦ Forêt, friche, désert
 ♦ Marais, broussailles, désert
 ♦ Plaines, landes, désert
@@ -117,7 +117,10 @@ commencer à lister des ressources, actions, connaissanes
 les connaissances sont dans des tableaux pour learn et conditions 
 les conditions peuvent aussi être une population minimale
 gagner de l'expérience en sciences (biologie, metallurgie etc. pour débloquer de nouvelles actions)
-Gagner en connaissances
+gagner en connaissances
+♥ 22/08/2026
+fichier Images.js
+début de l'éditeur RAC
 
 ********************
 TODO

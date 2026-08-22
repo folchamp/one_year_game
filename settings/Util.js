@@ -27,6 +27,10 @@ class Util {
         population: "population"
     };
 
+    static toggle(element) {
+        element.classList.toggle("hidden");
+    }
+
     static hide(element) {
         element.classList.add("hidden");
     }

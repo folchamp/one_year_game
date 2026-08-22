@@ -95,7 +95,7 @@ class Render {
         this.context.beginPath();
         this.context.arc(worldPosition.x, worldPosition.y, sprite.radius, 0, Math.PI * 2);
         // this.context.fill();
-        this.context.drawImage(Data.unitImages[sprite.imageName], worldPosition.x - sprite.width / 2, worldPosition.y - sprite.height / 2);
+        this.context.drawImage(Images.unitImages[sprite.imageName], worldPosition.x - sprite.width / 2, worldPosition.y - sprite.height / 2);
         this.strokeWithSelectionStyle();
     }
     drawEntity(sprite, hexPosition) {
@@ -105,7 +105,7 @@ class Render {
             // this.context.beginPath();
             // this.context.arc(worldPosition.x, worldPosition.y, sprite.radius, 0, Math.PI * 2);
             // this.context.fill();
-            this.context.drawImage(Data.unitImages[sprite.imageName], worldPosition.x - sprite.width / 2, worldPosition.y - sprite.height / 2);
+            this.context.drawImage(Images.unitImages[sprite.imageName], worldPosition.x - sprite.width / 2, worldPosition.y - sprite.height / 2);
         }
     }
     drawHexPath(hex) {
@@ -132,7 +132,7 @@ class Render {
         const smallSize = Settings.resourceImageSize / 2;
         const offsetY = Math.sin(performance.now() / 150) * 3;
 
-        this.context.drawImage(Data.resourceImages[order.resource.resourceData.imageName], worldPosition.x - smallSize / 2, height + offsetY, smallSize, smallSize);
+        this.context.drawImage(Images.resourceImages[order.resource.resourceData.imageName], worldPosition.x - smallSize / 2, height + offsetY, smallSize, smallSize);
 
         // console.log(order);
     }
@@ -149,9 +149,9 @@ class Render {
             this.context.fillStyle = "rgba(24, 27, 24, 0.8)";
             this.context.fillRect(firstPosition + index * smallSize, height, smallSize, smallSize);
             if ((hex.isExplored && this.community.fillsConditions(resource.resourceData.seeResourceConditions)) || !Settings.production) {
-                this.context.drawImage(Data.resourceImages[resource.resourceData.imageName], firstPosition + index * smallSize, height, smallSize, smallSize);
+                this.context.drawImage(Images.resourceImages[resource.resourceData.imageName], firstPosition + index * smallSize, height, smallSize, smallSize);
             } else {
-                this.context.drawImage(Data.resourceImages["unknownResource"], firstPosition + index * smallSize, height, smallSize, smallSize);
+                this.context.drawImage(Images.resourceImages["unknownResource"], firstPosition + index * smallSize, height, smallSize, smallSize);
             }
             index++;
             // console.log(`${hex.q}, ${hex.r} : ${resource.resourceData.resourceName}`);
@@ -168,10 +168,10 @@ class Render {
         const pos = this.getWorldPosition(hex);
         try {
             if (hex.isSeenThroughFog || !Settings.production) {
-                this.context.drawImage(Data.tileImages[hex.biome.imageName], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);
+                this.context.drawImage(Images.tileImages[hex.biome.imageName], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);
                 this.drawResources(hex);
             } else {
-                this.context.drawImage(Data.tileImages["fog_of_war"], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);
+                this.context.drawImage(Images.tileImages["fog_of_war"], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);
             }
         } catch (error) {
             console.log(hex);

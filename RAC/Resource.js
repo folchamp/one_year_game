@@ -1,0 +1,65 @@
+"use strict";
+
+class Resource {
+    constructor(parent, resourceName, popGrowth, regeneration, fatigueRecovery) {
+        this.parent = parent;
+        this.resourceName = resourceName;
+        this.popGrowth = popGrowth;
+        this.regeneration = regeneration;
+        this.fatigueRecovery = fatigueRecovery;
+
+        this.actions = [];
+
+        Util.quickStructure(this.parent, this,
+            [
+                "resourceContainer",
+                ["resourceHeaderContainer",
+                    "resourceNameTitle",
+                    "popGrowthInput",
+                    "addActionButton"],
+                "resourceActionsContainer"
+            ]
+        );
+
+        this.resourceNameTitle.innerText = Data.resources[resourceName];
+        this.addActionButton.innerText = "+";
+        this.popGrowthInput.type = "number";
+        this.popGrowthInput.value = popGrowth;
+
+        this.addActionButton.addEventListener("click", (event) => {
+            LISTENER.shout("addAction", { resource: this });
+        });
+
+        this.resourceHeaderContainer.addEventListener("click", (event) => {
+            Util.toggle(this.resourceActionsContainer);
+        });
+
+        this.popGrowthInput.addEventListener("change", (event) => {
+            this.popGrowth = Number(this.popGrowthInput.value);
+            LISTENER.shout("save");
+        });
+
+        LISTENER.add((message, parameters) => { this.listener(message, parameters); });
+    }
+    listener(message, parameters) {
+        if (message === "removeAction" && parameters.resourceName === this.resourceName) {
+            let actionName = parameters.actionName;
+            let indexToRemove;
+            for (let index = 0; index < this.actions.length; index++) {
+                const action = this.actions[index];
+                if (action.actionName === actionName) {
+                    indexToRemove = index;
+                    action.remove();
+                }
+            }
+            this.actions.splice(indexToRemove, 1);
+        }
+    }
+    addAction(actionName, fatigue, get) {
+        let action = new Action(this.resourceActionsContainer, this.resourceName, actionName, fatigue, get);
+        this.actions.push(action);
+        Util.show(this.resourceActionsContainer);
+        LISTENER.shout("save");
+        return action;
+    }
+}

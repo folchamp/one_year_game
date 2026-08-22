@@ -48,7 +48,7 @@ class UI {
         });
     }
     updateUnit() {
-        this.unitImage.src = Data.unitImages[this.selection.selectedEntityData.imageName].src
+        this.unitImage.src = Images.unitImages[this.selection.selectedEntityData.imageName].src
         Util.show(this.uiContainer);
         Util.show(this.unitSelectorContainer);
     }
@@ -58,7 +58,7 @@ class UI {
         Util.show(this.uiContainer);
         Util.show(this.hexSelectorContainer);
         if (hex.isSeenThroughFog || !Settings.production) {
-            this.hexImageContainer.style["background-image"] = `url("${Data.tileImages[this.selection.selectedHex.biome.imageName].src}")`;
+            this.hexImageContainer.style["background-image"] = `url("${Images.tileImages[this.selection.selectedHex.biome.imageName].src}")`;
             hex.resources.forEach((resource) => {
                 Util.quickStructure(this.hexResourcesContainer, this,
                     ["hexResourceContainer",
@@ -69,15 +69,15 @@ class UI {
                 if ((hex.isExplored && this.community.fillsConditions(resource.resourceData.seeResourceConditions)) || !Settings.production) {
                     this.addResource(hex, resource);
                 } else {
-                    this.resourceImage.src = Data.resourceImages["unknownResource"].src;
+                    this.resourceImage.src = Images.resourceImages["unknownResource"].src;
                 }
             });
         } else {
-            this.hexImageContainer.style["background-image"] = `url("${Data.tileImages["fog_of_war"].src}")`;
+            this.hexImageContainer.style["background-image"] = `url("${Images.tileImages["fog_of_war"].src}")`;
         }
     }
     addResource(hex, resource) {
-        this.resourceImage.src = Data.resourceImages[resource.resourceData.imageName].src;
+        this.resourceImage.src = Images.resourceImages[resource.resourceData.imageName].src;
         if (!resource.isAvailable) {
             this.resourceImage.classList.add("resourceUnavailable");
         }

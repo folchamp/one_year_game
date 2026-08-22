@@ -1,0 +1,125 @@
+.hidden {
+    display: none !important;
+}
+
+body {
+    margin: 0;
+    position: relative;
+}
+
+.actionContainer {
+    text-align: center;
+
+    .actionNameText {
+        padding: 2px;
+        font-weight: bold;
+    }
+
+    .knowledgeContainer {
+        display: flex;
+
+        .knowledgeConditionContainer,
+        .knowledgeLearnContainer {
+            width: 50%;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .knowledgeText {
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.actionSelectorContainer,
+.knowledgeSelectorContainer {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(50, 50, 50, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .actionsContainer,
+    .knowledgesContainer {
+        display: flex;
+        flex-wrap: wrap;
+        width: 70vw;
+        align-items: flex-start;
+        height: 70vh;
+    }
+
+    .actionSelectionText,
+    .knowledgeSelectionText {
+        background-color: rgb(80, 72, 72);
+        margin: 4px;
+        padding: 4px;
+        cursor: pointer;
+        border: 1px solid rgb(53, 32, 32);
+        color: rgb(255, 255, 255);
+    }
+
+    .actionSelectionText:hover,
+    .knowledgeSelectionText:hover {
+        background-color: rgb(185, 112, 112);
+
+    }
+}
+
+.resourcesContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 100vh;
+
+    .resourceContainer {
+        /* width: 130px; */
+        border: 1px solid black;
+        margin: 4px;
+
+        .resourceHeaderContainer:hover {
+            background-color: rgb(231, 203, 167);
+        }
+
+        .resourceHeaderContainer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: darkblue;
+            background-color: antiquewhite;
+            margin: 0px;
+            padding: 4px;
+            cursor: pointer;
+
+            .resourceNameTitle {
+                font-weight: bold;
+                margin: 4px;
+            }
+
+            .addActionButton:hover {
+                background: rgb(148, 66, 79);
+            }
+        }
+
+        .resourceActionsContainer {
+            /* min-height: 30px; */
+        }
+    }
+}
+
+
+.addActionButton,
+.addKnowledgeConditionButton,
+.removeActionButton,
+.addKnowledgeLearnButton,
+.knowledgeRemoveButton {
+    border: none;
+    background: rgb(230, 97, 119);
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
