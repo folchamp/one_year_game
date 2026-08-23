@@ -24,7 +24,8 @@ class Util {
 
         // HTML elements 
         giveResourceButtonText: "village",
-        population: "population"
+        population: "population",
+        downloadButton: "télécharger"
     };
 
     static toggle(element) {

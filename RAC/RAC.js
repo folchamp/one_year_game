@@ -9,16 +9,22 @@ class RAC {
         this.lastSelectedResource;
 
         Util.quickStructure(document.body, this,
-            ["resourcesContainer"]
+            ["allContainer",
+                ["resourcesContainer"],
+                "downloadButton"
+            ]
         );
         LISTENER.add((message, parameters) => { this.listener(message, parameters) });
 
         this.loadData();
+        this.downloadButton.addEventListener("click", (event) => {
+            navigator.clipboard.writeText(this.save());
+        });
     }
     loadData() {
         let resources = Util.getFromLocalStorage("RAC");
         if (resources === undefined || resources === null) {
-            this.startAnew();
+            this.completeResourceList();
         } else {
             for (let resourceName in resources) {
                 let resourceData = resources[resourceName];
@@ -34,11 +40,14 @@ class RAC {
                     });
                 }
             };
+            this.completeResourceList();
         }
     }
-    startAnew() {
+    completeResourceList() {
         for (let resourceName in Data.resources) {
-            this.addResource(resourceName, Data.defaultPopGrowth, Data.defaultRegeneration, Data.defaultFatigueRecovery);
+            if (!this.resources.some((resource) => { return resource.resourceName === resourceName; })) {
+                this.addResource(resourceName, Data.defaultPopGrowth, Data.defaultRegeneration, Data.defaultFatigueRecovery);
+            }
         }
     }
     addResource(resourceName, popGrowth, regeneration, fatigueRecovery) {
@@ -73,5 +82,6 @@ class RAC {
         });
         Util.saveToLocalStorage("RAC", resourcesToStringify);
         console.log("saved");
+        return JSON.stringify(resourcesToStringify);
     }
 }

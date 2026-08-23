@@ -174,6 +174,7 @@ class Render {
                 this.context.drawImage(Images.tileImages["fog_of_war"], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);
             }
         } catch (error) {
+            console.log(error);
             console.log(hex);
         }
 
