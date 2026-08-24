@@ -120,9 +120,7 @@ body {
             }
         }
 
-        .resourceActionsContainer {
-            /* min-height: 30px; */
-        }
+        /* .resourceActionsContainer {} */
     }
 }
 
