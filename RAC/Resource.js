@@ -27,11 +27,16 @@ class Resource {
         this.popGrowthInput.value = popGrowth;
 
         this.addActionButton.addEventListener("click", (event) => {
+            event.stopPropagation();
             LISTENER.shout("addAction", { resource: this });
         });
 
         this.resourceHeaderContainer.addEventListener("click", (event) => {
             Util.toggle(this.resourceActionsContainer);
+        });
+
+        this.popGrowthInput.addEventListener("click", (event) => {
+            event.stopPropagation();
         });
 
         this.popGrowthInput.addEventListener("change", (event) => {

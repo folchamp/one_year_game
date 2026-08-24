@@ -69,7 +69,7 @@ class RAC {
     save() {
         let resourcesToStringify = {};
         this.resources.forEach((resource) => {
-            resourcesToStringify[resource.resourceName] = { resourceImage: resource.resourceName, actions: {}, popGrowth: resource.popGrowth, seeResourceConditions: [{ knowledge: "starter" }], regeneration: resource.regeneration, fatigueRecovery: resource.fatigueRecovery };
+            resourcesToStringify[resource.resourceName] = { imageName: resource.resourceName, actions: {}, popGrowth: resource.popGrowth, seeResourceConditions: [{ knowledge: "starter" }], regeneration: resource.regeneration, fatigueRecovery: resource.fatigueRecovery };
             resource.actions.forEach((action) => {
                 resourcesToStringify[resource.resourceName].actions[action.actionName] = { unlockConditions: [], learn: [], fatigue: action.fatigue, get: action.get };
                 action.conditions.forEach((knowledge) => {

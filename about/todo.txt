@@ -121,11 +121,36 @@ gagner en connaissances
 ♥ 22/08/2026
 fichier Images.js
 début de l'éditeur RAC
+♥ 23/08/2026
+RAC V1 (le RAC est l'éditer des liens resources-action-connaissance)
+♥ 24/08/2026
+correction d'un bug RAC (resourceImage -> imageName)
+travail sur le RAC grâce à l'éditeur
+ajout d'animaux
+ajout de céréales
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
+animaux -> entités
+    // [][][][][][][][][] animaux    [][][][][][][][][]
+    // "aurochs": "aurochs",
+    // "livestock": "bétail",
+    // "cattle": "bovin",
+    // "deer": "cerf",
+    // "mushrooms": "champignons",
+    // "horse": "cheval",
+    // "wild_horse": "cheval sauvage",
+    // "pheasant": "faisan",
+    // "rabbit": "lapin",
+    // "wolf": "loup",
+    // "fish": "poisson",
+    // "chicken": "poule",
+    // "wild_boar": "sanglier",
+nommer les ressources partout dans le jeu
+transformation durable des ressources d'un tuile ? blé sauvage -> blé
+distribuer les ressources dans les trois catégories (naturelles, fabriquées, vestiges)
 retirer fillsConditions de Render.js pour optimiser 
 certaines ressources sont "plantables" ?
 ajouter mille ressources + les interactions entre ressources

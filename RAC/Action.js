@@ -14,9 +14,11 @@ class Action {
 
         Util.quickStructure(this.parent, this,
             ["actionContainer",
-                "removeActionButton",
-                "actionNameText",
-                "actionGetInput",
+                ["actionHeaderContainer",
+                    "removeActionButton",
+                    "actionNameText",
+                    "actionGetInput",
+                ],
                 ["knowledgeContainer",
                     ["knowledgeConditionContainer",
                         "addKnowledgeConditionButton",
@@ -34,6 +36,10 @@ class Action {
         this.knowledgeConditionText.innerText = "condition";
         this.knowledgeLearnText.innerText = "learn";
         this.actionGetInput.value = this.get;
+
+        this.actionHeaderContainer.addEventListener("click", (event) => {
+            Util.toggle(this.knowledgeContainer);
+        })
 
         this.actionGetInput.addEventListener("change", (event) => {
             this.get = this.actionGetInput.value;

@@ -154,7 +154,6 @@ class Render {
                 this.context.drawImage(Images.resourceImages["unknownResource"], firstPosition + index * smallSize, height, smallSize, smallSize);
             }
             index++;
-            // console.log(`${hex.q}, ${hex.r} : ${resource.resourceData.resourceName}`);
         });
 
 
@@ -166,16 +165,11 @@ class Render {
     }
     drawHex(hex) {
         const pos = this.getWorldPosition(hex);
-        try {
-            if (hex.isSeenThroughFog || !Settings.production) {
-                this.context.drawImage(Images.tileImages[hex.biome.imageName], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);
-                this.drawResources(hex);
-            } else {
-                this.context.drawImage(Images.tileImages["fog_of_war"], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);
-            }
-        } catch (error) {
-            console.log(error);
-            console.log(hex);
+        if (hex.isSeenThroughFog || !Settings.production) {
+            this.context.drawImage(Images.tileImages[hex.biome.imageName], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);
+            this.drawResources(hex);
+        } else {
+            this.context.drawImage(Images.tileImages["fog_of_war"], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);
         }
 
         // TODO make lines bigger when zoomed out 

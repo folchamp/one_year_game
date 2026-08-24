@@ -16,10 +16,20 @@ body {
 .actionContainer {
     text-align: center;
 
-    .actionNameText {
-        padding: 2px;
-        font-weight: bold;
+    .actionHeaderContainer:hover {
+        background-color: rgb(231, 203, 167);
     }
+
+    .actionHeaderContainer {
+        padding: 4px;
+        cursor: pointer;
+
+        .actionNameText {
+            padding: 2px;
+            font-weight: bold;
+        }
+    }
+
 
     .knowledgeContainer {
         display: flex;
