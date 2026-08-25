@@ -83,7 +83,6 @@ class Hex {
         });
     }
     addResource(resourceData) {
-        console.log(resourceData);
         if (!this.hasResource(resourceData.resourceName)) {
             let resource = {
                 resourceData: resourceData,
