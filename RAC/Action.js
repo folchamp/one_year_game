@@ -31,7 +31,7 @@ class Action {
         );
         this.addKnowledgeConditionButton.innerText = "+";
         this.removeActionButton.innerText = "-";
-        this.actionNameText.innerText = Data.actions[actionName];
+        this.actionNameText.innerText = actionName;
         this.addKnowledgeLearnButton.innerText = "+";
         this.knowledgeConditionText.innerText = "condition";
         this.knowledgeLearnText.innerText = "learn";

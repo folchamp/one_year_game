@@ -15,7 +15,7 @@ class ActionSelector {
                 this.hide();
                 LISTENER.shout("selectAction", { actionName: actionName });
             });
-            element.innerText = Data.actions[actionName];
+            element.innerText = actionName;
         }
 
         this.actionSelectorContainer.addEventListener("click", (event) => {

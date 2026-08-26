@@ -135,33 +135,37 @@ fusion des versions téléphone et PC du jeu
 ♥ 26/08/2026
 relecture de l'entièreté du code
 petit refactor
+nommer les ressources partout dans le jeu
+intégration de l'arbre de ressources créé avec le RAC (et ChatGPT)
+relecture du code complet
+requiresOneOf
+une action toujours disponible et deux actions avancées par ressource
+dans l'éditeur RAC, on peut cliquer sur des connaissances pour illuminer les connaissances liées
+ajouter un loadInput à l'éditeur RAC
+minimiser les actions quand on clique dessus
+hide actions on page load
+retirer fillsConditions de Render.js pour optimiser
 
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
+
 revoir community.feed()
 revoir le système de food (ressources directement consommées par le village, barres sims qui évoluent)
 ajouter un listener dans Util.js
-relecture du code complet
 barre Sims (confort, nourriture, matériaux de construction etc.)
 ajouter le passage du tour sur un bouton (pour la version mobile)
 connaissances === outils
 Les ressources ont des types (naturelle, fabriquée, vestige)
 système de notification
 notifier les nouvelles découvertes
-requiresOneOf
 3 conditions, 3 learns, une action community ne garde qu'une seule nouvelle connaissance parmi les trois learns (et retient son choix)
-une action toujours disponible et deux actions avancées par ressource
 créer un simulateur RAC 
 - trouve les orphelins
 - trouve les trucs non traduits
 - trouve les trucs qui n'ont pas d'image
-- on peut cliquer sur des connaissances pour illuminer les connaissances liées
-ajouter un loadInput à l'éditeur RAC
-minimiser les actions quand on clique dessus
-hide actions on page load
 animaux -> entités
     // [][][][][][][][][] animaux    [][][][][][][][][]
     // "aurochs": "aurochs",
@@ -177,10 +181,8 @@ animaux -> entités
     // "fish": "poisson",
     // "chicken": "poule",
     // "wild_boar": "sanglier",
-nommer les ressources partout dans le jeu
 transformation durable des ressources d'un tuile ? blé sauvage -> blé
 distribuer les ressources dans les trois catégories (naturelles, fabriquées, vestiges)
-retirer fillsConditions de Render.js pour optimiser 
 certaines ressources sont "plantables" ?
 ajouter mille ressources + les interactions entre ressources
 les biomes peuvent récupérer

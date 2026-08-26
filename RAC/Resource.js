@@ -21,7 +21,7 @@ class Resource {
             ]
         );
 
-        this.resourceNameTitle.innerText = Data.resources[resourceName];
+        this.resourceNameTitle.innerText = resourceName;
         this.addActionButton.innerText = "+";
         this.popGrowthInput.type = "number";
         this.popGrowthInput.value = popGrowth;
@@ -65,7 +65,7 @@ class Resource {
         this.actions.push(action);
         Util.show(this.resourceActionsContainer);
         LISTENER.shout("save");
-        action.hide();
+        // action.hide();
         return action;
     }
 }

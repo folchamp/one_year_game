@@ -34,6 +34,8 @@ class Images {
         "wood",
         "oil",
         "unknownResource",
-        "fruit"
+        "fruits",
+        "mushrooms",
+        "clay"
     ]);
 }

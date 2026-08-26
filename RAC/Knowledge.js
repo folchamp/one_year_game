@@ -12,12 +12,31 @@ class Knowledge {
                 "knowledgeText",
                 "knowledgeRemoveButton"]);
 
-        this.knowledgeText.innerText = Data.knowledges[this.knowledgeName];
+        this.knowledgeText.innerText = this.knowledgeName;
         this.knowledgeRemoveButton.innerText = "-";
 
         this.knowledgeRemoveButton.addEventListener("click", (event) => {
             LISTENER.shout("removeKnowledge", { resourceName: this.resourceName, actionName: this.actionName, knowledgeName: this.knowledgeName });
         });
+
+        this.knowledgeContainer.addEventListener("click", (event) => {
+            LISTENER.shout("illuminate", { knowledgeName: this.knowledgeName });
+        });
+
+        LISTENER.add((message, parameters) => { this.listener(message, parameters) });
+    }
+    listener(message, parameters) {
+        if (message === "illuminate" && parameters.knowledgeName === this.knowledgeName) {
+            this.illuminate();
+        } else {
+            this.desilluminate();
+        }
+    }
+    illuminate() {
+        this.knowledgeContainer.classList.add("illuminate");
+    }
+    desilluminate() {
+        this.knowledgeContainer.classList.remove("illuminate");
     }
     remove() {
         this.knowledgeContainer.remove();

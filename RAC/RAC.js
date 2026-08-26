@@ -4,6 +4,8 @@ class RAC {
     constructor() {
         this.resources = [];
 
+        this.isSaving = false;
+
         this.actionSelector = new ActionSelector();
         this.knowledgeSelector = new KnowledgeSelector();
         this.lastSelectedResource;
@@ -11,7 +13,8 @@ class RAC {
         Util.quickStructure(document.body, this,
             ["allContainer",
                 ["resourcesContainer"],
-                "downloadButton"
+                "downloadButton",
+                "uploadInput"
             ]
         );
         LISTENER.add((message, parameters) => { this.listener(message, parameters) });
@@ -19,6 +22,9 @@ class RAC {
         this.loadData();
         this.downloadButton.addEventListener("click", (event) => {
             navigator.clipboard.writeText(this.save());
+        });
+        this.uploadInput.addEventListener("change", (event) => {
+            Util.saveToLocalStorage("RAC", JSON.parse(this.uploadInput.value));
         });
     }
     loadData() {
@@ -32,8 +38,8 @@ class RAC {
                 for (let actionName in resourceData.actions) {
                     let actionData = resourceData.actions[actionName];
                     let action = resource.addAction(actionName, actionData.fatigue, actionData.get);
-                    actionData.unlockConditions.forEach((knowledge) => {
-                        action.addCondition(knowledge.knowledge);
+                    actionData.requiresOneOf.forEach((knowledge) => {
+                        action.addCondition(knowledge);
                     });
                     actionData.learn.forEach((knowledge) => {
                         action.addLearn(knowledge);
@@ -67,21 +73,27 @@ class RAC {
         this.save();
     }
     save() {
-        let resourcesToStringify = {};
-        this.resources.forEach((resource) => {
-            resourcesToStringify[resource.resourceName] = { imageName: resource.resourceName, actions: {}, popGrowth: resource.popGrowth, seeResourceConditions: [{ knowledge: "starter" }], regeneration: resource.regeneration, fatigueRecovery: resource.fatigueRecovery };
-            resource.actions.forEach((action) => {
-                resourcesToStringify[resource.resourceName].actions[action.actionName] = { unlockConditions: [], learn: [], fatigue: action.fatigue, get: action.get };
-                action.conditions.forEach((knowledge) => {
-                    resourcesToStringify[resource.resourceName].actions[action.actionName].unlockConditions.push({ knowledge: knowledge.knowledgeName });
+        if (!this.isSaving) {
+            this.isSaving = true;
+            setTimeout(() => {
+                let resourcesToStringify = {};
+                this.resources.forEach((resource) => {
+                    resourcesToStringify[resource.resourceName] = { imageName: resource.resourceName, actions: {}, popGrowth: resource.popGrowth, regeneration: resource.regeneration, fatigueRecovery: resource.fatigueRecovery };
+                    resource.actions.forEach((action) => {
+                        resourcesToStringify[resource.resourceName].actions[action.actionName] = { requiresOneOf: [], learn: [], fatigue: action.fatigue, get: action.get };
+                        action.conditions.forEach((knowledge) => {
+                            resourcesToStringify[resource.resourceName].actions[action.actionName].requiresOneOf.push(knowledge.knowledgeName);
+                        });
+                        action.learns.forEach((knowledge) => {
+                            resourcesToStringify[resource.resourceName].actions[action.actionName].learn.push(knowledge.knowledgeName);
+                        });
+                    });
                 });
-                action.learns.forEach((knowledge) => {
-                    resourcesToStringify[resource.resourceName].actions[action.actionName].learn.push(knowledge.knowledgeName);
-                });
-            });
-        });
-        Util.saveToLocalStorage("RAC", resourcesToStringify);
-        console.log("saved");
-        return JSON.stringify(resourcesToStringify);
+                Util.saveToLocalStorage("RAC", resourcesToStringify);
+                this.isSaving = false;
+                console.log("saved");
+                // return JSON.stringify(resourcesToStringify);
+            }, 1500);
+        }
     }
 }

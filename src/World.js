@@ -2,7 +2,7 @@
 
 class World {
     constructor() {
-        this.mapRadius = Settings.mapRaduis;
+        this.mapRadius = Settings.mapRadius;
 
         this.hexes = new Map();
         for (let q = -this.mapRadius; q <= this.mapRadius; q++) {

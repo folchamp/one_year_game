@@ -8,9 +8,15 @@ body {
 }
 
 .downloadButton {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
+}
+
+.uploadInput {
+    position: fixed;
+    top: 0;
+    left: 200px;
 }
 
 .actionContainer {
@@ -30,6 +36,9 @@ body {
         }
     }
 
+    .knowledgeContainer.illuminate {
+        background-color: red;
+    }
 
     .knowledgeContainer {
         display: flex;

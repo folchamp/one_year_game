@@ -5,20 +5,37 @@ class Community {
         this.population = Settings.startingPopulation;
         this.lastResourcesGiven = [];
         this.knowledge = ["starter"];
+
     }
     learn(knowledge) {
-        this.knowledge.push(...knowledge);
+        let chosenKnowledge = Random.fromArray(knowledge);
+        console.log(`learned ${chosenKnowledge}`);
+        this.knowledge.push(chosenKnowledge);
+        
+        // for testing purposes
+        for (let resourceName in Data.resources) {
+            let resourceData = Data.resources[resourceName];
+            for (let actionName in resourceData.actions) {
+                let actionData = resourceData.actions[actionName];
+                if (actionData.requiresOneOf.includes(chosenKnowledge)) {
+                    console.log(`unlock ${resourceName} -> ${actionName}`);
+                }
+            }
+        }
+
+        console.log(this.knowledge);
     }
     fillsConditions(conditions) {
-        let fills = true;
-        conditions.forEach((condition) => {
-            if (condition.knowledge !== undefined && !this.knowledge.includes(condition.knowledge)) {
-                fills = false;
-            }
-            if (condition.population !== undefined && this.population < condition.population) {
-                fills = false;
-            }
-        })
+        let fills = false;
+        if (conditions.length < 1) {
+            fills = true;
+        } else {
+            conditions.forEach((condition) => {
+                if (this.knowledge.includes(condition)) {
+                    fills = true;
+                }
+            });
+        }
         return fills;
     }
     feed(resourceName) {

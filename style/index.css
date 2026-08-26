@@ -102,6 +102,12 @@ body {
             .hexResourceContainer {
                 display: flex;
 
+                .resourceDescriptionContainer {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
+
                 .resourceActionsContainer {
                     display: flex;
                     flex-direction: column;

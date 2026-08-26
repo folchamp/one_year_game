@@ -41,7 +41,11 @@ class UI {
                 "resourceText",
                 "giveResourceButtonText"
             ]);
-            this.resourceText.innerText = `${resourceName} : ${amountInInventory}`;
+            if (Data.resources[resourceName]) {
+                this.resourceText.innerText = `${Data.resources[resourceName].displayName} : ${amountInInventory}`;
+            } else {
+                this.resourceText.innerText = `${resourceName} (TODO) : ${amountInInventory}`;
+            }
             this.giveResourceButtonText.addEventListener("click", (event) => {
                 this.uiActions.feedCommunityClick(resourceName);
             });
@@ -62,11 +66,13 @@ class UI {
             hex.resources.forEach((resource) => {
                 Util.quickStructure(this.hexResourcesContainer, this,
                     ["hexResourceContainer",
-                        "resourceImage",
+                        ["resourceDescriptionContainer",
+                            "resourceImage",
+                            "resourceNameText"],
                         "resourceActionsContainer"
                     ]
                 );
-                if ((hex.isExplored && this.community.fillsConditions(resource.resourceData.seeResourceConditions)) || !Settings.production) {
+                if (hex.isExplored || !Settings.production) {
                     this.addResource(hex, resource);
                 } else {
                     this.resourceImage.src = Images.resourceImages["unknownResource"].src;
@@ -78,14 +84,15 @@ class UI {
     }
     addResource(hex, resource) {
         this.resourceImage.src = Images.resourceImages[resource.resourceData.imageName].src;
+        this.resourceNameText.innerText = resource.resourceData.displayName;
         if (!resource.isAvailable) {
             this.resourceImage.classList.add("resourceUnavailable");
         }
         for (let actionName in resource.resourceData.actions) {
             let action = resource.resourceData.actions[actionName];
-            if (this.community.fillsConditions(action.unlockConditions) || !Settings.production) {
+            if (this.community.fillsConditions(action.requiresOneOf) || !Settings.production) {
                 let actionButton = Util.createDOMElement("actionButton", "span", this.resourceActionsContainer);
-                actionButton.innerText = Util.texts[actionName];
+                actionButton.innerText = action.displayName;
                 actionButton.addEventListener("click", (event) => {
                     this.uiActions.actionButtonClick(hex, resource, actionName);
                 });

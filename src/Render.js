@@ -140,8 +140,13 @@ class Render {
         hex.resources.forEach((resource) => {
             this.context.fillStyle = "rgba(24, 27, 24, 0.8)";
             this.context.fillRect(firstPosition + index * smallSize, height, smallSize, smallSize);
-            if ((hex.isExplored && this.community.fillsConditions(resource.resourceData.seeResourceConditions)) || !Settings.production) {
-                this.context.drawImage(Images.resourceImages[resource.resourceData.imageName], firstPosition + index * smallSize, height, smallSize, smallSize);
+            if (hex.isExplored || !Settings.production) {
+                try {
+                    this.context.drawImage(Images.resourceImages[resource.resourceData.imageName], firstPosition + index * smallSize, height, smallSize, smallSize);
+                } catch (error) {
+                    console.log(error);
+                    console.log(resource);
+                }
             } else {
                 this.context.drawImage(Images.resourceImages["unknownResource"], firstPosition + index * smallSize, height, smallSize, smallSize);
             }
