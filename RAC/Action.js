@@ -39,7 +39,7 @@ class Action {
 
         this.actionHeaderContainer.addEventListener("click", (event) => {
             Util.toggle(this.knowledgeContainer);
-        })
+        });
 
         this.actionGetInput.addEventListener("change", (event) => {
             this.get = this.actionGetInput.value;
@@ -116,5 +116,8 @@ class Action {
     }
     remove() {
         this.actionContainer.remove();
+    }
+    hide() {
+        Util.hide(this.knowledgeContainer);
     }
 }

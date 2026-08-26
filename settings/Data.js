@@ -2,7 +2,7 @@
 
 class Data {
     static resources = JSON.parse(
-        '{"water":{"imageName":"water","actions":{"draw":{"unlockConditions":[],"learn":["water_collection","rivers","water_detection","water_filtration","hydrology","nutrition","water_storage"],"fatigue":5,"get":"water"}},"popGrowth":5,"seeResourceConditions":[{"knowledge":"starter"}],"regeneration":1,"fatigueRecovery":2},"wood":{"imageName":"wood","actions":{"cut":{"unlockConditions":[],"learn":["agroforestry","biodiversity","botany","forest_ecology","horticulture","plant_breeding"],"fatigue":5,"get":"wood"}},"popGrowth":5,"seeResourceConditions":[{"knowledge":"starter"}],"regeneration":1,"fatigueRecovery":2},"fruit":{"imageName":"fruit","actions":{"gather":{"unlockConditions":[],"learn":["biology","botany","permaculture","nutrition","horticulture","nutrient_cycles","conservation","composting","conservation","botany"],"fatigue":5,"get":"fruit"}},"popGrowth":8,"seeResourceConditions":[{"knowledge":"starter"}],"regeneration":1,"fatigueRecovery":2}}'
+        '{}'
     )
 
     static biomeNamesForGeneration = [
@@ -59,7 +59,7 @@ class Data {
             treshold: 0.5,
             amountOfResources: 1,
             resources: [
-                "water",
+                // "water",
                 "nothing"
             ]
         },
@@ -73,7 +73,7 @@ class Data {
             treshold: 0.75,
             amountOfResources: 1,
             resources: [
-                "water",
+                // "water",
                 "nothing"
             ]
         },
@@ -87,10 +87,10 @@ class Data {
             treshold: 0.4,
             amountOfResources: 2,
             resources: [
-                "water",
-                "wood",
+                // "water",
+                // "wood",
                 "nothing",
-                "fruit"
+                // "fruit"
             ]
         },
         mountain: {
@@ -103,7 +103,7 @@ class Data {
             treshold: 0.45,
             amountOfResources: 1,
             resources: [
-                "water",
+                // "water",
                 "nothing"
             ]
         },
@@ -121,5 +121,4 @@ class Data {
             ]
         }
     };
-
 }

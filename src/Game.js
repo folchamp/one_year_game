@@ -6,13 +6,13 @@ class Game {
         this.actions = {
             resetCamera: { description: "Resets the camera to the center of the map", f: () => this.camera.resetCamera() },
             resetZoom: { description: "Resets the zoom of the camera", f: () => this.camera.resetZoom() },
-            openHotkeysMenu: { description: "TODO : Open the hotkeys menu", f: () => { this.log.log(JSON.stringify(this.hotkeys.getHotkeys(), null, 4)); } },
-            toggleDev: { description: "TODO : Toggle dev mode", f: () => this.toggleDev() },
+            openHotkeysMenu: { description: "Open the hotkeys menu", f: () => { this.log.log(JSON.stringify(this.hotkeys.getHotkeys(), null, 4)); } },
+            toggleDev: { description: "Toggle dev mode", f: () => this.toggleDev() },
             nextTick: { description: "Run a tick, advance the game by one time unit", f: () => this.tick() },
             zoomOut: { description: "Zoom out to see everything", f: () => this.camera.zoomOut() }
         };
         this.uiActions = {
-            actionButtonClick: (hex, resource, actionName) => this.actionButtonClick(hex, resource, actionName), // { description: "The player harvests a resource from a tile", f: (hex, resourceName) => this.harvestResource(hex, resourceName) }
+            actionButtonClick: (hex, resource, actionName) => this.actionButtonClick(hex, resource, actionName),
             feedCommunityClick: (resourceName) => this.feedCommunityClick(resourceName)
         }
         this.inventory = new Map();
@@ -32,7 +32,6 @@ class Game {
         this.movementSystem = new MovementSystem(this.world, this.ECS);
         this.render = new Render(this.context, this.display, this.camera, this.world, this.ECS, this.selection, this.community);
 
-
         // components (entity-components system)
         this.ECS.Explorer = new Map();
         this.ECS.Harvester = new Map();
@@ -42,6 +41,7 @@ class Game {
         this.ECS.Hitbox = new Map();
         this.ECS.Movement = new Map();
         this.ECS.Order = new Map();
+
         // hotkeys
         this.hotkeys.bind("KeyR", this.actions.resetCamera);
         this.hotkeys.bind("KeyW", this.actions.resetZoom);
@@ -58,7 +58,7 @@ class Game {
         this.createExplorer(Settings.startHexPosition.q, Settings.startHexPosition.r);
 
         // start
-        this.tick();
+        this.tick(); // tick initial, je ne sais plus pourquoi c'est nécessaire
         this.loop();
     }
     isHexPositionOccupied(hexPosition) {
@@ -209,7 +209,7 @@ class Game {
             this.world.exploreTile(this.ECS.Position.get(entity));
             this.world.seeNeightbours(this.ECS.Position.get(entity));
         });
-        if (this.ECS.Explorer.size <= Math.floor(this.community.population / 100)) {
+        if (this.ECS.Explorer.size <= Math.floor(this.community.population / Settings.bornPopulationCap)) {
             this.born();
         }
         this.world.update();

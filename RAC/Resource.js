@@ -65,6 +65,7 @@ class Resource {
         this.actions.push(action);
         Util.show(this.resourceActionsContainer);
         LISTENER.shout("save");
+        action.hide();
         return action;
     }
 }

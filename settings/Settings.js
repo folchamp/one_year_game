@@ -1,9 +1,7 @@
 "use strict";
 
 class Settings {
-
     static production = true;
-
     static appName = "one_year_game";
     static hexSize = 115;
     static basicHexSize = 115;
@@ -14,4 +12,6 @@ class Settings {
     static startingPopulation = 80;
     static lengthOfFoodMemory = 10;
     static maxFatigue = 10;
+    static bornPopulationCap = 100;
+    static mapRadius = 20;
 }

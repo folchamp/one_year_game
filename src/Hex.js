@@ -13,14 +13,12 @@ class Hex {
         this.humans = 0.1;
         // ecology attributes
         this.isDegraded = false;
-        // this.health = 100;
 
         // visibility attributes
         this.isExplored = false;
         this.isSeenThroughFog = false;
 
         this.resources = [];
-        // this.size = Settings.hexSize;
     }
     setBiome(biome) {
         // évite que biome ait accès aux Data.biomes

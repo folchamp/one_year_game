@@ -2,7 +2,6 @@
 
 class Hotkeys {
     constructor() {
-        // TODO add support for ctrl and shift
         this.Bindings = new Map();
 
         window.addEventListener("keydown", (event) => {

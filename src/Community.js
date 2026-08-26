@@ -4,7 +4,6 @@ class Community {
     constructor() {
         this.population = Settings.startingPopulation;
         this.lastResourcesGiven = [];
-        // this.actionsToUnlock = Data.getActionsToUnlock();
         this.knowledge = ["starter"];
     }
     learn(knowledge) {

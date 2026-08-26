@@ -1,5 +1,7 @@
 "use strict";
 
+// merci CHATGPT pour l'inspiration
+
 /*
  * RAC — Resource / Action / Knowledge
  *

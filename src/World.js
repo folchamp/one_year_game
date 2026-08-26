@@ -2,7 +2,7 @@
 
 class World {
     constructor() {
-        this.mapRadius = 20;
+        this.mapRadius = Settings.mapRaduis;
 
         this.hexes = new Map();
         for (let q = -this.mapRadius; q <= this.mapRadius; q++) {
@@ -80,8 +80,6 @@ class World {
             hex.biome = Data.biomes["plains"];
             for (let biomeName in Data.biomes) {
                 let biome = Data.biomes[biomeName];
-                // console.log(biome)
-                // console.log(value[biome.attribute], biome.treshold);
                 if (hex[biome.attribute] > biome.treshold) {
                     hex.biome = biome;
                 }

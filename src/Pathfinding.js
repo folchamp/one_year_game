@@ -63,7 +63,7 @@ class Pathfinding {
             path.unshift(previous); // ouais... on remplit le tableau à l'envers...
             next = Pathfinding.key(previous);
         }
-        path.push(end); // le dernier hexagone n'est pas dans le path
+        path.push(end); // le dernier hexagone n'est pas dans le path, on l'ajoute
         path.shift(); // le premier hexagone ne doit pas y être
         return path;
     }

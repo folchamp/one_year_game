@@ -91,20 +91,14 @@ class Render {
     }
     drawSelectedEntity(sprite, hexPosition) {
         let worldPosition = World.hexToWorld(hexPosition);
-        // this.context.fillStyle = "blue";
         this.context.beginPath();
         this.context.arc(worldPosition.x, worldPosition.y, sprite.radius, 0, Math.PI * 2);
-        // this.context.fill();
         this.context.drawImage(Images.unitImages[sprite.imageName], worldPosition.x - sprite.width / 2, worldPosition.y - sprite.height / 2);
         this.strokeWithSelectionStyle();
     }
     drawEntity(sprite, hexPosition) {
         if (hexPosition !== undefined) {
             let worldPosition = World.hexToWorld(hexPosition);
-            // this.context.fillStyle = "rgba(200,0,0,1)";
-            // this.context.beginPath();
-            // this.context.arc(worldPosition.x, worldPosition.y, sprite.radius, 0, Math.PI * 2);
-            // this.context.fill();
             this.context.drawImage(Images.unitImages[sprite.imageName], worldPosition.x - sprite.width / 2, worldPosition.y - sprite.height / 2);
         }
     }
@@ -133,8 +127,6 @@ class Render {
         const offsetY = Math.sin(performance.now() / 150) * 3;
 
         this.context.drawImage(Images.resourceImages[order.resource.resourceData.imageName], worldPosition.x - smallSize / 2, height + offsetY, smallSize, smallSize);
-
-        // console.log(order);
     }
     drawResources(hex) {
         const pos = this.getWorldPosition(hex);
@@ -155,13 +147,6 @@ class Render {
             }
             index++;
         });
-
-
-        // if (hex.resource !== "nothing") {
-        //     this.context.fillStyle = "white";
-        //     this.context.fillRect(pos.x, pos.y, Settings.resourceImageSize, Settings.resourceImageSize);
-        //     this.context.drawImage(Data.resourceImages[Data.resources[hex.resource].imageName], pos.x, pos.y);
-        // }
     }
     drawHex(hex) {
         const pos = this.getWorldPosition(hex);
@@ -171,10 +156,6 @@ class Render {
         } else {
             this.context.drawImage(Images.tileImages["fog_of_war"], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);
         }
-
-        // TODO make lines bigger when zoomed out 
-        // lineWhidth = Math.round(3 * (1 / this.camera.zoom));
-        // console.log(Math.round(3 * (1 / this.camera.zoom)));
 
         if (!Settings.production) {
             const text = `${hex.q},${hex.r}`;

@@ -1,9 +1,7 @@
 "use strict";
 
 class Images {
-    constructor() {
-
-    }
+    constructor() { }
 
     static tileImages = Util.loadImages("tiles/", [
         "plains",
