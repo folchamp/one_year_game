@@ -52,8 +52,8 @@ body {
 .actionSelectorContainer,
 .knowledgeSelectorContainer {
     position: fixed;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     width: 100vw;
     height: 100vh;
     background-color: rgba(50, 50, 50, 0.9);
@@ -92,7 +92,9 @@ body {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    width: 100vw;
+    width: 90vw;
+    box-sizing: border-box;
+    margin: auto;
 
     .resourceContainer {
         /* width: 130px; */

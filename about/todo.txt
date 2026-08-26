@@ -128,10 +128,30 @@ correction d'un bug RAC (resourceImage -> imageName)
 travail sur le RAC grâce à l'éditeur
 ajout d'animaux
 ajout de céréales
+travail sur le RAC au boulot
+rendu l'éditeur RAC mobile-friendly
 
 ********************
 TODO
 ********************
+barre Sims (confort, nourriture, matériaux de construction etc.)
+ajouter le passage du tour sur un bouton (pour la version mobile)
+connaissances === outils
+Les ressources ont des types (naturelle, fabriquée, vestige)
+système de notification
+notifier les nouvelles découvertes
+requiresOneOf
+3 conditions, 3 learns, une action community ne garde qu'une seule nouvelle connaissance parmi les trois learns (et retient son choix)
+une action toujours disponible et deux actions avancées par ressource
+créer un simulateur RAC 
+- trouve les orphelins
+- trouve les trucs non traduits
+- trouve les trucs qui n'ont pas d'image
+- on peut cliquer sur des connaissances pour illuminer les connaissances liées
+ajouter un loadInput à l'éditeur RAC
+minimiser les actions quand on clique dessus
+hide actions on page load
+
 ---------- MUST ----------
 animaux -> entités
     // [][][][][][][][][] animaux    [][][][][][][][][]
