@@ -145,12 +145,14 @@ ajouter un loadInput à l'éditeur RAC
 minimiser les actions quand on clique dessus
 hide actions on page load
 retirer fillsConditions de Render.js pour optimiser
+mushrooms
 
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
+dessiner plein de ressources
 
 revoir community.feed()
 revoir le système de food (ressources directement consommées par le village, barres sims qui évoluent)
