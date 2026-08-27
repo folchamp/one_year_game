@@ -30,7 +30,8 @@ body {
 }
 
 .uiContainer,
-.uiTwoContainer {
+.uiTwoContainer,
+.uiMobileContainer {
     position: absolute;
     line-height: 12px;
     padding-bottom: 10px;
@@ -44,9 +45,15 @@ body {
     backdrop-filter: blur(5px);
 }
 
+.uiMobileContainer {
+    bottom: 0;
+    right: 0;
+    text-align: center;
+}
+
 .uiTwoContainer {
     top: 0;
-    right: 0;
+    left: 0;
     padding: 4px;
 
     .uiInventoryContainer {

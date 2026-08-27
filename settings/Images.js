@@ -27,15 +27,22 @@ class Images {
     static resourceImages = Util.loadImages("resources/", [
         "concrete",
         "electronics",
-        "iron",
-        "metal",
-        "plastic",
+        "iron_ore",
+        "ancient_metal",
+        "ancient_plastic",
+        "ancient_glass",
         "water",
         "wood",
         "oil",
         "unknownResource",
         "fruits",
         "mushrooms",
-        "clay"
+        "clay",
+        "sandstone",
+        "plants",
+        "sand",
+        "copper_ore",
+        "limestone",
+        "lumber"
     ]);
 }

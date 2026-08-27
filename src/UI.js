@@ -28,6 +28,29 @@ class UI {
             ]
         );
 
+        Util.quickStructure(document.body, this,
+            [
+                "uiMobileContainer",
+                ["upperMobileContainer",
+                    "panUpButton",
+                ],
+                ["middleMobileContainer",
+                    "panLeftButton",
+                    "panDownButton",
+                    "panRightButton",
+                ],
+                ["spaceButtonContainer",
+                    "spaceButton"
+                ]
+            ]
+        );
+
+        this.panUpButton.addEventListener("click", (event) => { this.uiActions.cameraUp(); });
+        this.panLeftButton.addEventListener("click", (event) => { this.uiActions.cameraLeft(); });
+        this.panDownButton.addEventListener("click", (event) => { this.uiActions.cameraDown(); });
+        this.panRightButton.addEventListener("click", (event) => { this.uiActions.cameraRight(); });
+        this.spaceButton.addEventListener("click", (event) => { this.uiActions.nextTick(); });
+
         Util.hide(this.uiContainer);
     }
     updatePopulation() {
@@ -44,7 +67,7 @@ class UI {
             if (Data.resources[resourceName]) {
                 this.resourceText.innerText = `${Data.resources[resourceName].displayName} : ${amountInInventory}`;
             } else {
-                this.resourceText.innerText = `${resourceName} (TODO) : ${amountInInventory}`;
+                this.resourceText.innerText = `${resourceName} (tr. needed) : ${amountInInventory}`;
             }
             this.giveResourceButtonText.addEventListener("click", (event) => {
                 this.uiActions.feedCommunityClick(resourceName);

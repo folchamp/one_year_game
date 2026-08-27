@@ -15,11 +15,14 @@ class Resource {
                 "resourceContainer",
                 ["resourceHeaderContainer",
                     "resourceNameTitle",
+                    "resourceImage",
                     "popGrowthInput",
                     "addActionButton"],
                 "resourceActionsContainer"
             ]
         );
+
+        // this.resourceImage.src = `../images/resources/${this.resourceName}.png`;
 
         this.resourceNameTitle.innerText = resourceName;
         this.addActionButton.innerText = "+";

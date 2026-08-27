@@ -4,7 +4,7 @@ class RAC {
     constructor() {
         this.resources = [];
 
-        this.isSaving = false;
+        this.savePromise;
 
         this.actionSelector = new ActionSelector();
         this.knowledgeSelector = new KnowledgeSelector();
@@ -21,8 +21,9 @@ class RAC {
 
         this.loadData();
         this.downloadButton.addEventListener("click", (event) => {
-            navigator.clipboard.writeText(this.save());
+            this.save().then((data) => { navigator.clipboard.writeText(data); });
         });
+        this.uploadInput.placeholder = "JSON";
         this.uploadInput.addEventListener("change", (event) => {
             Util.saveToLocalStorage("RAC", JSON.parse(this.uploadInput.value));
         });
@@ -73,27 +74,29 @@ class RAC {
         this.save();
     }
     save() {
-        if (!this.isSaving) {
-            this.isSaving = true;
-            setTimeout(() => {
-                let resourcesToStringify = {};
-                this.resources.forEach((resource) => {
-                    resourcesToStringify[resource.resourceName] = { imageName: resource.resourceName, actions: {}, popGrowth: resource.popGrowth, regeneration: resource.regeneration, fatigueRecovery: resource.fatigueRecovery };
-                    resource.actions.forEach((action) => {
-                        resourcesToStringify[resource.resourceName].actions[action.actionName] = { requiresOneOf: [], learn: [], fatigue: action.fatigue, get: action.get };
-                        action.conditions.forEach((knowledge) => {
-                            resourcesToStringify[resource.resourceName].actions[action.actionName].requiresOneOf.push(knowledge.knowledgeName);
-                        });
-                        action.learns.forEach((knowledge) => {
-                            resourcesToStringify[resource.resourceName].actions[action.actionName].learn.push(knowledge.knowledgeName);
+        if (this.savePromise === undefined) {
+            this.savePromise = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    let resourcesToStringify = {};
+                    this.resources.forEach((resource) => {
+                        resourcesToStringify[resource.resourceName] = { imageName: resource.resourceName, actions: {}, popGrowth: resource.popGrowth, regeneration: resource.regeneration, fatigueRecovery: resource.fatigueRecovery };
+                        resource.actions.forEach((action) => {
+                            resourcesToStringify[resource.resourceName].actions[action.actionName] = { requiresOneOf: [], learn: [], fatigue: action.fatigue, get: action.get };
+                            action.conditions.forEach((knowledge) => {
+                                resourcesToStringify[resource.resourceName].actions[action.actionName].requiresOneOf.push(knowledge.knowledgeName);
+                            });
+                            action.learns.forEach((knowledge) => {
+                                resourcesToStringify[resource.resourceName].actions[action.actionName].learn.push(knowledge.knowledgeName);
+                            });
                         });
                     });
-                });
-                Util.saveToLocalStorage("RAC", resourcesToStringify);
-                this.isSaving = false;
-                console.log("saved");
-                // return JSON.stringify(resourcesToStringify);
-            }, 1500);
+                    Util.saveToLocalStorage("RAC", resourcesToStringify);
+                    console.log("saved");
+                    this.savePromise = undefined;
+                    resolve(JSON.stringify(resourcesToStringify));
+                }, 1500);
+            });
         }
+        return this.savePromise;
     }
 }

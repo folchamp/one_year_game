@@ -5,7 +5,12 @@ class Util {
         // HTML elements 
         giveResourceButtonText: "village",
         population: "population",
-        downloadButton: "télécharger"
+        downloadButton: "télécharger",
+        panUpButton: "⬆️",
+        panDownButton: "⬇️",
+        panRightButton: "➡️",
+        panLeftButton: "⬅️",
+        spaceButton: "pass turn"
     };
 
     static toggle(element) {

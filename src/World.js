@@ -22,7 +22,10 @@ class World {
         const neightbors = World.getNeightbors(position.q, position.r);
         this.hexes.get(`${position.q}, ${position.r}`).isSeenThroughFog = true;
         neightbors.forEach((neightbor) => {
-            this.hexes.get(`${neightbor.q}, ${neightbor.r}`).isSeenThroughFog = true;
+            let hex = this.hexes.get(`${neightbor.q}, ${neightbor.r}`);
+            if (hex !== undefined) {
+                hex.isSeenThroughFog = true;
+            }
         });
 
     }

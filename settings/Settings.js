@@ -14,4 +14,5 @@ class Settings {
     static maxFatigue = 10;
     static bornPopulationCap = 100;
     static mapRadius = 20;
+    static panSpeed = 256;
 }

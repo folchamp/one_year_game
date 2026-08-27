@@ -21,6 +21,7 @@ class Knowledge {
 
         this.knowledgeContainer.addEventListener("click", (event) => {
             LISTENER.shout("illuminate", { knowledgeName: this.knowledgeName });
+            this.knowledgeContainer.classList.add("illuminateBetter");
         });
 
         LISTENER.add((message, parameters) => { this.listener(message, parameters) });
@@ -37,6 +38,7 @@ class Knowledge {
     }
     desilluminate() {
         this.knowledgeContainer.classList.remove("illuminate");
+        this.knowledgeContainer.classList.remove("illuminateBetter");
     }
     remove() {
         this.knowledgeContainer.remove();

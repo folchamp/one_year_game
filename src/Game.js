@@ -9,11 +9,17 @@ class Game {
             openHotkeysMenu: { description: "Open the hotkeys menu", f: () => { this.log.log(JSON.stringify(this.hotkeys.getHotkeys(), null, 4)); } },
             toggleDev: { description: "Toggle dev mode", f: () => this.toggleDev() },
             nextTick: { description: "Run a tick, advance the game by one time unit", f: () => this.tick() },
-            zoomOut: { description: "Zoom out to see everything", f: () => this.camera.zoomOut() }
+            zoomOut: { description: "Zoom out to see everything", f: () => this.camera.zoomOut() },
+            downloadResources: { description: "add Data.resources to clipboard", f: () => this.downloadResources() }
         };
         this.uiActions = {
             actionButtonClick: (hex, resource, actionName) => this.actionButtonClick(hex, resource, actionName),
-            feedCommunityClick: (resourceName) => this.feedCommunityClick(resourceName)
+            feedCommunityClick: (resourceName) => this.feedCommunityClick(resourceName),
+            cameraLeft: () => this.camera.cameraLeft(),
+            cameraRight: () => this.camera.cameraRight(),
+            cameraUp: () => this.camera.cameraUp(),
+            cameraDown: () => this.camera.cameraDown(),
+            nextTick: () => this.tick()
         }
         this.inventory = new Map();
 
@@ -49,6 +55,7 @@ class Game {
         this.hotkeys.bind("KeyD", this.actions.toggleDev);
         this.hotkeys.bind("Space", this.actions.nextTick);
         this.hotkeys.bind("KeyQ", this.actions.zoomOut);
+        this.hotkeys.bind("KeyT", this.actions.downloadResources);
         this.display.getCanvas().addEventListener("mousemove", (event) => { this.mousemove(event); });
         this.display.getCanvas().addEventListener("click", (event) => { this.click(event); });
         this.display.getCanvas().addEventListener("contextmenu", (event) => { this.rightclick(event); });
@@ -60,6 +67,9 @@ class Game {
         // start
         this.tick(); // tick initial, je ne sais plus pourquoi c'est nécessaire
         this.loop();
+    }
+    downloadResources() {
+        navigator.clipboard.writeText(JSON.stringify(Data.resources));
     }
     isHexPositionOccupied(hexPosition) {
         let isOccupied = false;
@@ -113,6 +123,15 @@ class Game {
                 if (get !== undefined) {
                     let amount = this.inventory.get(get) ?? 0;
                     this.inventory.set(get, amount + 1);
+                    console.log(`${resource.resourceData.resourceName} === ${get}`);
+                    if (resource.resourceData.resourceName !== get) {
+                        let newResourceData = Data.resources[get];
+                        if (newResourceData === undefined) {
+                            console.warn(`ressource inexistante ${get}`);
+                        } else {
+                            hex.addResource(newResourceData);
+                        }
+                    }
                 }
                 if (knowledge !== undefined) {
                     this.community.learn(knowledge);

@@ -40,6 +40,10 @@ body {
         background-color: red;
     }
 
+    .knowledgeContainer.illuminateBetter {
+        background-color: rgb(9, 219, 226);
+    }
+
     .knowledgeContainer {
         display: flex;
 

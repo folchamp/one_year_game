@@ -359,13 +359,13 @@ class Data {
             "regeneration": 1,
             "fatigueRecovery": 2
         },
-        "stone": {
-            "displayName": "Pierre",
+        "sandstone": {
+            "displayName": "Grès",
             "actions": {
                 "collect": {
                     "displayName": "Ramasser",
                     "requiresOneOf": [],
-                    "get": "stone",
+                    "get": "sandstone",
                     "learn": [
                         "geology",
                         "observation",
@@ -404,8 +404,8 @@ class Data {
                     "fatigue": 5
                 }
             },
-            "resourceName": "stone",
-            "imageName": "stone",
+            "resourceName": "sandstone",
+            "imageName": "sandstone",
             "popGrowth": 3,
             "regeneration": 1,
             "fatigueRecovery": 2
@@ -2806,6 +2806,57 @@ class Data {
             "popGrowth": 3,
             "regeneration": 1,
             "fatigueRecovery": 2
+        },
+        "ancient_plastic": {
+            displayName: "plastique ancien",
+            imageName: "ancient_plastic",
+            "resourceName": "ancient_plastic",
+            popGrowth: 3,
+            actions: {
+                salvage: {
+                    "displayName": "Récupérer",
+                    requiresOneOf: [],
+                    get: "ancient_plastic",
+                    learn: [
+                        "material_science",
+                        "recycling",
+                        "ancient_world"
+                    ],
+                    "fatigue": 5
+                },
+                identify: {
+                    "displayName": "Identifier",
+                    requiresOneOf: [
+                        "material_science",
+                        "chemistry",
+                        "ancient_world"
+                    ],
+                    get: "plastic",
+                    learn: [
+                        "material_science",
+                        "chemistry",
+                        "identification"
+                    ],
+                    "fatigue": 5
+                },
+                recycle: {
+                    "displayName": "Recycler",
+                    requiresOneOf: [
+                        "recycling",
+                        "chemistry",
+                        "material_science"
+                    ],
+                    get: "plastic",
+                    learn: [
+                        "recycling",
+                        "chemistry",
+                        "processing"
+                    ],
+                    "fatigue": 5
+                }
+            },
+            regeneration: 1,
+            fatigueRecovery: 2
         }
     };
     static resources_old = {
@@ -3047,7 +3098,9 @@ class Data {
             treshold: 0.0,
             amountOfResources: 1,
             resources: [
-                "nothing"
+                // "nothing"
+                "sandstone",
+                "plants"
             ]
         },
         swamp: {
@@ -3060,9 +3113,10 @@ class Data {
             treshold: 0.5,
             amountOfResources: 1,
             resources: [
-                "water",
+                // "water",
+                "mushrooms",
                 "clay",
-                "nothing"
+                // "nothing"
             ]
         },
         island: {
@@ -3076,7 +3130,8 @@ class Data {
             amountOfResources: 1,
             resources: [
                 "water",
-                "nothing"
+                "sand",
+                // "nothing"
             ]
         },
         forest: {
@@ -3089,11 +3144,10 @@ class Data {
             treshold: 0.4,
             amountOfResources: 2,
             resources: [
-                "water",
+                // "water",
                 "wood",
                 "fruits",
-                "mushrooms",
-                "nothing"
+                // "nothing"
             ]
         },
         mountain: {
@@ -3106,12 +3160,17 @@ class Data {
             treshold: 0.45,
             amountOfResources: 1,
             resources: [
-                "water",
-                "nothing"
+                "iron_ore",
+                "copper_ore",
+                "limestone",
+                "limestone",
+                "limestone",
+                "nothing",
+                "nothing",
             ]
         },
         city: {
-            degradation: "desert",
+            degradation: undefined,
             imageName: "city",
             attribute: "humanInfluence",
             amount: 10,
@@ -3120,7 +3179,9 @@ class Data {
             treshold: 0.99,
             amountOfResources: 3,
             resources: [
-                "nothing"
+                "ancient_metal",
+                "ancient_plastic",
+                "ancient_glass"
             ]
         }
     };

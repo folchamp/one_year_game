@@ -146,28 +146,40 @@ minimiser les actions quand on clique dessus
 hide actions on page load
 retirer fillsConditions de Render.js pour optimiser
 mushrooms
-
+♥ 27/08/2026
+ancient glass
+sandstone
+limestone
+copper_ore
+plants
+sand
+dessiner plein de ressources
+ajouter le passage du tour sur un bouton (pour la version mobile)
+ajouter le mouvement de camera pour la version mobile
+facilitater le passage de l'éditeur RAC au jeu et inversement
+ajouter un warning en cas de rencontre avec une ressource orpheline
+protéger le disque en évitant les sauvegarde répétées
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
-dessiner plein de ressources
-
+la communauté consomme un élément de chaque "inventaire" (nourriture, matériaux de construction, confort et soins)
+barre Sims (confort, nourriture, matériaux de construction etc.)
 revoir community.feed()
 revoir le système de food (ressources directement consommées par le village, barres sims qui évoluent)
+
+créer un simulateur RAC 
+- trouve les orphelins
+- trouve les trucs non traduits
+- trouve les trucs qui n'ont pas d'image
+
 ajouter un listener dans Util.js
-barre Sims (confort, nourriture, matériaux de construction etc.)
-ajouter le passage du tour sur un bouton (pour la version mobile)
 connaissances === outils
 Les ressources ont des types (naturelle, fabriquée, vestige)
 système de notification
 notifier les nouvelles découvertes
 3 conditions, 3 learns, une action community ne garde qu'une seule nouvelle connaissance parmi les trois learns (et retient son choix)
-créer un simulateur RAC 
-- trouve les orphelins
-- trouve les trucs non traduits
-- trouve les trucs qui n'ont pas d'image
 animaux -> entités
     // [][][][][][][][][] animaux    [][][][][][][][][]
     // "aurochs": "aurochs",

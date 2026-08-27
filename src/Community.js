@@ -10,8 +10,10 @@ class Community {
     learn(knowledge) {
         let chosenKnowledge = Random.fromArray(knowledge);
         console.log(`learned ${chosenKnowledge}`);
-        this.knowledge.push(chosenKnowledge);
-        
+        if (!this.knowledge.includes(chosenKnowledge)) {
+            this.knowledge.push(chosenKnowledge);
+        }
+
         // for testing purposes
         for (let resourceName in Data.resources) {
             let resourceData = Data.resources[resourceName];

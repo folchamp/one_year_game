@@ -48,6 +48,18 @@ class Camera {
         this.x = 0;
         this.y = 0;
     }
+    cameraLeft() {
+        this.x -= Settings.panSpeed;
+    }
+    cameraRight() {
+        this.x += Settings.panSpeed;
+    }
+    cameraUp() {
+        this.y -= Settings.panSpeed;
+    }
+    cameraDown() {
+        this.y += Settings.panSpeed;
+    }
     screenToWorld(position) {
         return {
             x: (position.x - this.canvas.width / 2) / this.zoom + this.x,

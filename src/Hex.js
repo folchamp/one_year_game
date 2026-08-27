@@ -32,9 +32,11 @@ class Hex {
             // quand le biome original est trop dégradé, il change de nature et recommence son cycle
             this.isDegraded = false;
             this.fatigue = 0;
-            this.setBiome(Data.biomes[this.biome.degradation]);
-            if (this.resources.length < 1) {
-                this.setBiome(Data.biomes["desert"]);
+            if (this.biome.degradation) {
+                this.setBiome(Data.biomes[this.biome.degradation]);
+                if (this.resources.length < 1) {
+                    this.setBiome(Data.biomes["desert"]);
+                }
             }
         }
     }
@@ -81,7 +83,7 @@ class Hex {
         });
     }
     addResource(resourceData) {
-        if (!this.hasResource(resourceData.resourceName)) {
+        if (resourceData !== undefined && !this.hasResource(resourceData.resourceName)) {
             let resource = {
                 resourceData: resourceData,
                 fatigue: 0,

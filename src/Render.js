@@ -138,8 +138,8 @@ class Render {
         let index = 0;
         // display resource
         hex.resources.forEach((resource) => {
-            this.context.fillStyle = "rgba(24, 27, 24, 0.8)";
-            this.context.fillRect(firstPosition + index * smallSize, height, smallSize, smallSize);
+            this.context.strokeStyle = "rgba(24, 27, 24, 0.8)";
+            // this.context.strokeRect(firstPosition + index * smallSize, height, smallSize, smallSize);
             if (hex.isExplored || !Settings.production) {
                 try {
                     this.context.drawImage(Images.resourceImages[resource.resourceData.imageName], firstPosition + index * smallSize, height, smallSize, smallSize);
