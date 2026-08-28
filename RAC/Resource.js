@@ -1,13 +1,14 @@
 "use strict";
 
 class Resource {
-    constructor(parent, resourceName, popGrowth, regeneration, fatigueRecovery, category) {
+    constructor(parent, resourceName, popGrowth, regeneration, fatigueRecovery, category, displayName) {
         this.parent = parent;
         this.resourceName = resourceName;
         this.popGrowth = popGrowth;
         this.regeneration = regeneration;
         this.fatigueRecovery = fatigueRecovery;
         this.category = category;
+        this.displayName = displayName;
 
         this.actions = [];
 
@@ -64,8 +65,8 @@ class Resource {
             this.actions.splice(indexToRemove, 1);
         }
     }
-    addAction(actionName, fatigue, get) {
-        let action = new Action(this.resourceActionsContainer, this.resourceName, actionName, fatigue, get);
+    addAction(actionName, fatigue, get, displayName) {
+        let action = new Action(this.resourceActionsContainer, this.resourceName, actionName, fatigue, get, displayName);
         this.actions.push(action);
         Util.show(this.resourceActionsContainer);
         LISTENER.shout("save");

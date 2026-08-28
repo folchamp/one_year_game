@@ -1,13 +1,14 @@
 "use strict";
 
 class Action {
-    constructor(parent, resourceName, actionName, fatigue, get) {
+    constructor(parent, resourceName, actionName, fatigue, get, displayName) {
         this.parent = parent;
         this.resourceName = resourceName;
         this.actionName = actionName;
 
         this.fatigue = fatigue;
         this.get = get;
+        this.displayName = displayName;
 
         this.conditions = [];
         this.learns = [];
