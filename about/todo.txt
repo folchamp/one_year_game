@@ -159,6 +159,8 @@ ajouter le mouvement de camera pour la version mobile
 facilitater le passage de l'éditeur RAC au jeu et inversement
 ajouter un warning en cas de rencontre avec une ressource orpheline
 protéger le disque en évitant les sauvegarde répétées
+♥ 28/08/2026
+camera déplaçable au touch
 
 ********************
 TODO

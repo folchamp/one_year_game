@@ -35,7 +35,7 @@ class RAC {
         } else {
             for (let resourceName in resources) {
                 let resourceData = resources[resourceName];
-                let resource = this.addResource(resourceName, resourceData.popGrowth, resourceData.regeneration, resourceData.fatigueRecovery);
+                let resource = this.addResource(resourceName, resourceData.popGrowth, resourceData.regeneration, resourceData.fatigueRecovery, resourceData.category);
                 for (let actionName in resourceData.actions) {
                     let actionData = resourceData.actions[actionName];
                     let action = resource.addAction(actionName, actionData.fatigue, actionData.get);
@@ -79,7 +79,7 @@ class RAC {
                 setTimeout(() => {
                     let resourcesToStringify = {};
                     this.resources.forEach((resource) => {
-                        resourcesToStringify[resource.resourceName] = { imageName: resource.resourceName, actions: {}, popGrowth: resource.popGrowth, regeneration: resource.regeneration, fatigueRecovery: resource.fatigueRecovery };
+                        resourcesToStringify[resource.resourceName] = { category : resource.category ?? "", imageName: resource.resourceName, actions: {}, popGrowth: resource.popGrowth, regeneration: resource.regeneration, fatigueRecovery: resource.fatigueRecovery };
                         resource.actions.forEach((action) => {
                             resourcesToStringify[resource.resourceName].actions[action.actionName] = { requiresOneOf: [], learn: [], fatigue: action.fatigue, get: action.get };
                             action.conditions.forEach((knowledge) => {

@@ -6,14 +6,15 @@ class Camera {
 
         this.x = 0;
         this.y = 0;
-        this.zoom = 1;
+        this.zoom = Settings.initialZoom;
 
         this.isDragging = false;
-        canvas.addEventListener("mousedown", (event) => {
+        this.canvas.addEventListener("pointerdown", (event) => {
             this.isDragging = true;
             this.lastMousePosition = Util.getMousePosition(this.canvas, event);
+            this.canvas.setPointerCapture(event.pointerId);
         });
-        canvas.addEventListener("mousemove", (event) => {
+        this.canvas.addEventListener("pointermove", (event) => {
             if (this.isDragging) {
                 const mousePosition = Util.getMousePosition(this.canvas, event);
                 const diff = { x: mousePosition.x - this.lastMousePosition.x, y: mousePosition.y - this.lastMousePosition.y };
@@ -22,10 +23,15 @@ class Camera {
                 this.lastMousePosition = mousePosition;
             }
         });
-        window.addEventListener("mouseup", (event) => {
+        window.addEventListener("pointerup", (event) => {
             this.isDragging = false;
+            this.canvas.releasePointerCapture(event.pointerId);
         });
-        canvas.addEventListener("wheel", (event) => {
+        this.canvas.addEventListener("pointercancel", (event) => {
+            // this.isDragging = false;
+            // this.canvas.releasePointerCapture(event.pointerId);
+        });
+        this.canvas.addEventListener("wheel", (event) => {
             const factor = 1.1;
             event.preventDefault();
             if (event.deltaY < 0)

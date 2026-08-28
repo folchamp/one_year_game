@@ -10,6 +10,7 @@ body {
 
 .gameCanvas {
     background: black;
+    touch-action: none;
 }
 
 .logContainer {

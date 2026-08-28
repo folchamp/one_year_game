@@ -15,4 +15,5 @@ class Settings {
     static bornPopulationCap = 100;
     static mapRadius = 20;
     static panSpeed = 256;
+    static initialZoom = 1;
 }

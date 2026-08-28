@@ -1,12 +1,13 @@
 "use strict";
 
 class Resource {
-    constructor(parent, resourceName, popGrowth, regeneration, fatigueRecovery) {
+    constructor(parent, resourceName, popGrowth, regeneration, fatigueRecovery, category) {
         this.parent = parent;
         this.resourceName = resourceName;
         this.popGrowth = popGrowth;
         this.regeneration = regeneration;
         this.fatigueRecovery = fatigueRecovery;
+        this.category = category;
 
         this.actions = [];
 
