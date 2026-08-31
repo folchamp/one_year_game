@@ -106,7 +106,11 @@ class UI {
         }
     }
     addResource(hex, resource) {
-        this.resourceImage.src = Images.resourceImages[resource.resourceData.imageName].src;
+        try {
+            this.resourceImage.src = Images.resourceImages[resource.resourceData.imageName].src;
+        } catch (error) {
+            console.log(`${resource.resourceData.resourceName} n'a pas d'image`);
+        }
         this.resourceNameText.innerText = resource.resourceData.displayName;
         if (!resource.isAvailable) {
             this.resourceImage.classList.add("resourceUnavailable");

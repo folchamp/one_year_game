@@ -2628,7 +2628,7 @@ class Data {
                     ],
                     "fatigue": 1,
                     "get": "tool",
-                    "displayName": "Récpliquer"
+                    "displayName": "Répliquer"
                 },
                 "repair": {
                     "requiresOneOf": [

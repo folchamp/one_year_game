@@ -144,8 +144,7 @@ class Render {
                 try {
                     this.context.drawImage(Images.resourceImages[resource.resourceData.imageName], firstPosition + index * smallSize, height, smallSize, smallSize);
                 } catch (error) {
-                    console.log(error);
-                    console.log(resource);
+                    console.log(`${resource.resourceData.resourceName} n'a pas d'image`);
                 }
             } else {
                 this.context.drawImage(Images.resourceImages["unknownResource"], firstPosition + index * smallSize, height, smallSize, smallSize);
