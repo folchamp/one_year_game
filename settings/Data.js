@@ -2,2863 +2,2875 @@
 
 class Data {
     static resources = {
-    "water": {
-        "displayName": "Eau",
-        "category": "food",
-        "imageName": "water",
-        "actions": {
-            "draw": {
-                "requiresOneOf": [],
-                "learn": [
-                    "hygiene",
-                    "hydrology",
-                    "water_sources"
-                ],
-                "fatigue": 5,
-                "get": "water",
-                "displayName": "Puiser"
-            },
-            "boil": {
-                "requiresOneOf": [
-                    "fire",
-                    "cooking",
-                    "containers"
-                ],
-                "learn": [
-                    "purification",
-                    "hygiene",
-                    "temperature"
-                ],
-                "fatigue": 5,
-                "get": "clean_water",
-                "displayName": "Faire bouillir"
-            },
-            "sample": {
-                "requiresOneOf": [
-                    "science",
-                    "hydrology",
-                    "sampling"
-                ],
-                "learn": [
-                    "water_quality",
-                    "sampling",
-                    "measurement"
-                ],
-                "fatigue": 5,
-                "get": "water_sample",
-                "displayName": "Prélever un échantillon"
+        "water": {
+            "resourceName": "water",
+            "imageName": "water",
+            "displayName": "Eau",
+            "category": "raw_material",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "draw": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "hygiene",
+                        "hydrology",
+                        "water_sources"
+                    ],
+                    "fatigue": 5,
+                    "get": "water",
+                    "displayName": "Puiser"
+                },
+                "boil": {
+                    "requiresOneOf": [
+                        "fire",
+                        "cooking",
+                        "containers"
+                    ],
+                    "learn": [
+                        "purification",
+                        "hygiene",
+                        "temperature"
+                    ],
+                    "fatigue": 5,
+                    "get": "clean_water",
+                    "displayName": "Faire bouillir"
+                },
+                "sample": {
+                    "requiresOneOf": [
+                        "science",
+                        "hydrology",
+                        "sampling"
+                    ],
+                    "learn": [
+                        "water_quality",
+                        "sampling",
+                        "measurement"
+                    ],
+                    "fatigue": 5,
+                    "get": "water_sample",
+                    "displayName": "Prélever un échantillon"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "clean_water": {
-        "displayName": "Eau potable",
-        "category": "",
-        "imageName": "clean_water",
-        "actions": {
-            "drink": {
-                "requiresOneOf": [],
-                "learn": [
-                    "nutrition",
-                    "hygiene",
-                    "water_quality"
-                ],
-                "fatigue": 5,
-                "get": "clean_water",
-                "displayName": "Boire"
-            },
-            "store": {
-                "requiresOneOf": [
-                    "storage",
-                    "containers",
-                    "water_storage"
-                ],
-                "learn": [
-                    "water_storage",
-                    "food_storage",
-                    "sanitation"
-                ],
-                "fatigue": 5,
-                "get": "clean_water",
-                "displayName": "Stocker"
-            },
-            "analyze": {
-                "requiresOneOf": [
-                    "science",
-                    "water_quality",
-                    "measurement"
-                ],
-                "learn": [
-                    "water_quality",
-                    "chemistry",
-                    "microbiology"
-                ],
-                "fatigue": 5,
-                "get": "water_data",
-                "displayName": "Analyser"
+        "clean_water": {
+            "resourceName": "clean_water",
+            "imageName": "clean_water",
+            "displayName": "Eau potable",
+            "category": "food",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "drink": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "nutrition",
+                        "hygiene",
+                        "water_quality"
+                    ],
+                    "fatigue": 5,
+                    "get": "clean_water",
+                    "displayName": "Boire"
+                },
+                "store": {
+                    "requiresOneOf": [
+                        "storage",
+                        "containers",
+                        "water_storage"
+                    ],
+                    "learn": [
+                        "water_storage",
+                        "food_storage",
+                        "sanitation"
+                    ],
+                    "fatigue": 5,
+                    "get": "clean_water",
+                    "displayName": "Stocker"
+                },
+                "analyze": {
+                    "requiresOneOf": [
+                        "science",
+                        "water_quality",
+                        "measurement"
+                    ],
+                    "learn": [
+                        "water_quality",
+                        "chemistry",
+                        "microbiology"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Analyser"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "water_sample": {
-        "displayName": "Échantillon d'eau",
-        "category": "",
-        "imageName": "water_sample",
-        "actions": {
-            "examine": {
-                "requiresOneOf": [],
-                "learn": [
-                    "observation",
-                    "water_quality",
-                    "classification"
-                ],
-                "fatigue": 5,
-                "get": "water_data",
-                "displayName": "Examiner"
-            },
-            "compare": {
-                "requiresOneOf": [
-                    "comparison",
-                    "science",
-                    "measurement"
-                ],
-                "learn": [
-                    "hydrology",
-                    "chemistry",
-                    "causality"
-                ],
-                "fatigue": 5,
-                "get": "water_data",
-                "displayName": "Comparer"
-            },
-            "test": {
-                "requiresOneOf": [
-                    "science",
-                    "chemistry",
-                    "water_quality"
-                ],
-                "learn": [
-                    "contamination",
-                    "microbiology",
-                    "experimentation"
-                ],
-                "fatigue": 5,
-                "get": "water_data",
-                "displayName": "Tester"
+        "water_sample": {
+            "resourceName": "water_sample",
+            "imageName": "water_sample",
+            "displayName": "Échantillon d'eau",
+            "category": "misc",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "examine": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "observation",
+                        "water_quality",
+                        "classification"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Examiner"
+                },
+                "compare": {
+                    "requiresOneOf": [
+                        "comparison",
+                        "science",
+                        "measurement"
+                    ],
+                    "learn": [
+                        "hydrology",
+                        "chemistry",
+                        "causality"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Comparer"
+                },
+                "test": {
+                    "requiresOneOf": [
+                        "science",
+                        "chemistry",
+                        "water_quality"
+                    ],
+                    "learn": [
+                        "contamination",
+                        "microbiology",
+                        "experimentation"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Tester"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "rainwater": {
-        "displayName": "Eau de pluie",
-        "category": "",
-        "imageName": "rainwater",
-        "actions": {
-            "collect": {
-                "requiresOneOf": [],
-                "learn": [
-                    "rainwater",
-                    "weather",
-                    "water_storage"
-                ],
-                "fatigue": 5,
-                "get": "rainwater",
-                "displayName": "Recueillir"
-            },
-            "measure": {
-                "requiresOneOf": [
-                    "measurement",
-                    "science",
-                    "weather"
-                ],
-                "learn": [
-                    "meteorology",
-                    "hydrology",
-                    "recording"
-                ],
-                "fatigue": 5,
-                "get": "weather_data",
-                "displayName": "Mesurer"
-            },
-            "analyze": {
-                "requiresOneOf": [
-                    "science",
-                    "chemistry",
-                    "water_quality"
-                ],
-                "learn": [
-                    "water_quality",
-                    "chemistry",
-                    "atmosphere"
-                ],
-                "fatigue": 5,
-                "get": "water_data",
-                "displayName": "Analyser"
+        "rainwater": {
+            "resourceName": "rainwater",
+            "imageName": "rainwater",
+            "displayName": "Eau de pluie",
+            "category": "raw_material",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "collect": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "rainwater",
+                        "weather",
+                        "water_storage"
+                    ],
+                    "fatigue": 5,
+                    "get": "rainwater",
+                    "displayName": "Recueillir"
+                },
+                "measure": {
+                    "requiresOneOf": [
+                        "measurement",
+                        "science",
+                        "weather"
+                    ],
+                    "learn": [
+                        "meteorology",
+                        "hydrology",
+                        "recording"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Mesurer"
+                },
+                "analyze": {
+                    "requiresOneOf": [
+                        "science",
+                        "chemistry",
+                        "water_quality"
+                    ],
+                    "learn": [
+                        "water_quality",
+                        "chemistry",
+                        "atmosphere"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Analyser"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "wood": {
-        "displayName": "Bois",
-        "category": "",
-        "imageName": "wood",
-        "actions": {
-            "gather": {
-                "requiresOneOf": [],
-                "learn": [
-                    "wood_working",
-                    "observation",
-                    "tools"
-                ],
-                "fatigue": 5,
-                "get": "wood",
-                "displayName": "Ramasser"
-            },
-            "cut": {
-                "requiresOneOf": [
-                    "tools",
-                    "cutting",
-                    "wood_working"
-                ],
-                "learn": [
-                    "woodworking",
-                    "timber",
-                    "shaping"
-                ],
-                "fatigue": 5,
-                "get": "lumber",
-                "displayName": "Couper"
-            },
-            "burn": {
-                "requiresOneOf": [
-                    "fire",
-                    "combustion",
-                    "heat"
-                ],
-                "learn": [
-                    "combustion",
-                    "heat",
-                    "charcoal_making"
-                ],
-                "fatigue": 5,
-                "get": "ash",
-                "displayName": "Brûler"
+        "wood": {
+            "resourceName": "wood",
+            "imageName": "wood",
+            "displayName": "Bois",
+            "category": "raw_material",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "gather": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "wood_working",
+                        "observation",
+                        "tools"
+                    ],
+                    "fatigue": 5,
+                    "get": "wood",
+                    "displayName": "Ramasser"
+                },
+                "cut": {
+                    "requiresOneOf": [
+                        "tools",
+                        "cutting",
+                        "wood_working"
+                    ],
+                    "learn": [
+                        "woodworking",
+                        "timber",
+                        "shaping"
+                    ],
+                    "fatigue": 5,
+                    "get": "lumber",
+                    "displayName": "Couper"
+                },
+                "burn": {
+                    "requiresOneOf": [
+                        "fire",
+                        "combustion",
+                        "heat"
+                    ],
+                    "learn": [
+                        "combustion",
+                        "heat",
+                        "charcoal_making"
+                    ],
+                    "fatigue": 5,
+                    "get": "ash",
+                    "displayName": "Brûler"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "lumber": {
-        "displayName": "Bois d'œuvre",
-        "category": "",
-        "imageName": "lumber",
-        "actions": {
-            "shape": {
-                "requiresOneOf": [],
-                "learn": [
-                    "woodworking",
-                    "shaping",
-                    "crafting"
-                ],
-                "fatigue": 5,
-                "get": "wooden_parts",
-                "displayName": "Façonner"
-            },
-            "dry": {
-                "requiresOneOf": [
-                    "drying",
-                    "wood_working",
-                    "temperature"
-                ],
-                "learn": [
-                    "seasoning",
-                    "woodworking",
-                    "preservation"
-                ],
-                "fatigue": 5,
-                "get": "seasoned_wood",
-                "displayName": "Sécher"
-            },
-            "build": {
-                "requiresOneOf": [
-                    "construction",
-                    "carpentry",
-                    "architecture"
-                ],
-                "learn": [
-                    "carpentry",
-                    "construction",
-                    "architecture"
-                ],
-                "fatigue": 5,
-                "get": "wooden_structure",
-                "displayName": "Construire"
+        "lumber": {
+            "resourceName": "lumber",
+            "imageName": "lumber",
+            "displayName": "Bois d'œuvre",
+            "category": "building_material",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "shape": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "woodworking",
+                        "shaping",
+                        "crafting"
+                    ],
+                    "fatigue": 5,
+                    "get": "lumber",
+                    "displayName": "Façonner"
+                },
+                "dry": {
+                    "requiresOneOf": [
+                        "drying",
+                        "wood_working",
+                        "temperature"
+                    ],
+                    "learn": [
+                        "seasoning",
+                        "woodworking",
+                        "preservation"
+                    ],
+                    "fatigue": 5,
+                    "get": "charcoal",
+                    "displayName": "Sécher"
+                },
+                "build": {
+                    "requiresOneOf": [
+                        "construction",
+                        "carpentry",
+                        "architecture"
+                    ],
+                    "learn": [
+                        "carpentry",
+                        "construction",
+                        "architecture"
+                    ],
+                    "fatigue": 5,
+                    "get": "lumber",
+                    "displayName": "Construire"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "charcoal": {
-        "displayName": "Charbon de bois",
-        "category": "",
-        "imageName": "charcoal",
-        "actions": {
-            "produce": {
-                "requiresOneOf": [],
-                "learn": [
-                    "charcoal_making",
-                    "combustion",
-                    "heat"
-                ],
-                "fatigue": 5,
-                "get": "charcoal",
-                "displayName": "Produire"
-            },
-            "burn": {
-                "requiresOneOf": [
-                    "combustion",
-                    "fire",
-                    "temperature"
-                ],
-                "learn": [
-                    "metallurgy",
-                    "kiln_firing",
-                    "temperature"
-                ],
-                "fatigue": 5,
-                "get": "heat",
-                "displayName": "Brûler"
-            },
-            "analyze": {
-                "requiresOneOf": [
-                    "science",
-                    "chemistry",
-                    "material_science"
-                ],
-                "learn": [
-                    "chemistry",
-                    "material_science",
-                    "experimentation"
-                ],
-                "fatigue": 5,
-                "get": "carbon_data",
-                "displayName": "Analyser"
+        "charcoal": {
+            "resourceName": "charcoal",
+            "imageName": "charcoal",
+            "displayName": "Charbon de bois",
+            "category": "energy",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "produce": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "charcoal_making",
+                        "combustion",
+                        "heat"
+                    ],
+                    "fatigue": 5,
+                    "get": "charcoal",
+                    "displayName": "Produire"
+                },
+                "burn": {
+                    "requiresOneOf": [
+                        "combustion",
+                        "fire",
+                        "temperature"
+                    ],
+                    "learn": [
+                        "metallurgy",
+                        "kiln_firing",
+                        "temperature"
+                    ],
+                    "fatigue": 5,
+                    "get": "ash",
+                    "displayName": "Brûler"
+                },
+                "analyze": {
+                    "requiresOneOf": [
+                        "science",
+                        "chemistry",
+                        "material_science"
+                    ],
+                    "learn": [
+                        "chemistry",
+                        "material_science",
+                        "experimentation"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Analyser"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "sandstone": {
-        "displayName": "Grès",
-        "category": "",
-        "imageName": "sandstone",
-        "actions": {
-            "collect": {
-                "requiresOneOf": [],
-                "learn": [
-                    "geology",
-                    "observation",
-                    "stone_working"
-                ],
-                "fatigue": 5,
-                "get": "sandstone",
-                "displayName": "Ramasser"
-            },
-            "knap": {
-                "requiresOneOf": [
-                    "tools",
-                    "stone_knapping",
-                    "crafting"
-                ],
-                "learn": [
-                    "stone_knapping",
-                    "shaping",
-                    "cutting"
-                ],
-                "fatigue": 5,
-                "get": "stone_tools",
-                "displayName": "Tailler"
-            },
-            "grind": {
-                "requiresOneOf": [
-                    "grinding",
-                    "tools",
-                    "stone_working"
-                ],
-                "learn": [
-                    "grinding",
-                    "material_science",
-                    "chemistry"
-                ],
-                "fatigue": 5,
-                "get": "stone_powder",
-                "displayName": "Broyer"
+        "sandstone": {
+            "resourceName": "sandstone",
+            "imageName": "sandstone",
+            "displayName": "Grès",
+            "category": "building_material",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "collect": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "geology",
+                        "observation",
+                        "stone_working"
+                    ],
+                    "fatigue": 5,
+                    "get": "sandstone",
+                    "displayName": "Ramasser"
+                },
+                "knap": {
+                    "requiresOneOf": [
+                        "tools",
+                        "stone_knapping",
+                        "crafting"
+                    ],
+                    "learn": [
+                        "stone_knapping",
+                        "shaping",
+                        "cutting"
+                    ],
+                    "fatigue": 5,
+                    "get": "tool",
+                    "displayName": "Tailler"
+                },
+                "grind": {
+                    "requiresOneOf": [
+                        "grinding",
+                        "tools",
+                        "stone_working"
+                    ],
+                    "learn": [
+                        "grinding",
+                        "material_science",
+                        "chemistry"
+                    ],
+                    "fatigue": 5,
+                    "get": "sand",
+                    "displayName": "Broyer"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "flint": {
-        "displayName": "Silex",
-        "category": "",
-        "imageName": "flint",
-        "actions": {
-            "knap": {
-                "requiresOneOf": [],
-                "learn": [
-                    "flint_knapping",
-                    "stone_knapping",
-                    "cutting"
-                ],
-                "fatigue": 5,
-                "get": "flint_tool",
-                "displayName": "Tailler"
-            },
-            "strike": {
-                "requiresOneOf": [
-                    "fire",
-                    "tools",
-                    "flint_knapping"
-                ],
-                "learn": [
-                    "combustion",
-                    "fire",
-                    "experimentation"
-                ],
-                "fatigue": 5,
-                "get": "spark",
-                "displayName": "Frapper"
-            },
-            "analyze": {
-                "requiresOneOf": [
-                    "geology",
-                    "science",
-                    "mineral_identification"
-                ],
-                "learn": [
-                    "geology",
-                    "material_science",
-                    "classification"
-                ],
-                "fatigue": 5,
-                "get": "flint_data",
-                "displayName": "Analyser"
+        "flint": {
+            "resourceName": "flint",
+            "imageName": "flint",
+            "displayName": "Silex",
+            "category": "tool",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "knap": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "flint_knapping",
+                        "stone_knapping",
+                        "cutting"
+                    ],
+                    "fatigue": 5,
+                    "get": "tool",
+                    "displayName": "Tailler"
+                },
+                "strike": {
+                    "requiresOneOf": [
+                        "fire",
+                        "tools",
+                        "flint_knapping"
+                    ],
+                    "learn": [
+                        "combustion",
+                        "fire",
+                        "experimentation"
+                    ],
+                    "fatigue": 5,
+                    "get": "flint",
+                    "displayName": "Frapper"
+                },
+                "analyze": {
+                    "requiresOneOf": [
+                        "geology",
+                        "science",
+                        "mineral_identification"
+                    ],
+                    "learn": [
+                        "geology",
+                        "material_science",
+                        "classification"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Analyser"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "clay": {
-        "displayName": "Argile",
-        "category": "",
-        "imageName": "clay",
-        "actions": {
-            "collect": {
-                "requiresOneOf": [],
-                "learn": [
-                    "clay_identification",
-                    "geology",
-                    "clay_working"
-                ],
-                "fatigue": 5,
-                "get": "clay",
-                "displayName": "Prélever"
-            },
-            "shape": {
-                "requiresOneOf": [
-                    "clay_working",
-                    "shaping",
-                    "crafting"
-                ],
-                "learn": [
-                    "pottery",
-                    "containers",
-                    "shaping"
-                ],
-                "fatigue": 5,
-                "get": "pottery",
-                "displayName": "Façonner"
-            },
-            "fire": {
-                "requiresOneOf": [
-                    "fire",
-                    "kiln",
-                    "heat"
-                ],
-                "learn": [
-                    "ceramics",
-                    "kiln_firing",
-                    "temperature"
-                ],
-                "fatigue": 5,
-                "get": "ceramics",
-                "displayName": "Cuire"
+        "clay": {
+            "resourceName": "clay",
+            "imageName": "clay",
+            "displayName": "Argile",
+            "category": "raw_material",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "collect": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "clay_identification",
+                        "geology",
+                        "clay_working"
+                    ],
+                    "fatigue": 5,
+                    "get": "clay",
+                    "displayName": "Prélever"
+                },
+                "shape": {
+                    "requiresOneOf": [
+                        "clay_working",
+                        "shaping",
+                        "crafting"
+                    ],
+                    "learn": [
+                        "pottery",
+                        "containers",
+                        "shaping"
+                    ],
+                    "fatigue": 5,
+                    "get": "pottery",
+                    "displayName": "Façonner"
+                },
+                "fire": {
+                    "requiresOneOf": [
+                        "fire",
+                        "kiln",
+                        "heat"
+                    ],
+                    "learn": [
+                        "ceramics",
+                        "kiln_firing",
+                        "temperature"
+                    ],
+                    "fatigue": 5,
+                    "get": "ceramics",
+                    "displayName": "Cuire"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "pottery": {
-        "displayName": "Poterie",
-        "category": "",
-        "imageName": "pottery",
-        "actions": {
-            "dry": {
-                "requiresOneOf": [],
-                "learn": [
-                    "drying",
-                    "pottery",
-                    "storage"
-                ],
-                "fatigue": 5,
-                "get": "pottery",
-                "displayName": "Sécher"
-            },
-            "fire": {
-                "requiresOneOf": [
-                    "fire",
-                    "kiln",
-                    "temperature"
-                ],
-                "learn": [
-                    "ceramics",
-                    "kiln_firing",
-                    "heat"
-                ],
-                "fatigue": 5,
-                "get": "ceramics",
-                "displayName": "Cuire"
-            },
-            "glaze": {
-                "requiresOneOf": [
-                    "ceramics",
-                    "chemistry",
-                    "kiln_firing"
-                ],
-                "learn": [
-                    "glazing",
-                    "chemistry",
-                    "glassmaking"
-                ],
-                "fatigue": 5,
-                "get": "glazed_pottery",
-                "displayName": "Émailler"
+        "pottery": {
+            "resourceName": "pottery",
+            "imageName": "pottery",
+            "displayName": "Poterie",
+            "category": "comfort",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "dry": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "drying",
+                        "pottery",
+                        "storage"
+                    ],
+                    "fatigue": 5,
+                    "get": "pottery",
+                    "displayName": "Sécher"
+                },
+                "fire": {
+                    "requiresOneOf": [
+                        "fire",
+                        "kiln",
+                        "temperature"
+                    ],
+                    "learn": [
+                        "ceramics",
+                        "kiln_firing",
+                        "heat"
+                    ],
+                    "fatigue": 5,
+                    "get": "ceramics",
+                    "displayName": "Cuire"
+                },
+                "glaze": {
+                    "requiresOneOf": [
+                        "ceramics",
+                        "chemistry",
+                        "kiln_firing"
+                    ],
+                    "learn": [
+                        "glazing",
+                        "chemistry",
+                        "glassmaking"
+                    ],
+                    "fatigue": 5,
+                    "get": "ceramics",
+                    "displayName": "Émailler"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "sand": {
-        "displayName": "Sable",
-        "category": "",
-        "imageName": "sand",
-        "actions": {
-            "collect": {
-                "requiresOneOf": [],
-                "learn": [
-                    "sand",
-                    "geology",
-                    "observation"
-                ],
-                "fatigue": 5,
-                "get": "sand",
-                "displayName": "Ramasser"
-            },
-            "wash": {
-                "requiresOneOf": [
-                    "filtration",
-                    "water_quality",
-                    "science"
-                ],
-                "learn": [
-                    "filtration",
-                    "material_science",
-                    "classification"
-                ],
-                "fatigue": 5,
-                "get": "clean_sand",
-                "displayName": "Laver"
-            },
-            "melt": {
-                "requiresOneOf": [
-                    "fire",
-                    "heat",
-                    "kiln"
-                ],
-                "learn": [
-                    "glassmaking",
-                    "temperature",
-                    "silica"
-                ],
-                "fatigue": 5,
-                "get": "glass",
-                "displayName": "Faire fondre"
+        "sand": {
+            "resourceName": "sand",
+            "imageName": "sand",
+            "displayName": "Sable",
+            "category": "raw_material",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "collect": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "sand",
+                        "geology",
+                        "observation"
+                    ],
+                    "fatigue": 5,
+                    "get": "sand",
+                    "displayName": "Ramasser"
+                },
+                "wash": {
+                    "requiresOneOf": [
+                        "filtration",
+                        "water_quality",
+                        "science"
+                    ],
+                    "learn": [
+                        "filtration",
+                        "material_science",
+                        "classification"
+                    ],
+                    "fatigue": 5,
+                    "get": "sand",
+                    "displayName": "Laver"
+                },
+                "melt": {
+                    "requiresOneOf": [
+                        "fire",
+                        "heat",
+                        "kiln"
+                    ],
+                    "learn": [
+                        "glassmaking",
+                        "temperature",
+                        "silica"
+                    ],
+                    "fatigue": 5,
+                    "get": "glass",
+                    "displayName": "Faire fondre"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "glass": {
-        "displayName": "Verre",
-        "category": "",
-        "imageName": "glass",
-        "actions": {
-            "shape": {
-                "requiresOneOf": [],
-                "learn": [
-                    "glass_working",
-                    "shaping",
-                    "containers"
-                ],
-                "fatigue": 5,
-                "get": "glass_container",
-                "displayName": "Façonner"
-            },
-            "melt": {
-                "requiresOneOf": [
-                    "kiln",
-                    "glassmaking",
-                    "heat"
-                ],
-                "learn": [
-                    "temperature",
-                    "material_science",
-                    "glass_working"
-                ],
-                "fatigue": 5,
-                "get": "glass",
-                "displayName": "Refondre"
-            },
-            "analyze": {
-                "requiresOneOf": [
-                    "science",
-                    "chemistry",
-                    "material_science"
-                ],
-                "learn": [
-                    "chemistry",
-                    "silica",
-                    "glassmaking"
-                ],
-                "fatigue": 5,
-                "get": "glass_data",
-                "displayName": "Analyser"
+        "glass": {
+            "resourceName": "glass",
+            "imageName": "glass",
+            "displayName": "Verre",
+            "category": "comfort",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "shape": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "glass_working",
+                        "shaping",
+                        "containers"
+                    ],
+                    "fatigue": 5,
+                    "get": "container",
+                    "displayName": "Façonner"
+                },
+                "melt": {
+                    "requiresOneOf": [
+                        "kiln",
+                        "glassmaking",
+                        "heat"
+                    ],
+                    "learn": [
+                        "temperature",
+                        "material_science",
+                        "glass_working"
+                    ],
+                    "fatigue": 5,
+                    "get": "glass",
+                    "displayName": "Refondre"
+                },
+                "analyze": {
+                    "requiresOneOf": [
+                        "science",
+                        "chemistry",
+                        "material_science"
+                    ],
+                    "learn": [
+                        "chemistry",
+                        "silica",
+                        "glassmaking"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Analyser"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "plants": {
-        "displayName": "Plantes",
-        "category": "",
-        "imageName": "plants",
-        "actions": {
-            "gather": {
-                "requiresOneOf": [],
-                "learn": [
-                    "botany",
-                    "plant_identification",
-                    "food_plants"
-                ],
-                "fatigue": 5,
-                "get": "plants",
-                "displayName": "Cueillir"
-            },
-            "identify": {
-                "requiresOneOf": [
-                    "botany",
-                    "observation",
-                    "classification"
-                ],
-                "learn": [
-                    "plant_anatomy",
-                    "plant_reproduction",
-                    "ecology"
-                ],
-                "fatigue": 5,
-                "get": "plant_data",
-                "displayName": "Identifier"
-            },
-            "sample": {
-                "requiresOneOf": [
-                    "sampling",
-                    "science",
-                    "botany"
-                ],
-                "learn": [
-                    "sampling",
-                    "plant_anatomy",
-                    "medicinal_plants"
-                ],
-                "fatigue": 5,
-                "get": "plant_sample",
-                "displayName": "Prélever un échantillon"
+        "plants": {
+            "resourceName": "plants",
+            "imageName": "plants",
+            "displayName": "Plantes",
+            "category": "raw_material",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "gather": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "botany",
+                        "plant_identification",
+                        "food_plants"
+                    ],
+                    "fatigue": 5,
+                    "get": "plants",
+                    "displayName": "Cueillir"
+                },
+                "identify": {
+                    "requiresOneOf": [
+                        "botany",
+                        "observation",
+                        "classification"
+                    ],
+                    "learn": [
+                        "plant_anatomy",
+                        "plant_reproduction",
+                        "ecology"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Identifier"
+                },
+                "sample": {
+                    "requiresOneOf": [
+                        "sampling",
+                        "science",
+                        "botany"
+                    ],
+                    "learn": [
+                        "sampling",
+                        "plant_anatomy",
+                        "medicinal_plants"
+                    ],
+                    "fatigue": 5,
+                    "get": "plants",
+                    "displayName": "Prélever un échantillon"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "medicinal_plants": {
-        "displayName": "Plantes médicinales",
-        "category": "",
-        "imageName": "medicinal_plants",
-        "actions": {
-            "gather": {
-                "requiresOneOf": [],
-                "learn": [
-                    "medicinal_plants",
-                    "herbalism",
-                    "botany"
-                ],
-                "fatigue": 5,
-                "get": "medicinal_plants",
-                "displayName": "Cueillir"
-            },
-            "prepare": {
-                "requiresOneOf": [
-                    "herbalism",
-                    "cooking",
-                    "medicinal_plants"
-                ],
-                "learn": [
-                    "medicinal_preparations",
-                    "dosage",
-                    "symptoms"
-                ],
-                "fatigue": 5,
-                "get": "medicine",
-                "displayName": "Préparer"
-            },
-            "analyze": {
-                "requiresOneOf": [
-                    "science",
-                    "chemistry",
-                    "sampling"
-                ],
-                "learn": [
-                    "chemistry",
-                    "pharmacology",
-                    "experimentation"
-                ],
-                "fatigue": 5,
-                "get": "plant_data",
-                "displayName": "Analyser"
+        "medicinal_plants": {
+            "resourceName": "medicinal_plants",
+            "imageName": "medicinal_plants",
+            "displayName": "Plantes médicinales",
+            "category": "medecine",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "gather": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "medicinal_plants",
+                        "herbalism",
+                        "botany"
+                    ],
+                    "fatigue": 5,
+                    "get": "medicinal_plants",
+                    "displayName": "Cueillir"
+                },
+                "prepare": {
+                    "requiresOneOf": [
+                        "herbalism",
+                        "cooking",
+                        "medicinal_plants"
+                    ],
+                    "learn": [
+                        "medicinal_preparations",
+                        "dosage",
+                        "symptoms"
+                    ],
+                    "fatigue": 5,
+                    "get": "medicine",
+                    "displayName": "Préparer"
+                },
+                "analyze": {
+                    "requiresOneOf": [
+                        "science",
+                        "chemistry",
+                        "sampling"
+                    ],
+                    "learn": [
+                        "chemistry",
+                        "pharmacology",
+                        "experimentation"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Analyser"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "resin": {
-        "displayName": "Résine",
-        "category": "",
-        "imageName": "resin",
-        "actions": {
-            "collect": {
-                "requiresOneOf": [],
-                "learn": [
-                    "resin",
-                    "plant_anatomy",
-                    "botany"
-                ],
-                "fatigue": 5,
-                "get": "resin",
-                "displayName": "Récolter"
-            },
-            "heat": {
-                "requiresOneOf": [
-                    "fire",
-                    "heat",
-                    "chemistry"
-                ],
-                "learn": [
-                    "chemistry",
-                    "adhesives",
-                    "material_science"
-                ],
-                "fatigue": 5,
-                "get": "pitch",
-                "displayName": "Chauffer"
-            },
-            "mix": {
-                "requiresOneOf": [
-                    "chemistry",
-                    "experimentation",
-                    "crafting"
-                ],
-                "learn": [
-                    "chemistry",
-                    "joining",
-                    "material_science"
-                ],
-                "fatigue": 5,
-                "get": "adhesive",
-                "displayName": "Mélanger"
+        "resin": {
+            "resourceName": "resin",
+            "imageName": "resin",
+            "displayName": "Résine",
+            "category": "raw_material",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "collect": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "resin",
+                        "plant_anatomy",
+                        "botany"
+                    ],
+                    "fatigue": 5,
+                    "get": "resin",
+                    "displayName": "Récolter"
+                },
+                "heat": {
+                    "requiresOneOf": [
+                        "fire",
+                        "heat",
+                        "chemistry"
+                    ],
+                    "learn": [
+                        "chemistry",
+                        "adhesives",
+                        "material_science"
+                    ],
+                    "fatigue": 5,
+                    "get": "containers",
+                    "displayName": "Chauffer"
+                },
+                "mix": {
+                    "requiresOneOf": [
+                        "chemistry",
+                        "experimentation",
+                        "crafting"
+                    ],
+                    "learn": [
+                        "chemistry",
+                        "joining",
+                        "material_science"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Mélanger"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "wild_wheat": {
-        "displayName": "Blé sauvage",
-        "category": "",
-        "imageName": "wild_wheat",
-        "actions": {
-            "gather": {
-                "requiresOneOf": [],
-                "learn": [
-                    "cereal_identification",
-                    "botany",
-                    "food_plants"
-                ],
-                "fatigue": 5,
-                "get": "wild_wheat",
-                "displayName": "Cueillir"
-            },
-            "collect_seeds": {
-                "requiresOneOf": [
-                    "seeds",
-                    "botany",
-                    "plant_reproduction"
-                ],
-                "learn": [
-                    "seed_selection",
-                    "agriculture",
-                    "plant_reproduction"
-                ],
-                "fatigue": 5,
-                "get": "wheat_seeds",
-                "displayName": "Sélectionner les graines"
-            },
-            "cultivate": {
-                "requiresOneOf": [
-                    "cultivation",
-                    "seed_selection",
-                    "agriculture"
-                ],
-                "learn": [
-                    "agriculture",
-                    "irrigation",
-                    "soil_quality"
-                ],
-                "fatigue": 5,
-                "get": "wheat",
-                "displayName": "Cultiver"
+        "wild_wheat": {
+            "resourceName": "wild_wheat",
+            "imageName": "wild_wheat",
+            "displayName": "Blé sauvage",
+            "category": "food",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "gather": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "cereal_identification",
+                        "botany",
+                        "food_plants"
+                    ],
+                    "fatigue": 5,
+                    "get": "wild_wheat",
+                    "displayName": "Cueillir"
+                },
+                "collect_seeds": {
+                    "requiresOneOf": [
+                        "seeds",
+                        "botany",
+                        "plant_reproduction"
+                    ],
+                    "learn": [
+                        "seed_selection",
+                        "agriculture",
+                        "plant_reproduction"
+                    ],
+                    "fatigue": 5,
+                    "get": "seeds",
+                    "displayName": "Sélectionner les graines"
+                },
+                "cultivate": {
+                    "requiresOneOf": [
+                        "cultivation",
+                        "seed_selection",
+                        "agriculture"
+                    ],
+                    "learn": [
+                        "agriculture",
+                        "irrigation",
+                        "soil_quality"
+                    ],
+                    "fatigue": 5,
+                    "get": "wheat",
+                    "displayName": "Cultiver"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "wheat": {
-        "displayName": "Blé",
-        "category": "",
-        "imageName": "wheat",
-        "actions": {
-            "harvest": {
-                "requiresOneOf": [],
-                "learn": [
-                    "agriculture",
-                    "harvesting",
-                    "grain_processing"
-                ],
-                "fatigue": 5,
-                "get": "wheat",
-                "displayName": "Récolter"
-            },
-            "thresh": {
-                "requiresOneOf": [
-                    "agriculture",
-                    "tools",
-                    "grain_processing"
-                ],
-                "learn": [
-                    "threshing",
-                    "grain_processing",
-                    "seeds"
-                ],
-                "fatigue": 5,
-                "get": "grain",
-                "displayName": "Battre"
-            },
-            "grind": {
-                "requiresOneOf": [
-                    "grinding",
-                    "grain_processing",
-                    "stone_working"
-                ],
-                "learn": [
-                    "milling",
-                    "flour",
-                    "nutrition"
-                ],
-                "fatigue": 5,
-                "get": "flour",
-                "displayName": "Moudre"
+        "wheat": {
+            "resourceName": "wheat",
+            "imageName": "wheat",
+            "displayName": "Blé",
+            "category": "food",
+            "popGrowth": 6,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "harvest": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "agriculture",
+                        "harvesting",
+                        "grain_processing"
+                    ],
+                    "fatigue": 5,
+                    "get": "wheat",
+                    "displayName": "Récolter"
+                },
+                "thresh": {
+                    "requiresOneOf": [
+                        "agriculture",
+                        "tools",
+                        "grain_processing"
+                    ],
+                    "learn": [
+                        "threshing",
+                        "grain_processing",
+                        "seeds"
+                    ],
+                    "fatigue": 5,
+                    "get": "grain",
+                    "displayName": "Battre"
+                },
+                "grind": {
+                    "requiresOneOf": [
+                        "grinding",
+                        "grain_processing",
+                        "stone_working"
+                    ],
+                    "learn": [
+                        "milling",
+                        "flour",
+                        "nutrition"
+                    ],
+                    "fatigue": 5,
+                    "get": "flour",
+                    "displayName": "Moudre"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "grain": {
-        "displayName": "Grain",
-        "category": "",
-        "imageName": "grain",
-        "actions": {
-            "store": {
-                "requiresOneOf": [],
-                "learn": [
-                    "grain_storage",
-                    "food_storage",
-                    "storage"
-                ],
-                "fatigue": 5,
-                "get": "grain",
-                "displayName": "Stocker"
-            },
-            "grind": {
-                "requiresOneOf": [
-                    "grinding",
-                    "milling",
-                    "tools"
-                ],
-                "learn": [
-                    "milling",
-                    "flour",
-                    "nutrition"
-                ],
-                "fatigue": 5,
-                "get": "flour",
-                "displayName": "Moudre"
-            },
-            "ferment": {
-                "requiresOneOf": [
-                    "fermentation",
-                    "cooking",
-                    "experimentation"
-                ],
-                "learn": [
-                    "fermentation_food",
-                    "microbiology",
-                    "food_preservation"
-                ],
-                "fatigue": 5,
-                "get": "fermented_grain",
-                "displayName": "Faire fermenter"
+        "seeds": {
+            "resourceName": "seeds",
+            "imageName": "seeds",
+            "displayName": "Graines",
+            "category": "food",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "store": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "seed_storage",
+                        "food_storage",
+                        "storage"
+                    ],
+                    "fatigue": 5,
+                    "get": "seeds",
+                    "displayName": "Stocker"
+                },
+                "sow": {
+                    "requiresOneOf": [
+                        "agriculture",
+                        "farming",
+                        "soil"
+                    ],
+                    "learn": [
+                        "agriculture",
+                        "seed_sowing",
+                        "crop_cultivation"
+                    ],
+                    "fatigue": 5,
+                    "get": "wild_wheat",
+                    "displayName": "Semer"
+                },
+                "select": {
+                    "requiresOneOf": [
+                        "agriculture",
+                        "botany",
+                        "observation"
+                    ],
+                    "learn": [
+                        "plant_breeding",
+                        "botany",
+                        "seed_selection"
+                    ],
+                    "fatigue": 5,
+                    "get": "wheat",
+                    "displayName": "Sélectionner"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "flour": {
-        "displayName": "Farine",
-        "category": "",
-        "imageName": "flour",
-        "actions": {
-            "mix": {
-                "requiresOneOf": [],
-                "learn": [
-                    "dough",
-                    "cooking",
-                    "baking"
-                ],
-                "fatigue": 5,
-                "get": "dough",
-                "displayName": "Mélanger"
-            },
-            "bake": {
-                "requiresOneOf": [
-                    "fire",
-                    "cooking",
-                    "heat"
-                ],
-                "learn": [
-                    "baking",
-                    "food_storage",
-                    "temperature"
-                ],
-                "fatigue": 5,
-                "get": "bread",
-                "displayName": "Cuire"
-            },
-            "store": {
-                "requiresOneOf": [
-                    "storage",
-                    "food_storage",
-                    "containers"
-                ],
-                "learn": [
-                    "food_safety",
-                    "grain_storage",
-                    "preservation"
-                ],
-                "fatigue": 5,
-                "get": "flour",
-                "displayName": "Stocker"
+        "grain": {
+            "resourceName": "grain",
+            "imageName": "grain",
+            "displayName": "Grain",
+            "category": "food",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "store": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "grain_storage",
+                        "food_storage",
+                        "storage"
+                    ],
+                    "fatigue": 5,
+                    "get": "grain",
+                    "displayName": "Stocker"
+                },
+                "grind": {
+                    "requiresOneOf": [
+                        "grinding",
+                        "milling",
+                        "tools"
+                    ],
+                    "learn": [
+                        "milling",
+                        "flour",
+                        "nutrition"
+                    ],
+                    "fatigue": 5,
+                    "get": "flour",
+                    "displayName": "Moudre"
+                },
+                "ferment": {
+                    "requiresOneOf": [
+                        "fermentation",
+                        "cooking",
+                        "experimentation"
+                    ],
+                    "learn": [
+                        "fermentation_food",
+                        "microbiology",
+                        "food_preservation"
+                    ],
+                    "fatigue": 5,
+                    "get": "beer",
+                    "displayName": "Faire fermenter"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "bread": {
-        "displayName": "Pain",
-        "category": "",
-        "imageName": "bread",
-        "actions": {
-            "eat": {
-                "requiresOneOf": [],
-                "learn": [
-                    "nutrition",
-                    "food_safety",
-                    "cooking"
-                ],
-                "fatigue": 5,
-                "get": "nutrition_data",
-                "displayName": "Manger"
-            },
-            "dry": {
-                "requiresOneOf": [
-                    "drying_food",
-                    "preservation",
-                    "food_storage"
-                ],
-                "learn": [
-                    "drying_food",
-                    "preservation",
-                    "storage"
-                ],
-                "fatigue": 5,
-                "get": "dried_bread",
-                "displayName": "Sécher"
-            },
-            "ferment": {
-                "requiresOneOf": [
-                    "fermentation",
-                    "microbiology",
-                    "cooking"
-                ],
-                "learn": [
-                    "fermentation_food",
-                    "microbiology",
-                    "food_safety"
-                ],
-                "fatigue": 5,
-                "get": "fermented_food",
-                "displayName": "Faire fermenter"
+        "flour": {
+            "resourceName": "flour",
+            "imageName": "flour",
+            "displayName": "Farine",
+            "category": "food",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "mix": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "dough",
+                        "cooking",
+                        "baking"
+                    ],
+                    "fatigue": 5,
+                    "get": "dough",
+                    "displayName": "Mélanger"
+                },
+                "bake": {
+                    "requiresOneOf": [
+                        "fire",
+                        "cooking",
+                        "heat"
+                    ],
+                    "learn": [
+                        "baking",
+                        "food_storage",
+                        "temperature"
+                    ],
+                    "fatigue": 5,
+                    "get": "bread",
+                    "displayName": "Cuire"
+                },
+                "store": {
+                    "requiresOneOf": [
+                        "storage",
+                        "food_storage",
+                        "containers"
+                    ],
+                    "learn": [
+                        "food_safety",
+                        "grain_storage",
+                        "preservation"
+                    ],
+                    "fatigue": 5,
+                    "get": "flour",
+                    "displayName": "Stocker"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "plant_fibers": {
-        "displayName": "Fibres végétales",
-        "category": "",
-        "imageName": "plant_fibers",
-        "actions": {
-            "gather": {
-                "requiresOneOf": [],
-                "learn": [
-                    "plant_fibers",
-                    "botany",
-                    "textile"
-                ],
-                "fatigue": 5,
-                "get": "plant_fibers",
-                "displayName": "Récolter"
-            },
-            "twist": {
-                "requiresOneOf": [
-                    "cordage",
-                    "tools",
-                    "textile"
-                ],
-                "learn": [
-                    "cordage",
-                    "spinning",
-                    "joining"
-                ],
-                "fatigue": 5,
-                "get": "string",
-                "displayName": "Torsader"
-            },
-            "weave": {
-                "requiresOneOf": [
-                    "weaving",
-                    "loom",
-                    "textile"
-                ],
-                "learn": [
-                    "weaving",
-                    "loom",
-                    "textile"
-                ],
-                "fatigue": 5,
-                "get": "cloth",
-                "displayName": "Tisser"
+        "dough": {
+            "resourceName": "dough",
+            "imageName": "dough",
+            "displayName": "Pâte",
+            "category": "food",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "knead": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "kneading",
+                        "cooking",
+                        "food_preparation"
+                    ],
+                    "fatigue": 5,
+                    "get": "dough",
+                    "displayName": "Pétrir"
+                },
+                "ferment": {
+                    "requiresOneOf": [
+                        "fermentation",
+                        "cooking",
+                        "baking"
+                    ],
+                    "learn": [
+                        "bread_making",
+                        "fermentation_food",
+                        "microbiology"
+                    ],
+                    "fatigue": 5,
+                    "get": "dough",
+                    "displayName": "Faire fermenter"
+                },
+                "bake": {
+                    "requiresOneOf": [
+                        "fire",
+                        "cooking",
+                        "baking"
+                    ],
+                    "learn": [
+                        "baking",
+                        "bread_making",
+                        "oven"
+                    ],
+                    "fatigue": 5,
+                    "get": "bread",
+                    "displayName": "Cuire"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "string": {
-        "displayName": "Ficelle",
-        "category": "",
-        "imageName": "string",
-        "actions": {
-            "braid": {
-                "requiresOneOf": [],
-                "learn": [
-                    "cordage",
-                    "braiding",
-                    "strength"
-                ],
-                "fatigue": 5,
-                "get": "rope",
-                "displayName": "Tresser"
-            },
-            "weave": {
-                "requiresOneOf": [
-                    "weaving",
-                    "textile",
-                    "loom"
-                ],
-                "learn": [
-                    "weaving",
-                    "textile",
-                    "loom"
-                ],
-                "fatigue": 5,
-                "get": "cloth",
-                "displayName": "Tisser"
-            },
-            "knot": {
-                "requiresOneOf": [
-                    "cordage",
-                    "joining",
-                    "tools"
-                ],
-                "learn": [
-                    "knots",
-                    "joining",
-                    "construction"
-                ],
-                "fatigue": 5,
-                "get": "rope",
-                "displayName": "Nouer"
+        "bread": {
+            "resourceName": "bread",
+            "imageName": "bread",
+            "displayName": "Pain",
+            "category": "food",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "eat": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "nutrition",
+                        "food_safety",
+                        "cooking"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Manger"
+                },
+                "dry": {
+                    "requiresOneOf": [
+                        "drying_food",
+                        "preservation",
+                        "food_storage"
+                    ],
+                    "learn": [
+                        "drying_food",
+                        "preservation",
+                        "storage"
+                    ],
+                    "fatigue": 5,
+                    "get": "preserver_food",
+                    "displayName": "Sécher"
+                },
+                "ferment": {
+                    "requiresOneOf": [
+                        "fermentation",
+                        "microbiology",
+                        "cooking"
+                    ],
+                    "learn": [
+                        "fermentation_food",
+                        "microbiology",
+                        "food_safety"
+                    ],
+                    "fatigue": 5,
+                    "get": "preserved_food",
+                    "displayName": "Faire fermenter"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "hide": {
-        "displayName": "Peau brute",
-        "category": "",
-        "imageName": "hide",
-        "actions": {
-            "scrape": {
-                "requiresOneOf": [],
-                "learn": [
-                    "hide_processing",
-                    "leatherworking",
-                    "tools"
-                ],
-                "fatigue": 5,
-                "get": "hide",
-                "displayName": "Racler"
-            },
-            "tan": {
-                "requiresOneOf": [
-                    "tanning",
-                    "chemistry",
-                    "plants"
-                ],
-                "learn": [
-                    "tanning",
-                    "leatherworking",
-                    "chemistry"
-                ],
-                "fatigue": 5,
-                "get": "leather",
-                "displayName": "Tanner"
-            },
-            "dry": {
-                "requiresOneOf": [
-                    "drying",
-                    "preservation",
-                    "leatherworking"
-                ],
-                "learn": [
-                    "drying",
-                    "hide_processing",
-                    "preservation"
-                ],
-                "fatigue": 5,
-                "get": "rawhide",
-                "displayName": "Sécher"
+        "plant_fibers": {
+            "resourceName": "plant_fibers",
+            "imageName": "plant_fibers",
+            "displayName": "Fibres végétales",
+            "category": "raw_material",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "gather": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "plant_fibers",
+                        "botany",
+                        "textile"
+                    ],
+                    "fatigue": 5,
+                    "get": "plant_fibers",
+                    "displayName": "Récolter"
+                },
+                "twist": {
+                    "requiresOneOf": [
+                        "cordage",
+                        "tools",
+                        "textile"
+                    ],
+                    "learn": [
+                        "cordage",
+                        "spinning",
+                        "joining"
+                    ],
+                    "fatigue": 5,
+                    "get": "string",
+                    "displayName": "Torsader"
+                },
+                "weave": {
+                    "requiresOneOf": [
+                        "weaving",
+                        "loom",
+                        "textile"
+                    ],
+                    "learn": [
+                        "weaving",
+                        "loom",
+                        "textile"
+                    ],
+                    "fatigue": 5,
+                    "get": "clothes",
+                    "displayName": "Tisser"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "leather": {
-        "displayName": "Cuir",
-        "category": "",
-        "imageName": "leather",
-        "actions": {
-            "cut": {
-                "requiresOneOf": [],
-                "learn": [
-                    "leatherworking",
-                    "cutting",
-                    "shaping"
-                ],
-                "fatigue": 5,
-                "get": "leather_parts",
-                "displayName": "Découper"
-            },
-            "stitch": {
-                "requiresOneOf": [
-                    "sewing",
-                    "textile",
-                    "tools"
-                ],
-                "learn": [
-                    "sewing",
-                    "leatherworking",
-                    "clothing"
-                ],
-                "fatigue": 5,
-                "get": "leather_clothing",
-                "displayName": "Coudre"
-            },
-            "waterproof": {
-                "requiresOneOf": [
-                    "resin",
-                    "chemistry",
-                    "waterproofing"
-                ],
-                "learn": [
-                    "waterproofing",
-                    "resin",
-                    "material_science"
-                ],
-                "fatigue": 5,
-                "get": "treated_leather",
-                "displayName": "Imperméabiliser"
+        "string": {
+            "resourceName": "string",
+            "imageName": "string",
+            "displayName": "Ficelle",
+            "category": "comfort",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "braid": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "cordage",
+                        "braiding",
+                        "strength"
+                    ],
+                    "fatigue": 5,
+                    "get": "rope",
+                    "displayName": "Tresser"
+                },
+                "weave": {
+                    "requiresOneOf": [
+                        "weaving",
+                        "textile",
+                        "loom"
+                    ],
+                    "learn": [
+                        "weaving",
+                        "textile",
+                        "loom"
+                    ],
+                    "fatigue": 5,
+                    "get": "clothes",
+                    "displayName": "Tisser"
+                },
+                "knot": {
+                    "requiresOneOf": [
+                        "cordage",
+                        "joining",
+                        "tools"
+                    ],
+                    "learn": [
+                        "knots",
+                        "joining",
+                        "construction"
+                    ],
+                    "fatigue": 5,
+                    "get": "rope",
+                    "displayName": "Nouer"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "saltwater": {
-        "displayName": "Eau salée",
-        "category": "",
-        "imageName": "saltwater",
-        "actions": {
-            "collect": {
-                "requiresOneOf": [],
-                "learn": [
-                    "salt_extraction",
-                    "hydrology",
-                    "observation"
-                ],
-                "fatigue": 5,
-                "get": "saltwater",
-                "displayName": "Prélever"
-            },
-            "evaporate": {
-                "requiresOneOf": [
-                    "heat",
-                    "evaporation",
-                    "fire"
-                ],
-                "learn": [
-                    "evaporation",
-                    "salt_extraction",
-                    "temperature"
-                ],
-                "fatigue": 5,
-                "get": "salt",
-                "displayName": "Évaporer"
-            },
-            "analyze": {
-                "requiresOneOf": [
-                    "science",
-                    "chemistry",
-                    "water_quality"
-                ],
-                "learn": [
-                    "chemistry",
-                    "salinity",
-                    "measurement"
-                ],
-                "fatigue": 5,
-                "get": "saltwater_data",
-                "displayName": "Analyser"
+        "hide": {
+            "resourceName": "hide",
+            "imageName": "hide",
+            "displayName": "Peau brute",
+            "category": "raw_material",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "scrape": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "hide_processing",
+                        "leatherworking",
+                        "tools"
+                    ],
+                    "fatigue": 5,
+                    "get": "hide",
+                    "displayName": "Racler"
+                },
+                "tan": {
+                    "requiresOneOf": [
+                        "tanning",
+                        "chemistry",
+                        "plants"
+                    ],
+                    "learn": [
+                        "tanning",
+                        "leatherworking",
+                        "chemistry"
+                    ],
+                    "fatigue": 5,
+                    "get": "leather",
+                    "displayName": "Tanner"
+                },
+                "dry": {
+                    "requiresOneOf": [
+                        "drying",
+                        "preservation",
+                        "leatherworking"
+                    ],
+                    "learn": [
+                        "drying",
+                        "hide_processing",
+                        "preservation"
+                    ],
+                    "fatigue": 5,
+                    "get": "hide",
+                    "displayName": "Sécher"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "salt": {
-        "displayName": "Sel",
-        "category": "",
-        "imageName": "salt",
-        "actions": {
-            "collect": {
-                "requiresOneOf": [],
-                "learn": [
-                    "salt_extraction",
-                    "preservation",
-                    "food_storage"
-                ],
-                "fatigue": 5,
-                "get": "salt",
-                "displayName": "Récolter"
-            },
-            "preserve": {
-                "requiresOneOf": [
-                    "preservation",
-                    "food_storage",
-                    "salt_preservation"
-                ],
-                "learn": [
-                    "salting",
-                    "food_safety",
-                    "preservation"
-                ],
-                "fatigue": 5,
-                "get": "preserved_food",
-                "displayName": "Saler"
-            },
-            "dissolve": {
-                "requiresOneOf": [
-                    "chemistry",
-                    "water_quality",
-                    "experimentation"
-                ],
-                "learn": [
-                    "brine",
-                    "chemistry",
-                    "measurement"
-                ],
-                "fatigue": 5,
-                "get": "brine",
-                "displayName": "Dissoudre"
+        "leather": {
+            "resourceName": "leather",
+            "imageName": "leather",
+            "displayName": "Cuir",
+            "category": "comfort",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "cut": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "leatherworking",
+                        "cutting",
+                        "shaping"
+                    ],
+                    "fatigue": 5,
+                    "get": "leather",
+                    "displayName": "Découper"
+                },
+                "stitch": {
+                    "requiresOneOf": [
+                        "sewing",
+                        "textile",
+                        "tools"
+                    ],
+                    "learn": [
+                        "sewing",
+                        "leatherworking",
+                        "clothing"
+                    ],
+                    "fatigue": 5,
+                    "get": "clothes",
+                    "displayName": "Coudre"
+                },
+                "waterproof": {
+                    "requiresOneOf": [
+                        "resin",
+                        "chemistry",
+                        "waterproofing"
+                    ],
+                    "learn": [
+                        "waterproofing",
+                        "resin",
+                        "material_science"
+                    ],
+                    "fatigue": 5,
+                    "get": "clothes",
+                    "displayName": "Imperméabiliser"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "fruits": {
-        "displayName": "Fruits",
-        "category": "",
-        "imageName": "fruits",
-        "actions": {
-            "gather": {
-                "requiresOneOf": [],
-                "learn": [
-                    "botany",
-                    "food_plants",
-                    "plant_identification"
-                ],
-                "fatigue": 5,
-                "get": "fruits",
-                "displayName": "Cueillir"
-            },
-            "dry": {
-                "requiresOneOf": [
-                    "drying_food",
-                    "preservation",
-                    "heat"
-                ],
-                "learn": [
-                    "drying_food",
-                    "preservation",
-                    "food_storage"
-                ],
-                "fatigue": 5,
-                "get": "dried_fruit",
-                "displayName": "Sécher"
-            },
-            "ferment": {
-                "requiresOneOf": [
-                    "fermentation",
-                    "cooking",
-                    "microbiology"
-                ],
-                "learn": [
-                    "fermentation_food",
-                    "microbiology",
-                    "food_preservation"
-                ],
-                "fatigue": 5,
-                "get": "fermented_fruit",
-                "displayName": "Faire fermenter"
+        "saltwater": {
+            "resourceName": "saltwater",
+            "imageName": "saltwater",
+            "displayName": "Eau salée",
+            "category": "raw_material",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "collect": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "salt_extraction",
+                        "hydrology",
+                        "observation"
+                    ],
+                    "fatigue": 5,
+                    "get": "saltwater",
+                    "displayName": "Prélever"
+                },
+                "evaporate": {
+                    "requiresOneOf": [
+                        "heat",
+                        "evaporation",
+                        "fire"
+                    ],
+                    "learn": [
+                        "evaporation",
+                        "salt_extraction",
+                        "temperature"
+                    ],
+                    "fatigue": 5,
+                    "get": "salt",
+                    "displayName": "Évaporer"
+                },
+                "analyze": {
+                    "requiresOneOf": [
+                        "science",
+                        "chemistry",
+                        "water_quality"
+                    ],
+                    "learn": [
+                        "chemistry",
+                        "salinity",
+                        "measurement"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Analyser"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "mushrooms": {
-        "displayName": "Champignons",
-        "category": "",
-        "imageName": "mushrooms",
-        "actions": {
-            "gather": {
-                "requiresOneOf": [],
-                "learn": [
-                    "botany",
-                    "fungi",
-                    "food_safety"
-                ],
-                "fatigue": 5,
-                "get": "mushrooms",
-                "displayName": "Cueillir"
-            },
-            "identify": {
-                "requiresOneOf": [
-                    "botany",
-                    "classification",
-                    "observation"
-                ],
-                "learn": [
-                    "fungi",
-                    "poisoning",
-                    "food_safety"
-                ],
-                "fatigue": 5,
-                "get": "mushroom_data",
-                "displayName": "Identifier"
-            },
-            "dry": {
-                "requiresOneOf": [
-                    "drying_food",
-                    "preservation",
-                    "food_storage"
-                ],
-                "learn": [
-                    "drying_food",
-                    "preservation",
-                    "food_storage"
-                ],
-                "fatigue": 5,
-                "get": "dried_mushrooms",
-                "displayName": "Sécher"
+        "salt": {
+            "resourceName": "salt",
+            "imageName": "salt",
+            "displayName": "Sel",
+            "category": "food",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "collect": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "salt_extraction",
+                        "preservation",
+                        "food_storage"
+                    ],
+                    "fatigue": 5,
+                    "get": "salt",
+                    "displayName": "Récolter"
+                },
+                "preserve": {
+                    "requiresOneOf": [
+                        "preservation",
+                        "food_storage",
+                        "salt_preservation"
+                    ],
+                    "learn": [
+                        "salting",
+                        "food_safety",
+                        "preservation"
+                    ],
+                    "fatigue": 5,
+                    "get": "preserved_food",
+                    "displayName": "Saler"
+                },
+                "dissolve": {
+                    "requiresOneOf": [
+                        "chemistry",
+                        "water_quality",
+                        "experimentation"
+                    ],
+                    "learn": [
+                        "brine",
+                        "chemistry",
+                        "measurement"
+                    ],
+                    "fatigue": 5,
+                    "get": "preserved_food",
+                    "displayName": "Dissoudre"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "meat": {
-        "displayName": "Viande",
-        "category": "",
-        "imageName": "meat",
-        "actions": {
-            "butcher": {
-                "requiresOneOf": [],
-                "learn": [
-                    "butchery",
-                    "anatomy",
-                    "food_safety"
-                ],
-                "fatigue": 5,
-                "get": "meat",
-                "displayName": "Dépecer"
-            },
-            "smoke": {
-                "requiresOneOf": [
-                    "fire",
-                    "smoking_food",
-                    "preservation"
-                ],
-                "learn": [
-                    "smoking_food",
-                    "preservation",
-                    "food_storage"
-                ],
-                "fatigue": 5,
-                "get": "smoked_meat",
-                "displayName": "Fumer"
-            },
-            "salt": {
-                "requiresOneOf": [
-                    "salt",
-                    "salting",
-                    "preservation"
-                ],
-                "learn": [
-                    "salting",
-                    "food_safety",
-                    "preservation"
-                ],
-                "fatigue": 5,
-                "get": "salted_meat",
-                "displayName": "Saler"
+        "fruits": {
+            "resourceName": "fruits",
+            "imageName": "fruits",
+            "displayName": "Fruits",
+            "category": "food",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "gather": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "botany",
+                        "food_plants",
+                        "plant_identification"
+                    ],
+                    "fatigue": 5,
+                    "get": "fruits",
+                    "displayName": "Cueillir"
+                },
+                "dry": {
+                    "requiresOneOf": [
+                        "drying_food",
+                        "preservation",
+                        "heat"
+                    ],
+                    "learn": [
+                        "drying_food",
+                        "preservation",
+                        "food_storage"
+                    ],
+                    "fatigue": 5,
+                    "get": "preserved_food",
+                    "displayName": "Sécher"
+                },
+                "ferment": {
+                    "requiresOneOf": [
+                        "fermentation",
+                        "cooking",
+                        "microbiology"
+                    ],
+                    "learn": [
+                        "fermentation_food",
+                        "microbiology",
+                        "food_preservation"
+                    ],
+                    "fatigue": 5,
+                    "get": "preserved_food",
+                    "displayName": "Faire fermenter"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "medicine": {
-        "displayName": "Préparation médicinale",
-        "category": "",
-        "imageName": "medicine",
-        "actions": {
-            "administer": {
-                "requiresOneOf": [],
-                "learn": [
-                    "dosage",
-                    "symptoms",
-                    "medicine"
-                ],
-                "fatigue": 5,
-                "get": "treated_patient",
-                "displayName": "Administrer"
-            },
-            "compare": {
-                "requiresOneOf": [
-                    "science",
-                    "medicine",
-                    "observation"
-                ],
-                "learn": [
-                    "diagnosis",
-                    "pharmacology",
-                    "experimentation"
-                ],
-                "fatigue": 5,
-                "get": "medical_data",
-                "displayName": "Comparer"
-            },
-            "improve": {
-                "requiresOneOf": [
-                    "chemistry",
-                    "herbalism",
-                    "experimentation"
-                ],
-                "learn": [
-                    "medicinal_preparations",
-                    "dosage",
-                    "chemistry"
-                ],
-                "fatigue": 5,
-                "get": "medicine",
-                "displayName": "Améliorer"
+        "mushrooms": {
+            "resourceName": "mushrooms",
+            "imageName": "mushrooms",
+            "displayName": "Champignons",
+            "category": "food",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "gather": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "botany",
+                        "fungi",
+                        "food_safety"
+                    ],
+                    "fatigue": 5,
+                    "get": "mushrooms",
+                    "displayName": "Cueillir"
+                },
+                "identify": {
+                    "requiresOneOf": [
+                        "botany",
+                        "classification",
+                        "observation"
+                    ],
+                    "learn": [
+                        "fungi",
+                        "poisoning",
+                        "food_safety"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Identifier"
+                },
+                "dry": {
+                    "requiresOneOf": [
+                        "drying_food",
+                        "preservation",
+                        "food_storage"
+                    ],
+                    "learn": [
+                        "drying_food",
+                        "preservation",
+                        "food_storage"
+                    ],
+                    "fatigue": 5,
+                    "get": "preserved_food",
+                    "displayName": "Sécher"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "iron_ore": {
-        "displayName": "Minerai de fer",
-        "category": "",
-        "imageName": "iron_ore",
-        "actions": {
-            "collect": {
-                "requiresOneOf": [],
-                "learn": [
-                    "mineral_identification",
-                    "geology",
-                    "ore_processing"
-                ],
-                "fatigue": 5,
-                "get": "iron_ore",
-                "displayName": "Extraire"
-            },
-            "crush": {
-                "requiresOneOf": [
-                    "grinding",
-                    "ore_processing",
-                    "tools"
-                ],
-                "learn": [
-                    "ore_processing",
-                    "grinding",
-                    "mineral_identification"
-                ],
-                "fatigue": 5,
-                "get": "iron_ore_powder",
-                "displayName": "Broyer"
-            },
-            "smelt": {
-                "requiresOneOf": [
-                    "fire",
-                    "charcoal",
-                    "metallurgy"
-                ],
-                "learn": [
-                    "smelting",
-                    "metallurgy",
-                    "iron_working"
-                ],
-                "fatigue": 5,
-                "get": "iron",
-                "displayName": "Réduire"
+        "meat": {
+            "resourceName": "meat",
+            "imageName": "meat",
+            "displayName": "Viande",
+            "category": "food",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "butcher": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "butchery",
+                        "anatomy",
+                        "food_safety"
+                    ],
+                    "fatigue": 5,
+                    "get": "meat",
+                    "displayName": "Dépecer"
+                },
+                "smoke": {
+                    "requiresOneOf": [
+                        "fire",
+                        "smoking_food",
+                        "preservation"
+                    ],
+                    "learn": [
+                        "smoking_food",
+                        "preservation",
+                        "food_storage"
+                    ],
+                    "fatigue": 5,
+                    "get": "preserved_food",
+                    "displayName": "Fumer"
+                },
+                "salt": {
+                    "requiresOneOf": [
+                        "salt",
+                        "salting",
+                        "preservation"
+                    ],
+                    "learn": [
+                        "salting",
+                        "food_safety",
+                        "preservation"
+                    ],
+                    "fatigue": 5,
+                    "get": "preserved_food",
+                    "displayName": "Saler"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "iron": {
-        "displayName": "Fer",
-        "category": "",
-        "imageName": "iron",
-        "actions": {
-            "hammer": {
-                "requiresOneOf": [],
-                "learn": [
-                    "iron_working",
-                    "forging",
-                    "hammering"
-                ],
-                "fatigue": 5,
-                "get": "iron_tool",
-                "displayName": "Marteler"
-            },
-            "forge": {
-                "requiresOneOf": [
-                    "forging",
-                    "heat",
-                    "metallurgy"
-                ],
-                "learn": [
-                    "forging",
-                    "annealing",
-                    "tempering"
-                ],
-                "fatigue": 5,
-                "get": "iron_tool",
-                "displayName": "Forger"
-            },
-            "alloy": {
-                "requiresOneOf": [
-                    "alloying",
-                    "metallurgy",
-                    "chemistry"
-                ],
-                "learn": [
-                    "alloying",
-                    "material_science",
-                    "metallurgy"
-                ],
-                "fatigue": 5,
-                "get": "steel",
-                "displayName": "Allier"
+        "medicine": {
+            "resourceName": "medicine",
+            "imageName": "medicine",
+            "displayName": "Préparation médicinale",
+            "category": "medecine",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "test": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "dosage",
+                        "symptoms",
+                        "medicine"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Tester"
+                },
+                "analyze": {
+                    "requiresOneOf": [
+                        "science",
+                        "medicine",
+                        "observation"
+                    ],
+                    "learn": [
+                        "diagnosis",
+                        "pharmacology",
+                        "experimentation"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Analyser"
+                },
+                "improve": {
+                    "requiresOneOf": [
+                        "chemistry",
+                        "herbalism",
+                        "experimentation"
+                    ],
+                    "learn": [
+                        "medicinal_preparations",
+                        "dosage",
+                        "chemistry"
+                    ],
+                    "fatigue": 5,
+                    "get": "medicine",
+                    "displayName": "Améliorer"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "copper_ore": {
-        "displayName": "Minerai de cuivre",
-        "category": "",
-        "imageName": "copper_ore",
-        "actions": {
-            "collect": {
-                "requiresOneOf": [],
-                "learn": [
-                    "geology",
-                    "mineral_identification",
-                    "ore_processing"
-                ],
-                "fatigue": 5,
-                "get": "copper_ore",
-                "displayName": "Extraire"
-            },
-            "crush": {
-                "requiresOneOf": [
-                    "grinding",
-                    "ore_processing",
-                    "tools"
-                ],
-                "learn": [
-                    "ore_processing",
-                    "grinding",
-                    "mineral_identification"
-                ],
-                "fatigue": 5,
-                "get": "copper_ore_powder",
-                "displayName": "Broyer"
-            },
-            "smelt": {
-                "requiresOneOf": [
-                    "fire",
-                    "charcoal",
-                    "metallurgy"
-                ],
-                "learn": [
-                    "smelting",
-                    "copper_working",
-                    "metallurgy"
-                ],
-                "fatigue": 5,
-                "get": "copper",
-                "displayName": "Fondre"
+        "iron_ore": {
+            "resourceName": "iron_ore",
+            "imageName": "iron_ore",
+            "displayName": "Minerai de fer",
+            "category": "raw_material",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "collect": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "mineral_identification",
+                        "geology",
+                        "ore_processing"
+                    ],
+                    "fatigue": 5,
+                    "get": "iron_ore",
+                    "displayName": "Extraire"
+                },
+                "crush": {
+                    "requiresOneOf": [
+                        "grinding",
+                        "ore_processing",
+                        "tools"
+                    ],
+                    "learn": [
+                        "ore_processing",
+                        "grinding",
+                        "mineral_identification"
+                    ],
+                    "fatigue": 5,
+                    "get": "iron_ore",
+                    "displayName": "Broyer"
+                },
+                "smelt": {
+                    "requiresOneOf": [
+                        "fire",
+                        "charcoal",
+                        "metallurgy"
+                    ],
+                    "learn": [
+                        "smelting",
+                        "metallurgy",
+                        "iron_working"
+                    ],
+                    "fatigue": 5,
+                    "get": "iron",
+                    "displayName": "Réduire"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "copper": {
-        "displayName": "Cuivre",
-        "category": "",
-        "imageName": "copper",
-        "actions": {
-            "hammer": {
-                "requiresOneOf": [],
-                "learn": [
-                    "copper_working",
-                    "hammering",
-                    "metalworking"
-                ],
-                "fatigue": 5,
-                "get": "copper",
-                "displayName": "Marteler"
-            },
-            "cast": {
-                "requiresOneOf": [
-                    "casting",
-                    "molds",
-                    "metallurgy"
-                ],
-                "learn": [
-                    "casting",
-                    "molds",
-                    "metalworking"
-                ],
-                "fatigue": 5,
-                "get": "copper_parts",
-                "displayName": "Couler"
-            },
-            "alloy": {
-                "requiresOneOf": [
-                    "alloying",
-                    "metallurgy",
-                    "bronze"
-                ],
-                "learn": [
-                    "bronze",
-                    "alloying",
-                    "material_science"
-                ],
-                "fatigue": 5,
-                "get": "bronze",
-                "displayName": "Allier"
+        "iron": {
+            "resourceName": "iron",
+            "imageName": "iron",
+            "displayName": "Fer",
+            "category": "building_material",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "hammer": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "iron_working",
+                        "forging",
+                        "hammering"
+                    ],
+                    "fatigue": 5,
+                    "get": "tool",
+                    "displayName": "Marteler"
+                },
+                "forge": {
+                    "requiresOneOf": [
+                        "forging",
+                        "heat",
+                        "metallurgy"
+                    ],
+                    "learn": [
+                        "forging",
+                        "annealing",
+                        "tempering"
+                    ],
+                    "fatigue": 5,
+                    "get": "tool",
+                    "displayName": "Forger"
+                },
+                "alloy": {
+                    "requiresOneOf": [
+                        "alloying",
+                        "metallurgy",
+                        "chemistry"
+                    ],
+                    "learn": [
+                        "alloying",
+                        "material_science",
+                        "metallurgy"
+                    ],
+                    "fatigue": 5,
+                    "get": "steel",
+                    "displayName": "Allier"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "bronze": {
-        "displayName": "Bronze",
-        "category": "",
-        "imageName": "bronze",
-        "actions": {
-            "hammer": {
-                "requiresOneOf": [],
-                "learn": [
-                    "bronze",
-                    "hammering",
-                    "metalworking"
-                ],
-                "fatigue": 5,
-                "get": "bronze_tool",
-                "displayName": "Marteler"
-            },
-            "cast": {
-                "requiresOneOf": [
-                    "casting",
-                    "molds",
-                    "metallurgy"
-                ],
-                "learn": [
-                    "casting",
-                    "molds",
-                    "alloying"
-                ],
-                "fatigue": 5,
-                "get": "bronze_tool",
-                "displayName": "Couler"
-            },
-            "polish": {
-                "requiresOneOf": [
-                    "polishing",
-                    "metalworking",
-                    "tools"
-                ],
-                "learn": [
-                    "polishing",
-                    "metalworking",
-                    "material_science"
-                ],
-                "fatigue": 5,
-                "get": "polished_bronze",
-                "displayName": "Polir"
+        "steel": {
+            "resourceName": "steel",
+            "imageName": "steel",
+            "displayName": "Acier",
+            "category": "building_material",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "forge": {
+                    "requiresOneOf": [
+                        "smithing",
+                        "metalworking",
+                        "fire"
+                    ],
+                    "learn": [
+                        "forging",
+                        "steelworking",
+                        "blacksmithing"
+                    ],
+                    "fatigue": 5,
+                    "get": "tool",
+                    "displayName": "Forger"
+                },
+                "temper": {
+                    "requiresOneOf": [
+                        "metallurgy",
+                        "smithing",
+                        "steelworking"
+                    ],
+                    "learn": [
+                        "heat_treatment",
+                        "metallurgy",
+                        "tempering"
+                    ],
+                    "fatigue": 5,
+                    "get": "steel",
+                    "displayName": "Tremper"
+                },
+                "machine": {
+                    "requiresOneOf": [
+                        "metalworking",
+                        "machining",
+                        "tools"
+                    ],
+                    "learn": [
+                        "machining",
+                        "precision_engineering",
+                        "metalworking"
+                    ],
+                    "fatigue": 5,
+                    "get": "tool",
+                    "displayName": "Usiner"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "stone_tools": {
-        "displayName": "Outils en pierre",
-        "category": "",
-        "imageName": "stone_tools",
-        "actions": {
-            "use": {
-                "requiresOneOf": [],
-                "learn": [
-                    "tools",
-                    "crafting",
-                    "cutting"
-                ],
-                "fatigue": 5,
-                "get": "worked_material",
-                "displayName": "Utiliser"
-            },
-            "sharpen": {
-                "requiresOneOf": [
-                    "stone_working",
-                    "grinding",
-                    "shaping"
-                ],
-                "learn": [
-                    "sharpening",
-                    "cutting",
-                    "grinding"
-                ],
-                "fatigue": 5,
-                "get": "sharp_tool",
-                "displayName": "Affûter"
-            },
-            "improve": {
-                "requiresOneOf": [
-                    "experimentation",
-                    "crafting",
-                    "material_science"
-                ],
-                "learn": [
-                    "experimentation",
-                    "toolmaking",
-                    "material_science"
-                ],
-                "fatigue": 5,
-                "get": "improved_tool",
-                "displayName": "Améliorer"
+        "copper_ore": {
+            "resourceName": "copper_ore",
+            "imageName": "copper_ore",
+            "displayName": "Minerai de cuivre",
+            "category": "raw_material",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "collect": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "geology",
+                        "mineral_identification",
+                        "ore_processing"
+                    ],
+                    "fatigue": 5,
+                    "get": "copper_ore",
+                    "displayName": "Extraire"
+                },
+                "crush": {
+                    "requiresOneOf": [
+                        "grinding",
+                        "ore_processing",
+                        "tools"
+                    ],
+                    "learn": [
+                        "ore_processing",
+                        "grinding",
+                        "mineral_identification"
+                    ],
+                    "fatigue": 5,
+                    "get": "copper_ore",
+                    "displayName": "Broyer"
+                },
+                "smelt": {
+                    "requiresOneOf": [
+                        "fire",
+                        "charcoal",
+                        "metallurgy"
+                    ],
+                    "learn": [
+                        "smelting",
+                        "copper_working",
+                        "metallurgy"
+                    ],
+                    "fatigue": 5,
+                    "get": "copper",
+                    "displayName": "Fondre"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "limestone": {
-        "displayName": "Calcaire",
-        "category": "",
-        "imageName": "limestone",
-        "actions": {
-            "collect": {
-                "requiresOneOf": [],
-                "learn": [
-                    "geology",
-                    "quarrying",
-                    "stone_working"
-                ],
-                "fatigue": 5,
-                "get": "limestone",
-                "displayName": "Extraire"
-            },
-            "burn": {
-                "requiresOneOf": [
-                    "fire",
-                    "heat",
-                    "kiln"
-                ],
-                "learn": [
-                    "lime",
-                    "chemistry",
-                    "temperature"
-                ],
-                "fatigue": 5,
-                "get": "lime",
-                "displayName": "Calciner"
-            },
-            "crush": {
-                "requiresOneOf": [
-                    "grinding",
-                    "tools",
-                    "stone_working"
-                ],
-                "learn": [
-                    "grinding",
-                    "mortar",
-                    "material_science"
-                ],
-                "fatigue": 5,
-                "get": "limestone_powder",
-                "displayName": "Broyer"
+        "copper": {
+            "resourceName": "copper",
+            "imageName": "copper",
+            "displayName": "Cuivre",
+            "category": "building_material",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "hammer": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "copper_working",
+                        "hammering",
+                        "metalworking"
+                    ],
+                    "fatigue": 5,
+                    "get": "copper",
+                    "displayName": "Marteler"
+                },
+                "cast": {
+                    "requiresOneOf": [
+                        "casting",
+                        "molds",
+                        "metallurgy"
+                    ],
+                    "learn": [
+                        "casting",
+                        "molds",
+                        "metalworking"
+                    ],
+                    "fatigue": 5,
+                    "get": "tool",
+                    "displayName": "Couler"
+                },
+                "alloy": {
+                    "requiresOneOf": [
+                        "alloying",
+                        "metallurgy",
+                        "bronze"
+                    ],
+                    "learn": [
+                        "bronze",
+                        "alloying",
+                        "material_science"
+                    ],
+                    "fatigue": 5,
+                    "get": "bronze",
+                    "displayName": "Allier"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "lime": {
-        "displayName": "Chaux",
-        "category": "",
-        "imageName": "lime",
-        "actions": {
-            "mix": {
-                "requiresOneOf": [],
-                "learn": [
-                    "mortar",
-                    "construction",
-                    "chemistry"
-                ],
-                "fatigue": 5,
-                "get": "mortar",
-                "displayName": "Mélanger"
-            },
-            "plaster": {
-                "requiresOneOf": [
-                    "construction",
-                    "masonry",
-                    "lime"
-                ],
-                "learn": [
-                    "architecture",
-                    "construction",
-                    "waterproofing"
-                ],
-                "fatigue": 5,
-                "get": "plaster",
-                "displayName": "Enduire"
-            },
-            "analyze": {
-                "requiresOneOf": [
-                    "chemistry",
-                    "science",
-                    "material_science"
-                ],
-                "learn": [
-                    "chemistry",
-                    "material_science",
-                    "causality"
-                ],
-                "fatigue": 5,
-                "get": "lime_data",
-                "displayName": "Analyser"
+        "bronze": {
+            "resourceName": "bronze",
+            "imageName": "bronze",
+            "displayName": "Bronze",
+            "category": "building_material",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "hammer": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "bronze",
+                        "hammering",
+                        "metalworking"
+                    ],
+                    "fatigue": 5,
+                    "get": "tool",
+                    "displayName": "Marteler"
+                },
+                "cast": {
+                    "requiresOneOf": [
+                        "casting",
+                        "molds",
+                        "metallurgy"
+                    ],
+                    "learn": [
+                        "casting",
+                        "molds",
+                        "alloying"
+                    ],
+                    "fatigue": 5,
+                    "get": "tool",
+                    "displayName": "Couler"
+                },
+                "polish": {
+                    "requiresOneOf": [
+                        "polishing",
+                        "metalworking",
+                        "tools"
+                    ],
+                    "learn": [
+                        "polishing",
+                        "metalworking",
+                        "material_science"
+                    ],
+                    "fatigue": 5,
+                    "get": "bronze",
+                    "displayName": "Polir"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "bricks": {
-        "displayName": "Briques",
-        "category": "",
-        "imageName": "bricks",
-        "actions": {
-            "build": {
-                "requiresOneOf": [],
-                "learn": [
-                    "masonry",
-                    "construction",
-                    "architecture"
-                ],
-                "fatigue": 5,
-                "get": "brick_structure",
-                "displayName": "Construire"
-            },
-            "fire": {
-                "requiresOneOf": [
-                    "kiln",
-                    "fire",
-                    "ceramics"
-                ],
-                "learn": [
-                    "kiln_firing",
-                    "ceramics",
-                    "temperature"
-                ],
-                "fatigue": 5,
-                "get": "fired_bricks",
-                "displayName": "Cuire"
-            },
-            "improve": {
-                "requiresOneOf": [
-                    "masonry",
-                    "material_science",
-                    "architecture"
-                ],
-                "learn": [
-                    "architecture",
-                    "construction",
-                    "material_science"
-                ],
-                "fatigue": 5,
-                "get": "improved_bricks",
-                "displayName": "Améliorer"
+        "limestone": {
+            "resourceName": "limestone",
+            "imageName": "limestone",
+            "displayName": "Calcaire",
+            "category": "building_material",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "collect": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "geology",
+                        "quarrying",
+                        "stone_working"
+                    ],
+                    "fatigue": 5,
+                    "get": "limestone",
+                    "displayName": "Extraire"
+                },
+                "burn": {
+                    "requiresOneOf": [
+                        "fire",
+                        "heat",
+                        "kiln"
+                    ],
+                    "learn": [
+                        "lime",
+                        "chemistry",
+                        "temperature"
+                    ],
+                    "fatigue": 5,
+                    "get": "lime",
+                    "displayName": "Calciner"
+                },
+                "crush": {
+                    "requiresOneOf": [
+                        "grinding",
+                        "tools",
+                        "stone_working"
+                    ],
+                    "learn": [
+                        "grinding",
+                        "mortar",
+                        "material_science"
+                    ],
+                    "fatigue": 5,
+                    "get": "limestone",
+                    "displayName": "Broyer"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "wood_parts": {
-        "displayName": "Pièces en bois",
-        "category": "",
-        "imageName": "wood_parts",
-        "actions": {
-            "assemble": {
-                "requiresOneOf": [],
-                "learn": [
-                    "joining",
-                    "crafting",
-                    "construction"
-                ],
-                "fatigue": 5,
-                "get": "wooden_machine",
-                "displayName": "Assembler"
-            },
-            "rotate": {
-                "requiresOneOf": [
-                    "wheel",
-                    "axle",
-                    "mechanics"
-                ],
-                "learn": [
-                    "mechanics",
-                    "wheel",
-                    "axle"
-                ],
-                "fatigue": 5,
-                "get": "wooden_mechanism",
-                "displayName": "Faire tourner"
-            },
-            "improve": {
-                "requiresOneOf": [
-                    "experimentation",
-                    "mechanics",
-                    "woodworking"
-                ],
-                "learn": [
-                    "mechanics",
-                    "crafting",
-                    "material_science"
-                ],
-                "fatigue": 5,
-                "get": "wooden_mechanism",
-                "displayName": "Améliorer"
+        "lime": {
+            "resourceName": "lime",
+            "imageName": "lime",
+            "displayName": "Chaux",
+            "category": "comfort",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "mix": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "mortar",
+                        "construction",
+                        "chemistry"
+                    ],
+                    "fatigue": 5,
+                    "get": "mortar",
+                    "displayName": "Mélanger"
+                },
+                "plaster": {
+                    "requiresOneOf": [
+                        "construction",
+                        "masonry",
+                        "lime"
+                    ],
+                    "learn": [
+                        "architecture",
+                        "construction",
+                        "waterproofing"
+                    ],
+                    "fatigue": 5,
+                    "get": "plaster",
+                    "displayName": "Enduire"
+                },
+                "analyze": {
+                    "requiresOneOf": [
+                        "chemistry",
+                        "science",
+                        "material_science"
+                    ],
+                    "learn": [
+                        "chemistry",
+                        "material_science",
+                        "causality"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Analyser"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "containers": {
-        "displayName": "Récipients",
-        "category": "",
-        "imageName": "containers",
-        "actions": {
-            "fill": {
-                "requiresOneOf": [],
-                "learn": [
-                    "storage",
-                    "water_storage",
-                    "containers"
-                ],
-                "fatigue": 5,
-                "get": "stored_water",
-                "displayName": "Remplir"
-            },
-            "preserve": {
-                "requiresOneOf": [
-                    "food_storage",
-                    "preservation",
-                    "ceramics"
-                ],
-                "learn": [
-                    "food_storage",
-                    "food_safety",
-                    "preservation"
-                ],
-                "fatigue": 5,
-                "get": "preserved_food",
-                "displayName": "Conserver"
-            },
-            "improve": {
-                "requiresOneOf": [
-                    "pottery",
-                    "ceramics",
-                    "material_science"
-                ],
-                "learn": [
-                    "ceramics",
-                    "storage",
-                    "crafting"
-                ],
-                "fatigue": 5,
-                "get": "improved_container",
-                "displayName": "Améliorer"
+        "bricks": {
+            "resourceName": "bricks",
+            "imageName": "bricks",
+            "displayName": "Briques",
+            "category": "building_material",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "store": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "masonry",
+                        "construction",
+                        "architecture"
+                    ],
+                    "fatigue": 5,
+                    "get": "brick",
+                    "displayName": "Stocker"
+                },
+                "fire": {
+                    "requiresOneOf": [
+                        "kiln",
+                        "fire",
+                        "ceramics"
+                    ],
+                    "learn": [
+                        "kiln_firing",
+                        "ceramics",
+                        "temperature"
+                    ],
+                    "fatigue": 5,
+                    "get": "bricks",
+                    "displayName": "Cuire"
+                },
+                "improve": {
+                    "requiresOneOf": [
+                        "masonry",
+                        "material_science",
+                        "architecture"
+                    ],
+                    "learn": [
+                        "architecture",
+                        "construction",
+                        "material_science"
+                    ],
+                    "fatigue": 5,
+                    "get": "bricks",
+                    "displayName": "Améliorer"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "organic_waste": {
-        "displayName": "Déchets organiques",
-        "category": "",
-        "imageName": "organic_waste",
-        "actions": {
-            "collect": {
-                "requiresOneOf": [],
-                "learn": [
-                    "sanitation",
-                    "hygiene",
-                    "observation"
-                ],
-                "fatigue": 5,
-                "get": "organic_waste",
-                "displayName": "Collecter"
-            },
-            "compost": {
-                "requiresOneOf": [
-                    "ecology",
-                    "soil",
-                    "agriculture"
-                ],
-                "learn": [
-                    "composting",
-                    "soil_quality",
-                    "ecology"
-                ],
-                "fatigue": 5,
-                "get": "compost",
-                "displayName": "Composter"
-            },
-            "burn": {
-                "requiresOneOf": [
-                    "fire",
-                    "combustion",
-                    "sanitation"
-                ],
-                "learn": [
-                    "combustion",
-                    "sanitation",
-                    "ash"
-                ],
-                "fatigue": 5,
-                "get": "ash",
-                "displayName": "Brûler"
+        "containers": {
+            "resourceName": "containers",
+            "imageName": "containers",
+            "displayName": "Récipients",
+            "category": "comfort",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "fill": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "storage",
+                        "water_storage",
+                        "containers"
+                    ],
+                    "fatigue": 5,
+                    "get": "preserved_food",
+                    "displayName": "Remplir"
+                },
+                "preserve": {
+                    "requiresOneOf": [
+                        "food_storage",
+                        "preservation",
+                        "ceramics"
+                    ],
+                    "learn": [
+                        "food_storage",
+                        "food_safety",
+                        "preservation"
+                    ],
+                    "fatigue": 5,
+                    "get": "preserved_food",
+                    "displayName": "Conserver"
+                },
+                "improve": {
+                    "requiresOneOf": [
+                        "pottery",
+                        "ceramics",
+                        "material_science"
+                    ],
+                    "learn": [
+                        "ceramics",
+                        "storage",
+                        "crafting"
+                    ],
+                    "fatigue": 5,
+                    "get": "containers",
+                    "displayName": "Améliorer"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "compost": {
-        "displayName": "Compost",
-        "category": "",
-        "imageName": "compost",
-        "actions": {
-            "apply": {
-                "requiresOneOf": [],
-                "learn": [
-                    "fertilization",
-                    "soil_quality",
-                    "agriculture"
-                ],
-                "fatigue": 5,
-                "get": "fertile_soil",
-                "displayName": "Épandre"
-            },
-            "analyze": {
-                "requiresOneOf": [
-                    "science",
-                    "soil",
-                    "agriculture"
-                ],
-                "learn": [
-                    "soil_quality",
-                    "chemistry",
-                    "ecology"
-                ],
-                "fatigue": 5,
-                "get": "soil_data",
-                "displayName": "Analyser"
-            },
-            "improve": {
-                "requiresOneOf": [
-                    "experimentation",
-                    "ecology",
-                    "soil_quality"
-                ],
-                "learn": [
-                    "ecology",
-                    "fertilization",
-                    "regeneration"
-                ],
-                "fatigue": 5,
-                "get": "rich_compost",
-                "displayName": "Améliorer"
+        "organic_waste": {
+            "resourceName": "organic_waste",
+            "imageName": "organic_waste",
+            "displayName": "Déchets organiques",
+            "category": "energy",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "collect": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "sanitation",
+                        "hygiene",
+                        "observation"
+                    ],
+                    "fatigue": 5,
+                    "get": "organic_waste",
+                    "displayName": "Collecter"
+                },
+                "compost": {
+                    "requiresOneOf": [
+                        "ecology",
+                        "soil",
+                        "agriculture"
+                    ],
+                    "learn": [
+                        "composting",
+                        "soil_quality",
+                        "ecology"
+                    ],
+                    "fatigue": 5,
+                    "get": "compost",
+                    "displayName": "Composter"
+                },
+                "burn": {
+                    "requiresOneOf": [
+                        "fire",
+                        "combustion",
+                        "sanitation"
+                    ],
+                    "learn": [
+                        "combustion",
+                        "sanitation",
+                        "ash"
+                    ],
+                    "fatigue": 5,
+                    "get": "ash",
+                    "displayName": "Brûler"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "soil": {
-        "displayName": "Sol",
-        "category": "",
-        "imageName": "soil",
-        "actions": {
-            "observe": {
-                "requiresOneOf": [],
-                "learn": [
-                    "soil",
-                    "observation",
-                    "ecology"
-                ],
-                "fatigue": 5,
-                "get": "soil_data",
-                "displayName": "Observer"
-            },
-            "cultivate": {
-                "requiresOneOf": [
-                    "agriculture",
-                    "cultivation",
-                    "soil_quality"
-                ],
-                "learn": [
-                    "agriculture",
-                    "soil_quality",
-                    "irrigation"
-                ],
-                "fatigue": 5,
-                "get": "cultivated_soil",
-                "displayName": "Cultiver"
-            },
-            "sample": {
-                "requiresOneOf": [
-                    "sampling",
-                    "science",
-                    "geology"
-                ],
-                "learn": [
-                    "soil_quality",
-                    "geology",
-                    "chemistry"
-                ],
-                "fatigue": 5,
-                "get": "soil_sample",
-                "displayName": "Prélever"
+        "compost": {
+            "resourceName": "compost",
+            "imageName": "compost",
+            "displayName": "Compost",
+            "category": "energy",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "complete": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "fertilization",
+                        "soil_quality",
+                        "agriculture"
+                    ],
+                    "fatigue": 5,
+                    "get": "soil",
+                    "displayName": "Complèter"
+                },
+                "analyze": {
+                    "requiresOneOf": [
+                        "science",
+                        "soil",
+                        "agriculture"
+                    ],
+                    "learn": [
+                        "soil_quality",
+                        "chemistry",
+                        "ecology"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Analyser"
+                },
+                "improve": {
+                    "requiresOneOf": [
+                        "experimentation",
+                        "ecology",
+                        "soil_quality"
+                    ],
+                    "learn": [
+                        "ecology",
+                        "fertilization",
+                        "regeneration"
+                    ],
+                    "fatigue": 5,
+                    "get": "soil",
+                    "displayName": "Améliorer"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "clay_bricks": {
-        "displayName": "Briques d'argile",
-        "category": "",
-        "imageName": "clay_bricks",
-        "actions": {
-            "build": {
-                "requiresOneOf": [],
-                "learn": [
-                    "construction",
-                    "masonry",
-                    "architecture"
-                ],
-                "fatigue": 5,
-                "get": "building",
-                "displayName": "Construire"
-            },
-            "fire": {
-                "requiresOneOf": [
-                    "fire",
-                    "kiln",
-                    "ceramics"
-                ],
-                "learn": [
-                    "kiln_firing",
-                    "ceramics",
-                    "temperature"
-                ],
-                "fatigue": 5,
-                "get": "fired_bricks",
-                "displayName": "Cuire"
-            },
-            "analyze": {
-                "requiresOneOf": [
-                    "science",
-                    "material_science",
-                    "ceramics"
-                ],
-                "learn": [
-                    "material_science",
-                    "chemistry",
-                    "clay_identification"
-                ],
-                "fatigue": 5,
-                "get": "clay_data",
-                "displayName": "Analyser"
+        "soil": {
+            "resourceName": "soil",
+            "imageName": "soil",
+            "displayName": "Sol",
+            "category": "energy",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "observe": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "soil",
+                        "observation",
+                        "ecology"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Observer"
+                },
+                "cultivate": {
+                    "requiresOneOf": [
+                        "agriculture",
+                        "cultivation",
+                        "soil_quality"
+                    ],
+                    "learn": [
+                        "agriculture",
+                        "soil_quality",
+                        "irrigation"
+                    ],
+                    "fatigue": 5,
+                    "get": "wild_wheat",
+                    "displayName": "Cultiver"
+                },
+                "sample": {
+                    "requiresOneOf": [
+                        "sampling",
+                        "science",
+                        "geology"
+                    ],
+                    "learn": [
+                        "soil_quality",
+                        "geology",
+                        "chemistry"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Prélever"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "rope": {
-        "displayName": "Corde",
-        "category": "",
-        "imageName": "rope",
-        "actions": {
-            "use": {
-                "requiresOneOf": [],
-                "learn": [
-                    "cordage",
-                    "knots",
-                    "construction"
-                ],
-                "fatigue": 5,
-                "get": "rope",
-                "displayName": "Utiliser"
-            },
-            "weave": {
-                "requiresOneOf": [
-                    "weaving",
-                    "textile",
-                    "cordage"
-                ],
-                "learn": [
-                    "weaving",
-                    "strength",
-                    "textile"
-                ],
-                "fatigue": 5,
-                "get": "rope",
-                "displayName": "Tresser"
-            },
-            "sail": {
-                "requiresOneOf": [
-                    "sailing",
-                    "textile",
-                    "navigation"
-                ],
-                "learn": [
-                    "sailing",
-                    "wind",
-                    "navigation"
-                ],
-                "fatigue": 5,
-                "get": "sail",
-                "displayName": "Fabriquer une voile"
+        "ceramics": {
+            "resourceName": "ceramics",
+            "imageName": "ceramics",
+            "displayName": "Céramiques",
+            "category": "comfort",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "shape": {
+                    "requiresOneOf": [
+                        "pottery",
+                        "crafting",
+                        "clay"
+                    ],
+                    "learn": [
+                        "pottery",
+                        "ceramics",
+                        "crafting"
+                    ],
+                    "fatigue": 5,
+                    "get": "pottery",
+                    "displayName": "Façonner"
+                },
+                "fire": {
+                    "requiresOneOf": [
+                        "fire",
+                        "pottery",
+                        "combustion"
+                    ],
+                    "learn": [
+                        "kiln",
+                        "ceramics",
+                        "combustion"
+                    ],
+                    "fatigue": 5,
+                    "get": "ceramics",
+                    "displayName": "Cuire"
+                },
+                "analyze": {
+                    "requiresOneOf": [
+                        "geology",
+                        "science",
+                        "material_identification"
+                    ],
+                    "learn": [
+                        "material_science",
+                        "ceramics",
+                        "classification"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Analyser"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "wax": {
-        "displayName": "Cire",
-        "category": "",
-        "imageName": "wax",
-        "actions": {
-            "collect": {
-                "requiresOneOf": [],
-                "learn": [
-                    "observation",
-                    "animal_behavior",
-                    "material_science"
-                ],
-                "fatigue": 5,
-                "get": "wax",
-                "displayName": "Récolter"
-            },
-            "melt": {
-                "requiresOneOf": [
-                    "heat",
-                    "fire",
-                    "temperature"
-                ],
-                "learn": [
-                    "temperature",
-                    "material_science",
-                    "casting"
-                ],
-                "fatigue": 5,
-                "get": "liquid_wax",
-                "displayName": "Faire fondre"
-            },
-            "seal": {
-                "requiresOneOf": [
-                    "containers",
-                    "storage",
-                    "crafting"
-                ],
-                "learn": [
-                    "sealing",
-                    "preservation",
-                    "storage"
-                ],
-                "fatigue": 5,
-                "get": "sealed_container",
-                "displayName": "Sceller"
+        "rope": {
+            "resourceName": "rope",
+            "imageName": "rope",
+            "displayName": "Corde",
+            "category": "building_material",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "lengthen": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "cordage",
+                        "knots",
+                        "construction"
+                    ],
+                    "fatigue": 5,
+                    "get": "rope",
+                    "displayName": "Allonger"
+                },
+                "weave": {
+                    "requiresOneOf": [
+                        "weaving",
+                        "textile",
+                        "cordage"
+                    ],
+                    "learn": [
+                        "weaving",
+                        "strength",
+                        "textile"
+                    ],
+                    "fatigue": 5,
+                    "get": "rope",
+                    "displayName": "Tresser"
+                },
+                "sail": {
+                    "requiresOneOf": [
+                        "sailing",
+                        "textile",
+                        "navigation"
+                    ],
+                    "learn": [
+                        "sailing",
+                        "wind",
+                        "navigation"
+                    ],
+                    "fatigue": 5,
+                    "get": "sail",
+                    "displayName": "Fabriquer une voile"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "stars_data": {
-        "displayName": "Données astronomiques",
-        "category": "",
-        "imageName": "stars_data",
-        "actions": {
-            "observe": {
-                "requiresOneOf": [],
-                "learn": [
-                    "stars",
-                    "astronomy",
-                    "observation"
-                ],
-                "fatigue": 5,
-                "get": "stars_data",
-                "displayName": "Observer"
-            },
-            "record": {
-                "requiresOneOf": [
-                    "recording",
-                    "writing",
-                    "science"
-                ],
-                "learn": [
-                    "mapping",
-                    "astronomy",
-                    "recording"
-                ],
-                "fatigue": 5,
-                "get": "star_chart",
-                "displayName": "Consigner"
-            },
-            "compare": {
-                "requiresOneOf": [
-                    "comparison",
-                    "astronomy",
-                    "measurement"
-                ],
-                "learn": [
-                    "navigation",
-                    "orientation",
-                    "astronomy"
-                ],
-                "fatigue": 5,
-                "get": "star_data",
-                "displayName": "Comparer"
+        "stars_data": {
+            "resourceName": "stars_data",
+            "imageName": "stars_data",
+            "displayName": "Données astronomiques",
+            "category": "misc",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "observe": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "stars",
+                        "astronomy",
+                        "observation"
+                    ],
+                    "fatigue": 5,
+                    "get": "stars_data",
+                    "displayName": "Observer"
+                },
+                "record": {
+                    "requiresOneOf": [
+                        "recording",
+                        "writing",
+                        "science"
+                    ],
+                    "learn": [
+                        "mapping",
+                        "astronomy",
+                        "recording"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Consigner"
+                },
+                "compare": {
+                    "requiresOneOf": [
+                        "comparison",
+                        "astronomy",
+                        "measurement"
+                    ],
+                    "learn": [
+                        "navigation",
+                        "orientation",
+                        "astronomy"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Comparer"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "wool": {
-        "displayName": "Laine",
-        "category": "",
-        "imageName": "wool",
-        "actions": {
-            "collect": {
-                "requiresOneOf": [],
-                "learn": [
-                    "animal_husbandry",
-                    "textile",
-                    "animal_nutrition"
-                ],
-                "fatigue": 5,
-                "get": "wool",
-                "displayName": "Tondre"
-            },
-            "spin": {
-                "requiresOneOf": [
-                    "spinning",
-                    "textile",
-                    "tools"
-                ],
-                "learn": [
-                    "spinning",
-                    "textile",
-                    "weaving"
-                ],
-                "fatigue": 5,
-                "get": "wool_yarn",
-                "displayName": "Filer"
-            },
-            "felt": {
-                "requiresOneOf": [
-                    "textile",
-                    "crafting",
-                    "experimentation"
-                ],
-                "learn": [
-                    "textile",
-                    "material_science",
-                    "clothing"
-                ],
-                "fatigue": 5,
-                "get": "felt",
-                "displayName": "Feutrer"
+        "wool": {
+            "resourceName": "wool",
+            "imageName": "wool",
+            "displayName": "Laine",
+            "category": "comfort",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "collect": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "animal_husbandry",
+                        "textile",
+                        "animal_nutrition"
+                    ],
+                    "fatigue": 5,
+                    "get": "wool",
+                    "displayName": "Tondre"
+                },
+                "spin": {
+                    "requiresOneOf": [
+                        "spinning",
+                        "textile",
+                        "tools"
+                    ],
+                    "learn": [
+                        "spinning",
+                        "textile",
+                        "weaving"
+                    ],
+                    "fatigue": 5,
+                    "get": "rope",
+                    "displayName": "Filer"
+                },
+                "felt": {
+                    "requiresOneOf": [
+                        "textile",
+                        "crafting",
+                        "experimentation"
+                    ],
+                    "learn": [
+                        "textile",
+                        "material_science",
+                        "clothing"
+                    ],
+                    "fatigue": 5,
+                    "get": "clothes",
+                    "displayName": "Feutrer"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "tools": {
-        "displayName": "Outils",
-        "category": "",
-        "imageName": "tools",
-        "actions": {
-            "use": {
-                "requiresOneOf": [],
-                "learn": [
-                    "crafting",
-                    "tools",
-                    "experimentation"
-                ],
-                "fatigue": 5,
-                "get": "worked_material",
-                "displayName": "Utiliser"
-            },
-            "repair": {
-                "requiresOneOf": [
-                    "crafting",
-                    "metalworking",
-                    "woodworking"
-                ],
-                "learn": [
-                    "repair",
-                    "maintenance",
-                    "material_science"
-                ],
-                "fatigue": 5,
-                "get": "repaired_tool",
-                "displayName": "Réparer"
-            },
-            "improve": {
-                "requiresOneOf": [
-                    "experimentation",
-                    "material_science",
-                    "crafting"
-                ],
-                "learn": [
-                    "toolmaking",
-                    "experimentation",
-                    "specialization"
-                ],
-                "fatigue": 5,
-                "get": "improved_tool",
-                "displayName": "Améliorer"
+        "tool": {
+            "resourceName": "tool",
+            "imageName": "tool",
+            "displayName": "Outils",
+            "category": "tool",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "copy": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "crafting",
+                        "tools",
+                        "experimentation"
+                    ],
+                    "fatigue": 1,
+                    "get": "tool",
+                    "displayName": "Récpliquer"
+                },
+                "repair": {
+                    "requiresOneOf": [
+                        "crafting",
+                        "metalworking",
+                        "woodworking"
+                    ],
+                    "learn": [
+                        "repair",
+                        "maintenance",
+                        "material_science"
+                    ],
+                    "fatigue": 0,
+                    "get": "tool",
+                    "displayName": "Réparer"
+                },
+                "improve": {
+                    "requiresOneOf": [
+                        "experimentation",
+                        "material_science",
+                        "crafting"
+                    ],
+                    "learn": [
+                        "toolmaking",
+                        "experimentation",
+                        "specialization"
+                    ],
+                    "fatigue": 5,
+                    "get": "tool",
+                    "displayName": "Améliorer"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "soil_sample": {
-        "displayName": "Échantillon de sol",
-        "category": "",
-        "imageName": "soil_sample",
-        "actions": {
-            "examine": {
-                "requiresOneOf": [],
-                "learn": [
-                    "soil_quality",
-                    "observation",
-                    "classification"
-                ],
-                "fatigue": 5,
-                "get": "soil_data",
-                "displayName": "Examiner"
-            },
-            "compare": {
-                "requiresOneOf": [
-                    "comparison",
-                    "science",
-                    "geology"
-                ],
-                "learn": [
-                    "geology",
-                    "ecology",
-                    "causality"
-                ],
-                "fatigue": 5,
-                "get": "soil_data",
-                "displayName": "Comparer"
-            },
-            "test": {
-                "requiresOneOf": [
-                    "science",
-                    "chemistry",
-                    "experimentation"
-                ],
-                "learn": [
-                    "chemistry",
-                    "fertilization",
-                    "soil_quality"
-                ],
-                "fatigue": 5,
-                "get": "soil_data",
-                "displayName": "Tester"
+        "ancient_metal": {
+            "resourceName": "ancient_metal",
+            "imageName": "ancient_metal",
+            "displayName": "Métal ancien",
+            "category": "building_material",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "collect": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "archaeology",
+                        "material_science",
+                        "ruins"
+                    ],
+                    "fatigue": 5,
+                    "get": "ancient_metal",
+                    "displayName": "Récupérer"
+                },
+                "examine": {
+                    "requiresOneOf": [
+                        "archaeology",
+                        "observation",
+                        "science"
+                    ],
+                    "learn": [
+                        "artifact_analysis",
+                        "ancient_technology",
+                        "metallurgy"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Examiner"
+                },
+                "recycle": {
+                    "requiresOneOf": [
+                        "metalworking",
+                        "recycling",
+                        "metallurgy"
+                    ],
+                    "learn": [
+                        "recycling",
+                        "material_science",
+                        "metalworking"
+                    ],
+                    "fatigue": 5,
+                    "get": "metal",
+                    "displayName": "Recycler"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "plant_sample": {
-        "displayName": "Échantillon végétal",
-        "category": "",
-        "imageName": "plant_sample",
-        "actions": {
-            "examine": {
-                "requiresOneOf": [],
-                "learn": [
-                    "botany",
-                    "plant_anatomy",
-                    "classification"
-                ],
-                "fatigue": 5,
-                "get": "plant_data",
-                "displayName": "Examiner"
-            },
-            "dry": {
-                "requiresOneOf": [
-                    "drying",
-                    "botany",
-                    "preservation"
-                ],
-                "learn": [
-                    "preservation",
-                    "medicinal_plants",
-                    "plant_anatomy"
-                ],
-                "fatigue": 5,
-                "get": "dried_plant_sample",
-                "displayName": "Sécher"
-            },
-            "compare": {
-                "requiresOneOf": [
-                    "comparison",
-                    "science",
-                    "botany"
-                ],
-                "learn": [
-                    "plant_identification",
-                    "plant_reproduction",
-                    "ecology"
-                ],
-                "fatigue": 5,
-                "get": "plant_data",
-                "displayName": "Comparer"
+        "ancient_glass": {
+            "resourceName": "ancient_glass",
+            "imageName": "ancient_glass",
+            "displayName": "Verre ancien",
+            "category": "building_material",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "collect": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "archaeology",
+                        "glassmaking",
+                        "ruins"
+                    ],
+                    "fatigue": 5,
+                    "get": "ancient_glass",
+                    "displayName": "Récupérer"
+                },
+                "examine": {
+                    "requiresOneOf": [
+                        "archaeology",
+                        "science",
+                        "glassmaking"
+                    ],
+                    "learn": [
+                        "artifact_analysis",
+                        "glassmaking",
+                        "material_science"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Examiner"
+                },
+                "recycle": {
+                    "requiresOneOf": [
+                        "glassmaking",
+                        "recycling",
+                        "material_science"
+                    ],
+                    "learn": [
+                        "recycling",
+                        "glass_working",
+                        "material_science"
+                    ],
+                    "fatigue": 5,
+                    "get": "glass",
+                    "displayName": "Recycler"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "ancient_metal": {
-        "displayName": "Métal ancien",
-        "category": "",
-        "imageName": "ancient_metal",
-        "actions": {
-            "collect": {
-                "requiresOneOf": [],
-                "learn": [
-                    "archaeology",
-                    "material_science",
-                    "ruins"
-                ],
-                "fatigue": 5,
-                "get": "ancient_metal",
-                "displayName": "Récupérer"
-            },
-            "examine": {
-                "requiresOneOf": [
-                    "archaeology",
-                    "observation",
-                    "science"
-                ],
-                "learn": [
-                    "artifact_analysis",
-                    "ancient_technology",
-                    "metallurgy"
-                ],
-                "fatigue": 5,
-                "get": "artifact_data",
-                "displayName": "Examiner"
-            },
-            "recycle": {
-                "requiresOneOf": [
-                    "metalworking",
-                    "recycling",
-                    "metallurgy"
-                ],
-                "learn": [
-                    "recycling",
-                    "material_science",
-                    "metalworking"
-                ],
-                "fatigue": 5,
-                "get": "metal",
-                "displayName": "Recycler"
+        "ancient_plastic": {
+            "resourceName": "ancient_plastic",
+            "imageName": "ancient_plastic",
+            "displayName": "plastique ancien",
+            "category": "building_material",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "salvage": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "material_science",
+                        "recycling",
+                        "ancient_world"
+                    ],
+                    "fatigue": 5,
+                    "get": "ancient_plastic",
+                    "displayName": "Récupérer"
+                },
+                "identify": {
+                    "requiresOneOf": [
+                        "material_science",
+                        "chemistry",
+                        "ancient_world"
+                    ],
+                    "learn": [
+                        "material_science",
+                        "chemistry",
+                        "identification"
+                    ],
+                    "fatigue": 5,
+                    "get": "plastic",
+                    "displayName": "Identifier"
+                },
+                "recycle": {
+                    "requiresOneOf": [
+                        "recycling",
+                        "chemistry",
+                        "material_science"
+                    ],
+                    "learn": [
+                        "recycling",
+                        "chemistry",
+                        "processing"
+                    ],
+                    "fatigue": 5,
+                    "get": "plastic",
+                    "displayName": "Recycler"
+                }
             }
         },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "ancient_glass": {
-        "displayName": "Verre ancien",
-        "category": "",
-        "imageName": "ancient_glass",
-        "actions": {
-            "collect": {
-                "requiresOneOf": [],
-                "learn": [
-                    "archaeology",
-                    "glassmaking",
-                    "ruins"
-                ],
-                "fatigue": 5,
-                "get": "ancient_glass",
-                "displayName": "Récupérer"
-            },
-            "examine": {
-                "requiresOneOf": [
-                    "archaeology",
-                    "science",
-                    "glassmaking"
-                ],
-                "learn": [
-                    "artifact_analysis",
-                    "glassmaking",
-                    "material_science"
-                ],
-                "fatigue": 5,
-                "get": "artifact_data",
-                "displayName": "Examiner"
-            },
-            "recycle": {
-                "requiresOneOf": [
-                    "glassmaking",
-                    "recycling",
-                    "material_science"
-                ],
-                "learn": [
-                    "recycling",
-                    "glass_working",
-                    "material_science"
-                ],
-                "fatigue": 5,
-                "get": "glass",
-                "displayName": "Recycler"
+        "ash": {
+            "resourceName": "ash",
+            "imageName": "ash",
+            "displayName": "Cendres",
+            "category": "energy",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "collect": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "sanitation",
+                        "hygiene",
+                        "observation"
+                    ],
+                    "fatigue": 5,
+                    "get": "ash",
+                    "displayName": "Collecter"
+                },
+                "compost": {
+                    "requiresOneOf": [
+                        "ecology",
+                        "soil",
+                        "agriculture"
+                    ],
+                    "learn": [
+                        "composting",
+                        "soil_quality",
+                        "ecology"
+                    ],
+                    "fatigue": 5,
+                    "get": "compost",
+                    "displayName": "Composter"
+                },
+                "soap": {
+                    "requiresOneOf": [
+                        "hygiene",
+                        "chemistry",
+                        "sanitation"
+                    ],
+                    "learn": [
+                        "soapmaking",
+                        "hygiene",
+                        "chemistry"
+                    ],
+                    "fatigue": 5,
+                    "get": "soap",
+                    "displayName": "Fabriquer du savon"
+                }
             }
-        },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    },
-    "ancient_plastic": {
-        "displayName": "plastique ancien",
-        "category": "",
-        "imageName": "ancient_plastic",
-        "actions": {
-            "salvage": {
-                "requiresOneOf": [],
-                "learn": [
-                    "material_science",
-                    "recycling",
-                    "ancient_world"
-                ],
-                "fatigue": 5,
-                "get": "ancient_plastic",
-                "displayName": "Récupérer"
-            },
-            "identify": {
-                "requiresOneOf": [
-                    "material_science",
-                    "chemistry",
-                    "ancient_world"
-                ],
-                "learn": [
-                    "material_science",
-                    "chemistry",
-                    "identification"
-                ],
-                "fatigue": 5,
-                "get": "plastic",
-                "displayName": "Identifier"
-            },
-            "recycle": {
-                "requiresOneOf": [
-                    "recycling",
-                    "chemistry",
-                    "material_science"
-                ],
-                "learn": [
-                    "recycling",
-                    "chemistry",
-                    "processing"
-                ],
-                "fatigue": 5,
-                "get": "plastic",
-                "displayName": "Recycler"
-            }
-        },
-        "popGrowth": 3,
-        "regeneration": 1,
-        "fatigueRecovery": 2
-    }
-};
+        }
+    };
     static resources_old = {
         "fruit": {
             resourceName: "fruit",
@@ -3098,8 +3110,9 @@ class Data {
             treshold: 0.0,
             amountOfResources: 1,
             resources: [
-                // "nothing"
+                "nothing",
                 "sandstone",
+                "flint",
                 "plants"
             ]
         },
@@ -3163,9 +3176,9 @@ class Data {
                 "iron_ore",
                 "copper_ore",
                 "limestone",
+                // "limestone",
                 "limestone",
-                "limestone",
-                "nothing",
+                "flint",
                 "nothing",
             ]
         },
@@ -3187,4 +3200,14 @@ class Data {
     };
 }
 
-console.log(JSON.stringify(Data.resources));
+// console.log(JSON.stringify(Data.resources));
+
+for (let resourceName in Data.resources) {
+    const resourceData = Data.resources[resourceName];
+    for (let actionName in resourceData.actions) {
+        const get = resourceData.actions[actionName].get;
+        if (Data.resources[get] === undefined) {
+            console.warn(`${get} doesn't exist`);
+        }
+    }
+}

@@ -43,6 +43,7 @@ class Images {
         "sand",
         "copper_ore",
         "limestone",
-        "lumber"
+        "lumber",
+        "flint"
     ]);
 }

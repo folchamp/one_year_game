@@ -27,6 +27,12 @@ class RAC {
         this.uploadInput.addEventListener("change", (event) => {
             Util.saveToLocalStorage("RAC", JSON.parse(this.uploadInput.value));
         });
+
+        // TESTING
+
+        
+
+        // END TESTING
     }
     loadData() {
         let resources = Util.getFromLocalStorage("RAC");
@@ -79,7 +85,16 @@ class RAC {
                 setTimeout(() => {
                     let resourcesToStringify = {};
                     this.resources.forEach((resource) => {
-                        resourcesToStringify[resource.resourceName] = { displayName: resource.displayName, category: resource.category ?? "", imageName: resource.resourceName, actions: {}, popGrowth: resource.popGrowth, regeneration: resource.regeneration, fatigueRecovery: resource.fatigueRecovery };
+                        resourcesToStringify[resource.resourceName] = {
+                            resourceName: resource.resourceName,
+                            imageName: resource.resourceName,
+                            displayName: resource.displayName,
+                            category: resource.category,
+                            popGrowth: resource.popGrowth,
+                            regeneration: resource.regeneration,
+                            fatigueRecovery: resource.fatigueRecovery,
+                            actions: {}
+                        };
                         resource.actions.forEach((action) => {
                             resourcesToStringify[resource.resourceName].actions[action.actionName] = { requiresOneOf: [], learn: [], fatigue: action.fatigue, get: action.get, displayName: action.displayName };
                             action.conditions.forEach((knowledge) => {

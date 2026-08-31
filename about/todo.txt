@@ -161,11 +161,24 @@ ajouter un warning en cas de rencontre avec une ressource orpheline
 protéger le disque en évitant les sauvegarde répétées
 ♥ 28/08/2026
 camera déplaçable au touch
+♥ 29/08/2026
+voile + fête chez Maki
+♥ 30/08/2026
+Brussels Game Festival
+♥ 31/08/2026
+ajouter l'atribut catégorie aux ressources
+afficher la catégorie dans l'éditeur RAC
+asset pour le silex
+ajouter resourceName dans les attributs des ressources
+trouver les get orphelins
+réduire les get orphelins
+
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
+trouver les ressources orphelines (les ressources qui ne sont générées nulle part)
 la communauté consomme un élément de chaque "inventaire" (nourriture, matériaux de construction, confort et soins)
 barre Sims (confort, nourriture, matériaux de construction etc.)
 revoir community.feed()

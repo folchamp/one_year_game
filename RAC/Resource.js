@@ -17,7 +17,8 @@ class Resource {
                 "resourceContainer",
                 ["resourceHeaderContainer",
                     "resourceNameTitle",
-                    "resourceImage",
+                    "resourceCategoryText",
+                    // "resourceImage",
                     "popGrowthInput",
                     "addActionButton"],
                 "resourceActionsContainer"
@@ -30,6 +31,7 @@ class Resource {
         this.addActionButton.innerText = "+";
         this.popGrowthInput.type = "number";
         this.popGrowthInput.value = popGrowth;
+        this.resourceCategoryText.innerText = this.category;
 
         this.addActionButton.addEventListener("click", (event) => {
             event.stopPropagation();

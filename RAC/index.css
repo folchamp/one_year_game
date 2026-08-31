@@ -131,6 +131,10 @@ body {
                 margin: 4px;
             }
 
+            .popGrowthInput {
+                width: 25px;
+            }
+
             .addActionButton:hover {
                 background: rgb(148, 66, 79);
             }

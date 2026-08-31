@@ -42,7 +42,7 @@ class World {
         return Random.fromArray([...this.hexes.values()]);
     }
     createBiome(biome) {
-        console.log(`${biome.imageName}, ${Math.ceil(biome.amount * (this.mapRadius * this.mapRadius / 100))}, ${biome.amount}`);
+        // console.log(`${biome.imageName}, ${Math.ceil(biome.amount * (this.mapRadius * this.mapRadius / 100))}, ${biome.amount}`);
         for (let index = 0; index < Math.ceil(biome.amount * (this.mapRadius * this.mapRadius / 100)); index++) {
             let biomeCenter = this.getRandomHex();
             let tilesVisited = new Map();

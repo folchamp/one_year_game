@@ -123,12 +123,13 @@ class Game {
                 if (get !== undefined) {
                     let amount = this.inventory.get(get) ?? 0;
                     this.inventory.set(get, amount + 1);
-                    console.log(`${resource.resourceData.resourceName} === ${get}`);
+                    // console.log(`${resource.resourceData.resourceName} === ${get}`);
                     if (resource.resourceData.resourceName !== get) {
                         let newResourceData = Data.resources[get];
                         if (newResourceData === undefined) {
                             console.warn(`ressource inexistante ${get}`);
                         } else {
+                            // console.log(`ressource ${JSON.stringify(newResourceData)} gagnée sur la tuile`);
                             hex.addResource(newResourceData);
                         }
                     }

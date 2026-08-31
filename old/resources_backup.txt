@@ -1,4 +1,317 @@
 
+        "stone_tools": {
+            "resourceName": "stone_tools",
+            "imageName": "stone_tools",
+            "displayName": "Outils en pierre",
+            "category": "tool",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "use": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "tools",
+                        "crafting",
+                        "cutting"
+                    ],
+                    "fatigue": 5,
+                    "get": "worked_material",
+                    "displayName": "Utiliser"
+                },
+                "sharpen": {
+                    "requiresOneOf": [
+                        "stone_working",
+                        "grinding",
+                        "shaping"
+                    ],
+                    "learn": [
+                        "sharpening",
+                        "cutting",
+                        "grinding"
+                    ],
+                    "fatigue": 5,
+                    "get": "sharp_tool",
+                    "displayName": "Affûter"
+                },
+                "improve": {
+                    "requiresOneOf": [
+                        "experimentation",
+                        "crafting",
+                        "material_science"
+                    ],
+                    "learn": [
+                        "experimentation",
+                        "toolmaking",
+                        "material_science"
+                    ],
+                    "fatigue": 5,
+                    "get": "improved_tool",
+                    "displayName": "Améliorer"
+                }
+            }
+        },
+        "wood_parts": {
+            "resourceName": "wood_parts",
+            "imageName": "wood_parts",
+            "displayName": "Pièces en bois",
+            "category": "building_material",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "assemble": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "joining",
+                        "crafting",
+                        "construction"
+                    ],
+                    "fatigue": 5,
+                    "get": "wooden_machine",
+                    "displayName": "Assembler"
+                },
+                "rotate": {
+                    "requiresOneOf": [
+                        "wheel",
+                        "axle",
+                        "mechanics"
+                    ],
+                    "learn": [
+                        "mechanics",
+                        "wheel",
+                        "axle"
+                    ],
+                    "fatigue": 5,
+                    "get": "wooden_mechanism",
+                    "displayName": "Faire tourner"
+                },
+                "improve": {
+                    "requiresOneOf": [
+                        "experimentation",
+                        "mechanics",
+                        "woodworking"
+                    ],
+                    "learn": [
+                        "mechanics",
+                        "crafting",
+                        "material_science"
+                    ],
+                    "fatigue": 5,
+                    "get": "wooden_mechanism",
+                    "displayName": "Améliorer"
+                }
+            }
+        },
+        "clay_bricks": {
+            "resourceName": "clay_bricks",
+            "imageName": "clay_bricks",
+            "displayName": "Briques d'argile",
+            "category": "building_material",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "build": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "construction",
+                        "masonry",
+                        "architecture"
+                    ],
+                    "fatigue": 5,
+                    "get": "building",
+                    "displayName": "Construire"
+                },
+                "fire": {
+                    "requiresOneOf": [
+                        "fire",
+                        "kiln",
+                        "ceramics"
+                    ],
+                    "learn": [
+                        "kiln_firing",
+                        "ceramics",
+                        "temperature"
+                    ],
+                    "fatigue": 5,
+                    "get": "fired_bricks",
+                    "displayName": "Cuire"
+                },
+                "analyze": {
+                    "requiresOneOf": [
+                        "science",
+                        "material_science",
+                        "ceramics"
+                    ],
+                    "learn": [
+                        "material_science",
+                        "chemistry",
+                        "clay_identification"
+                    ],
+                    "fatigue": 5,
+                    "get": "clay_data",
+                    "displayName": "Analyser"
+                }
+            }
+        },
+        "wax": {
+            "resourceName": "wax",
+            "imageName": "wax",
+            "displayName": "Cire",
+            "category": "comfort",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "collect": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "observation",
+                        "animal_behavior",
+                        "material_science"
+                    ],
+                    "fatigue": 5,
+                    "get": "wax",
+                    "displayName": "Récolter"
+                },
+                "melt": {
+                    "requiresOneOf": [
+                        "heat",
+                        "fire",
+                        "temperature"
+                    ],
+                    "learn": [
+                        "temperature",
+                        "material_science",
+                        "casting"
+                    ],
+                    "fatigue": 5,
+                    "get": "liquid_wax",
+                    "displayName": "Faire fondre"
+                },
+                "seal": {
+                    "requiresOneOf": [
+                        "containers",
+                        "storage",
+                        "crafting"
+                    ],
+                    "learn": [
+                        "sealing",
+                        "preservation",
+                        "storage"
+                    ],
+                    "fatigue": 5,
+                    "get": "sealed_container",
+                    "displayName": "Sceller"
+                }
+            }
+        },
+        "soil_sample": {
+            "resourceName": "soil_sample",
+            "imageName": "soil_sample",
+            "displayName": "Échantillon de sol",
+            "category": "misc",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "examine": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "soil_quality",
+                        "observation",
+                        "classification"
+                    ],
+                    "fatigue": 5,
+                    "get": "soil_data",
+                    "displayName": "Examiner"
+                },
+                "compare": {
+                    "requiresOneOf": [
+                        "comparison",
+                        "science",
+                        "geology"
+                    ],
+                    "learn": [
+                        "geology",
+                        "ecology",
+                        "causality"
+                    ],
+                    "fatigue": 5,
+                    "get": "soil_data",
+                    "displayName": "Comparer"
+                },
+                "test": {
+                    "requiresOneOf": [
+                        "science",
+                        "chemistry",
+                        "experimentation"
+                    ],
+                    "learn": [
+                        "chemistry",
+                        "fertilization",
+                        "soil_quality"
+                    ],
+                    "fatigue": 5,
+                    "get": "soil_data",
+                    "displayName": "Tester"
+                }
+            }
+        },
+        "plant_sample": {
+            "resourceName": "plant_sample",
+            "imageName": "plant_sample",
+            "displayName": "Échantillon végétal",
+            "category": "misc",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "examine": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "botany",
+                        "plant_anatomy",
+                        "classification"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Examiner"
+                },
+                "dry": {
+                    "requiresOneOf": [
+                        "drying",
+                        "botany",
+                        "preservation"
+                    ],
+                    "learn": [
+                        "preservation",
+                        "medicinal_plants",
+                        "plant_anatomy"
+                    ],
+                    "fatigue": 5,
+                    "get": "preserved_food",
+                    "displayName": "Sécher"
+                },
+                "compare": {
+                    "requiresOneOf": [
+                        "comparison",
+                        "science",
+                        "botany"
+                    ],
+                    "learn": [
+                        "plant_identification",
+                        "plant_reproduction",
+                        "ecology"
+                    ],
+                    "fatigue": 5,
+                    "get": "plant_data",
+                    "displayName": "Comparer"
+                }
+            }
+        },
+
         // actions
         harvest: "récolte",
         salvage: "récupèrer",
