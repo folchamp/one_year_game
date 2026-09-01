@@ -125,8 +125,11 @@ class Render {
         const height = worldPosition.y - Settings.hexSize * 0.55;
         const smallSize = Settings.resourceImageSize / 2;
         const offsetY = Math.sin(performance.now() / 150) * 3;
-
-        this.context.drawImage(Images.resourceImages[order.resource.resourceData.imageName], worldPosition.x - smallSize / 2, height + offsetY, smallSize, smallSize);
+        try {
+            this.context.drawImage(Images.resourceImages[order.resource.resourceData.imageName], worldPosition.x - smallSize / 2, height + offsetY, smallSize, smallSize);
+        } catch (error) {
+            console.log(`${resource.resourceData.resourceName} n'a pas d'image`);
+        }
     }
     drawResources(hex) {
         const pos = this.getWorldPosition(hex);
