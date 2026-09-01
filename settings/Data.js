@@ -49,7 +49,7 @@ class Data {
                         "measurement"
                     ],
                     "fatigue": 5,
-                    "get": "water_sample",
+                    "get": "science",
                     "displayName": "Prélever un échantillon"
                 }
             }
@@ -63,7 +63,7 @@ class Data {
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
-                "drink": {
+                "irrigate": {
                     "requiresOneOf": [],
                     "learn": [
                         "nutrition",
@@ -71,8 +71,8 @@ class Data {
                         "water_quality"
                     ],
                     "fatigue": 5,
-                    "get": "clean_water",
-                    "displayName": "Boire"
+                    "get": "wild_wheat",
+                    "displayName": "Arroser"
                 },
                 "store": {
                     "requiresOneOf": [
@@ -1178,7 +1178,7 @@ class Data {
                         "storage"
                     ],
                     "fatigue": 5,
-                    "get": "preserver_food",
+                    "get": "preserved_food",
                     "displayName": "Sécher"
                 },
                 "ferment": {
@@ -3113,7 +3113,9 @@ class Data {
                 "nothing",
                 "sandstone",
                 "flint",
-                "plants"
+                "plants",
+                "wild_wheat",
+                "wild_wheat",
             ]
         },
         swamp: {
@@ -3200,14 +3202,20 @@ class Data {
     };
 }
 
-// console.log(JSON.stringify(Data.resources));
+console.log(JSON.stringify(Data.resources));
 
 for (let resourceName in Data.resources) {
     const resourceData = Data.resources[resourceName];
+    if (Images.resourceImages[resourceName] === undefined) {
+        console.log(`[R] no image for ${resourceName}`);
+    }
     for (let actionName in resourceData.actions) {
         const get = resourceData.actions[actionName].get;
         if (Data.resources[get] === undefined) {
             console.warn(`${get} doesn't exist`);
+        }
+        if (Images.resourceImages[get] === undefined) {
+            console.log(`[G] no image for ${get}`);
         }
     }
 }

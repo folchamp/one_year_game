@@ -44,6 +44,10 @@ class Images {
         "copper_ore",
         "limestone",
         "lumber",
-        "flint"
+        "flint",
+        "wild_wheat",
+        "seeds",
+        "wheat",
+        "charcoal"
     ]);
 }

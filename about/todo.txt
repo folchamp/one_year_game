@@ -172,13 +172,20 @@ asset pour le silex
 ajouter resourceName dans les attributs des ressources
 trouver les get orphelins
 réduire les get orphelins
+♥ 01/08/2026
+wild_wheat
+seeds
+wheat
+charcoal
 
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
+revoir le système de fatigue (global sur la tuile ?)
 trouver les ressources orphelines (les ressources qui ne sont générées nulle part)
+trouver les knowledges orphelins
 la communauté consomme un élément de chaque "inventaire" (nourriture, matériaux de construction, confort et soins)
 barre Sims (confort, nourriture, matériaux de construction etc.)
 revoir community.feed()
