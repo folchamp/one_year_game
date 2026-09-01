@@ -311,6 +311,640 @@
                 }
             }
         },
+        "stars_data": {
+            "resourceName": "stars_data",
+            "imageName": "stars_data",
+            "displayName": "Données astronomiques",
+            "category": "misc",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "observe": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "stars",
+                        "astronomy",
+                        "observation"
+                    ],
+                    "fatigue": 5,
+                    "get": "stars_data",
+                    "displayName": "Observer"
+                },
+                "record": {
+                    "requiresOneOf": [
+                        "recording",
+                        "writing",
+                        "science"
+                    ],
+                    "learn": [
+                        "mapping",
+                        "astronomy",
+                        "recording"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Consigner"
+                },
+                "compare": {
+                    "requiresOneOf": [
+                        "comparison",
+                        "astronomy",
+                        "measurement"
+                    ],
+                    "learn": [
+                        "navigation",
+                        "orientation",
+                        "astronomy"
+                    ],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Comparer"
+                }
+            }
+        },
+
+const knowledgesToSort = ["fire",
+    "cooking",
+    "containers",
+    "science",
+    "hydrology",
+    "sampling",
+    "storage",
+    "containers",
+    "water_storage",
+    "science",
+    "water_quality",
+    "measurement",
+    "comparison",
+    "science",
+    "measurement",
+    "science",
+    "chemistry",
+    "water_quality",
+    "measurement",
+    "science",
+    "weather",
+    "science",
+    "chemistry",
+    "water_quality",
+    "tools",
+    "cutting",
+    "wood_working",
+    "fire",
+    "combustion",
+    "heat",
+    "drying",
+    "wood_working",
+    "temperature",
+    "construction",
+    "carpentry",
+    "architecture",
+    "combustion",
+    "fire",
+    "temperature",
+    "science",
+    "chemistry",
+    "material_science",
+    "tools",
+    "stone_knapping",
+    "crafting",
+    "grinding",
+    "tools",
+    "stone_working",
+    "fire",
+    "tools",
+    "flint_knapping",
+    "geology",
+    "science",
+    "mineral_identification",
+    "clay_working",
+    "shaping",
+    "crafting",
+    "fire",
+    "kiln",
+    "heat",
+    "fire",
+    "kiln",
+    "temperature",
+    "ceramics",
+    "chemistry",
+    "kiln_firing",
+    "filtration",
+    "water_quality",
+    "science",
+    "fire",
+    "heat",
+    "kiln",
+    "glassmaking",
+    "heat",
+    "science",
+    "chemistry",
+    "material_science",
+    "botany",
+    "observation",
+    "classification",
+    "sampling",
+    "science",
+    "botany",
+    "herbalism",
+    "cooking",
+    "medicinal_plants",
+    "science",
+    "chemistry",
+    "sampling",
+    "fire",
+    "heat",
+    "chemistry",
+    "experimentation",
+    "crafting",
+    "seeds",
+    "botany",
+    "plant_reproduction",
+    "cultivation",
+    "seed_selection",
+    "agriculture",
+    "tools",
+    "grain_processing",
+    "grinding",
+    "grain_processing",
+    "stone_working",
+    "agriculture",
+    "farming",
+    "soil",
+    "agriculture",
+    "botany",
+    "observation",
+    "grinding",
+    "milling",
+    "tools",
+    "fermentation",
+    "cooking",
+    "experimentation",
+    "fire",
+    "cooking",
+    "heat",
+    "storage",
+    "food_storage",
+    "containers",
+    "fermentation",
+    "cooking",
+    "baking",
+    "fire",
+    "cooking",
+    "baking",
+    "drying_food",
+    "preservation",
+    "food_storage",
+    "fermentation",
+    "microbiology",
+    "cooking",
+    "cordage",
+    "tools",
+    "textile",
+    "weaving",
+    "loom",
+    "textile",
+    "weaving",
+    "textile",
+    "loom",
+    "cordage",
+    "joining",
+    "tools",
+    "tanning",
+    "chemistry",
+    "plants",
+    "drying",
+    "preservation",
+    "leatherworking",
+    "sewing",
+    "textile",
+    "tools",
+    "resin",
+    "chemistry",
+    "waterproofing",
+    "heat",
+    "evaporation",
+    "fire",
+    "science",
+    "chemistry",
+    "water_quality",
+    "preservation",
+    "food_storage",
+    "salt_preservation",
+    "chemistry",
+    "water_quality",
+    "experimentation",
+    "drying_food",
+    "preservation",
+    "heat",
+    "fermentation",
+    "cooking",
+    "microbiology",
+    "botany",
+    "classification",
+    "observation",
+    "drying_food",
+    "preservation",
+    "food_storage",
+    "fire",
+    "smoking_food",
+    "preservation",
+    "salt",
+    "salting",
+    "preservation",
+    "science",
+    "medicine",
+    "observation",
+    "chemistry",
+    "herbalism",
+    "experimentation",
+    "grinding",
+    "ore_processing",
+    "tools",
+    "fire",
+    "charcoal",
+    "metallurgy",
+    "forging",
+    "heat",
+    "metallurgy",
+    "alloying",
+    "metallurgy",
+    "chemistry",
+    "smithing",
+    "metalworking",
+    "fire",
+    "metallurgy",
+    "smithing",
+    "steelworking",
+    "metalworking",
+    "machining",
+    "tools",
+    "grinding",
+    "ore_processing",
+    "tools",
+    "fire",
+    "charcoal",
+    "metallurgy",
+    "casting",
+    "molds",
+    "metallurgy",
+    "alloying",
+    "metallurgy",
+    "bronze",
+    "casting",
+    "molds",
+    "metallurgy",
+    "polishing",
+    "metalworking",
+    "tools",
+    "fire",
+    "heat",
+    "kiln",
+    "grinding",
+    "tools",
+    "stone_working",
+    "construction",
+    "masonry",
+    "lime",
+    "chemistry",
+    "science",
+    "material_science",
+    "kiln",
+    "fire",
+    "ceramics",
+    "masonry",
+    "material_science",
+    "architecture",
+    "food_storage",
+    "preservation",
+    "ceramics",
+    "pottery",
+    "ceramics",
+    "material_science",
+    "ecology",
+    "soil",
+    "agriculture",
+    "fire",
+    "combustion",
+    "sanitation",
+    "science",
+    "soil",
+    "agriculture",
+    "experimentation",
+    "ecology",
+    "soil_quality",
+    "agriculture",
+    "cultivation",
+    "soil_quality",
+    "sampling",
+    "science",
+    "geology",
+    "pottery",
+    "crafting",
+    "clay",
+    "fire",
+    "pottery",
+    "combustion",
+    "geology",
+    "science",
+    "material_identification",
+    "weaving",
+    "textile",
+    "cordage",
+    "sailing",
+    "textile",
+    "navigation",
+    "spinning",
+    "textile",
+    "tools",
+    "textile",
+    "crafting",
+    "experimentation",
+    "crafting",
+    "metalworking",
+    "woodworking",
+    "experimentation",
+    "material_science",
+    "crafting",
+    "archaeology",
+    "observation",
+    "science",
+    "metalworking",
+    "recycling",
+    "metallurgy",
+    "archaeology",
+    "science",
+    "glassmaking",
+    "recycling",
+    "material_science",
+    "chemistry",
+    "ancient_world",
+    "recycling",
+    "chemistry",
+    "material_science",
+    "ecology",
+    "soil",
+    "agriculture",
+    "hygiene",
+    "chemistry",
+    "sanitation"];
+
+
+console.log("-------------------------------------");
+console.log("requiresOneOf");
+console.log("-------------------------------------");
+for (let resourceName in Data.resources) {
+    const resourceData = Data.resources[resourceName];
+    for (let actionName in resourceData.actions) {
+        const requiresOneOf = resourceData.actions[actionName].requiresOneOf;
+        requiresOneOf.forEach((knowledge) => {
+            console.log(knowledge);
+        });
+    }
+}
+
+knowledgesToSort.sort();
+
+const knowledgesToKeep = [];
+let lastKnowledge;
+knowledgesToSort.forEach((knowledge) => {
+    if (knowledge !== lastKnowledge) {
+        knowledgesToKeep.push(knowledge);
+    }
+    lastKnowledge = knowledge;
+});
+console.log(JSON.stringify(knowledgesToKeep));
+,
+                "compost": {
+                    "requiresOneOf": [
+                        "ecology",
+                        "soil",
+                        "agriculture"
+                    ],
+                    "learn": [
+                        "composting",
+                        "soil_quality",
+                        "ecology"
+                    ],
+                    "fatigue": 5,
+                    "get": "compost",
+                    "displayName": "Composter"
+                },
+                "soap": {
+                    "requiresOneOf": [
+                        "hygiene",
+                        "chemistry",
+                        "sanitation"
+                    ],
+                    "learn": [
+                        "soapmaking",
+                        "hygiene",
+                        "chemistry"
+                    ],
+                    "fatigue": 5,
+                    "get": "soap",
+                    "displayName": "Fabriquer du savon"
+                }
+static resources_old = {
+        "fruit": {
+            resourceName: "fruit",
+            "imageName": "fruit",
+            displayName: "fruits",
+            "popGrowth": 8,
+            "actions": {
+                "gather": {
+                    "requiresOneOf": [],
+                    "learn": ["biology", "botany", "permaculture", "nutrition", "horticulture", "nutrient_cycles", "conservation", "composting", "conservation", "botany"],
+                    "fatigue": 5,
+                    "get": "fruit"
+                }
+            },
+            "regeneration": 1,
+            "fatigueRecovery": 2
+        },
+        "concrete": {
+            resourceName: "concrete",
+            displayName: "béton",
+            imageName: "concrete",
+            popGrowth: 3,
+            actions: {
+                salvage: {
+                    fatigue: 10,
+                    get: "concrete",
+                    requiresOneOf: [{ knowledge: "salvage_concrete" }]
+                },
+                destroy: {
+                    fatigue: 20,
+                    get: "concrete",
+                    requiresOneOf: [{ knowledge: "destroy_concrete" }]
+                },
+                recycle: {
+                    fatigue: 5,
+                    get: "concrete",
+                    requiresOneOf: [{ knowledge: "recycle_concrete" }]
+                }
+            },
+            regeneration: 1,
+            fatigueRecovery: 0
+        },
+        "electronics": {
+            displayName: "électronique",
+            resourceName: "electronics",
+            imageName: "electronics",
+            popGrowth: 3,
+            actions: {
+                salvage: {
+                    fatigue: 10,
+                    get: "electronics",
+                    requiresOneOf: [{ knowledge: "salvage_electronics" }]
+                },
+                destroy: {
+                    fatigue: 20,
+                    get: "metal",
+                    requiresOneOf: [{ knowledge: "destroy_electronics" }]
+                },
+                recycle: {
+                    fatigue: 5,
+                    get: "metal",
+                    requiresOneOf: [{ knowledge: "recycle_electronics" }]
+                }
+            },
+            regeneration: 1,
+            fatigueRecovery: 0
+        },
+        "iron": {
+            displayName: "fer",
+            resourceName: "iron",
+            imageName: "iron",
+            popGrowth: 3,
+            actions: {
+                mine: {
+                    fatigue: 8,
+                    get: "iron",
+                    requiresOneOf: [{ knowledge: "mine_iron" }]
+                }
+            },
+            regeneration: 1,
+            fatigueRecovery: 1
+        },
+        "metal": {
+            displayName: "métal",
+            resourceName: "metal",
+            imageName: "metal",
+            popGrowth: 3,
+            actions: {
+                salvage: {
+                    fatigue: 10,
+                    get: "metal",
+                    requiresOneOf: [{ knowledge: "salvage_metal" }]
+                },
+                destroy: {
+                    fatigue: 20,
+                    get: "metal",
+                    requiresOneOf: [{ knowledge: "destroy_metal" }]
+                },
+                recycle: {
+                    fatigue: 5,
+                    get: "metal",
+                    requiresOneOf: [{ knowledge: "recycle_metal" }]
+                }
+            },
+            regeneration: 1,
+            fatigueRecovery: 0
+        },
+        "plastic": {
+            displayName: "plastique",
+            resourceName: "plastic",
+            imageName: "plastic",
+            popGrowth: 3,
+            actions: {
+                salvage: {
+                    fatigue: 10,
+                    get: "plastic",
+                    requiresOneOf: [{ knowledge: "salvage_plastic" }]
+                },
+                destroy: {
+                    fatigue: 20,
+                    get: "plastic",
+                    requiresOneOf: [{ knowledge: "destroy_plastic" }]
+                },
+                recycle: {
+                    fatigue: 5,
+                    get: "plastic",
+                    requiresOneOf: [{ knowledge: "recycle_plastic" }]
+                }
+            },
+            regeneration: 1,
+            fatigueRecovery: 0
+        },
+        "clean_water": {
+            displayName: "eau potable",
+            resourceName: "clean_water",
+            imageName: "water",
+            popGrowth: 5,
+            actions: {
+            },
+            regeneration: 1,
+            fatigueRecovery: 2
+        },
+        "water": {
+            displayName: "eau",
+            resourceName: "water",
+            imageName: "water",
+            popGrowth: 3,
+            actions: {
+                fetch: {
+                    fatigue: 2,
+                    get: "water",
+                    requiresOneOf: [{ knowledge: "starter" }],
+                    learn: ["water_collection"]
+                },
+                observation: {
+                    fatigue: 0,
+                    requiresOneOf: [{ knowledge: "water_collection" }],
+                    learn: ["hydrology"]
+                },
+                filtration: {
+                    fatigue: 1,
+                    get: "clean_water",
+                    requiresOneOf: [{ knowledge: "hydrology" }],
+                }
+            },
+            regeneration: 1,
+            fatigueRecovery: 2
+        },
+        "wood": {
+            displayName: "bois",
+            resourceName: "wood",
+            imageName: "wood",
+            popGrowth: 3,
+            actions: {
+                cut: {
+                    fatigue: 2,
+                    get: "wood",
+                    requiresOneOf: [{ knowledge: "starter" }]
+                }
+            },
+            regeneration: 1,
+            fatigueRecovery: 1
+        },
+        "oil": {
+            displayName: "pétrole",
+            resourceName: "oil",
+            imageName: "oil",
+            popGrowth: 3,
+            actions: {
+                drill: {
+                    fatigue: 5,
+                    get: "oil",
+                    requiresOneOf: [{ knowledge: "drill_oil" }]
+                }
+            },
+            regeneration: 1,
+            fatigueRecovery: 1
+        }
+    }
 
         // actions
         harvest: "récolte",

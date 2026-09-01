@@ -83,7 +83,7 @@ class Hex {
         });
     }
     addResource(resourceData) {
-        if (resourceData !== undefined && !this.hasResource(resourceData.resourceName)) {
+        if (resourceData !== undefined && !this.hasResource(resourceData.resourceName) && this.resources.length <= Settings.maxResourcesPerHex) {
             let resource = {
                 resourceData: resourceData,
                 fatigue: 0,

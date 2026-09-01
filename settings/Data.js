@@ -2506,58 +2506,6 @@ class Data {
                 }
             }
         },
-        "stars_data": {
-            "resourceName": "stars_data",
-            "imageName": "stars_data",
-            "displayName": "Données astronomiques",
-            "category": "misc",
-            "popGrowth": 3,
-            "regeneration": 1,
-            "fatigueRecovery": 2,
-            "actions": {
-                "observe": {
-                    "requiresOneOf": [],
-                    "learn": [
-                        "stars",
-                        "astronomy",
-                        "observation"
-                    ],
-                    "fatigue": 5,
-                    "get": "stars_data",
-                    "displayName": "Observer"
-                },
-                "record": {
-                    "requiresOneOf": [
-                        "recording",
-                        "writing",
-                        "science"
-                    ],
-                    "learn": [
-                        "mapping",
-                        "astronomy",
-                        "recording"
-                    ],
-                    "fatigue": 5,
-                    "get": "science",
-                    "displayName": "Consigner"
-                },
-                "compare": {
-                    "requiresOneOf": [
-                        "comparison",
-                        "astronomy",
-                        "measurement"
-                    ],
-                    "learn": [
-                        "navigation",
-                        "orientation",
-                        "astronomy"
-                    ],
-                    "fatigue": 5,
-                    "get": "science",
-                    "displayName": "Comparer"
-                }
-            }
-        },
         "wool": {
             "resourceName": "wool",
             "imageName": "wool",
@@ -2708,8 +2656,8 @@ class Data {
                         "material_science",
                         "metalworking"
                     ],
-                    "fatigue": 5,
-                    "get": "metal",
+                    "fatigue": 1,
+                    "get": "iron",
                     "displayName": "Recycler"
                 }
             }
@@ -2760,7 +2708,7 @@ class Data {
                         "glass_working",
                         "material_science"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "glass",
                     "displayName": "Recycler"
                 }
@@ -2797,8 +2745,8 @@ class Data {
                         "chemistry",
                         "identification"
                     ],
-                    "fatigue": 5,
-                    "get": "plastic",
+                    "fatigue": 1,
+                    "get": "ancient_plastic",
                     "displayName": "Identifier"
                 },
                 "recycle": {
@@ -2812,8 +2760,8 @@ class Data {
                         "chemistry",
                         "processing"
                     ],
-                    "fatigue": 5,
-                    "get": "plastic",
+                    "fatigue": 1,
+                    "get": "ancient_plastic",
                     "displayName": "Recycler"
                 }
             }
@@ -2869,207 +2817,77 @@ class Data {
                     "displayName": "Fabriquer du savon"
                 }
             }
-        }
-    };
-    static resources_old = {
-        "fruit": {
-            resourceName: "fruit",
-            "imageName": "fruit",
-            displayName: "fruits",
-            "popGrowth": 8,
-            "actions": {
-                "gather": {
-                    "requiresOneOf": [],
-                    "learn": ["biology", "botany", "permaculture", "nutrition", "horticulture", "nutrient_cycles", "conservation", "composting", "conservation", "botany"],
-                    "fatigue": 5,
-                    "get": "fruit"
-                }
-            },
+        },
+        "science": {
+            "resourceName": "science",
+            "imageName": "science",
+            "displayName": "Science",
+            "category": "misc",
+            "popGrowth": 3,
             "regeneration": 1,
-            "fatigueRecovery": 2
-        },
-        "concrete": {
-            resourceName: "concrete",
-            displayName: "béton",
-            imageName: "concrete",
-            popGrowth: 3,
-            actions: {
-                salvage: {
-                    fatigue: 10,
-                    get: "concrete",
-                    requiresOneOf: [{ knowledge: "salvage_concrete" }]
-                },
-                destroy: {
-                    fatigue: 20,
-                    get: "concrete",
-                    requiresOneOf: [{ knowledge: "destroy_concrete" }]
-                },
-                recycle: {
-                    fatigue: 5,
-                    get: "concrete",
-                    requiresOneOf: [{ knowledge: "recycle_concrete" }]
+            "fatigueRecovery": 2,
+            "actions": {
+                "study": {
+                    "requiresOneOf": [],
+                    "learn":
+                        ["agriculture", "alloying", "ancient_world", "archaeology", "architecture", "baking", "botany", "bronze", "carpentry", "casting", "ceramics", "charcoal", "chemistry", "classification", "clay", "clay_working", "combustion", "comparison", "construction", "containers", "cooking", "cordage", "crafting", "cultivation", "cutting", "drying", "drying_food", "ecology", "evaporation", "experimentation", "farming", "fermentation", "filtration", "fire", "flint_knapping", "food_storage", "forging", "geology", "glassmaking", "grain_processing", "grinding", "heat", "herbalism", "hydrology", "hygiene", "joining", "kiln", "kiln_firing", "leatherworking", "lime", "loom", "machining", "masonry", "material_identification", "material_science", "measurement", "medicinal_plants", "medicine", "metallurgy", "metalworking", "microbiology", "milling", "mineral_identification", "molds", "navigation", "observation", "ore_processing", "plant_reproduction", "plants", "polishing", "pottery", "preservation", "recycling", "resin", "sailing", "salt", "salt_preservation", "salting", "sampling", "sanitation", "science", "seed_selection", "seeds", "sewing", "shaping", "smithing", "smoking_food", "soil", "soil_quality", "spinning", "steelworking", "stone_knapping", "stone_working", "storage", "tanning", "temperature", "textile", "tools", "water_quality", "water_storage", "waterproofing", "weather", "weaving", "wood_working", "woodworking"],
+                    "fatigue": 5,
+                    "get": "science",
+                    "displayName": "Étudier"
                 }
-            },
-            regeneration: 1,
-            fatigueRecovery: 0
+            }
         },
-        "electronics": {
-            displayName: "électronique",
-            resourceName: "electronics",
-            imageName: "electronics",
-            popGrowth: 3,
-            actions: {
-                salvage: {
-                    fatigue: 10,
-                    get: "electronics",
-                    requiresOneOf: [{ knowledge: "salvage_electronics" }]
-                },
-                destroy: {
-                    fatigue: 20,
-                    get: "metal",
-                    requiresOneOf: [{ knowledge: "destroy_electronics" }]
-                },
-                recycle: {
-                    fatigue: 5,
-                    get: "metal",
-                    requiresOneOf: [{ knowledge: "recycle_electronics" }]
+        "soap": {
+            "resourceName": "soap",
+            "imageName": "soap",
+            "displayName": "Savon",
+            "category": "comfort",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "produce": {
+                    "requiresOneOf": [],
+                    "learn":
+                        [],
+                    "fatigue": 5,
+                    "get": "soap",
+                    "displayName": "Produire"
                 }
-            },
-            regeneration: 1,
-            fatigueRecovery: 0
+            }
         },
-        "iron": {
-            displayName: "fer",
-            resourceName: "iron",
-            imageName: "iron",
-            popGrowth: 3,
-            actions: {
-                mine: {
-                    fatigue: 8,
-                    get: "iron",
-                    requiresOneOf: [{ knowledge: "mine_iron" }]
+        "clothes": {
+            "resourceName": "clothes",
+            "imageName": "clothes",
+            "displayName": "Vêtements",
+            "category": "comfort",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "produce": {
+                    "requiresOneOf": [],
+                    "learn":
+                        [],
+                    "fatigue": 5,
+                    "get": "clothes",
+                    "displayName": "Produire"
                 }
-            },
-            regeneration: 1,
-            fatigueRecovery: 1
+            }
         },
-        "metal": {
-            displayName: "métal",
-            resourceName: "metal",
-            imageName: "metal",
-            popGrowth: 3,
-            actions: {
-                salvage: {
-                    fatigue: 10,
-                    get: "metal",
-                    requiresOneOf: [{ knowledge: "salvage_metal" }]
-                },
-                destroy: {
-                    fatigue: 20,
-                    get: "metal",
-                    requiresOneOf: [{ knowledge: "destroy_metal" }]
-                },
-                recycle: {
-                    fatigue: 5,
-                    get: "metal",
-                    requiresOneOf: [{ knowledge: "recycle_metal" }]
-                }
-            },
-            regeneration: 1,
-            fatigueRecovery: 0
-        },
-        "plastic": {
-            displayName: "plastique",
-            resourceName: "plastic",
-            imageName: "plastic",
-            popGrowth: 3,
-            actions: {
-                salvage: {
-                    fatigue: 10,
-                    get: "plastic",
-                    requiresOneOf: [{ knowledge: "salvage_plastic" }]
-                },
-                destroy: {
-                    fatigue: 20,
-                    get: "plastic",
-                    requiresOneOf: [{ knowledge: "destroy_plastic" }]
-                },
-                recycle: {
-                    fatigue: 5,
-                    get: "plastic",
-                    requiresOneOf: [{ knowledge: "recycle_plastic" }]
-                }
-            },
-            regeneration: 1,
-            fatigueRecovery: 0
-        },
-        "clean_water": {
-            displayName: "eau potable",
-            resourceName: "clean_water",
-            imageName: "water",
-            popGrowth: 5,
-            actions: {
-            },
-            regeneration: 1,
-            fatigueRecovery: 2
-        },
-        "water": {
-            displayName: "eau",
-            resourceName: "water",
-            imageName: "water",
-            popGrowth: 3,
-            actions: {
-                fetch: {
-                    fatigue: 2,
-                    get: "water",
-                    requiresOneOf: [{ knowledge: "starter" }],
-                    learn: ["water_collection"]
-                },
-                observation: {
-                    fatigue: 0,
-                    requiresOneOf: [{ knowledge: "water_collection" }],
-                    learn: ["hydrology"]
-                },
-                filtration: {
-                    fatigue: 1,
-                    get: "clean_water",
-                    requiresOneOf: [{ knowledge: "hydrology" }],
-                }
-            },
-            regeneration: 1,
-            fatigueRecovery: 2
-        },
-        "wood": {
-            displayName: "bois",
-            resourceName: "wood",
-            imageName: "wood",
-            popGrowth: 3,
-            actions: {
-                cut: {
-                    fatigue: 2,
-                    get: "wood",
-                    requiresOneOf: [{ knowledge: "starter" }]
-                }
-            },
-            regeneration: 1,
-            fatigueRecovery: 1
-        },
-        "oil": {
-            displayName: "pétrole",
-            resourceName: "oil",
-            imageName: "oil",
-            popGrowth: 3,
-            actions: {
-                drill: {
-                    fatigue: 5,
-                    get: "oil",
-                    requiresOneOf: [{ knowledge: "drill_oil" }]
-                }
-            },
-            regeneration: 1,
-            fatigueRecovery: 1
-        }
-    }
+        // "ash": {
+        //     "resourceName": "ash",
+        //     "imageName": "ash",
+        //     "displayName": "Cendres",
+        //     "category": "misc",
+        //     "popGrowth": 3,
+        //     "regeneration": 1,
+        //     "fatigueRecovery": 2,
+        //     "actions": {
+        //     }
+        // }
+    };
+
     static biomeNamesForGeneration = [
         "city", "island", "swamp", "mountain", "forest"
     ];
@@ -3202,8 +3020,13 @@ class Data {
     };
 }
 
+console.log("-------------------------------------");
+console.log("JSON");
+console.log("-------------------------------------");
 console.log(JSON.stringify(Data.resources));
-
+console.log("-------------------------------------");
+console.log("missing");
+console.log("-------------------------------------");
 for (let resourceName in Data.resources) {
     const resourceData = Data.resources[resourceName];
     if (Images.resourceImages[resourceName] === undefined) {
@@ -3219,3 +3042,4 @@ for (let resourceName in Data.resources) {
         }
     }
 }
+

@@ -177,12 +177,25 @@ wild_wheat
 seeds
 wheat
 charcoal
+clean_water
+science
+soap
+compost
+ash
+glass
+iron
+tool
+clothes
++ others
+ajuster et équilibrer le RAC
 
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
+afficher la fatigue
+fatiguerecovery est un attribut des hex, pas des ressources
 revoir le système de fatigue (global sur la tuile ?)
 trouver les ressources orphelines (les ressources qui ne sont générées nulle part)
 trouver les knowledges orphelins

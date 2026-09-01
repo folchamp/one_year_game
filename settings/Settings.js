@@ -16,4 +16,5 @@ class Settings {
     static mapRadius = 20;
     static panSpeed = 256;
     static initialZoom = 1;
+    static maxResourcesPerHex = 3;
 }

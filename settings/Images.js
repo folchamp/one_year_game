@@ -48,6 +48,15 @@ class Images {
         "wild_wheat",
         "seeds",
         "wheat",
-        "charcoal"
+        "charcoal",
+        "clean_water",
+        "science",
+        "soap",
+        "compost",
+        "ash",
+        "glass",
+        "iron",
+        "tool",
+        "clothes"
     ]);
 }

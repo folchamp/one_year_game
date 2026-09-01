@@ -10,7 +10,7 @@ class Community {
     learn(knowledge) {
         let chosenKnowledge = Random.fromArray(knowledge);
         console.log(`learned ${chosenKnowledge}`);
-        if (!this.knowledge.includes(chosenKnowledge)) {
+        if (chosenKnowledge !== undefined && !this.knowledge.includes(chosenKnowledge)) {
             this.knowledge.push(chosenKnowledge);
         }
 
