@@ -196,20 +196,20 @@ sail
 ceramics
 pottery
 compléter la todo-list avec de nouvelles idées
+placer la fatigue sur l'hex plutôt que sur la ressource
+changer le biome quand la hex atteint 50% de fatigue
+réduire les bordures entre les tuiles
+revoir le système de fatigue (global sur la tuile ?)
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
+city : remove a ressource when fatigue is high
+ouvrir et fermer les catégories de ressources
 rendre les logs cliquables
 rendre toutes les ressources trouvables
 rendre tous les knowledges utiles
-placer la fatigue sur l'hex plutôt que sur la ressource
-changer le biome quand la hex atteint 50% de fatigue
-réduire les bordures entre les tuiles
-afficher la fatigue
-fatiguerecovery est un attribut des hex, pas des ressources
-revoir le système de fatigue (global sur la tuile ?)
 trouver les ressources orphelines (les ressources qui ne sont générées nulle part)
 trouver les knowledges orphelins
 la communauté consomme un élément de chaque "inventaire" (nourriture, matériaux de construction, confort et soins)
@@ -268,6 +268,8 @@ Créer une fatigue du village
 Créer une diversité génétique (=condition de victoire)
 
 ---------- SHOULD ----------
+afficher la fatigue
+fatiguerecovery est un attribut des hex, pas des ressources
 line of sight
 construire des bâtiments
 fabriquer des explorateurs

@@ -3,7 +3,7 @@
 class Settings {
     static production = true;
     static appName = "one_year_game";
-    static hexSize = 115;
+    static hexSize = 112;
     static basicHexSize = 115;
     static tileWidth = 197;
     static tileHeight = 226;

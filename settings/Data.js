@@ -2888,6 +2888,15 @@ class Data {
         // }
     };
 
+    static resourceCategoriesDisplayNames = {
+        food: "Nourriture",
+        tool: "Outils",
+        raw_material: "Matériaux",
+        building_material: "Matériaux de construction",
+        comfort: "Confort",
+        misc: "Autres"
+    }
+
     static biomeNamesForGeneration = [
         "city", "island", "swamp", "mountain", "forest"
     ];

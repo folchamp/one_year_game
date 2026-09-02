@@ -14,14 +14,14 @@ class Game {
         };
         this.uiActions = {
             actionButtonClick: (hex, resource, actionName) => this.actionButtonClick(hex, resource, actionName),
-            feedCommunityClick: (resourceName) => this.feedCommunityClick(resourceName),
+            // feedCommunityClick: (resourceName) => this.feedCommunityClick(resourceName),
             cameraLeft: () => this.camera.cameraLeft(),
             cameraRight: () => this.camera.cameraRight(),
             cameraUp: () => this.camera.cameraUp(),
             cameraDown: () => this.camera.cameraDown(),
             nextTick: () => this.tick()
         }
-        this.inventory = new Map();
+        this.inventory = new Inventory();
 
         // parts
         this.log = new Log();
@@ -85,14 +85,14 @@ class Game {
             this.createExplorer(Settings.startHexPosition.q, Settings.startHexPosition.r);
         }
     }
-    feedCommunityClick(resourceName) {
-        let amount = this.inventory.get(resourceName);
-        if (amount > 0) { // check a priori inutile parce que le bouton disparaît dans l'UI quand l'inventaire est vide mais... you never know
-            this.community.feed(resourceName);
-            this.inventory.set(resourceName, amount - 1);
-        }
-        this.ui.update();
-    }
+    // feedCommunityClick(resourceName) {
+    //     let amount = this.inventory.get(resourceName);
+    //     if (amount > 0) {
+    //         this.community.feed(resourceName);
+    //         this.inventory.set(resourceName, amount - 1);
+    //     }
+    //     this.ui.update();
+    // }
     cleanOrders() {
         this.ECS.Order.forEach((order, entity) => {
             const stillThere = order.hex.resources.some((resource) => {
@@ -119,11 +119,9 @@ class Game {
             let harvesterPosition = this.ECS.Position.get(entity);
             if (hex.q === harvesterPosition.q && hex.r === harvesterPosition.r && resource.isAvailable) {
                 let get = resource.resourceData.actions[actionName].get; // which resource does the action "get" (harvest)
-                let knowledge = resource.resourceData.actions[actionName].learn;
+                let knowledges = resource.resourceData.actions[actionName].learn;
                 if (get !== undefined) {
-                    let amount = this.inventory.get(get) ?? 0;
-                    this.inventory.set(get, amount + 1);
-                    // console.log(`${resource.resourceData.resourceName} === ${get}`);
+                    this.inventory.add(Data.resources[get]);
                     if (resource.resourceData.resourceName !== get) {
                         let newResourceData = Data.resources[get];
                         if (newResourceData === undefined) {
@@ -134,8 +132,8 @@ class Game {
                         }
                     }
                 }
-                if (knowledge !== undefined) {
-                    this.community.learn(knowledge);
+                if (knowledges !== undefined) {
+                    this.community.learn(knowledges);
                 }
                 hex.harvest(resourceName, actionName);
             }
@@ -201,6 +199,7 @@ class Game {
             this.selection.selectedEntity = undefined;
             this.selection.selectedHex = hex;
             this.log.log(JSON.stringify(hex, null, 4));
+            this.log.log(`Fatigue : ${hex.fatigue}/${Settings.maxFatigue}`);
         }
         this.ui.update();
     }

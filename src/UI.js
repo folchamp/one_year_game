@@ -58,21 +58,57 @@ class UI {
     }
     updateInventory() {
         this.uiInventoryContainer.replaceChildren();
-        this.inventory.forEach((amountInInventory, resourceName, map) => {
-            Util.quickStructure(this.uiInventoryContainer, this, [
-                "inventoryResourceContainer",
-                "resourceText",
-                "giveResourceButtonText"
-            ]);
-            if (Data.resources[resourceName]) {
-                this.resourceText.innerText = `${Data.resources[resourceName].displayName} : ${amountInInventory}`;
+        const inventoryContent = this.inventory.getContent();
+        // Util.quickStructure(this.uiInventoryContainer, this, ["inventoryResourceContainer"]);
+        for (let categoryName in inventoryContent) {
+            const resources = inventoryContent[categoryName];
+            let total = 0;
+            Util.quickStructure(this.uiInventoryContainer, this,
+                ["inventoryCategoryContainer",
+                    "inventoryCategoryNameText",
+                    "inventoryCategoryTotalText",
+                    "inventoryCategoryResourcesContainer"
+                ]
+            );
+
+            if (Data.resourceCategoriesDisplayNames[categoryName] !== undefined) {
+                this.inventoryCategoryNameText.innerText = Data.resourceCategoriesDisplayNames[categoryName];
             } else {
-                this.resourceText.innerText = `${resourceName} (tr. needed) : ${amountInInventory}`;
+                this.inventoryCategoryNameText.innerText = `${categoryName} (tr. needed)`;
             }
-            this.giveResourceButtonText.addEventListener("click", (event) => {
-                this.uiActions.feedCommunityClick(resourceName);
-            });
-        });
+            for (let resourceName in resources) {
+                const amount = resources[resourceName];
+                total += amount;
+                Util.quickStructure(this.inventoryCategoryResourcesContainer, this,
+                    ["resourceContainer",
+                        "resourceNameText",
+                        "resourceAmountText"]
+                )
+                this.resourceNameText.innerText = Data.resources[resourceName].displayName;
+                this.resourceAmountText.innerText = amount;
+            }
+            this.inventoryCategoryTotalText.innerText = total;
+        }
+
+
+
+
+        // this.inventory.getContent().forEach((amountInInventory, resourceCategory, map) => {
+        //     Util.quickStructure(this.uiInventoryContainer, this,
+        //         ["inventoryResourceContainer",
+        //             "resourceText",
+        //             // "giveResourceButtonText"
+        //         ]
+        //     );
+        //     if (Data.resourceCategoriesDisplayNames[resourceCategory]) {
+        //         this.resourceText.innerText = `${Data.resourceCategoriesDisplayNames[resourceCategory]} : ${amountInInventory}`;
+        //     } else {
+        //         this.resourceText.innerText = `${resourceCategory} (tr. needed) : ${amountInInventory}`;
+        //     }
+        //     // this.giveResourceButtonText.addEventListener("click", (event) => {
+        //     //     this.uiActions.feedCommunityClick(resourceName);
+        //     // });
+        // });
     }
     updateUnit() {
         this.unitImage.src = Images.unitImages[this.selection.selectedEntityData.imageName].src

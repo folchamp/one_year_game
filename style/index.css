@@ -59,24 +59,6 @@ body {
 
     .uiInventoryContainer {
         padding: 4px;
-
-        .inventoryResourceContainer {
-            padding: 4px;
-
-            .giveResourceButtonText {
-                display: inline-block;
-                cursor: pointer;
-                padding: 12px;
-                margin: 4px;
-                border: 1px solid #ddd8c8;
-                border-radius: 8px;
-                background: rgba(38, 43, 38, 0.94);
-            }
-
-            .giveResourceButtonText:hover {
-                background: rgba(52, 58, 52, 0.94);
-            }
-        }
     }
 }
 
