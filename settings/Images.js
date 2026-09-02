@@ -57,6 +57,11 @@ class Images {
         "glass",
         "iron",
         "tool",
-        "clothes"
+        "clothes",
+        "rope",
+        "wool",
+        "sail",
+        "ceramics",
+        "pottery"
     ]);
 }
