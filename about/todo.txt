@@ -188,12 +188,25 @@ tool
 clothes
 + others
 ajuster et équilibrer le RAC
-
+♥ 02/08/2026
+new images 
+rope
+wool
+sail
+ceramics
+pottery
+compléter la todo-list avec de nouvelles idées
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
+rendre les logs cliquables
+rendre toutes les ressources trouvables
+rendre tous les knowledges utiles
+placer la fatigue sur l'hex plutôt que sur la ressource
+changer le biome quand la hex atteint 50% de fatigue
+réduire les bordures entre les tuiles
 afficher la fatigue
 fatiguerecovery est un attribut des hex, pas des ressources
 revoir le système de fatigue (global sur la tuile ?)

@@ -11,7 +11,8 @@ class Settings {
     static startHexPosition = { q: 0, r: 0 };
     static startingPopulation = 80;
     static lengthOfFoodMemory = 10;
-    static maxFatigue = 10;
+    static maxFatigue = 12;
+    static fatigueRecovery = 1;
     static bornPopulationCap = 100;
     static mapRadius = 20;
     static panSpeed = 256;
