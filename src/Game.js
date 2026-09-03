@@ -220,6 +220,7 @@ class Game {
         return this.nextID++;
     }
     tick() {
+        this.community.feed(this.inventory, this.ECS.Explorer.size);
         this.movementSystem.update();
         this.ECS.Order.forEach((order, entity, map) => {
             this.action(order.hex, order.resource, order.actionName);
@@ -228,7 +229,7 @@ class Game {
             this.world.exploreTile(this.ECS.Position.get(entity));
             this.world.seeNeightbours(this.ECS.Position.get(entity));
         });
-        if (this.ECS.Explorer.size <= Math.floor(this.community.population / Settings.bornPopulationCap)) {
+        if (this.ECS.Explorer.size < Math.floor(this.community.population / Settings.bornPopulationCap)) {
             this.born();
         }
         this.world.update();

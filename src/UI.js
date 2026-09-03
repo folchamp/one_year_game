@@ -70,11 +70,11 @@ class UI {
                     "inventoryCategoryResourcesContainer"
                 ]
             );
-
+            Util.hide(this.inventoryCategoryResourcesContainer);
             if (Data.resourceCategoriesDisplayNames[categoryName] !== undefined) {
-                this.inventoryCategoryNameText.innerText = Data.resourceCategoriesDisplayNames[categoryName];
+                this.inventoryCategoryNameText.innerText = `${Data.resourceCategoriesDisplayNames[categoryName]} ▼ `;
             } else {
-                this.inventoryCategoryNameText.innerText = `${categoryName} (tr. needed)`;
+                this.inventoryCategoryNameText.innerText = `${categoryName} (tr. needed) ▼ `;
             }
             for (let resourceName in resources) {
                 const amount = resources[resourceName];
@@ -88,6 +88,10 @@ class UI {
                 this.resourceAmountText.innerText = amount;
             }
             this.inventoryCategoryTotalText.innerText = total;
+            {
+                let container = this.inventoryCategoryResourcesContainer;
+                this.inventoryCategoryNameText.addEventListener("click", (event) => { Util.toggle(container) });
+            }
         }
 
 

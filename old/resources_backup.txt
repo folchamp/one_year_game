@@ -1,3 +1,9 @@
+const basicGrowth = Data.resources[resourceName].popGrowth;
+        const count = this.lastResourcesGiven.filter(element => element === resourceName).length;
+        this.population += ((Settings.lengthOfFoodMemory + 1 - count) / Settings.lengthOfFoodMemory + 1) * basicGrowth;
+        this.lastResourcesGiven.push(resourceName);
+        this.lastResourcesGiven = this.lastResourcesGiven.slice(-Settings.lengthOfFoodMemory);
+
 
         "stone_tools": {
             "resourceName": "stone_tools",

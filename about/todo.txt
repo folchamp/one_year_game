@@ -200,29 +200,32 @@ placer la fatigue sur l'hex plutôt que sur la ressource
 changer le biome quand la hex atteint 50% de fatigue
 réduire les bordures entre les tuiles
 revoir le système de fatigue (global sur la tuile ?)
+♥ 03/08/2026
+city : remove a ressource when fatigue is high
+ouvrir et fermer les catégories de ressources
+la communauté consomme un élément de chaque "inventaire" (nourriture, matériaux de construction, confort et soins)
+revoir community.feed()
+revoir le système de food (ressources directement consommées par le village, barres sims qui évoluent)
+rework pop
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
-city : remove a ressource when fatigue is high
-ouvrir et fermer les catégories de ressources
+barre Sims (confort, nourriture, matériaux de construction etc.)
+
 rendre les logs cliquables
 rendre toutes les ressources trouvables
 rendre tous les knowledges utiles
 trouver les ressources orphelines (les ressources qui ne sont générées nulle part)
 trouver les knowledges orphelins
-la communauté consomme un élément de chaque "inventaire" (nourriture, matériaux de construction, confort et soins)
-barre Sims (confort, nourriture, matériaux de construction etc.)
-revoir community.feed()
-revoir le système de food (ressources directement consommées par le village, barres sims qui évoluent)
 
 créer un simulateur RAC 
 - trouve les orphelins
 - trouve les trucs non traduits
 - trouve les trucs qui n'ont pas d'image
 
-ajouter un listener dans Util.js
+ajouter un listener dans Util.js (voir classe Listener)
 connaissances === outils
 Les ressources ont des types (naturelle, fabriquée, vestige)
 système de notification

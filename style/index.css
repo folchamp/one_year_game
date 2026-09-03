@@ -59,6 +59,14 @@ body {
 
     .uiInventoryContainer {
         padding: 4px;
+
+        .inventoryCategoryContainer {
+            background-color: blanchedalmond;
+            color: black;
+            margin: 4px;
+            padding: 4px;
+            cursor: pointer;
+        }
     }
 }
 

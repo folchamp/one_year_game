@@ -22,10 +22,13 @@ class Hex {
         this.fatigue = 0;
 
         this.resources = [];
+
+        this.lastResourceTaken;
     }
     setBiome(biome) {
         // évite que biome ait accès aux Data.biomes
         this.biome = {
+            biomeName: biome.biomeName,
             degradation: biome.degradation,
             imageName: biome.imageName
         }
@@ -44,6 +47,10 @@ class Hex {
                 // if (this.resources.length < 1) {
                 // this.setBiome(Data.biomes["desert"]);
                 // }
+            } else if (this.biome.biomeName === "city") {
+                this.resources = this.resources.filter((resource, index, array) => {
+                    return resource.resourceData.resourceName !== this.lastResourceTaken;
+                });
             }
         }
     }
@@ -78,6 +85,7 @@ class Hex {
                 this.fatigue += resource.resourceData.actions[actionName].fatigue;
                 resource.isAvailable = false;
                 resource.regeneratesIn = resource.resourceData.regeneration;
+                this.lastResourceTaken = resourceName;
             }
         });
     }

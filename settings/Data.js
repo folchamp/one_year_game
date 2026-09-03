@@ -2902,32 +2902,39 @@ class Data {
     ];
     static biomes = {
         desert: {
+            biomeName: "desert",
             degradation: "desert",
             imageName: "desert"
         },
 
         broussailles: {
+            biomeName: "broussailles",
             degradation: "desert",
             imageName: "broussailles",
         },
         butte: {
+            biomeName: "butte",
             degradation: "desert",
             imageName: "butte",
         },
         friche: {
+            biomeName: "friche",
             degradation: "desert",
             imageName: "friche",
         },
         greve: {
+            biomeName: "greve",
             degradation: "desert",
             imageName: "greve",
         },
         landes: {
+            biomeName: "landes",
             degradation: "desert",
             imageName: "landes",
         },
 
         plains: {
+            biomeName: "plains",
             degradation: "landes",
             imageName: "plains",
             attribute: "elevation",
@@ -2946,6 +2953,7 @@ class Data {
             ]
         },
         swamp: {
+            biomeName: "swamp",
             degradation: "broussailles",
             imageName: "swamp",
             attribute: "humidity",
@@ -2962,6 +2970,7 @@ class Data {
             ]
         },
         island: {
+            biomeName: "island",
             degradation: "greve",
             imageName: "island",
             attribute: "humidity",
@@ -2977,6 +2986,7 @@ class Data {
             ]
         },
         forest: {
+            biomeName: "forest",
             degradation: "friche",
             imageName: "forest",
             attribute: "life",
@@ -2993,6 +3003,7 @@ class Data {
             ]
         },
         mountain: {
+            biomeName: "mountain",
             degradation: "butte",
             imageName: "mountain",
             attribute: "elevation",
@@ -3012,6 +3023,7 @@ class Data {
             ]
         },
         city: {
+            biomeName: "city",
             degradation: undefined,
             imageName: "city",
             attribute: "humanInfluence",
