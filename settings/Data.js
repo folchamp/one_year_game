@@ -2894,7 +2894,8 @@ class Data {
         raw_material: "Matériaux",
         building_material: "Matériaux de construction",
         comfort: "Confort",
-        misc: "Autres"
+        misc: "Autres",
+        energy: "Énergie"
     }
 
     static biomeNamesForGeneration = [

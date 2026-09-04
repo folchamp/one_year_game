@@ -207,13 +207,14 @@ la communauté consomme un élément de chaque "inventaire" (nourriture, matéri
 revoir community.feed()
 revoir le système de food (ressources directement consommées par le village, barres sims qui évoluent)
 rework pop
+♥ 04/08/2026
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
+réparer le RAC
 barre Sims (confort, nourriture, matériaux de construction etc.)
-
 rendre les logs cliquables
 rendre toutes les ressources trouvables
 rendre tous les knowledges utiles

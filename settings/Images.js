@@ -62,6 +62,7 @@ class Images {
         "wool",
         "sail",
         "ceramics",
-        "pottery"
+        "pottery",
+        "soil"
     ]);
 }
