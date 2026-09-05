@@ -4,7 +4,7 @@ class Community {
     constructor() {
         this.population = Settings.startingPopulation;
         this.knowledge = ["starter"];
-
+        this.consumed = [];
     }
     learn(knowledge) {
         let chosenKnowledge = Random.fromArray(knowledge);
@@ -69,6 +69,15 @@ class Community {
         }
         if (growth <= 0) {
             this.population = Math.max(minPop, this.population - 1);
+        }
+
+        // test TODO
+        this.consumed.push(...consumed);
+        console.log("------------------------------------------");
+        for (let resourceName in Data.resources) {
+            if (!this.consumed.includes(resourceName)) {
+                console.log(resourceName);
+            }
         }
     }
 }

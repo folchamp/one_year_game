@@ -4,6 +4,7 @@ class Game {
     constructor() {
         // actions
         this.actions = {
+            selectNextIdle: { description: "Selects the next idle entity", f: () => this.selectNextIdle() },
             resetCamera: { description: "Resets the camera to the center of the map", f: () => this.camera.resetCamera() },
             resetZoom: { description: "Resets the zoom of the camera", f: () => this.camera.resetZoom() },
             openHotkeysMenu: { description: "Open the hotkeys menu", f: () => { this.log.log(JSON.stringify(this.hotkeys.getHotkeys(), null, 4)); } },
@@ -49,6 +50,7 @@ class Game {
         this.ECS.Order = new Map();
 
         // hotkeys
+        this.hotkeys.bind("Backquote", this.actions.selectNextIdle);
         this.hotkeys.bind("KeyR", this.actions.resetCamera);
         this.hotkeys.bind("KeyW", this.actions.resetZoom);
         this.hotkeys.bind("KeyH", this.actions.openHotkeysMenu);
@@ -73,7 +75,7 @@ class Game {
     }
     isHexPositionOccupied(hexPosition) {
         let isOccupied = false;
-        for (const [entity, position] of this.ECS.Movement) {
+        for (const [entity, position] of this.ECS.Movement) { // TODO movement ???
             if (position.q === hexPosition.q && position.r === hexPosition.r) {
                 isOccupied = true;
             }
@@ -187,19 +189,39 @@ class Game {
         let hex = this.world.getHexFromWorldPosition(worldPosition);
         this.selection.hoveredHex = hex;
     }
+    selectNextIdle() {
+        let idle;
+        this.ECS.Harvester.forEach((value, index, array) => {
+            if (this.ECS.Movement.get(index) !== undefined && this.ECS.Movement.get(index).path.length <= 0 && this.ECS.Order.get(index) === undefined) {
+                idle = index;
+            }
+        });
+        if (idle !== undefined) {
+            this.selectEntity(idle);
+            this.camera.moveCamera(World.hexToWorld(this.ECS.Position.get(idle)));
+        }
+    }
+    selectEntity(entity) {
+        this.selection.selectedEntity = entity;
+        this.selection.selectedEntityData = this.ECS.Sprite.get(entity);
+        this.selection.selectedHex = undefined;
+    }
+    selectHex(hex) {
+        this.selection.selectedEntity = undefined;
+        this.selection.selectedHex = hex;
+        if (hex !== undefined) {
+            this.log.log(JSON.stringify(hex, null, 4));
+            this.log.log(`Fatigue : ${hex.fatigue}/${Settings.maxFatigue}`);
+        }
+    }
     click(event) {
         let worldPosition = this.getMouseWorldPosition(event);
         let hex = this.world.getHexFromWorldPosition(worldPosition);
         let entity = this.getEntityFromWorldPosition(worldPosition);
         if (entity !== undefined) {
-            this.selection.selectedEntity = entity;
-            this.selection.selectedEntityData = this.ECS.Sprite.get(entity);
-            this.selection.selectedHex = undefined;
+            this.selectEntity(entity);
         } else {
-            this.selection.selectedEntity = undefined;
-            this.selection.selectedHex = hex;
-            this.log.log(JSON.stringify(hex, null, 4));
-            this.log.log(`Fatigue : ${hex.fatigue}/${Settings.maxFatigue}`);
+            this.selectHex(hex);
         }
         this.ui.update();
     }

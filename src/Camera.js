@@ -54,6 +54,10 @@ class Camera {
         this.x = 0;
         this.y = 0;
     }
+    moveCamera(position) {
+        this.x = position.x;
+        this.y = position.y;
+    }
     cameraLeft() {
         this.x -= Settings.panSpeed;
     }

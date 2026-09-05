@@ -208,18 +208,23 @@ revoir community.feed()
 revoir le système de food (ressources directement consommées par le village, barres sims qui évoluent)
 rework pop
 ♥ 04/08/2026
+soil
+♥ 05/08/2026
+réparer le RAC
+iddle hotkey
+déplacer la caméra vers l'idle sélectionné
+
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
-réparer le RAC
-barre Sims (confort, nourriture, matériaux de construction etc.)
-rendre les logs cliquables
+biomes se regénèrent
 rendre toutes les ressources trouvables
 rendre tous les knowledges utiles
 trouver les ressources orphelines (les ressources qui ne sont générées nulle part)
 trouver les knowledges orphelins
+rendre les logs cliquables
 
 créer un simulateur RAC 
 - trouve les orphelins
@@ -272,6 +277,7 @@ Créer une fatigue du village
 Créer une diversité génétique (=condition de victoire)
 
 ---------- SHOULD ----------
+barre Sims (confort, nourriture, matériaux de construction etc.)
 afficher la fatigue
 fatiguerecovery est un attribut des hex, pas des ressources
 line of sight
