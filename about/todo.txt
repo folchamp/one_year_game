@@ -163,8 +163,10 @@ protéger le disque en évitant les sauvegarde répétées
 camera déplaçable au touch
 ♥ 29/08/2026
 voile + fête chez Maki
+rien fait :-( 
 ♥ 30/08/2026
 Brussels Game Festival
+rien fait :-( 
 ♥ 31/08/2026
 ajouter l'atribut catégorie aux ressources
 afficher la catégorie dans l'éditeur RAC
@@ -213,12 +215,40 @@ soil
 réparer le RAC
 iddle hotkey
 déplacer la caméra vers l'idle sélectionné
-
+♥ 06/08/2026
+Libération de Beaumont 
+Gégé et Lio à la maison
+rien fait :-( 
+♥ 07/08/2026
+l'UI s'update quand on séléction un idle
+afficher la fatigue
+l'UI affiche les actions quand on sélectionne le personnage
+small QOL 
+small bugfixes
+balance resources (fatigueRecovery, fatigue & popGrowth)
+animals
+domesticated animals
+animals n'a pas d'image
+domesticated_animals n'a pas d'image
+meat n'a pas d'image
+bricks
+que faire quand les trois slots de ressources sont pleins -> retirer la ressource originale
+comment obtenir de la brique ??? (clay -> bricks !)
+correction d'une tonne de ressources inaccessibles
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
+images pour farine, pâte, pain, peau brute, cuire
+ajouter plant_fibers dans la ligne "plants"
+plant_fibers -> string -> clothes etc. (ropes)
+ajouter la ligne animals -> hide etc. (combat contre les animaux ?!)
+bread image
+dough image
+beer image
+floor image (sack)
+clay image (bucket)
 biomes se regénèrent
 rendre toutes les ressources trouvables
 rendre tous les knowledges utiles
@@ -278,7 +308,6 @@ Créer une diversité génétique (=condition de victoire)
 
 ---------- SHOULD ----------
 barre Sims (confort, nourriture, matériaux de construction etc.)
-afficher la fatigue
 fatiguerecovery est un attribut des hex, pas des ressources
 line of sight
 construire des bâtiments

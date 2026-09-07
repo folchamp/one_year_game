@@ -90,42 +90,26 @@ class UI {
             this.inventoryCategoryTotalText.innerText = total;
             {
                 let container = this.inventoryCategoryResourcesContainer;
-                this.inventoryCategoryNameText.addEventListener("click", (event) => { Util.toggle(container) });
+                this.inventoryCategoryContainer.addEventListener("click", (event) => { Util.toggle(container) });
             }
         }
-
-
-
-
-        // this.inventory.getContent().forEach((amountInInventory, resourceCategory, map) => {
-        //     Util.quickStructure(this.uiInventoryContainer, this,
-        //         ["inventoryResourceContainer",
-        //             "resourceText",
-        //             // "giveResourceButtonText"
-        //         ]
-        //     );
-        //     if (Data.resourceCategoriesDisplayNames[resourceCategory]) {
-        //         this.resourceText.innerText = `${Data.resourceCategoriesDisplayNames[resourceCategory]} : ${amountInInventory}`;
-        //     } else {
-        //         this.resourceText.innerText = `${resourceCategory} (tr. needed) : ${amountInInventory}`;
-        //     }
-        //     // this.giveResourceButtonText.addEventListener("click", (event) => {
-        //     //     this.uiActions.feedCommunityClick(resourceName);
-        //     // });
-        // });
     }
     updateUnit() {
         this.unitImage.src = Images.unitImages[this.selection.selectedEntityData.imageName].src
         Util.show(this.uiContainer);
         Util.show(this.unitSelectorContainer);
     }
-    updateHex() {
+    updateHex(isEntityHex) {
         let hex = this.selection.selectedHex;
+        if (isEntityHex) {
+            hex = this.selection.selectedEntityHex;
+            console.log(hex);
+        }
         this.hexResourcesContainer.replaceChildren();
         Util.show(this.uiContainer);
         Util.show(this.hexSelectorContainer);
         if (hex.isSeenThroughFog || !Settings.production) {
-            this.hexImageContainer.style["background-image"] = `url("${Images.tileImages[this.selection.selectedHex.biome.imageName].src}")`;
+            this.hexImageContainer.style["background-image"] = `url("${Images.tileImages[hex.biome.imageName].src}")`;
             hex.resources.forEach((resource) => {
                 Util.quickStructure(this.hexResourcesContainer, this,
                     ["hexResourceContainer",
@@ -146,10 +130,11 @@ class UI {
         }
     }
     addResource(hex, resource) {
-        try {
-            this.resourceImage.src = Images.resourceImages[resource.resourceData.imageName].src;
-        } catch (error) {
+        if (Images.resourceImages[resource.resourceData.imageName] === undefined) {
+            this.resourceImage.src = Images.resourceImages["unknownResource"].src;
             console.log(`${resource.resourceData.resourceName} n'a pas d'image`);
+        } else {
+            this.resourceImage.src = Images.resourceImages[resource.resourceData.imageName].src;
         }
         this.resourceNameText.innerText = resource.resourceData.displayName;
         if (!resource.isAvailable) {
@@ -172,8 +157,12 @@ class UI {
         Util.hide(this.hexSelectorContainer);
         if (this.selection.selectedEntity !== undefined) {
             this.updateUnit();
-        } else if (this.selection.selectedHex !== undefined) {
-            this.updateHex();
+        }
+        if (this.selection.selectedHex !== undefined) {
+            this.updateHex(false);
+        }
+        if (this.selection.selectedEntityHex !== undefined) {
+            this.updateHex(true);
         }
         this.updateInventory();
         this.updatePopulation();

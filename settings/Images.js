@@ -63,6 +63,12 @@ class Images {
         "sail",
         "ceramics",
         "pottery",
-        "soil"
+        "soil",
+        "animals",
+        "domesticated_animals",
+        "meat",
+        "bricks",
+        "medicinal_plants",
+        "medicine"
     ]);
 }

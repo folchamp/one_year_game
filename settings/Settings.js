@@ -10,7 +10,7 @@ class Settings {
     static resourceImageSize = 64
     static startHexPosition = { q: 0, r: 0 };
     // static lengthOfFoodMemory = 10;
-    static maxFatigue = 12;
+    static maxFatigue = 36;
     static fatigueRecovery = 1;
     static startingPopulation = 1;
     static bornPopulationCap = 1;
@@ -18,4 +18,7 @@ class Settings {
     static panSpeed = 256;
     static initialZoom = 1;
     static maxResourcesPerHex = 3;
+    static fatigueBarWidth = 100;
+    static fatigueBarHeight = 8;
+    static fatigueBarVerticalOffset = 80;
 }

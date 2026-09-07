@@ -7,7 +7,7 @@ class Data {
             "imageName": "water",
             "displayName": "Eau",
             "category": "raw_material",
-            "popGrowth": 3,
+            "popGrowth": 5,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -18,7 +18,7 @@ class Data {
                         "hydrology",
                         "water_sources"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 3,
                     "get": "water",
                     "displayName": "Puiser"
                 },
@@ -33,7 +33,7 @@ class Data {
                         "hygiene",
                         "temperature"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 2,
                     "get": "clean_water",
                     "displayName": "Faire bouillir"
                 },
@@ -48,7 +48,7 @@ class Data {
                         "sampling",
                         "measurement"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "science",
                     "displayName": "Prélever un échantillon"
                 }
@@ -59,7 +59,7 @@ class Data {
             "imageName": "clean_water",
             "displayName": "Eau potable",
             "category": "food",
-            "popGrowth": 3,
+            "popGrowth": 10,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -70,7 +70,7 @@ class Data {
                         "hygiene",
                         "water_quality"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 10,
                     "get": "wild_wheat",
                     "displayName": "Arroser"
                 },
@@ -85,7 +85,7 @@ class Data {
                         "food_storage",
                         "sanitation"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 2,
                     "get": "clean_water",
                     "displayName": "Stocker"
                 },
@@ -100,7 +100,7 @@ class Data {
                         "chemistry",
                         "microbiology"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "science",
                     "displayName": "Analyser"
                 }
@@ -111,7 +111,7 @@ class Data {
             "imageName": "water_sample",
             "displayName": "Échantillon d'eau",
             "category": "misc",
-            "popGrowth": 3,
+            "popGrowth": 1,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -122,7 +122,7 @@ class Data {
                         "water_quality",
                         "classification"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "science",
                     "displayName": "Examiner"
                 },
@@ -137,7 +137,7 @@ class Data {
                         "chemistry",
                         "causality"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "science",
                     "displayName": "Comparer"
                 },
@@ -152,7 +152,7 @@ class Data {
                         "microbiology",
                         "experimentation"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "science",
                     "displayName": "Tester"
                 }
@@ -163,7 +163,7 @@ class Data {
             "imageName": "rainwater",
             "displayName": "Eau de pluie",
             "category": "raw_material",
-            "popGrowth": 3,
+            "popGrowth": 2,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -174,7 +174,7 @@ class Data {
                         "weather",
                         "water_storage"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "rainwater",
                     "displayName": "Recueillir"
                 },
@@ -189,7 +189,7 @@ class Data {
                         "hydrology",
                         "recording"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "science",
                     "displayName": "Mesurer"
                 },
@@ -204,7 +204,7 @@ class Data {
                         "chemistry",
                         "atmosphere"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "science",
                     "displayName": "Analyser"
                 }
@@ -215,7 +215,7 @@ class Data {
             "imageName": "wood",
             "displayName": "Bois",
             "category": "raw_material",
-            "popGrowth": 3,
+            "popGrowth": 5,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -241,7 +241,7 @@ class Data {
                         "timber",
                         "shaping"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 8,
                     "get": "lumber",
                     "displayName": "Couper"
                 },
@@ -256,7 +256,7 @@ class Data {
                         "heat",
                         "charcoal_making"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 10,
                     "get": "ash",
                     "displayName": "Brûler"
                 }
@@ -267,7 +267,7 @@ class Data {
             "imageName": "lumber",
             "displayName": "Bois d'œuvre",
             "category": "building_material",
-            "popGrowth": 3,
+            "popGrowth": 6,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -278,7 +278,7 @@ class Data {
                         "shaping",
                         "crafting"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 10,
                     "get": "lumber",
                     "displayName": "Façonner"
                 },
@@ -293,7 +293,7 @@ class Data {
                         "woodworking",
                         "preservation"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 10,
                     "get": "charcoal",
                     "displayName": "Sécher"
                 },
@@ -308,7 +308,7 @@ class Data {
                         "construction",
                         "architecture"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 10,
                     "get": "lumber",
                     "displayName": "Construire"
                 }
@@ -319,7 +319,7 @@ class Data {
             "imageName": "charcoal",
             "displayName": "Charbon de bois",
             "category": "energy",
-            "popGrowth": 3,
+            "popGrowth": 6,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -330,7 +330,7 @@ class Data {
                         "combustion",
                         "heat"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 10,
                     "get": "charcoal",
                     "displayName": "Produire"
                 },
@@ -345,7 +345,7 @@ class Data {
                         "kiln_firing",
                         "temperature"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 10,
                     "get": "ash",
                     "displayName": "Brûler"
                 },
@@ -360,7 +360,7 @@ class Data {
                         "material_science",
                         "experimentation"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "science",
                     "displayName": "Analyser"
                 }
@@ -371,7 +371,7 @@ class Data {
             "imageName": "sandstone",
             "displayName": "Grès",
             "category": "building_material",
-            "popGrowth": 3,
+            "popGrowth": 2,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -382,7 +382,7 @@ class Data {
                         "observation",
                         "stone_working"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 2,
                     "get": "sandstone",
                     "displayName": "Ramasser"
                 },
@@ -397,7 +397,7 @@ class Data {
                         "shaping",
                         "cutting"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "tool",
                     "displayName": "Tailler"
                 },
@@ -412,7 +412,7 @@ class Data {
                         "material_science",
                         "chemistry"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 2,
                     "get": "sand",
                     "displayName": "Broyer"
                 }
@@ -423,7 +423,7 @@ class Data {
             "imageName": "flint",
             "displayName": "Silex",
             "category": "tool",
-            "popGrowth": 3,
+            "popGrowth": 2,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -434,7 +434,7 @@ class Data {
                         "stone_knapping",
                         "cutting"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "tool",
                     "displayName": "Tailler"
                 },
@@ -449,7 +449,7 @@ class Data {
                         "fire",
                         "experimentation"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "flint",
                     "displayName": "Frapper"
                 },
@@ -464,7 +464,7 @@ class Data {
                         "material_science",
                         "classification"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "science",
                     "displayName": "Analyser"
                 }
@@ -475,7 +475,7 @@ class Data {
             "imageName": "clay",
             "displayName": "Argile",
             "category": "raw_material",
-            "popGrowth": 3,
+            "popGrowth": 2,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -486,7 +486,7 @@ class Data {
                         "geology",
                         "clay_working"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 3,
                     "get": "clay",
                     "displayName": "Prélever"
                 },
@@ -501,7 +501,7 @@ class Data {
                         "containers",
                         "shaping"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 2,
                     "get": "pottery",
                     "displayName": "Façonner"
                 },
@@ -516,8 +516,8 @@ class Data {
                         "kiln_firing",
                         "temperature"
                     ],
-                    "fatigue": 5,
-                    "get": "ceramics",
+                    "fatigue": 2,
+                    "get": "bricks",
                     "displayName": "Cuire"
                 }
             }
@@ -527,7 +527,7 @@ class Data {
             "imageName": "pottery",
             "displayName": "Poterie",
             "category": "comfort",
-            "popGrowth": 3,
+            "popGrowth": 4,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -538,7 +538,7 @@ class Data {
                         "pottery",
                         "storage"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 2,
                     "get": "pottery",
                     "displayName": "Sécher"
                 },
@@ -553,7 +553,7 @@ class Data {
                         "kiln_firing",
                         "heat"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 2,
                     "get": "ceramics",
                     "displayName": "Cuire"
                 },
@@ -568,7 +568,7 @@ class Data {
                         "chemistry",
                         "glassmaking"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 2,
                     "get": "ceramics",
                     "displayName": "Émailler"
                 }
@@ -579,7 +579,7 @@ class Data {
             "imageName": "sand",
             "displayName": "Sable",
             "category": "raw_material",
-            "popGrowth": 3,
+            "popGrowth": 1,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -590,7 +590,7 @@ class Data {
                         "geology",
                         "observation"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 2,
                     "get": "sand",
                     "displayName": "Ramasser"
                 },
@@ -620,7 +620,7 @@ class Data {
                         "temperature",
                         "silica"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 6,
                     "get": "glass",
                     "displayName": "Faire fondre"
                 }
@@ -631,7 +631,7 @@ class Data {
             "imageName": "glass",
             "displayName": "Verre",
             "category": "comfort",
-            "popGrowth": 3,
+            "popGrowth": 1,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -642,8 +642,8 @@ class Data {
                         "shaping",
                         "containers"
                     ],
-                    "fatigue": 5,
-                    "get": "container",
+                    "fatigue": 3,
+                    "get": "containers",
                     "displayName": "Façonner"
                 },
                 "melt": {
@@ -672,7 +672,7 @@ class Data {
                         "silica",
                         "glassmaking"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "science",
                     "displayName": "Analyser"
                 }
@@ -683,7 +683,7 @@ class Data {
             "imageName": "plants",
             "displayName": "Plantes",
             "category": "raw_material",
-            "popGrowth": 3,
+            "popGrowth": 4,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -709,8 +709,8 @@ class Data {
                         "plant_reproduction",
                         "ecology"
                     ],
-                    "fatigue": 5,
-                    "get": "science",
+                    "fatigue": 1,
+                    "get": "medicinal_plants",
                     "displayName": "Identifier"
                 },
                 "sample": {
@@ -724,7 +724,7 @@ class Data {
                         "plant_anatomy",
                         "medicinal_plants"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "plants",
                     "displayName": "Prélever un échantillon"
                 }
@@ -734,8 +734,8 @@ class Data {
             "resourceName": "medicinal_plants",
             "imageName": "medicinal_plants",
             "displayName": "Plantes médicinales",
-            "category": "medecine",
-            "popGrowth": 3,
+            "category": "medicine",
+            "popGrowth": 5,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -746,7 +746,7 @@ class Data {
                         "herbalism",
                         "botany"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 4,
                     "get": "medicinal_plants",
                     "displayName": "Cueillir"
                 },
@@ -761,7 +761,7 @@ class Data {
                         "dosage",
                         "symptoms"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 6,
                     "get": "medicine",
                     "displayName": "Préparer"
                 },
@@ -776,7 +776,7 @@ class Data {
                         "pharmacology",
                         "experimentation"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "science",
                     "displayName": "Analyser"
                 }
@@ -787,7 +787,7 @@ class Data {
             "imageName": "resin",
             "displayName": "Résine",
             "category": "raw_material",
-            "popGrowth": 3,
+            "popGrowth": 2,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -798,7 +798,7 @@ class Data {
                         "plant_anatomy",
                         "botany"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 6,
                     "get": "resin",
                     "displayName": "Récolter"
                 },
@@ -813,7 +813,7 @@ class Data {
                         "adhesives",
                         "material_science"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 6,
                     "get": "containers",
                     "displayName": "Chauffer"
                 },
@@ -828,7 +828,7 @@ class Data {
                         "joining",
                         "material_science"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "science",
                     "displayName": "Mélanger"
                 }
@@ -839,7 +839,7 @@ class Data {
             "imageName": "wild_wheat",
             "displayName": "Blé sauvage",
             "category": "food",
-            "popGrowth": 3,
+            "popGrowth": 4,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -850,7 +850,7 @@ class Data {
                         "botany",
                         "food_plants"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 3,
                     "get": "wild_wheat",
                     "displayName": "Cueillir"
                 },
@@ -865,7 +865,7 @@ class Data {
                         "agriculture",
                         "plant_reproduction"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 2,
                     "get": "seeds",
                     "displayName": "Sélectionner les graines"
                 },
@@ -880,7 +880,7 @@ class Data {
                         "irrigation",
                         "soil_quality"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 10,
                     "get": "wheat",
                     "displayName": "Cultiver"
                 }
@@ -891,7 +891,7 @@ class Data {
             "imageName": "wheat",
             "displayName": "Blé",
             "category": "food",
-            "popGrowth": 6,
+            "popGrowth": 10,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -902,7 +902,7 @@ class Data {
                         "harvesting",
                         "grain_processing"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 8,
                     "get": "wheat",
                     "displayName": "Récolter"
                 },
@@ -917,7 +917,7 @@ class Data {
                         "grain_processing",
                         "seeds"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 8,
                     "get": "grain",
                     "displayName": "Battre"
                 },
@@ -932,7 +932,7 @@ class Data {
                         "flour",
                         "nutrition"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 8,
                     "get": "flour",
                     "displayName": "Moudre"
                 }
@@ -954,7 +954,7 @@ class Data {
                         "food_storage",
                         "storage"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 3,
                     "get": "seeds",
                     "displayName": "Stocker"
                 },
@@ -984,7 +984,7 @@ class Data {
                         "botany",
                         "seed_selection"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 10,
                     "get": "wheat",
                     "displayName": "Sélectionner"
                 }
@@ -1006,7 +1006,7 @@ class Data {
                         "food_storage",
                         "storage"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 3,
                     "get": "grain",
                     "displayName": "Stocker"
                 },
@@ -1036,7 +1036,7 @@ class Data {
                         "microbiology",
                         "food_preservation"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 10,
                     "get": "beer",
                     "displayName": "Faire fermenter"
                 }
@@ -1047,7 +1047,7 @@ class Data {
             "imageName": "flour",
             "displayName": "Farine",
             "category": "food",
-            "popGrowth": 3,
+            "popGrowth": 8,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -1058,7 +1058,7 @@ class Data {
                         "cooking",
                         "baking"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 6,
                     "get": "dough",
                     "displayName": "Mélanger"
                 },
@@ -1073,7 +1073,7 @@ class Data {
                         "food_storage",
                         "temperature"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 6,
                     "get": "bread",
                     "displayName": "Cuire"
                 },
@@ -1088,7 +1088,7 @@ class Data {
                         "grain_storage",
                         "preservation"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 6,
                     "get": "flour",
                     "displayName": "Stocker"
                 }
@@ -1099,7 +1099,7 @@ class Data {
             "imageName": "dough",
             "displayName": "Pâte",
             "category": "food",
-            "popGrowth": 3,
+            "popGrowth": 10,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -1151,11 +1151,11 @@ class Data {
             "imageName": "bread",
             "displayName": "Pain",
             "category": "food",
-            "popGrowth": 3,
+            "popGrowth": 12,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
-                "eat": {
+                "prepare": {
                     "requiresOneOf": [],
                     "learn": [
                         "nutrition",
@@ -1163,7 +1163,7 @@ class Data {
                         "cooking"
                     ],
                     "fatigue": 5,
-                    "get": "science",
+                    "get": "bread",
                     "displayName": "Manger"
                 },
                 "dry": {
@@ -1203,7 +1203,7 @@ class Data {
             "imageName": "plant_fibers",
             "displayName": "Fibres végétales",
             "category": "raw_material",
-            "popGrowth": 3,
+            "popGrowth": 2,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -1214,7 +1214,7 @@ class Data {
                         "botany",
                         "textile"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 3,
                     "get": "plant_fibers",
                     "displayName": "Récolter"
                 },
@@ -1229,7 +1229,7 @@ class Data {
                         "spinning",
                         "joining"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 4,
                     "get": "string",
                     "displayName": "Torsader"
                 },
@@ -1255,7 +1255,7 @@ class Data {
             "imageName": "string",
             "displayName": "Ficelle",
             "category": "comfort",
-            "popGrowth": 3,
+            "popGrowth": 4,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -1266,7 +1266,7 @@ class Data {
                         "braiding",
                         "strength"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 4,
                     "get": "rope",
                     "displayName": "Tresser"
                 },
@@ -1296,7 +1296,7 @@ class Data {
                         "joining",
                         "construction"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 4,
                     "get": "rope",
                     "displayName": "Nouer"
                 }
@@ -1307,7 +1307,7 @@ class Data {
             "imageName": "hide",
             "displayName": "Peau brute",
             "category": "raw_material",
-            "popGrowth": 3,
+            "popGrowth": 4,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -1318,7 +1318,7 @@ class Data {
                         "leatherworking",
                         "tools"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 6,
                     "get": "hide",
                     "displayName": "Racler"
                 },
@@ -1333,7 +1333,7 @@ class Data {
                         "leatherworking",
                         "chemistry"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 6,
                     "get": "leather",
                     "displayName": "Tanner"
                 },
@@ -1348,7 +1348,7 @@ class Data {
                         "hide_processing",
                         "preservation"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 6,
                     "get": "hide",
                     "displayName": "Sécher"
                 }
@@ -1359,7 +1359,7 @@ class Data {
             "imageName": "leather",
             "displayName": "Cuir",
             "category": "comfort",
-            "popGrowth": 3,
+            "popGrowth": 8,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -1370,7 +1370,7 @@ class Data {
                         "cutting",
                         "shaping"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 6,
                     "get": "leather",
                     "displayName": "Découper"
                 },
@@ -1385,7 +1385,7 @@ class Data {
                         "leatherworking",
                         "clothing"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 6,
                     "get": "clothes",
                     "displayName": "Coudre"
                 },
@@ -1400,7 +1400,7 @@ class Data {
                         "resin",
                         "material_science"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 6,
                     "get": "clothes",
                     "displayName": "Imperméabiliser"
                 }
@@ -1411,7 +1411,7 @@ class Data {
             "imageName": "saltwater",
             "displayName": "Eau salée",
             "category": "raw_material",
-            "popGrowth": 3,
+            "popGrowth": 1,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -1422,7 +1422,7 @@ class Data {
                         "hydrology",
                         "observation"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "saltwater",
                     "displayName": "Prélever"
                 },
@@ -1437,7 +1437,7 @@ class Data {
                         "salt_extraction",
                         "temperature"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 6,
                     "get": "salt",
                     "displayName": "Évaporer"
                 },
@@ -1452,7 +1452,7 @@ class Data {
                         "salinity",
                         "measurement"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "science",
                     "displayName": "Analyser"
                 }
@@ -1463,7 +1463,7 @@ class Data {
             "imageName": "salt",
             "displayName": "Sel",
             "category": "food",
-            "popGrowth": 3,
+            "popGrowth": 8,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -1474,7 +1474,7 @@ class Data {
                         "preservation",
                         "food_storage"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 6,
                     "get": "salt",
                     "displayName": "Récolter"
                 },
@@ -1489,7 +1489,7 @@ class Data {
                         "food_safety",
                         "preservation"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 6,
                     "get": "preserved_food",
                     "displayName": "Saler"
                 },
@@ -1504,7 +1504,7 @@ class Data {
                         "chemistry",
                         "measurement"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 6,
                     "get": "preserved_food",
                     "displayName": "Dissoudre"
                 }
@@ -1515,7 +1515,7 @@ class Data {
             "imageName": "fruits",
             "displayName": "Fruits",
             "category": "food",
-            "popGrowth": 3,
+            "popGrowth": 8,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -1526,7 +1526,7 @@ class Data {
                         "food_plants",
                         "plant_identification"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 4,
                     "get": "fruits",
                     "displayName": "Cueillir"
                 },
@@ -1541,7 +1541,7 @@ class Data {
                         "preservation",
                         "food_storage"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 6,
                     "get": "preserved_food",
                     "displayName": "Sécher"
                 },
@@ -1556,7 +1556,7 @@ class Data {
                         "microbiology",
                         "food_preservation"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 10,
                     "get": "preserved_food",
                     "displayName": "Faire fermenter"
                 }
@@ -1567,7 +1567,7 @@ class Data {
             "imageName": "mushrooms",
             "displayName": "Champignons",
             "category": "food",
-            "popGrowth": 3,
+            "popGrowth": 5,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -1578,7 +1578,7 @@ class Data {
                         "fungi",
                         "food_safety"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 8,
                     "get": "mushrooms",
                     "displayName": "Cueillir"
                 },
@@ -1593,7 +1593,7 @@ class Data {
                         "poisoning",
                         "food_safety"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "science",
                     "displayName": "Identifier"
                 },
@@ -1608,7 +1608,7 @@ class Data {
                         "preservation",
                         "food_storage"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 8,
                     "get": "preserved_food",
                     "displayName": "Sécher"
                 }
@@ -1619,7 +1619,7 @@ class Data {
             "imageName": "meat",
             "displayName": "Viande",
             "category": "food",
-            "popGrowth": 3,
+            "popGrowth": 10,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -1630,9 +1630,9 @@ class Data {
                         "anatomy",
                         "food_safety"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 7,
                     "get": "meat",
-                    "displayName": "Dépecer"
+                    "displayName": "Découper"
                 },
                 "smoke": {
                     "requiresOneOf": [
@@ -1645,7 +1645,7 @@ class Data {
                         "preservation",
                         "food_storage"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 7,
                     "get": "preserved_food",
                     "displayName": "Fumer"
                 },
@@ -1660,7 +1660,7 @@ class Data {
                         "food_safety",
                         "preservation"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 7,
                     "get": "preserved_food",
                     "displayName": "Saler"
                 }
@@ -1670,8 +1670,8 @@ class Data {
             "resourceName": "medicine",
             "imageName": "medicine",
             "displayName": "Préparation médicinale",
-            "category": "medecine",
-            "popGrowth": 3,
+            "category": "medicine",
+            "popGrowth": 12,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -1682,7 +1682,7 @@ class Data {
                         "symptoms",
                         "medicine"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "science",
                     "displayName": "Tester"
                 },
@@ -1697,7 +1697,7 @@ class Data {
                         "pharmacology",
                         "experimentation"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "science",
                     "displayName": "Analyser"
                 },
@@ -1712,7 +1712,7 @@ class Data {
                         "dosage",
                         "chemistry"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 8,
                     "get": "medicine",
                     "displayName": "Améliorer"
                 }
@@ -1723,7 +1723,7 @@ class Data {
             "imageName": "iron_ore",
             "displayName": "Minerai de fer",
             "category": "raw_material",
-            "popGrowth": 3,
+            "popGrowth": 1,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -1734,7 +1734,7 @@ class Data {
                         "geology",
                         "ore_processing"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 10,
                     "get": "iron_ore",
                     "displayName": "Extraire"
                 },
@@ -1749,7 +1749,7 @@ class Data {
                         "grinding",
                         "mineral_identification"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 10,
                     "get": "iron_ore",
                     "displayName": "Broyer"
                 },
@@ -1764,7 +1764,7 @@ class Data {
                         "metallurgy",
                         "iron_working"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 10,
                     "get": "iron",
                     "displayName": "Réduire"
                 }
@@ -1775,7 +1775,7 @@ class Data {
             "imageName": "iron",
             "displayName": "Fer",
             "category": "building_material",
-            "popGrowth": 3,
+            "popGrowth": 9,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -1827,7 +1827,7 @@ class Data {
             "imageName": "steel",
             "displayName": "Acier",
             "category": "building_material",
-            "popGrowth": 3,
+            "popGrowth": 12,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -1842,7 +1842,7 @@ class Data {
                         "steelworking",
                         "blacksmithing"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 4,
                     "get": "tool",
                     "displayName": "Forger"
                 },
@@ -1857,7 +1857,7 @@ class Data {
                         "metallurgy",
                         "tempering"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 6,
                     "get": "steel",
                     "displayName": "Tremper"
                 },
@@ -1872,7 +1872,7 @@ class Data {
                         "precision_engineering",
                         "metalworking"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 4,
                     "get": "tool",
                     "displayName": "Usiner"
                 }
@@ -1883,7 +1883,7 @@ class Data {
             "imageName": "copper_ore",
             "displayName": "Minerai de cuivre",
             "category": "raw_material",
-            "popGrowth": 3,
+            "popGrowth": 1,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -1894,7 +1894,7 @@ class Data {
                         "mineral_identification",
                         "ore_processing"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 6,
                     "get": "copper_ore",
                     "displayName": "Extraire"
                 },
@@ -1909,7 +1909,7 @@ class Data {
                         "grinding",
                         "mineral_identification"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 6,
                     "get": "copper_ore",
                     "displayName": "Broyer"
                 },
@@ -1924,7 +1924,7 @@ class Data {
                         "copper_working",
                         "metallurgy"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 10,
                     "get": "copper",
                     "displayName": "Fondre"
                 }
@@ -1935,7 +1935,7 @@ class Data {
             "imageName": "copper",
             "displayName": "Cuivre",
             "category": "building_material",
-            "popGrowth": 3,
+            "popGrowth": 8,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -1946,7 +1946,7 @@ class Data {
                         "hammering",
                         "metalworking"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 6,
                     "get": "copper",
                     "displayName": "Marteler"
                 },
@@ -1976,7 +1976,7 @@ class Data {
                         "alloying",
                         "material_science"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 6,
                     "get": "bronze",
                     "displayName": "Allier"
                 }
@@ -1987,7 +1987,7 @@ class Data {
             "imageName": "bronze",
             "displayName": "Bronze",
             "category": "building_material",
-            "popGrowth": 3,
+            "popGrowth": 7,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -2039,7 +2039,7 @@ class Data {
             "imageName": "limestone",
             "displayName": "Calcaire",
             "category": "building_material",
-            "popGrowth": 3,
+            "popGrowth": 2,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -2050,7 +2050,7 @@ class Data {
                         "quarrying",
                         "stone_working"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 4,
                     "get": "limestone",
                     "displayName": "Extraire"
                 },
@@ -2080,7 +2080,7 @@ class Data {
                         "mortar",
                         "material_science"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 4,
                     "get": "limestone",
                     "displayName": "Broyer"
                 }
@@ -2091,7 +2091,7 @@ class Data {
             "imageName": "lime",
             "displayName": "Chaux",
             "category": "comfort",
-            "popGrowth": 3,
+            "popGrowth": 2,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -2132,7 +2132,7 @@ class Data {
                         "material_science",
                         "causality"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "science",
                     "displayName": "Analyser"
                 }
@@ -2143,7 +2143,7 @@ class Data {
             "imageName": "bricks",
             "displayName": "Briques",
             "category": "building_material",
-            "popGrowth": 3,
+            "popGrowth": 6,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -2155,7 +2155,7 @@ class Data {
                         "architecture"
                     ],
                     "fatigue": 5,
-                    "get": "brick",
+                    "get": "bricks",
                     "displayName": "Stocker"
                 },
                 "fire": {
@@ -2169,7 +2169,7 @@ class Data {
                         "ceramics",
                         "temperature"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 6,
                     "get": "bricks",
                     "displayName": "Cuire"
                 },
@@ -2184,7 +2184,7 @@ class Data {
                         "construction",
                         "material_science"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 7,
                     "get": "bricks",
                     "displayName": "Améliorer"
                 }
@@ -2195,7 +2195,7 @@ class Data {
             "imageName": "containers",
             "displayName": "Récipients",
             "category": "comfort",
-            "popGrowth": 3,
+            "popGrowth": 6,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -2236,7 +2236,7 @@ class Data {
                         "storage",
                         "crafting"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 6,
                     "get": "containers",
                     "displayName": "Améliorer"
                 }
@@ -2258,7 +2258,7 @@ class Data {
                         "hygiene",
                         "observation"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 3,
                     "get": "organic_waste",
                     "displayName": "Collecter"
                 },
@@ -2273,7 +2273,7 @@ class Data {
                         "soil_quality",
                         "ecology"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 3,
                     "get": "compost",
                     "displayName": "Composter"
                 },
@@ -2288,7 +2288,7 @@ class Data {
                         "sanitation",
                         "ash"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 3,
                     "get": "ash",
                     "displayName": "Brûler"
                 }
@@ -2299,7 +2299,7 @@ class Data {
             "imageName": "compost",
             "displayName": "Compost",
             "category": "energy",
-            "popGrowth": 3,
+            "popGrowth": 5,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -2310,7 +2310,7 @@ class Data {
                         "soil_quality",
                         "agriculture"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 3,
                     "get": "soil",
                     "displayName": "Complèter"
                 },
@@ -2325,7 +2325,7 @@ class Data {
                         "chemistry",
                         "ecology"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "science",
                     "displayName": "Analyser"
                 },
@@ -2340,7 +2340,7 @@ class Data {
                         "fertilization",
                         "regeneration"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 3,
                     "get": "soil",
                     "displayName": "Améliorer"
                 }
@@ -2351,7 +2351,7 @@ class Data {
             "imageName": "soil",
             "displayName": "Sol",
             "category": "energy",
-            "popGrowth": 3,
+            "popGrowth": 4,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -2362,7 +2362,7 @@ class Data {
                         "observation",
                         "ecology"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "science",
                     "displayName": "Observer"
                 },
@@ -2377,7 +2377,7 @@ class Data {
                         "soil_quality",
                         "irrigation"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 6,
                     "get": "wild_wheat",
                     "displayName": "Cultiver"
                 },
@@ -2392,7 +2392,7 @@ class Data {
                         "geology",
                         "chemistry"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "science",
                     "displayName": "Prélever"
                 }
@@ -2403,7 +2403,7 @@ class Data {
             "imageName": "ceramics",
             "displayName": "Céramiques",
             "category": "comfort",
-            "popGrowth": 3,
+            "popGrowth": 5,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -2448,7 +2448,7 @@ class Data {
                         "ceramics",
                         "classification"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "science",
                     "displayName": "Analyser"
                 }
@@ -2459,7 +2459,7 @@ class Data {
             "imageName": "rope",
             "displayName": "Corde",
             "category": "building_material",
-            "popGrowth": 3,
+            "popGrowth": 4,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -2470,7 +2470,7 @@ class Data {
                         "knots",
                         "construction"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 4,
                     "get": "rope",
                     "displayName": "Allonger"
                 },
@@ -2485,7 +2485,7 @@ class Data {
                         "strength",
                         "textile"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 4,
                     "get": "rope",
                     "displayName": "Tresser"
                 },
@@ -2500,7 +2500,7 @@ class Data {
                         "wind",
                         "navigation"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 10,
                     "get": "sail",
                     "displayName": "Fabriquer une voile"
                 }
@@ -2563,7 +2563,7 @@ class Data {
             "imageName": "tool",
             "displayName": "Outils",
             "category": "tool",
-            "popGrowth": 3,
+            "popGrowth": 10,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -2574,7 +2574,7 @@ class Data {
                         "tools",
                         "experimentation"
                     ],
-                    "fatigue": 1,
+                    "fatigue": 4,
                     "get": "tool",
                     "displayName": "Répliquer"
                 },
@@ -2589,7 +2589,7 @@ class Data {
                         "maintenance",
                         "material_science"
                     ],
-                    "fatigue": 0,
+                    "fatigue": 3,
                     "get": "tool",
                     "displayName": "Réparer"
                 },
@@ -2615,7 +2615,7 @@ class Data {
             "imageName": "ancient_metal",
             "displayName": "Métal ancien",
             "category": "building_material",
-            "popGrowth": 3,
+            "popGrowth": 1,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -2626,7 +2626,7 @@ class Data {
                         "material_science",
                         "ruins"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 10,
                     "get": "ancient_metal",
                     "displayName": "Récupérer"
                 },
@@ -2641,7 +2641,7 @@ class Data {
                         "ancient_technology",
                         "metallurgy"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "science",
                     "displayName": "Examiner"
                 },
@@ -2667,7 +2667,7 @@ class Data {
             "imageName": "ancient_glass",
             "displayName": "Verre ancien",
             "category": "building_material",
-            "popGrowth": 3,
+            "popGrowth": 1,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -2678,7 +2678,7 @@ class Data {
                         "glassmaking",
                         "ruins"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 10,
                     "get": "ancient_glass",
                     "displayName": "Récupérer"
                 },
@@ -2693,7 +2693,7 @@ class Data {
                         "glassmaking",
                         "material_science"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "science",
                     "displayName": "Examiner"
                 },
@@ -2719,7 +2719,7 @@ class Data {
             "imageName": "ancient_plastic",
             "displayName": "plastique ancien",
             "category": "building_material",
-            "popGrowth": 3,
+            "popGrowth": 1,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -2730,7 +2730,7 @@ class Data {
                         "recycling",
                         "ancient_world"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 10,
                     "get": "ancient_plastic",
                     "displayName": "Récupérer"
                 },
@@ -2771,7 +2771,7 @@ class Data {
             "imageName": "ash",
             "displayName": "Cendres",
             "category": "energy",
-            "popGrowth": 3,
+            "popGrowth": 1,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -2782,7 +2782,7 @@ class Data {
                         "hygiene",
                         "observation"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 3,
                     "get": "ash",
                     "displayName": "Collecter"
                 },
@@ -2797,7 +2797,7 @@ class Data {
                         "soil_quality",
                         "ecology"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 3,
                     "get": "compost",
                     "displayName": "Composter"
                 },
@@ -2812,7 +2812,7 @@ class Data {
                         "hygiene",
                         "chemistry"
                     ],
-                    "fatigue": 5,
+                    "fatigue": 3,
                     "get": "soap",
                     "displayName": "Fabriquer du savon"
                 }
@@ -2823,7 +2823,7 @@ class Data {
             "imageName": "science",
             "displayName": "Science",
             "category": "misc",
-            "popGrowth": 3,
+            "popGrowth": 1,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -2831,7 +2831,7 @@ class Data {
                     "requiresOneOf": [],
                     "learn":
                         ["agriculture", "alloying", "ancient_world", "archaeology", "architecture", "baking", "botany", "bronze", "carpentry", "casting", "ceramics", "charcoal", "chemistry", "classification", "clay", "clay_working", "combustion", "comparison", "construction", "containers", "cooking", "cordage", "crafting", "cultivation", "cutting", "drying", "drying_food", "ecology", "evaporation", "experimentation", "farming", "fermentation", "filtration", "fire", "flint_knapping", "food_storage", "forging", "geology", "glassmaking", "grain_processing", "grinding", "heat", "herbalism", "hydrology", "hygiene", "joining", "kiln", "kiln_firing", "leatherworking", "lime", "loom", "machining", "masonry", "material_identification", "material_science", "measurement", "medicinal_plants", "medicine", "metallurgy", "metalworking", "microbiology", "milling", "mineral_identification", "molds", "navigation", "observation", "ore_processing", "plant_reproduction", "plants", "polishing", "pottery", "preservation", "recycling", "resin", "sailing", "salt", "salt_preservation", "salting", "sampling", "sanitation", "science", "seed_selection", "seeds", "sewing", "shaping", "smithing", "smoking_food", "soil", "soil_quality", "spinning", "steelworking", "stone_knapping", "stone_working", "storage", "tanning", "temperature", "textile", "tools", "water_quality", "water_storage", "waterproofing", "weather", "weaving", "wood_working", "woodworking"],
-                    "fatigue": 5,
+                    "fatigue": 1,
                     "get": "science",
                     "displayName": "Étudier"
                 }
@@ -2842,7 +2842,7 @@ class Data {
             "imageName": "soap",
             "displayName": "Savon",
             "category": "comfort",
-            "popGrowth": 3,
+            "popGrowth": 8,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -2850,7 +2850,7 @@ class Data {
                     "requiresOneOf": [],
                     "learn":
                         [],
-                    "fatigue": 5,
+                    "fatigue": 4,
                     "get": "soap",
                     "displayName": "Produire"
                 }
@@ -2861,7 +2861,7 @@ class Data {
             "imageName": "clothes",
             "displayName": "Vêtements",
             "category": "comfort",
-            "popGrowth": 3,
+            "popGrowth": 10,
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
@@ -2875,17 +2875,111 @@ class Data {
                 }
             }
         },
-        // "ash": {
-        //     "resourceName": "ash",
-        //     "imageName": "ash",
-        //     "displayName": "Cendres",
-        //     "category": "misc",
-        //     "popGrowth": 3,
-        //     "regeneration": 1,
-        //     "fatigueRecovery": 2,
-        //     "actions": {
-        //     }
-        // }
+        "animals": {
+            "resourceName": "animals",
+            "imageName": "animals",
+            "displayName": "Animaux",
+            "category": "living",
+            "popGrowth": -10,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "hunt": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "animal_husbandry",
+                        "tanning",
+                        "domestication"
+                    ],
+                    "fatigue": 10,
+                    "get": "meat",
+                    "displayName": "Chasser"
+                },
+                "domesticate": {
+                    "requiresOneOf": [
+                        "animal_husbandry",
+                        "animal_nutrition",
+                        "domestication"
+                    ],
+                    "learn": [
+                        "hide_processing",
+                        "leatherworking",
+                        "weaving"
+                    ],
+                    "fatigue": 6,
+                    "get": "domesticated_animals",
+                    "displayName": "Domestiquer"
+                },
+                "study": {
+                    "requiresOneOf": [
+                        "animal_husbandry",
+                        "animal_nutrition",
+                        "domestication"
+                    ],
+                    "learn": [
+                        "animal_husbandry",
+                        "animal_nutrition",
+                        "tanning"
+                    ],
+                    "fatigue": 1,
+                    "get": "science",
+                    "displayName": "Étudier"
+                }
+            }
+        },
+        "domesticated_animals": {
+            "resourceName": "domesticated_animals",
+            "imageName": "domesticated_animals",
+            "displayName": "Animaux domestiqués",
+            "category": "living",
+            "popGrowth": -10,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "shear": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "pinning",
+                        "textile",
+                        "tools"
+                    ],
+                    "fatigue": 3,
+                    "get": "wool",
+                    "displayName": "Raser"
+                },
+                "slaughter": {
+                    "requiresOneOf": [
+                        "animal_husbandry",
+                        "animal_nutrition",
+                        "domestication"
+                    ],
+                    "learn": [
+                        "butchery",
+                        "anatomy",
+                        "tanning"
+                    ],
+                    "fatigue": 10,
+                    "get": "meat",
+                    "displayName": "Abattre"
+                },
+                "skin": {
+                    "requiresOneOf": [
+                        "animal_husbandry",
+                        "animal_nutrition",
+                        "domestication"
+                    ],
+                    "learn": [
+                        "animal_husbandry",
+                        "animal_nutrition",
+                        "domestication"
+                    ],
+                    "fatigue": 5,
+                    "get": "hide",
+                    "displayName": "Dépecer"
+                }
+
+            }
+        }
     };
 
     static resourceCategoriesDisplayNames = {
@@ -2895,7 +2989,8 @@ class Data {
         building_material: "Matériaux de construction",
         comfort: "Confort",
         misc: "Autres",
-        energy: "Énergie"
+        energy: "Énergie",
+        medicine: "Médicaments"
     }
 
     static biomeNamesForGeneration = [
@@ -2946,6 +3041,7 @@ class Data {
             amountOfResources: 1,
             resources: [
                 "nothing",
+                "animals",
                 "sandstone",
                 "flint",
                 "plants",
@@ -2995,11 +3091,12 @@ class Data {
             propagation: { min: 0.15, max: 0.18 },
             minimum: 0,
             treshold: 0.4,
-            amountOfResources: 2,
+            amountOfResources: 1,
             resources: [
                 // "water",
                 "wood",
                 "fruits",
+                "animals"
                 // "nothing"
             ]
         },

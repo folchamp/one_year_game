@@ -125,10 +125,11 @@ class Render {
         const height = worldPosition.y - Settings.hexSize * 0.55;
         const smallSize = Settings.resourceImageSize / 2;
         const offsetY = Math.sin(performance.now() / 150) * 3;
-        try {
+        if (Images.resourceImages[order.resource.resourceData.imageName] === undefined) {
+            console.log(`${order.resource.resourceData.resourceName} n'a pas d'image`);
+            this.context.drawImage(Images.resourceImages["unknownResource"], worldPosition.x - smallSize / 2, height + offsetY, smallSize, smallSize);
+        } else {
             this.context.drawImage(Images.resourceImages[order.resource.resourceData.imageName], worldPosition.x - smallSize / 2, height + offsetY, smallSize, smallSize);
-        } catch (error) {
-            console.log(`${resource.resourceData.resourceName} n'a pas d'image`);
         }
     }
     drawResources(hex) {
@@ -144,10 +145,11 @@ class Render {
             this.context.strokeStyle = "rgba(24, 27, 24, 0.8)";
             // this.context.strokeRect(firstPosition + index * smallSize, height, smallSize, smallSize);
             if (hex.isExplored || !Settings.production) {
-                try {
-                    this.context.drawImage(Images.resourceImages[resource.resourceData.imageName], firstPosition + index * smallSize, height, smallSize, smallSize);
-                } catch (error) {
+                if (Images.resourceImages[resource.resourceData.imageName] === undefined) {
                     console.log(`${resource.resourceData.resourceName} n'a pas d'image`);
+                    this.context.drawImage(Images.resourceImages["unknownResource"], firstPosition + index * smallSize, height, smallSize, smallSize);
+                } else {
+                    this.context.drawImage(Images.resourceImages[resource.resourceData.imageName], firstPosition + index * smallSize, height, smallSize, smallSize);
                 }
             } else {
                 this.context.drawImage(Images.resourceImages["unknownResource"], firstPosition + index * smallSize, height, smallSize, smallSize);
@@ -155,10 +157,38 @@ class Render {
             index++;
         });
     }
+    drawFatigue(hex) {
+        const pos = this.getWorldPosition(hex);
+        const width = Settings.fatigueBarWidth;
+        const height = Settings.fatigueBarHeight;
+        const x = pos.x - width / 2;
+        const y = pos.y - Settings.fatigueBarVerticalOffset;
+        const fatigue = Math.max(0, Math.min(1, hex.fatigue / Settings.maxFatigue));
+        const healthyWidth = width * (1 - fatigue);
+        const gradient = this.context.createLinearGradient(x, 0, x + width, 0);
+
+        gradient.addColorStop(0, "#1f6b3a");
+        gradient.addColorStop(0.55, "#6f9f3d");
+        gradient.addColorStop(0.8, "#b59b45");
+        gradient.addColorStop(1, "#a66a3f");
+
+        this.context.fillStyle = "#ff0000";
+        this.context.fillRect(x, y, width, height);
+
+        this.context.fillStyle = gradient;
+        this.context.fillRect(x, y, healthyWidth, height);
+
+        this.context.strokeStyle = "#26351f";
+        this.context.lineWidth = 2;
+        this.context.strokeRect(x, y, width, height);
+    }
     drawHex(hex) {
         const pos = this.getWorldPosition(hex);
         if (hex.isSeenThroughFog || !Settings.production) {
             this.context.drawImage(Images.tileImages[hex.biome.imageName], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);
+            if (hex.fatigue > 0) {
+                this.drawFatigue(hex);
+            }
             this.drawResources(hex);
         } else {
             this.context.drawImage(Images.tileImages["fog_of_war"], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);

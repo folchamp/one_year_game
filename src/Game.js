@@ -123,7 +123,11 @@ class Game {
                 let get = resource.resourceData.actions[actionName].get; // which resource does the action "get" (harvest)
                 let knowledges = resource.resourceData.actions[actionName].learn;
                 if (get !== undefined) {
-                    this.inventory.add(Data.resources[get]);
+                    if (Data.resources[get] !== undefined) {
+                        this.inventory.add(Data.resources[get]);
+                    } else {
+                        console.log(`${resource.resourceName} n'a pas de get`);
+                    }
                     if (resource.resourceData.resourceName !== get) {
                         let newResourceData = Data.resources[get];
                         if (newResourceData === undefined) {
@@ -200,13 +204,17 @@ class Game {
             this.selectEntity(idle);
             this.camera.moveCamera(World.hexToWorld(this.ECS.Position.get(idle)));
         }
+        this.ui.update();
     }
     selectEntity(entity) {
+        let position = this.ECS.Position.get(entity);
         this.selection.selectedEntity = entity;
         this.selection.selectedEntityData = this.ECS.Sprite.get(entity);
         this.selection.selectedHex = undefined;
+        this.selection.selectedEntityHex = this.world.get(position.q, position.r);
     }
     selectHex(hex) {
+        this.selection.selectedEntityHex = undefined;
         this.selection.selectedEntity = undefined;
         this.selection.selectedHex = hex;
         if (hex !== undefined) {
