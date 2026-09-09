@@ -235,6 +235,12 @@ bricks
 que faire quand les trois slots de ressources sont pleins -> retirer la ressource originale
 comment obtenir de la brique ??? (clay -> bricks !)
 correction d'une tonne de ressources inaccessibles
+♥ 08/08/2026
+mirroir Saint-Rémy
+Terre des Loups, Rollings Realms
+rien fait :-( 
+♥ 09/08/2026
+
 
 ********************
 TODO
