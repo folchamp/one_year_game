@@ -73,17 +73,8 @@ class Game {
     downloadResources() {
         navigator.clipboard.writeText(JSON.stringify(Data.resources));
     }
-    isHexPositionOccupied(hexPosition) {
-        let isOccupied = false;
-        for (const [entity, position] of this.ECS.Movement) { // TODO movement ???
-            if (position.q === hexPosition.q && position.r === hexPosition.r) {
-                isOccupied = true;
-            }
-        }
-        return isOccupied;
-    }
     born() {
-        if (!this.isHexPositionOccupied({ q: Settings.startHexPosition.q, r: Settings.startHexPosition.r })) {
+        if (!this.movementSystem.isHexPositionOccupied({ q: Settings.startHexPosition.q, r: Settings.startHexPosition.r })) {
             this.createExplorer(Settings.startHexPosition.q, Settings.startHexPosition.r);
         }
     }

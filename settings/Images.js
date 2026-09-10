@@ -69,6 +69,16 @@ class Images {
         "meat",
         "bricks",
         "medicinal_plants",
-        "medicine"
+        "medicine",
+        "flour",
+        "dough",
+        "bread",
+        "hide",
+        "leather",
+        "plant_fibers",
+        "string",
+        "grain",
+        "beer",
+        "resin"
     ]);
 }

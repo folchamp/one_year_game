@@ -103,7 +103,7 @@ class UI {
         let hex = this.selection.selectedHex;
         if (isEntityHex) {
             hex = this.selection.selectedEntityHex;
-            console.log(hex);
+            // console.log(hex);
         }
         this.hexResourcesContainer.replaceChildren();
         Util.show(this.uiContainer);

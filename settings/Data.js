@@ -297,7 +297,7 @@ class Data {
                     "get": "charcoal",
                     "displayName": "Sécher"
                 },
-                "build": {
+                "extract": {
                     "requiresOneOf": [
                         "construction",
                         "carpentry",
@@ -309,8 +309,8 @@ class Data {
                         "architecture"
                     ],
                     "fatigue": 10,
-                    "get": "lumber",
-                    "displayName": "Construire"
+                    "get": "resin",
+                    "displayName": "Extraire"
                 }
             }
         },
@@ -713,9 +713,9 @@ class Data {
                     "get": "medicinal_plants",
                     "displayName": "Identifier"
                 },
-                "sample": {
+                "strip": {
                     "requiresOneOf": [
-                        "sampling",
+                        "plant_anatomy",
                         "science",
                         "botany"
                     ],
@@ -725,8 +725,8 @@ class Data {
                         "medicinal_plants"
                     ],
                     "fatigue": 1,
-                    "get": "plants",
-                    "displayName": "Prélever un échantillon"
+                    "get": "plant_fibers",
+                    "displayName": "Dépouiller"
                 }
             }
         },
@@ -1032,7 +1032,7 @@ class Data {
                         "experimentation"
                     ],
                     "learn": [
-                        "fermentation_food",
+                        "fermentation",
                         "microbiology",
                         "food_preservation"
                     ],
@@ -1122,7 +1122,7 @@ class Data {
                     ],
                     "learn": [
                         "bread_making",
-                        "fermentation_food",
+                        "fermentation",
                         "microbiology"
                     ],
                     "fatigue": 5,
@@ -1188,7 +1188,7 @@ class Data {
                         "cooking"
                     ],
                     "learn": [
-                        "fermentation_food",
+                        "fermentation",
                         "microbiology",
                         "food_safety"
                     ],
@@ -1552,7 +1552,7 @@ class Data {
                         "microbiology"
                     ],
                     "learn": [
-                        "fermentation_food",
+                        "fermentation",
                         "microbiology",
                         "food_preservation"
                     ],
@@ -2147,46 +2147,22 @@ class Data {
             "regeneration": 1,
             "fatigueRecovery": 2,
             "actions": {
-                "store": {
+                "produce": {
                     "requiresOneOf": [],
                     "learn": [
                         "masonry",
                         "construction",
-                        "architecture"
-                    ],
-                    "fatigue": 5,
-                    "get": "bricks",
-                    "displayName": "Stocker"
-                },
-                "fire": {
-                    "requiresOneOf": [
-                        "kiln",
-                        "fire",
-                        "ceramics"
-                    ],
-                    "learn": [
+                        "architecture",
                         "kiln_firing",
                         "ceramics",
-                        "temperature"
-                    ],
-                    "fatigue": 6,
-                    "get": "bricks",
-                    "displayName": "Cuire"
-                },
-                "improve": {
-                    "requiresOneOf": [
-                        "masonry",
-                        "material_science",
-                        "architecture"
-                    ],
-                    "learn": [
+                        "temperature",
                         "architecture",
                         "construction",
                         "material_science"
                     ],
-                    "fatigue": 7,
+                    "fatigue": 5,
                     "get": "bricks",
-                    "displayName": "Améliorer"
+                    "displayName": "Produire"
                 }
             }
         },
@@ -2852,6 +2828,25 @@ class Data {
                         [],
                     "fatigue": 4,
                     "get": "soap",
+                    "displayName": "Produire"
+                }
+            }
+        },
+        "beer": {
+            "resourceName": "beer",
+            "imageName": "beer",
+            "displayName": "Bière",
+            "category": "comfort",
+            "popGrowth": 8,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "produce": {
+                    "requiresOneOf": [],
+                    "learn":
+                        [],
+                    "fatigue": 6,
+                    "get": "beer",
                     "displayName": "Produire"
                 }
             }

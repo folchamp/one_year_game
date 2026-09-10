@@ -240,21 +240,40 @@ mirroir Saint-Rémy
 Terre des Loups, Rollings Realms
 rien fait :-( 
 ♥ 09/08/2026
-
-
-********************
-TODO
-********************
----------- MUST ----------
-images pour farine, pâte, pain, peau brute, cuire
+Krosmater Arena avec Flo'
+piano Enghien
+Stéphane le soir
+rien fait :-( 
+♥ 10/08/2026
+user-select none sur les UI
+correction de superposition sur le campement
+le movementSystem empêche les unités de se superposer (une seule unité par hex)
+image farine
+image pâte
+image pain
+image peau brute
+image cuire
+images pour farine, pâte, pain, peau brute, cuir
+image pour fibres végétalesd
 ajouter plant_fibers dans la ligne "plants"
 plant_fibers -> string -> clothes etc. (ropes)
 ajouter la ligne animals -> hide etc. (combat contre les animaux ?!)
 bread image
 dough image
-beer image
 floor image (sack)
-clay image (bucket)
+image ficelles
+beer image
+grain image
+clay image 
+resin image
+grosse correction du RAC, plein de ressources sont maintenant accessibles
+cleanup analyse
+
+********************
+TODO
+********************
+---------- MUST ----------
+ECS traversable ou non-traversable
 biomes se regénèrent
 rendre toutes les ressources trouvables
 rendre tous les knowledges utiles
