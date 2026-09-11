@@ -280,12 +280,20 @@ copper
 steel
 preserved_food
 Les ressources sont finies !
+virer les boucles de knowledges (même knowledge dans learn et require d'une action)
+amélioration du RAC, tout est à peu près accessibles (il faut tester)
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
+créer un validateur : toutes les ressources sont-elles accessibles ?
+learn priorise les connaissances non-apprises ???
+remplir les learns vides
+refactor/remove "improve" actions
+another crop (crop_cultivation)
 fish
+better_tools
 afficher le résultat d'une action dans l'UI
 ECS traversable ou non-traversable
 biomes se regénèrent

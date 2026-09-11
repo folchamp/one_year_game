@@ -5,7 +5,7 @@ class Inventory {
         this.content = {};
     }
     add(resource) {
-        console.log(resource);
+        // console.log(resource);
         this.content[resource.category] ??= {};
         this.content[resource.category][resource.resourceName] ??= 0;
         this.content[resource.category][resource.resourceName]++;

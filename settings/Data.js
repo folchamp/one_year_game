@@ -26,7 +26,8 @@ class Data {
                     "requiresOneOf": [
                         "fire",
                         "cooking",
-                        "containers"
+                        "containers",
+                        "food_safety"
                     ],
                     "learn": [
                         "purification",
@@ -39,13 +40,14 @@ class Data {
                 },
                 "sample": {
                     "requiresOneOf": [
+                        "water_sources",
                         "science",
                         "hydrology",
                         "sampling"
                     ],
                     "learn": [
                         "water_quality",
-                        "sampling",
+                        // "sampling",
                         "measurement"
                     ],
                     "fatigue": 1,
@@ -76,12 +78,13 @@ class Data {
                 },
                 "store": {
                     "requiresOneOf": [
+                        "water_sources",
                         "storage",
                         "containers",
                         "water_storage"
                     ],
                     "learn": [
-                        "water_storage",
+                        // "water_storage",
                         "food_storage",
                         "sanitation"
                     ],
@@ -96,7 +99,7 @@ class Data {
                         "measurement"
                     ],
                     "learn": [
-                        "water_quality",
+                        // "water_quality",
                         "chemistry",
                         "microbiology"
                     ],
@@ -118,7 +121,7 @@ class Data {
                 "gather": {
                     "requiresOneOf": [],
                     "learn": [
-                        "wood_working",
+                        "woodworking",
                         "observation",
                         "tools"
                     ],
@@ -130,10 +133,10 @@ class Data {
                     "requiresOneOf": [
                         "tools",
                         "cutting",
-                        "wood_working"
+                        "woodworking"
                     ],
                     "learn": [
-                        "woodworking",
+                        // "woodworking",
                         "timber",
                         "shaping"
                     ],
@@ -148,9 +151,10 @@ class Data {
                         "heat"
                     ],
                     "learn": [
-                        "combustion",
-                        "heat",
-                        "charcoal_making"
+                        // "combustion",
+                        // "heat",
+                        "charcoal_making",
+                        "smelting"
                     ],
                     "fatigue": 10,
                     "get": "ash",
@@ -178,20 +182,21 @@ class Data {
                     "get": "lumber",
                     "displayName": "Façonner"
                 },
-                "dry": {
+                "carbonize": {
                     "requiresOneOf": [
                         "drying",
-                        "wood_working",
-                        "temperature"
+                        "woodworking",
+                        "temperature",
+                        "charcoal_making"
                     ],
                     "learn": [
                         "seasoning",
-                        "woodworking",
+                        // "woodworking",
                         "preservation"
                     ],
                     "fatigue": 10,
                     "get": "charcoal",
-                    "displayName": "Sécher"
+                    "displayName": "Carboniser"
                 },
                 "extract": {
                     "requiresOneOf": [
@@ -200,9 +205,9 @@ class Data {
                         "architecture"
                     ],
                     "learn": [
-                        "carpentry",
-                        "construction",
-                        "architecture"
+                        // "carpentry",
+                        // "construction",
+                        // "architecture"
                     ],
                     "fatigue": 10,
                     "get": "resin",
@@ -239,7 +244,8 @@ class Data {
                     "learn": [
                         "metallurgy",
                         "kiln_firing",
-                        "temperature"
+                        "smelting"
+                        // "temperature"
                     ],
                     "fatigue": 10,
                     "get": "ash",
@@ -252,8 +258,8 @@ class Data {
                         "material_science"
                     ],
                     "learn": [
-                        "chemistry",
-                        "material_science",
+                        // "chemistry",
+                        // "material_science",
                         "experimentation"
                     ],
                     "fatigue": 1,
@@ -276,7 +282,8 @@ class Data {
                     "learn": [
                         "geology",
                         "observation",
-                        "stone_working"
+                        "stone_working",
+                        "sand"
                     ],
                     "fatigue": 2,
                     "get": "sandstone",
@@ -286,10 +293,11 @@ class Data {
                     "requiresOneOf": [
                         "tools",
                         "stone_knapping",
-                        "crafting"
+                        "crafting",
+                        "strength"
                     ],
                     "learn": [
-                        "stone_knapping",
+                        // "stone_knapping",
                         "shaping",
                         "cutting"
                     ],
@@ -301,12 +309,15 @@ class Data {
                     "requiresOneOf": [
                         "grinding",
                         "tools",
-                        "stone_working"
+                        "stone_working",
+                        "timber",
+                        "sand"
                     ],
                     "learn": [
-                        "grinding",
+                        // "grinding",
                         "material_science",
-                        "chemistry"
+                        "chemistry",
+                        "purification"
                     ],
                     "fatigue": 2,
                     "get": "sand",
@@ -338,11 +349,12 @@ class Data {
                     "requiresOneOf": [
                         "fire",
                         "tools",
-                        "flint_knapping"
+                        "flint_knapping",
+                        "timber"
                     ],
                     "learn": [
                         "combustion",
-                        "fire",
+                        // "fire",
                         "experimentation"
                     ],
                     "fatigue": 1,
@@ -356,7 +368,7 @@ class Data {
                         "mineral_identification"
                     ],
                     "learn": [
-                        "geology",
+                        // "geology",
                         "material_science",
                         "classification"
                     ],
@@ -395,7 +407,7 @@ class Data {
                     "learn": [
                         "pottery",
                         "containers",
-                        "shaping"
+                        // "shaping"
                     ],
                     "fatigue": 2,
                     "get": "pottery",
@@ -442,12 +454,14 @@ class Data {
                     "requiresOneOf": [
                         "fire",
                         "kiln",
-                        "temperature"
+                        "temperature",
+                        "glazing"
                     ],
                     "learn": [
                         "ceramics",
                         "kiln_firing",
-                        "heat"
+                        "heat",
+                        // "glazing"
                     ],
                     "fatigue": 2,
                     "get": "ceramics",
@@ -461,7 +475,7 @@ class Data {
                     ],
                     "learn": [
                         "glazing",
-                        "chemistry",
+                        // "chemistry",
                         "glassmaking"
                     ],
                     "fatigue": 2,
@@ -494,10 +508,12 @@ class Data {
                     "requiresOneOf": [
                         "filtration",
                         "water_quality",
-                        "science"
+                        "science",
+                        "water_sources",
+                        "purification"
                     ],
                     "learn": [
-                        "filtration",
+                        // "filtration",
                         "material_science",
                         "classification"
                     ],
@@ -536,7 +552,8 @@ class Data {
                     "learn": [
                         "glass_working",
                         "shaping",
-                        "containers"
+                        "containers",
+                        "silica"
                     ],
                     "fatigue": 3,
                     "get": "containers",
@@ -546,7 +563,10 @@ class Data {
                     "requiresOneOf": [
                         "kiln",
                         "glassmaking",
-                        "heat"
+                        "heat",
+                        "dosage",
+                        "tempering",
+                        "silica"
                     ],
                     "learn": [
                         "temperature",
@@ -564,7 +584,7 @@ class Data {
                         "material_science"
                     ],
                     "learn": [
-                        "chemistry",
+                        // "chemistry",
                         "silica",
                         "glassmaking"
                     ],
@@ -598,7 +618,9 @@ class Data {
                     "requiresOneOf": [
                         "botany",
                         "observation",
-                        "classification"
+                        "classification",
+                        "plant_identification",
+                        "medicinal_preparations"
                     ],
                     "learn": [
                         "plant_anatomy",
@@ -613,11 +635,12 @@ class Data {
                     "requiresOneOf": [
                         "plant_anatomy",
                         "science",
-                        "botany"
+                        "botany",
+                        "plant_fibers"
                     ],
                     "learn": [
                         "sampling",
-                        "plant_anatomy",
+                        // "plant_anatomy",
                         "medicinal_plants"
                     ],
                     "fatigue": 1,
@@ -650,12 +673,12 @@ class Data {
                     "requiresOneOf": [
                         "herbalism",
                         "cooking",
-                        "medicinal_plants"
+                        "medicinal_plants",
+                        "anatomy"
                     ],
                     "learn": [
                         "medicinal_preparations",
                         "dosage",
-                        "symptoms"
                     ],
                     "fatigue": 6,
                     "get": "medicine",
@@ -668,7 +691,7 @@ class Data {
                         "sampling"
                     ],
                     "learn": [
-                        "chemistry",
+                        // "chemistry",
                         "pharmacology",
                         "experimentation"
                     ],
@@ -705,7 +728,7 @@ class Data {
                         "chemistry"
                     ],
                     "learn": [
-                        "chemistry",
+                        // "chemistry",
                         "adhesives",
                         "material_science"
                     ],
@@ -720,7 +743,7 @@ class Data {
                         "crafting"
                     ],
                     "learn": [
-                        "chemistry",
+                        // "chemistry",
                         "joining",
                         "material_science"
                     ],
@@ -744,7 +767,8 @@ class Data {
                     "learn": [
                         "cereal_identification",
                         "botany",
-                        "food_plants"
+                        "food_plants",
+                        "crop_cultivation"
                     ],
                     "fatigue": 3,
                     "get": "wild_wheat",
@@ -754,12 +778,13 @@ class Data {
                     "requiresOneOf": [
                         "seeds",
                         "botany",
-                        "plant_reproduction"
+                        "plant_reproduction",
+                        "cereal_identification"
                     ],
                     "learn": [
                         "seed_selection",
                         "agriculture",
-                        "plant_reproduction"
+                        // "plant_reproduction"
                     ],
                     "fatigue": 2,
                     "get": "seeds",
@@ -769,11 +794,13 @@ class Data {
                     "requiresOneOf": [
                         "cultivation",
                         "seed_selection",
-                        "agriculture"
-                    ],
-                    "learn": [
                         "agriculture",
                         "irrigation",
+                        "harvesting"
+                    ],
+                    "learn": [
+                        // "agriculture",
+                        // "irrigation",
                         "soil_quality"
                     ],
                     "fatigue": 10,
@@ -806,11 +833,11 @@ class Data {
                     "requiresOneOf": [
                         "agriculture",
                         "tools",
-                        "grain_processing"
+                        "grain_processing",
+                        "timber"
                     ],
                     "learn": [
-                        "threshing",
-                        "grain_processing",
+                        // "grain_processing",
                         "seeds"
                     ],
                     "fatigue": 8,
@@ -846,7 +873,6 @@ class Data {
                 "store": {
                     "requiresOneOf": [],
                     "learn": [
-                        "seed_storage",
                         "food_storage",
                         "storage"
                     ],
@@ -858,12 +884,14 @@ class Data {
                     "requiresOneOf": [
                         "agriculture",
                         "farming",
-                        "soil"
+                        "soil",
+                        "plant_breeding",
+                        "crop_cultivation"
                     ],
                     "learn": [
-                        "agriculture",
+                        // "agriculture",
                         "seed_sowing",
-                        "crop_cultivation"
+                        // "crop_cultivation"
                     ],
                     "fatigue": 5,
                     "get": "wild_wheat",
@@ -877,7 +905,7 @@ class Data {
                     ],
                     "learn": [
                         "plant_breeding",
-                        "botany",
+                        // "botany",
                         "seed_selection"
                     ],
                     "fatigue": 10,
@@ -913,7 +941,7 @@ class Data {
                         "tools"
                     ],
                     "learn": [
-                        "milling",
+                        // "milling",
                         "flour",
                         "nutrition"
                     ],
@@ -925,10 +953,11 @@ class Data {
                     "requiresOneOf": [
                         "fermentation",
                         "cooking",
-                        "experimentation"
+                        "experimentation",
+                        "seed_sowing"
                     ],
                     "learn": [
-                        "fermentation",
+                        // "fermentation",
                         "microbiology",
                         "food_preservation"
                     ],
@@ -950,7 +979,6 @@ class Data {
                 "mix": {
                     "requiresOneOf": [],
                     "learn": [
-                        "dough",
                         "cooking",
                         "baking"
                     ],
@@ -977,10 +1005,12 @@ class Data {
                     "requiresOneOf": [
                         "storage",
                         "food_storage",
-                        "containers"
+                        "containers",
+                        "flour",
+                        "food_safety"
                     ],
                     "learn": [
-                        "food_safety",
+                        // "food_safety",
                         "grain_storage",
                         "preservation"
                     ],
@@ -1002,7 +1032,6 @@ class Data {
                 "knead": {
                     "requiresOneOf": [],
                     "learn": [
-                        "kneading",
                         "cooking",
                         "food_preparation"
                     ],
@@ -1018,7 +1047,7 @@ class Data {
                     ],
                     "learn": [
                         "bread_making",
-                        "fermentation",
+                        // "fermentation",
                         "microbiology"
                     ],
                     "fatigue": 5,
@@ -1032,7 +1061,7 @@ class Data {
                         "baking"
                     ],
                     "learn": [
-                        "baking",
+                        // "baking",
                         "bread_making",
                         "oven"
                     ],
@@ -1066,11 +1095,14 @@ class Data {
                     "requiresOneOf": [
                         "drying_food",
                         "preservation",
-                        "food_storage"
+                        "food_storage",
+                        "nutrition",
+                        "bread_making",
+                        "food_preparation"
                     ],
                     "learn": [
-                        "drying_food",
-                        "preservation",
+                        // "drying_food",
+                        // "preservation",
                         "storage"
                     ],
                     "fatigue": 5,
@@ -1084,8 +1116,8 @@ class Data {
                         "cooking"
                     ],
                     "learn": [
-                        "fermentation",
-                        "microbiology",
+                        // "fermentation",
+                        // "microbiology",
                         "food_safety"
                     ],
                     "fatigue": 5,
@@ -1121,7 +1153,7 @@ class Data {
                         "textile"
                     ],
                     "learn": [
-                        "cordage",
+                        // "cordage",
                         "spinning",
                         "joining"
                     ],
@@ -1133,12 +1165,13 @@ class Data {
                     "requiresOneOf": [
                         "weaving",
                         "loom",
-                        "textile"
+                        "textile",
+                        "braiding"
                     ],
                     "learn": [
-                        "weaving",
-                        "loom",
-                        "textile"
+                        // "weaving",
+                        // "loom",
+                        // "textile"
                     ],
                     "fatigue": 5,
                     "get": "clothes",
@@ -1170,12 +1203,13 @@ class Data {
                     "requiresOneOf": [
                         "weaving",
                         "textile",
-                        "loom"
+                        "loom",
+                        "knots"
                     ],
                     "learn": [
-                        "weaving",
-                        "textile",
-                        "loom"
+                        // "weaving",
+                        // "textile",
+                        // "loom"
                     ],
                     "fatigue": 5,
                     "get": "clothes",
@@ -1189,7 +1223,7 @@ class Data {
                     ],
                     "learn": [
                         "knots",
-                        "joining",
+                        // "joining",
                         "construction"
                     ],
                     "fatigue": 4,
@@ -1222,12 +1256,14 @@ class Data {
                     "requiresOneOf": [
                         "tanning",
                         "chemistry",
-                        "plants"
+                        "plants",
+                        "timber",
+                        "hide_processing"
                     ],
                     "learn": [
-                        "tanning",
+                        // "tanning",
                         "leatherworking",
-                        "chemistry"
+                        // "chemistry"
                     ],
                     "fatigue": 6,
                     "get": "leather",
@@ -1240,9 +1276,9 @@ class Data {
                         "leatherworking"
                     ],
                     "learn": [
-                        "drying",
+                        // "drying",
                         "hide_processing",
-                        "preservation"
+                        // "preservation"
                     ],
                     "fatigue": 6,
                     "get": "hide",
@@ -1277,7 +1313,7 @@ class Data {
                         "tools"
                     ],
                     "learn": [
-                        "sewing",
+                        // "sewing",
                         "leatherworking",
                         "clothing"
                     ],
@@ -1292,8 +1328,8 @@ class Data {
                         "waterproofing"
                     ],
                     "learn": [
-                        "waterproofing",
-                        "resin",
+                        // "waterproofing",
+                        // "resin",
                         "material_science"
                     ],
                     "fatigue": 6,
@@ -1316,7 +1352,9 @@ class Data {
                     "learn": [
                         "salt_extraction",
                         "hydrology",
-                        "observation"
+                        "observation",
+                        "water_sources",
+                        "salinity"
                     ],
                     "fatigue": 1,
                     "get": "saltwater",
@@ -1326,11 +1364,13 @@ class Data {
                     "requiresOneOf": [
                         "heat",
                         "evaporation",
-                        "fire"
+                        "fire",
+                        "purification",
+                        "salt_extraction"
                     ],
                     "learn": [
-                        "evaporation",
-                        "salt_extraction",
+                        // "evaporation",
+                        // "salt_extraction",
                         "temperature"
                     ],
                     "fatigue": 6,
@@ -1341,11 +1381,13 @@ class Data {
                     "requiresOneOf": [
                         "science",
                         "chemistry",
-                        "water_quality"
+                        "water_quality",
+                        "purification",
+                        "salinity"
                     ],
                     "learn": [
-                        "chemistry",
-                        "salinity",
+                        // "chemistry",
+                        // "salinity",
                         "measurement"
                     ],
                     "fatigue": 1,
@@ -1378,12 +1420,13 @@ class Data {
                     "requiresOneOf": [
                         "preservation",
                         "food_storage",
-                        "salt_preservation"
+                        "salt_preservation",
+                        "nutrition"
                     ],
                     "learn": [
                         "salting",
                         "food_safety",
-                        "preservation"
+                        // "preservation"
                     ],
                     "fatigue": 6,
                     "get": "preserved_food",
@@ -1396,8 +1439,7 @@ class Data {
                         "experimentation"
                     ],
                     "learn": [
-                        "brine",
-                        "chemistry",
+                        // "chemistry",
                         "measurement"
                     ],
                     "fatigue": 6,
@@ -1430,11 +1472,14 @@ class Data {
                     "requiresOneOf": [
                         "drying_food",
                         "preservation",
-                        "heat"
+                        "heat",
+                        "nutrition",
+                        "grain_storage",
+                        "food_preservation"
                     ],
                     "learn": [
-                        "drying_food",
-                        "preservation",
+                        // "drying_food",
+                        // "preservation",
                         "food_storage"
                     ],
                     "fatigue": 6,
@@ -1445,11 +1490,13 @@ class Data {
                     "requiresOneOf": [
                         "fermentation",
                         "cooking",
-                        "microbiology"
+                        "microbiology",
+                        "food_plants",
+                        "fungi"
                     ],
                     "learn": [
-                        "fermentation",
-                        "microbiology",
+                        // "fermentation",
+                        // "microbiology",
                         "food_preservation"
                     ],
                     "fatigue": 10,
@@ -1500,9 +1547,9 @@ class Data {
                         "food_storage"
                     ],
                     "learn": [
-                        "drying_food",
-                        "preservation",
-                        "food_storage"
+                        // "drying_food",
+                        // "preservation",
+                        // "food_storage"
                     ],
                     "fatigue": 8,
                     "get": "preserved_food",
@@ -1522,7 +1569,6 @@ class Data {
                 "butcher": {
                     "requiresOneOf": [],
                     "learn": [
-                        "butchery",
                         "anatomy",
                         "food_safety"
                     ],
@@ -1534,11 +1580,12 @@ class Data {
                     "requiresOneOf": [
                         "fire",
                         "smoking_food",
-                        "preservation"
+                        "preservation",
+                        "food_preservation"
                     ],
                     "learn": [
-                        "smoking_food",
-                        "preservation",
+                        // "smoking_food",
+                        // "preservation",
                         "food_storage"
                     ],
                     "fatigue": 7,
@@ -1549,12 +1596,14 @@ class Data {
                     "requiresOneOf": [
                         "salt",
                         "salting",
-                        "preservation"
+                        "preservation",
+                        "nutrition",
+                        "seasoning"
                     ],
                     "learn": [
-                        "salting",
+                        // "salting",
                         "food_safety",
-                        "preservation"
+                        // "preservation"
                     ],
                     "fatigue": 7,
                     "get": "preserved_food",
@@ -1575,7 +1624,6 @@ class Data {
                     "requiresOneOf": [],
                     "learn": [
                         "dosage",
-                        "symptoms",
                         "medicine"
                     ],
                     "fatigue": 1,
@@ -1586,11 +1634,11 @@ class Data {
                     "requiresOneOf": [
                         "science",
                         "medicine",
-                        "observation"
+                        "observation",
+                        "pharmacology"
                     ],
                     "learn": [
-                        "diagnosis",
-                        "pharmacology",
+                        // "pharmacology",
                         "experimentation"
                     ],
                     "fatigue": 1,
@@ -1601,12 +1649,13 @@ class Data {
                     "requiresOneOf": [
                         "chemistry",
                         "herbalism",
-                        "experimentation"
+                        "experimentation",
+                        "poisoning"
                     ],
                     "learn": [
                         "medicinal_preparations",
                         "dosage",
-                        "chemistry"
+                        // "chemistry"
                     ],
                     "fatigue": 8,
                     "get": "medicine",
@@ -1641,8 +1690,8 @@ class Data {
                         "tools"
                     ],
                     "learn": [
-                        "ore_processing",
-                        "grinding",
+                        // "ore_processing",
+                        // "grinding",
                         "mineral_identification"
                     ],
                     "fatigue": 10,
@@ -1653,12 +1702,14 @@ class Data {
                     "requiresOneOf": [
                         "fire",
                         "charcoal",
-                        "metallurgy"
+                        "metallurgy",
+                        "smelting",
+                        "iron_working"
                     ],
                     "learn": [
-                        "smelting",
-                        "metallurgy",
-                        "iron_working"
+                        // "smelting",
+                        // "metallurgy",
+                        // "iron_working"
                     ],
                     "fatigue": 10,
                     "get": "iron",
@@ -1690,11 +1741,11 @@ class Data {
                     "requiresOneOf": [
                         "forging",
                         "heat",
-                        "metallurgy"
+                        "metallurgy",
+                        "iron_working"
                     ],
                     "learn": [
-                        "forging",
-                        "annealing",
+                        // "forging",
                         "tempering"
                     ],
                     "fatigue": 5,
@@ -1708,9 +1759,9 @@ class Data {
                         "chemistry"
                     ],
                     "learn": [
-                        "alloying",
+                        // "alloying",
                         "material_science",
-                        "metallurgy"
+                        // "metallurgy"
                     ],
                     "fatigue": 5,
                     "get": "steel",
@@ -1736,7 +1787,6 @@ class Data {
                     "learn": [
                         "forging",
                         "steelworking",
-                        "blacksmithing"
                     ],
                     "fatigue": 4,
                     "get": "tool",
@@ -1744,12 +1794,11 @@ class Data {
                 },
                 "temper": {
                     "requiresOneOf": [
-                        "metallurgy",
+                        // "metallurgy",
                         "smithing",
                         "steelworking"
                     ],
                     "learn": [
-                        "heat_treatment",
                         "metallurgy",
                         "tempering"
                     ],
@@ -1764,9 +1813,8 @@ class Data {
                         "tools"
                     ],
                     "learn": [
-                        "machining",
-                        "precision_engineering",
-                        "metalworking"
+                        // "machining",
+                        // "metalworking"
                     ],
                     "fatigue": 4,
                     "get": "tool",
@@ -1801,8 +1849,8 @@ class Data {
                         "tools"
                     ],
                     "learn": [
-                        "ore_processing",
-                        "grinding",
+                        // "ore_processing",
+                        // "grinding",
                         "mineral_identification"
                     ],
                     "fatigue": 6,
@@ -1813,12 +1861,12 @@ class Data {
                     "requiresOneOf": [
                         "fire",
                         "charcoal",
-                        "metallurgy"
+                        "metallurgy",
+                        "smelting"
                     ],
                     "learn": [
-                        "smelting",
-                        "copper_working",
-                        "metallurgy"
+                        // "smelting",
+                        // "metallurgy"
                     ],
                     "fatigue": 10,
                     "get": "copper",
@@ -1838,7 +1886,6 @@ class Data {
                 "hammer": {
                     "requiresOneOf": [],
                     "learn": [
-                        "copper_working",
                         "hammering",
                         "metalworking"
                     ],
@@ -1853,8 +1900,8 @@ class Data {
                         "metallurgy"
                     ],
                     "learn": [
-                        "casting",
-                        "molds",
+                        // "casting",
+                        // "molds",
                         "metalworking"
                     ],
                     "fatigue": 5,
@@ -1868,8 +1915,8 @@ class Data {
                         "bronze"
                     ],
                     "learn": [
-                        "bronze",
-                        "alloying",
+                        // "bronze",
+                        // "alloying",
                         "material_science"
                     ],
                     "fatigue": 6,
@@ -1905,8 +1952,8 @@ class Data {
                         "metallurgy"
                     ],
                     "learn": [
-                        "casting",
-                        "molds",
+                        // "casting",
+                        // "molds",
                         "alloying"
                     ],
                     "fatigue": 5,
@@ -1920,8 +1967,8 @@ class Data {
                         "tools"
                     ],
                     "learn": [
-                        "polishing",
-                        "metalworking",
+                        // "polishing",
+                        // "metalworking",
                         "material_science"
                     ],
                     "fatigue": 5,
@@ -1954,7 +2001,8 @@ class Data {
                     "requiresOneOf": [
                         "fire",
                         "heat",
-                        "kiln"
+                        "kiln",
+                        "smelting"
                     ],
                     "learn": [
                         "lime",
@@ -1969,11 +2017,11 @@ class Data {
                     "requiresOneOf": [
                         "grinding",
                         "tools",
-                        "stone_working"
+                        "stone_working",
+                        "quarrying"
                     ],
                     "learn": [
-                        "grinding",
-                        "mortar",
+                        // "grinding",
                         "material_science"
                     ],
                     "fatigue": 4,
@@ -1994,7 +2042,6 @@ class Data {
                 "mix": {
                     "requiresOneOf": [],
                     "learn": [
-                        "mortar",
                         "construction",
                         "chemistry"
                     ],
@@ -2010,7 +2057,7 @@ class Data {
                     ],
                     "learn": [
                         "architecture",
-                        "construction",
+                        // "construction",
                         "waterproofing"
                     ],
                     "fatigue": 5,
@@ -2024,9 +2071,8 @@ class Data {
                         "material_science"
                     ],
                     "learn": [
-                        "chemistry",
-                        "material_science",
-                        "causality"
+                        // "chemistry",
+                        // "material_science",
                     ],
                     "fatigue": 1,
                     "get": "science",
@@ -2046,14 +2092,9 @@ class Data {
                 "produce": {
                     "requiresOneOf": [],
                     "learn": [
-                        "masonry",
-                        "construction",
                         "architecture",
-                        "kiln_firing",
                         "ceramics",
                         "temperature",
-                        "architecture",
-                        "construction",
                         "material_science"
                     ],
                     "fatigue": 5,
@@ -2077,9 +2118,6 @@ class Data {
                         "masonry",
                         "construction",
                         "architecture",
-                        "kiln_firing",
-                        "ceramics",
-                        "temperature",
                         "architecture",
                         "construction",
                         "material_science"
@@ -2105,9 +2143,6 @@ class Data {
                         "masonry",
                         "construction",
                         "architecture",
-                        "kiln_firing",
-                        "ceramics",
-                        "temperature",
                         "architecture",
                         "construction",
                         "material_science"
@@ -2145,9 +2180,9 @@ class Data {
                         "ceramics"
                     ],
                     "learn": [
-                        "food_storage",
+                        // "food_storage",
                         "food_safety",
-                        "preservation"
+                        // "preservation"
                     ],
                     "fatigue": 5,
                     "get": "preserved_food",
@@ -2157,10 +2192,11 @@ class Data {
                     "requiresOneOf": [
                         "pottery",
                         "ceramics",
-                        "material_science"
+                        "material_science",
+                        "food_safety"
                     ],
                     "learn": [
-                        "ceramics",
+                        // "ceramics",
                         "storage",
                         "crafting"
                     ],
@@ -2212,9 +2248,8 @@ class Data {
                         "soil_quality"
                     ],
                     "learn": [
-                        "ecology",
+                        // "ecology",
                         "fertilization",
-                        "regeneration"
                     ],
                     "fatigue": 3,
                     "get": "soil",
@@ -2236,7 +2271,7 @@ class Data {
                     "learn": [
                         "soil",
                         "observation",
-                        "ecology"
+                        "ecology",
                     ],
                     "fatigue": 1,
                     "get": "science",
@@ -2246,11 +2281,12 @@ class Data {
                     "requiresOneOf": [
                         "agriculture",
                         "cultivation",
-                        "soil_quality"
+                        "soil_quality",
+                        "fertilization"
                     ],
                     "learn": [
-                        "agriculture",
-                        "soil_quality",
+                        // "agriculture",
+                        // "soil_quality",
                         "irrigation"
                     ],
                     "fatigue": 6,
@@ -2265,7 +2301,7 @@ class Data {
                     ],
                     "learn": [
                         "soil_quality",
-                        "geology",
+                        // "geology",
                         "chemistry"
                     ],
                     "fatigue": 1,
@@ -2290,9 +2326,9 @@ class Data {
                         "clay"
                     ],
                     "learn": [
-                        "pottery",
+                        // "pottery",
                         "ceramics",
-                        "crafting"
+                        // "crafting"
                     ],
                     "fatigue": 5,
                     "get": "pottery",
@@ -2302,12 +2338,13 @@ class Data {
                     "requiresOneOf": [
                         "fire",
                         "pottery",
-                        "combustion"
+                        "combustion",
+                        "oven"
                     ],
                     "learn": [
                         "kiln",
                         "ceramics",
-                        "combustion"
+                        // "combustion"
                     ],
                     "fatigue": 5,
                     "get": "ceramics",
@@ -2317,7 +2354,8 @@ class Data {
                     "requiresOneOf": [
                         "geology",
                         "science",
-                        "material_identification"
+                        "material_identification",
+                        "clay_identification"
                     ],
                     "learn": [
                         "material_science",
@@ -2357,9 +2395,9 @@ class Data {
                         "cordage"
                     ],
                     "learn": [
-                        "weaving",
+                        // "weaving",
                         "strength",
-                        "textile"
+                        // "textile"
                     ],
                     "fatigue": 4,
                     "get": "rope",
@@ -2372,9 +2410,8 @@ class Data {
                         "navigation"
                     ],
                     "learn": [
-                        "sailing",
-                        "wind",
-                        "navigation"
+                        // "sailing",
+                        // "navigation"
                     ],
                     "fatigue": 10,
                     "get": "sail",
@@ -2409,8 +2446,8 @@ class Data {
                         "tools"
                     ],
                     "learn": [
-                        "spinning",
-                        "textile",
+                        // "spinning",
+                        // "textile",
                         "weaving"
                     ],
                     "fatigue": 5,
@@ -2421,12 +2458,13 @@ class Data {
                     "requiresOneOf": [
                         "textile",
                         "crafting",
-                        "experimentation"
+                        "experimentation",
+                        "clothing"
                     ],
                     "learn": [
-                        "textile",
+                        // "textile",
                         "material_science",
-                        "clothing"
+                        // "clothing"
                     ],
                     "fatigue": 5,
                     "get": "clothes",
@@ -2458,11 +2496,13 @@ class Data {
                     "requiresOneOf": [
                         "crafting",
                         "metalworking",
-                        "woodworking"
+                        "woodworking",
+                        "timber",
+                        "adhesives",
+                        "hammering"
                     ],
                     "learn": [
                         "repair",
-                        "maintenance",
                         "material_science"
                     ],
                     "fatigue": 3,
@@ -2476,9 +2516,7 @@ class Data {
                         "crafting"
                     ],
                     "learn": [
-                        "toolmaking",
-                        "experimentation",
-                        "specialization"
+                        // "experimentation",
                     ],
                     "fatigue": 5,
                     "get": "tool",
@@ -2499,8 +2537,7 @@ class Data {
                     "requiresOneOf": [],
                     "learn": [
                         "archaeology",
-                        "material_science",
-                        "ruins"
+                        "material_science"
                     ],
                     "fatigue": 10,
                     "get": "ancient_metal",
@@ -2513,8 +2550,6 @@ class Data {
                         "science"
                     ],
                     "learn": [
-                        "artifact_analysis",
-                        "ancient_technology",
                         "metallurgy"
                     ],
                     "fatigue": 1,
@@ -2523,9 +2558,10 @@ class Data {
                 },
                 "recycle": {
                     "requiresOneOf": [
-                        "metalworking",
-                        "recycling",
-                        "metallurgy"
+                        // "metalworking",
+                        // "recycling",
+                        "metallurgy",
+                        "repair"
                     ],
                     "learn": [
                         "recycling",
@@ -2552,7 +2588,8 @@ class Data {
                     "learn": [
                         "archaeology",
                         "glassmaking",
-                        "ruins"
+                        "silica",
+                        "glass_working"
                     ],
                     "fatigue": 10,
                     "get": "ancient_glass",
@@ -2565,8 +2602,7 @@ class Data {
                         "glassmaking"
                     ],
                     "learn": [
-                        "artifact_analysis",
-                        "glassmaking",
+                        // "glassmaking",
                         "material_science"
                     ],
                     "fatigue": 1,
@@ -2577,12 +2613,14 @@ class Data {
                     "requiresOneOf": [
                         "glassmaking",
                         "recycling",
-                        "material_science"
+                        "material_science",
+                        "glass_working",
+                        "repair"
                     ],
                     "learn": [
-                        "recycling",
-                        "glass_working",
-                        "material_science"
+                        // "recycling",
+                        // "glass_working",
+                        // "material_science"
                     ],
                     "fatigue": 1,
                     "get": "glass",
@@ -2617,9 +2655,8 @@ class Data {
                         "ancient_world"
                     ],
                     "learn": [
-                        "material_science",
-                        "chemistry",
-                        "identification"
+                        // "material_science",
+                        // "chemistry",
                     ],
                     "fatigue": 1,
                     "get": "ancient_plastic",
@@ -2629,12 +2666,12 @@ class Data {
                     "requiresOneOf": [
                         "recycling",
                         "chemistry",
-                        "material_science"
+                        "material_science",
+                        "repair"
                     ],
                     "learn": [
-                        "recycling",
-                        "chemistry",
-                        "processing"
+                        // "recycling",
+                        // "chemistry",
                     ],
                     "fatigue": 1,
                     "get": "ancient_plastic",
@@ -2669,9 +2706,8 @@ class Data {
                         "agriculture"
                     ],
                     "learn": [
-                        "composting",
                         "soil_quality",
-                        "ecology"
+                        // "ecology"
                     ],
                     "fatigue": 3,
                     "get": "compost",
@@ -2684,9 +2720,8 @@ class Data {
                         "sanitation"
                     ],
                     "learn": [
-                        "soapmaking",
-                        "hygiene",
-                        "chemistry"
+                        // "hygiene",
+                        // "chemistry"
                     ],
                     "fatigue": 3,
                     "get": "soap",
@@ -2706,7 +2741,7 @@ class Data {
                 "study": {
                     "requiresOneOf": [],
                     "learn":
-                        ["agriculture", "alloying", "ancient_world", "archaeology", "architecture", "baking", "botany", "bronze", "carpentry", "casting", "ceramics", "charcoal", "chemistry", "classification", "clay", "clay_working", "combustion", "comparison", "construction", "containers", "cooking", "cordage", "crafting", "cultivation", "cutting", "drying", "drying_food", "ecology", "evaporation", "experimentation", "farming", "fermentation", "filtration", "fire", "flint_knapping", "food_storage", "forging", "geology", "glassmaking", "grain_processing", "grinding", "heat", "herbalism", "hydrology", "hygiene", "joining", "kiln", "kiln_firing", "leatherworking", "lime", "loom", "machining", "masonry", "material_identification", "material_science", "measurement", "medicinal_plants", "medicine", "metallurgy", "metalworking", "microbiology", "milling", "mineral_identification", "molds", "navigation", "observation", "ore_processing", "plant_reproduction", "plants", "polishing", "pottery", "preservation", "recycling", "resin", "sailing", "salt", "salt_preservation", "salting", "sampling", "sanitation", "science", "seed_selection", "seeds", "sewing", "shaping", "smithing", "smoking_food", "soil", "soil_quality", "spinning", "steelworking", "stone_knapping", "stone_working", "storage", "tanning", "temperature", "textile", "tools", "water_quality", "water_storage", "waterproofing", "weather", "weaving", "wood_working", "woodworking"],
+                        ["agriculture", "alloying", "ancient_world", "archaeology", "architecture", "baking", "botany", "bronze", "carpentry", "casting", "ceramics", "charcoal", "chemistry", "classification", "clay", "clay_working", "combustion", "construction", "containers", "cooking", "cordage", "crafting", "cultivation", "cutting", "drying", "drying_food", "ecology", "evaporation", "experimentation", "farming", "fermentation", "filtration", "fire", "flint_knapping", "food_storage", "forging", "geology", "glassmaking", "grain_processing", "grinding", "heat", "herbalism", "hydrology", "hygiene", "joining", "kiln", "kiln_firing", "leatherworking", "lime", "loom", "machining", "masonry", "material_identification", "material_science", "measurement", "medicinal_plants", "medicine", "metallurgy", "metalworking", "microbiology", "milling", "mineral_identification", "molds", "navigation", "observation", "ore_processing", "plant_reproduction", "plants", "polishing", "pottery", "preservation", "recycling", "resin", "sailing", "salt", "salt_preservation", "salting", "sampling", "sanitation", "science", "seed_selection", "seeds", "sewing", "shaping", "smithing", "smoking_food", "soil", "soil_quality", "spinning", "steelworking", "stone_knapping", "stone_working", "storage", "tanning", "temperature", "textile", "tools", "water_quality", "water_storage", "waterproofing", "weaving", "woodworking"],
                     "fatigue": 1,
                     "get": "science",
                     "displayName": "Étudier"
@@ -2832,7 +2867,8 @@ class Data {
                     "requiresOneOf": [
                         "animal_husbandry",
                         "animal_nutrition",
-                        "domestication"
+                        "domestication",
+                        "timber"
                     ],
                     "learn": [
                         "hide_processing",
@@ -2850,8 +2886,8 @@ class Data {
                         "domestication"
                     ],
                     "learn": [
-                        "animal_husbandry",
-                        "animal_nutrition",
+                        // "animal_husbandry",
+                        // "animal_nutrition",
                         "tanning"
                     ],
                     "fatigue": 1,
@@ -2872,7 +2908,6 @@ class Data {
                 "shear": {
                     "requiresOneOf": [],
                     "learn": [
-                        "pinning",
                         "textile",
                         "tools"
                     ],
@@ -2887,7 +2922,6 @@ class Data {
                         "domestication"
                     ],
                     "learn": [
-                        "butchery",
                         "anatomy",
                         "tanning"
                     ],
@@ -2902,9 +2936,9 @@ class Data {
                         "domestication"
                     ],
                     "learn": [
-                        "animal_husbandry",
-                        "animal_nutrition",
-                        "domestication"
+                        // "animal_husbandry",
+                        // "animal_nutrition",
+                        // "domestication"
                     ],
                     "fatigue": 5,
                     "get": "hide",
@@ -3080,6 +3114,7 @@ class Data {
 // console.log("missing");
 // console.log("-------------------------------------");
 let countcount = 0;
+let knowledgesChecker = {};
 for (let resourceName in Data.resources) {
     countcount++;
     const resourceData = Data.resources[resourceName];
@@ -3087,6 +3122,8 @@ for (let resourceName in Data.resources) {
         console.log(`[R] no image for ${resourceName}`);
     }
     for (let actionName in resourceData.actions) {
+        const requiresOneOf = resourceData.actions[actionName].requiresOneOf;
+        const learn = resourceData.actions[actionName].learn;
         const get = resourceData.actions[actionName].get;
         if (Data.resources[get] === undefined) {
             console.warn(`${get} doesn't exist`);
@@ -3094,7 +3131,37 @@ for (let resourceName in Data.resources) {
         if (Images.resourceImages[get] === undefined) {
             console.log(`[G] no image for ${get}`);
         }
+
+        // console.log(`${resourceName} : ${actionName}`);
+        // console.log(requiresOneOf);
+        // console.log(learn);
+        requiresOneOf.forEach((knowledge) => {
+            knowledgesChecker[knowledge] ??= { name: resourceName, requires: 0, learns: 0 };
+            knowledgesChecker[knowledge].requires++;
+
+            if (learn.includes(knowledge)) {
+                console.log(`check ${resourceName} -> ${actionName} -> ${knowledge}`);
+            }
+        });
+        learn.forEach((knowledge) => {
+            knowledgesChecker[knowledge] ??= { name: resourceName, requires: 0, learns: 0 };
+            knowledgesChecker[knowledge].learns++;
+        });
+
+
     }
 }
-console.log(`${countcount} resources`);
+// console.log(knowledgesChecker);
+for (const knowledgeName in knowledgesChecker) {
+    const check = knowledgesChecker[knowledgeName];
+    if (knowledgeName === "crop_cultivation") {
+        // console.log(check);
+    }
+    if (check.learns === 0 || check.requires === 0) {
+        console.log(`${check.name} : ${knowledgeName}`);
+        console.log(check);
+        console.log(`--------------`)
+    }
+}
+// console.log(`${countcount} resources`);
 
