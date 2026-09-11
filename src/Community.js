@@ -73,10 +73,10 @@ class Community {
 
         // test TODO
         this.consumed.push(...consumed);
-        console.log("------------------------------------------");
+        // console.log("------------------------------------------");
         for (let resourceName in Data.resources) {
             if (!this.consumed.includes(resourceName)) {
-                console.log(resourceName);
+                // console.log(resourceName);
             }
         }
     }

@@ -106,110 +106,6 @@ class Data {
                 }
             }
         },
-        "water_sample": {
-            "resourceName": "water_sample",
-            "imageName": "water_sample",
-            "displayName": "Échantillon d'eau",
-            "category": "misc",
-            "popGrowth": 1,
-            "regeneration": 1,
-            "fatigueRecovery": 2,
-            "actions": {
-                "examine": {
-                    "requiresOneOf": [],
-                    "learn": [
-                        "observation",
-                        "water_quality",
-                        "classification"
-                    ],
-                    "fatigue": 1,
-                    "get": "science",
-                    "displayName": "Examiner"
-                },
-                "compare": {
-                    "requiresOneOf": [
-                        "comparison",
-                        "science",
-                        "measurement"
-                    ],
-                    "learn": [
-                        "hydrology",
-                        "chemistry",
-                        "causality"
-                    ],
-                    "fatigue": 1,
-                    "get": "science",
-                    "displayName": "Comparer"
-                },
-                "test": {
-                    "requiresOneOf": [
-                        "science",
-                        "chemistry",
-                        "water_quality"
-                    ],
-                    "learn": [
-                        "contamination",
-                        "microbiology",
-                        "experimentation"
-                    ],
-                    "fatigue": 1,
-                    "get": "science",
-                    "displayName": "Tester"
-                }
-            }
-        },
-        "rainwater": {
-            "resourceName": "rainwater",
-            "imageName": "rainwater",
-            "displayName": "Eau de pluie",
-            "category": "raw_material",
-            "popGrowth": 2,
-            "regeneration": 1,
-            "fatigueRecovery": 2,
-            "actions": {
-                "collect": {
-                    "requiresOneOf": [],
-                    "learn": [
-                        "rainwater",
-                        "weather",
-                        "water_storage"
-                    ],
-                    "fatigue": 1,
-                    "get": "rainwater",
-                    "displayName": "Recueillir"
-                },
-                "measure": {
-                    "requiresOneOf": [
-                        "measurement",
-                        "science",
-                        "weather"
-                    ],
-                    "learn": [
-                        "meteorology",
-                        "hydrology",
-                        "recording"
-                    ],
-                    "fatigue": 1,
-                    "get": "science",
-                    "displayName": "Mesurer"
-                },
-                "analyze": {
-                    "requiresOneOf": [
-                        "science",
-                        "chemistry",
-                        "water_quality"
-                    ],
-                    "learn": [
-                        "water_quality",
-                        "chemistry",
-                        "atmosphere"
-                    ],
-                    "fatigue": 1,
-                    "get": "science",
-                    "displayName": "Analyser"
-                }
-            }
-        },
         "wood": {
             "resourceName": "wood",
             "imageName": "wood",
@@ -1441,7 +1337,7 @@ class Data {
                     "get": "salt",
                     "displayName": "Évaporer"
                 },
-                "analyze": {
+                "clean": {
                     "requiresOneOf": [
                         "science",
                         "chemistry",
@@ -1453,8 +1349,8 @@ class Data {
                         "measurement"
                     ],
                     "fatigue": 1,
-                    "get": "science",
-                    "displayName": "Analyser"
+                    "get": "clean_water",
+                    "displayName": "Purifier"
                 }
             }
         },
@@ -2138,6 +2034,62 @@ class Data {
                 }
             }
         },
+        "plaster": {
+            "resourceName": "plaster",
+            "imageName": "plaster",
+            "displayName": "Plâtre",
+            "category": "building_material",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "produce": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "masonry",
+                        "construction",
+                        "architecture",
+                        "kiln_firing",
+                        "ceramics",
+                        "temperature",
+                        "architecture",
+                        "construction",
+                        "material_science"
+                    ],
+                    "fatigue": 5,
+                    "get": "plaster",
+                    "displayName": "Produire"
+                }
+            }
+        },
+        "mortar": {
+            "resourceName": "mortar",
+            "imageName": "mortar",
+            "displayName": "Mortier",
+            "category": "building_material",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "produce": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "masonry",
+                        "construction",
+                        "architecture",
+                        "kiln_firing",
+                        "ceramics",
+                        "temperature",
+                        "architecture",
+                        "construction",
+                        "material_science"
+                    ],
+                    "fatigue": 5,
+                    "get": "mortar",
+                    "displayName": "Produire"
+                }
+            }
+        },
         "bricks": {
             "resourceName": "bricks",
             "imageName": "bricks",
@@ -2215,58 +2167,6 @@ class Data {
                     "fatigue": 6,
                     "get": "containers",
                     "displayName": "Améliorer"
-                }
-            }
-        },
-        "organic_waste": {
-            "resourceName": "organic_waste",
-            "imageName": "organic_waste",
-            "displayName": "Déchets organiques",
-            "category": "energy",
-            "popGrowth": 3,
-            "regeneration": 1,
-            "fatigueRecovery": 2,
-            "actions": {
-                "collect": {
-                    "requiresOneOf": [],
-                    "learn": [
-                        "sanitation",
-                        "hygiene",
-                        "observation"
-                    ],
-                    "fatigue": 3,
-                    "get": "organic_waste",
-                    "displayName": "Collecter"
-                },
-                "compost": {
-                    "requiresOneOf": [
-                        "ecology",
-                        "soil",
-                        "agriculture"
-                    ],
-                    "learn": [
-                        "composting",
-                        "soil_quality",
-                        "ecology"
-                    ],
-                    "fatigue": 3,
-                    "get": "compost",
-                    "displayName": "Composter"
-                },
-                "burn": {
-                    "requiresOneOf": [
-                        "fire",
-                        "combustion",
-                        "sanitation"
-                    ],
-                    "learn": [
-                        "combustion",
-                        "sanitation",
-                        "ash"
-                    ],
-                    "fatigue": 3,
-                    "get": "ash",
-                    "displayName": "Brûler"
                 }
             }
         },
@@ -2870,6 +2770,44 @@ class Data {
                 }
             }
         },
+        "preserved_food": {
+            "resourceName": "preserved_food",
+            "imageName": "preserved_food",
+            "displayName": "Conserves",
+            "category": "food",
+            "popGrowth": 10,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "produce": {
+                    "requiresOneOf": [],
+                    "learn":
+                        [],
+                    "fatigue": 5,
+                    "get": "preserved_food",
+                    "displayName": "Produire"
+                }
+            }
+        },
+        "sail": {
+            "resourceName": "sail",
+            "imageName": "sail",
+            "displayName": "Voiles",
+            "category": "misc",
+            "popGrowth": 2,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "produce": {
+                    "requiresOneOf": [],
+                    "learn":
+                        [],
+                    "fatigue": 5,
+                    "get": "sail",
+                    "displayName": "Produire"
+                }
+            }
+        },
         "animals": {
             "resourceName": "animals",
             "imageName": "animals",
@@ -3055,7 +2993,7 @@ class Data {
             treshold: 0.5,
             amountOfResources: 1,
             resources: [
-                // "water",
+                "water",
                 "mushrooms",
                 "clay",
                 // "nothing"
@@ -3072,7 +3010,7 @@ class Data {
             treshold: 0.75,
             amountOfResources: 1,
             resources: [
-                "water",
+                "saltwater",
                 "sand",
                 // "nothing"
             ]
@@ -3134,14 +3072,16 @@ class Data {
     };
 }
 
-console.log("-------------------------------------");
-console.log("JSON");
-console.log("-------------------------------------");
-console.log(JSON.stringify(Data.resources));
-console.log("-------------------------------------");
-console.log("missing");
-console.log("-------------------------------------");
+// console.log("-------------------------------------");
+// console.log("JSON");
+// console.log("-------------------------------------");
+// console.log(JSON.stringify(Data.resources));
+// console.log("-------------------------------------");
+// console.log("missing");
+// console.log("-------------------------------------");
+let countcount = 0;
 for (let resourceName in Data.resources) {
+    countcount++;
     const resourceData = Data.resources[resourceName];
     if (Images.resourceImages[resourceName] === undefined) {
         console.log(`[R] no image for ${resourceName}`);
@@ -3156,4 +3096,5 @@ for (let resourceName in Data.resources) {
         }
     }
 }
+console.log(`${countcount} resources`);
 

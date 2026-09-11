@@ -1,3 +1,162 @@
+
+        "organic_waste": {
+            "resourceName": "organic_waste",
+            "imageName": "organic_waste",
+            "displayName": "Déchets organiques",
+            "category": "energy",
+            "popGrowth": 3,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "collect": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "sanitation",
+                        "hygiene",
+                        "observation"
+                    ],
+                    "fatigue": 3,
+                    "get": "organic_waste",
+                    "displayName": "Collecter"
+                },
+                "compost": {
+                    "requiresOneOf": [
+                        "ecology",
+                        "soil",
+                        "agriculture"
+                    ],
+                    "learn": [
+                        "composting",
+                        "soil_quality",
+                        "ecology"
+                    ],
+                    "fatigue": 3,
+                    "get": "compost",
+                    "displayName": "Composter"
+                },
+                "burn": {
+                    "requiresOneOf": [
+                        "fire",
+                        "combustion",
+                        "sanitation"
+                    ],
+                    "learn": [
+                        "combustion",
+                        "sanitation",
+                        "ash"
+                    ],
+                    "fatigue": 3,
+                    "get": "ash",
+                    "displayName": "Brûler"
+                }
+            }
+        },
+        "water_sample": {
+            "resourceName": "water_sample",
+            "imageName": "water_sample",
+            "displayName": "Échantillon d'eau",
+            "category": "misc",
+            "popGrowth": 1,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "examine": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "observation",
+                        "water_quality",
+                        "classification"
+                    ],
+                    "fatigue": 1,
+                    "get": "science",
+                    "displayName": "Examiner"
+                },
+                "compare": {
+                    "requiresOneOf": [
+                        "comparison",
+                        "science",
+                        "measurement"
+                    ],
+                    "learn": [
+                        "hydrology",
+                        "chemistry",
+                        "causality"
+                    ],
+                    "fatigue": 1,
+                    "get": "science",
+                    "displayName": "Comparer"
+                },
+                "test": {
+                    "requiresOneOf": [
+                        "science",
+                        "chemistry",
+                        "water_quality"
+                    ],
+                    "learn": [
+                        "contamination",
+                        "microbiology",
+                        "experimentation"
+                    ],
+                    "fatigue": 1,
+                    "get": "science",
+                    "displayName": "Tester"
+                }
+            }
+        },
+
+        "rainwater": {
+            "resourceName": "rainwater",
+            "imageName": "rainwater",
+            "displayName": "Eau de pluie",
+            "category": "raw_material",
+            "popGrowth": 2,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "collect": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "rainwater",
+                        "weather",
+                        "water_storage"
+                    ],
+                    "fatigue": 1,
+                    "get": "rainwater",
+                    "displayName": "Recueillir"
+                },
+                "measure": {
+                    "requiresOneOf": [
+                        "measurement",
+                        "science",
+                        "weather"
+                    ],
+                    "learn": [
+                        "meteorology",
+                        "hydrology",
+                        "recording"
+                    ],
+                    "fatigue": 1,
+                    "get": "science",
+                    "displayName": "Mesurer"
+                },
+                "analyze": {
+                    "requiresOneOf": [
+                        "science",
+                        "chemistry",
+                        "water_quality"
+                    ],
+                    "learn": [
+                        "water_quality",
+                        "chemistry",
+                        "atmosphere"
+                    ],
+                    "fatigue": 1,
+                    "get": "science",
+                    "displayName": "Analyser"
+                }
+            }
+        },
+
 const basicGrowth = Data.resources[resourceName].popGrowth;
         const count = this.lastResourcesGiven.filter(element => element === resourceName).length;
         this.population += ((Settings.lengthOfFoodMemory + 1 - count) / Settings.lengthOfFoodMemory + 1) * basicGrowth;

@@ -79,6 +79,16 @@ class Images {
         "string",
         "grain",
         "beer",
-        "resin"
+        "resin",
+        "mortar",
+        "plaster",
+        "containers",
+        "lime",
+        "saltwater",
+        "salt",
+        "bronze",
+        "copper",
+        "steel",
+        "preserved_food"
     ]);
 }

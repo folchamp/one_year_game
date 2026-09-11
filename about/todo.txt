@@ -268,11 +268,25 @@ clay image
 resin image
 grosse correction du RAC, plein de ressources sont maintenant accessibles
 cleanup analyse
+♥ 11/08/2026
+mortar 
+plaster
+containers
+lime
+salt
+saltwater
+bronze
+copper
+steel
+preserved_food
+Les ressources sont finies !
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
+fish
+afficher le résultat d'une action dans l'UI
 ECS traversable ou non-traversable
 biomes se regénèrent
 rendre toutes les ressources trouvables
