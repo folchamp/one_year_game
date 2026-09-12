@@ -65,7 +65,7 @@ class Hex {
         // });
     }
     update() {
-        if (this.fatigue > 0) {
+        if (this.fatigue > 0 && this.biome.biomeName !== "city") {
             this.fatigue = Math.max(this.fatigue - Settings.fatigueRecovery, 0);
         }
         this.resources.forEach((resource) => {

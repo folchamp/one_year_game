@@ -2539,7 +2539,7 @@ class Data {
                         "archaeology",
                         "material_science"
                     ],
-                    "fatigue": 10,
+                    "fatigue": 2,
                     "get": "ancient_metal",
                     "displayName": "Récupérer"
                 },
@@ -2552,7 +2552,7 @@ class Data {
                     "learn": [
                         "metallurgy"
                     ],
-                    "fatigue": 1,
+                    "fatigue": 0,
                     "get": "science",
                     "displayName": "Examiner"
                 },
@@ -2591,7 +2591,7 @@ class Data {
                         "silica",
                         "glass_working"
                     ],
-                    "fatigue": 10,
+                    "fatigue": 2,
                     "get": "ancient_glass",
                     "displayName": "Récupérer"
                 },
@@ -2605,7 +2605,7 @@ class Data {
                         // "glassmaking",
                         "material_science"
                     ],
-                    "fatigue": 1,
+                    "fatigue": 0,
                     "get": "science",
                     "displayName": "Examiner"
                 },
@@ -2644,7 +2644,7 @@ class Data {
                         "recycling",
                         "ancient_world"
                     ],
-                    "fatigue": 10,
+                    "fatigue": 2,
                     "get": "ancient_plastic",
                     "displayName": "Récupérer"
                 },
@@ -2658,7 +2658,7 @@ class Data {
                         // "material_science",
                         // "chemistry",
                     ],
-                    "fatigue": 1,
+                    "fatigue": 2,
                     "get": "ancient_plastic",
                     "displayName": "Identifier"
                 },
@@ -2840,6 +2840,63 @@ class Data {
                     "fatigue": 5,
                     "get": "sail",
                     "displayName": "Produire"
+                }
+            }
+        },
+        "oil": {
+            "resourceName": "oil",
+            "imageName": "oil",
+            "displayName": "Pétrole",
+            "category": "misc",
+            "popGrowth": 2,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "recycle": {
+                    "requiresOneOf": [],
+                    "learn":
+                        [],
+                    "fatigue": 2,
+                    "get": "oil",
+                    "displayName": "Recycler"
+                }
+            }
+        },
+        "electronics": {
+            "resourceName": "electronics",
+            "imageName": "electronics",
+            "displayName": "Électronique",
+            "category": "misc",
+            "popGrowth": 2,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "recycle": {
+                    "requiresOneOf": [],
+                    "learn":
+                        [],
+                    "fatigue": 2,
+                    "get": "electronics",
+                    "displayName": "Recycler"
+                }
+            }
+        },
+        "concrete": {
+            "resourceName": "concrete",
+            "imageName": "concrete",
+            "displayName": "Béton",
+            "category": "building_material",
+            "popGrowth": 2,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "recycle": {
+                    "requiresOneOf": [],
+                    "learn":
+                        [],
+                    "fatigue": 2,
+                    "get": "concrete",
+                    "displayName": "Recycler"
                 }
             }
         },
@@ -3100,7 +3157,10 @@ class Data {
             resources: [
                 "ancient_metal",
                 "ancient_plastic",
-                "ancient_glass"
+                "ancient_glass",
+                "concrete",
+                "electronics",
+                "oil"
             ]
         }
     };
