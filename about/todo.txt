@@ -283,14 +283,19 @@ Les ressources sont finies !
 virer les boucles de knowledges (même knowledge dans learn et require d'une action)
 amélioration du RAC, tout est à peu près accessibles (il faut tester)
 ♥ 12/08/2026
-
+RAC validator
+créer un validateur : toutes les ressources sont-elles accessibles ?
+oil, concrete et electronics sont de retour
+début de l'implémentation des community actions (pour créer des unités)
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
-RAC validator
-créer un validateur : toutes les ressources sont-elles accessibles ?
+système de pause ?
+menu ?
+passer le jeu en temps réel, un tick par seconde ?
+séparer harvester et explorer ?
 learn priorise les connaissances non-apprises ???
 remplir les learns vides
 refactor/remove "improve" actions

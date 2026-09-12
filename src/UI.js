@@ -7,8 +7,7 @@ class UI {
         this.inventory = inventory;
         this.community = community;
         Util.quickStructure(document.body, this,
-            [
-                "uiContainer",
+            ["uiContainer",
                 [
                     "unitSelectorContainer",
                     "unitImage"
@@ -29,8 +28,7 @@ class UI {
         );
 
         Util.quickStructure(document.body, this,
-            [
-                "uiMobileContainer",
+            ["uiMobileContainer",
                 ["upperMobileContainer",
                     "panUpButton",
                 ],
@@ -44,6 +42,12 @@ class UI {
                 ]
             ]
         );
+
+        Util.quickStructure(document.body, this,
+            ["uiCommunityActionsContainer",
+                "uiCommunityActionsTitle"
+            ]
+        )
 
         this.panUpButton.addEventListener("click", (event) => { this.uiActions.cameraUp(); });
         this.panLeftButton.addEventListener("click", (event) => { this.uiActions.cameraLeft(); });

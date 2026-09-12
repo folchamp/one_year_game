@@ -10,7 +10,8 @@ class Util {
         panDownButton: "⬇️",
         panRightButton: "➡️",
         panLeftButton: "⬅️",
-        spaceButton: "pass turn"
+        spaceButton: "pass turn",
+        uiCommunityActionsTitle : "community actions"
     };
 
     static toggle(element) {
