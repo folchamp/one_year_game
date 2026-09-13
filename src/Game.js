@@ -14,6 +14,7 @@ class Game {
             downloadResources: { description: "add Data.resources to clipboard", f: () => this.downloadResources() }
         };
         this.uiActions = {
+            createUnit: (unitName) => this.createUnit(unitName),
             actionButtonClick: (hex, resource, actionName) => this.actionButtonClick(hex, resource, actionName),
             // feedCommunityClick: (resourceName) => this.feedCommunityClick(resourceName),
             cameraLeft: () => this.camera.cameraLeft(),
@@ -70,6 +71,10 @@ class Game {
         this.tick(); // tick initial, je ne sais plus pourquoi c'est nécessaire
         this.loop();
     }
+    createUnit(unitName) {
+        console.log(`Creating unit ${unitName}...`);
+        this.born();
+    }
     downloadResources() {
         navigator.clipboard.writeText(JSON.stringify(Data.resources));
     }
@@ -78,14 +83,6 @@ class Game {
             this.createExplorer(Settings.startHexPosition.q, Settings.startHexPosition.r);
         }
     }
-    // feedCommunityClick(resourceName) {
-    //     let amount = this.inventory.get(resourceName);
-    //     if (amount > 0) {
-    //         this.community.feed(resourceName);
-    //         this.inventory.set(resourceName, amount - 1);
-    //     }
-    //     this.ui.update();
-    // }
     cleanOrders() {
         this.ECS.Order.forEach((order, entity) => {
             const stillThere = order.hex.resources.some((resource) => {
@@ -95,6 +92,10 @@ class Game {
                 // la ressource a été supprimée de la tuile, l'ordre ne peut plus être exécuté
                 this.ECS.Order.delete(entity);
             }
+
+            // TODO think about this
+            // retirer l'ordre de toute façon (test)
+            this.ECS.Order.delete(entity);
         });
     }
     actionButtonClick(hex, resource, actionName) {
@@ -152,7 +153,7 @@ class Game {
     createExplorer(q, r) {
         let entity = this.newEntity();
         this.ECS.Harvester.set(entity, {});
-        this.ECS.Explorer.set(entity, true);
+        this.ECS.Explorer.set(entity, { range: 1 });
         this.ECS.Name.set(entity, "explorer");
         this.ECS.Position.set(entity, { q: q, r: r });
         this.ECS.Movement.set(entity, { path: [] });
@@ -163,6 +164,9 @@ class Game {
     getMouseWorldPosition(event) {
         let mousePosition = Util.getMousePosition(this.display.getCanvas(), event);
         let worldPosition = this.camera.screenToWorld(mousePosition);
+
+        this.ui.setLastMousePosition(mousePosition);
+
         return worldPosition;
     }
     rightclick(event) {
@@ -198,16 +202,16 @@ class Game {
         this.ui.update();
     }
     selectEntity(entity) {
-        let position = this.ECS.Position.get(entity);
-        this.selection.selectedEntity = entity;
-        this.selection.selectedEntityData = this.ECS.Sprite.get(entity);
-        this.selection.selectedHex = undefined;
-        this.selection.selectedEntityHex = this.world.get(position.q, position.r);
+        const position = this.ECS.Position.get(entity);
+        const hex = this.world.get(position.q, position.r);
+        const data = this.ECS.Sprite.get(entity);
+        this.selection.selectEntity(entity, data, hex);
     }
     selectHex(hex) {
-        this.selection.selectedEntityHex = undefined;
-        this.selection.selectedEntity = undefined;
-        this.selection.selectedHex = hex;
+        this.selection.selectHex(hex);
+        if (hex.q === Settings.startHexPosition.q && hex.r === Settings.startHexPosition.r) {
+            this.selection.selectCommunity();
+        }
         if (hex !== undefined) {
             this.log.log(JSON.stringify(hex, null, 4));
             this.log.log(`Fatigue : ${hex.fatigue}/${Settings.maxFatigue}`);
@@ -241,24 +245,31 @@ class Game {
         return this.nextID++;
     }
     tick() {
-        this.community.feed(this.inventory, this.ECS.Explorer.size);
+        // this.community.feed(this.inventory, this.ECS.Explorer.size);
         this.movementSystem.update();
         this.ECS.Order.forEach((order, entity, map) => {
             this.action(order.hex, order.resource, order.actionName);
         });
         this.ECS.Explorer.forEach((value, entity, map) => {
+            if (value.range !== 1) {
+                throw "TODO range !!!";
+            }
             this.world.exploreTile(this.ECS.Position.get(entity));
             this.world.seeNeightbours(this.ECS.Position.get(entity));
         });
-        if (this.ECS.Explorer.size < Math.floor(this.community.population / Settings.bornPopulationCap)) {
-            this.born();
-        }
+        // date de l'époque où les unités apparaissaient automatiquement quand il y avait assez de bouffe
+        // if (this.ECS.Explorer.size < Math.floor(this.community.population / Settings.bornPopulationCap)) {
+        //     this.born();
+        // }
         this.world.update();
 
         // au cas où des ressources ont disparu, les explorateurs doivent arrêter de travailler
         this.cleanOrders()
 
         // toujours en dernier
+        if (this.selection.selectedEntity !== undefined) {
+            this.selectEntity(this.selection.selectedEntity);
+        }
         this.ui.update();
     }
     loop() {

@@ -301,7 +301,7 @@ class Data {
                         "shaping",
                         "cutting"
                     ],
-                    "fatigue": 1,
+                    "fatigue": 2,
                     "get": "tool",
                     "displayName": "Tailler"
                 },
@@ -341,7 +341,7 @@ class Data {
                         "stone_knapping",
                         "cutting"
                     ],
-                    "fatigue": 1,
+                    "fatigue": 2,
                     "get": "tool",
                     "displayName": "Tailler"
                 },
@@ -357,7 +357,7 @@ class Data {
                         // "fire",
                         "experimentation"
                     ],
-                    "fatigue": 1,
+                    "fatigue": 2,
                     "get": "flint",
                     "displayName": "Frapper"
                 },
@@ -627,7 +627,7 @@ class Data {
                         "plant_reproduction",
                         "ecology"
                     ],
-                    "fatigue": 1,
+                    "fatigue": 2,
                     "get": "medicinal_plants",
                     "displayName": "Identifier"
                 },
@@ -643,7 +643,7 @@ class Data {
                         // "plant_anatomy",
                         "medicinal_plants"
                     ],
-                    "fatigue": 1,
+                    "fatigue": 2,
                     "get": "plant_fibers",
                     "displayName": "Dépouiller"
                 }
@@ -1356,7 +1356,7 @@ class Data {
                         "water_sources",
                         "salinity"
                     ],
-                    "fatigue": 1,
+                    "fatigue": 2,
                     "get": "saltwater",
                     "displayName": "Prélever"
                 },
@@ -1390,7 +1390,7 @@ class Data {
                         // "salinity",
                         "measurement"
                     ],
-                    "fatigue": 1,
+                    "fatigue": 2,
                     "get": "clean_water",
                     "displayName": "Purifier"
                 }
@@ -1500,7 +1500,7 @@ class Data {
                         "food_preservation"
                     ],
                     "fatigue": 10,
-                    "get": "preserved_food",
+                    "get": "fermented_drink",
                     "displayName": "Faire fermenter"
                 }
             }
@@ -2568,7 +2568,7 @@ class Data {
                         "material_science",
                         "metalworking"
                     ],
-                    "fatigue": 1,
+                    "fatigue": 2,
                     "get": "iron",
                     "displayName": "Recycler"
                 }
@@ -2622,7 +2622,7 @@ class Data {
                         // "glass_working",
                         // "material_science"
                     ],
-                    "fatigue": 1,
+                    "fatigue": 2,
                     "get": "glass",
                     "displayName": "Recycler"
                 }
@@ -2673,7 +2673,7 @@ class Data {
                         // "recycling",
                         // "chemistry",
                     ],
-                    "fatigue": 1,
+                    "fatigue": 2,
                     "get": "ancient_plastic",
                     "displayName": "Recycler"
                 }
@@ -3003,6 +3003,48 @@ class Data {
                 }
 
             }
+        },
+        "alcohol": {
+            "resourceName": "alcohol",
+            "imageName": "alcohol",
+            "displayName": "Alcool",
+            "category": "comfort",
+            "popGrowth": 4,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "produce": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "hygiene",
+                        "pharmacology"
+                    ],
+                    "fatigue": 3,
+                    "get": "alcohol",
+                    "displayName": "Produire"
+                }
+            }
+        },
+        "fermented_drink": {
+            "resourceName": "fermented_drink",
+            "imageName": "fermented_drink",
+            "displayName": "Boisson fermentée",
+            "category": "food",
+            "popGrowth": 4,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "distill": {
+                    "requiresOneOf": [],
+                    "learn": [
+                        "heat",
+                        "chemistry",
+                    ],
+                    "fatigue": 3,
+                    "get": "alcohol",
+                    "displayName": "Distiller"
+                }
+            }
         }
     };
 
@@ -3164,4 +3206,21 @@ class Data {
             ]
         }
     };
+
+    static units = {
+        explorer: {
+            unitName: "explorer",
+            unitPrice: {
+                food: 2,
+                tool: 2
+            }
+        },
+        harvester: {
+            unitName: "harvester",
+            unitPrice: {
+                food: 1,
+                tool: 3
+            }
+        }
+    }
 }

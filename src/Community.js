@@ -9,7 +9,7 @@ class Community {
     learn(knowledge) {
         let chosenKnowledge = Random.fromArray(knowledge);
         if (chosenKnowledge !== undefined && !this.knowledge.includes(chosenKnowledge)) {
-            console.log(`learned ${chosenKnowledge}`);
+            console.log(`- learned ${chosenKnowledge}`);
             this.knowledge.push(chosenKnowledge);
         }
 
@@ -39,7 +39,7 @@ class Community {
         }
         return fills;
     }
-    feed(inventory, minPop) {
+    feed(inventory, minPop) { // TODO work on this, again
         const content = inventory.getContent();
         const consumed = [];
         let growth = 0;

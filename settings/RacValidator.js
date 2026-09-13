@@ -3,7 +3,7 @@
 class RacValidator {
     constructor() {
 
-        // console.log(JSON.stringify(Data.resources));
+        console.log(JSON.stringify(Data.resources));
 
         let countcount = 0;
         let knowledgesChecker = {};
@@ -11,7 +11,7 @@ class RacValidator {
             countcount++;
             const resourceData = Data.resources[resourceName];
             if (Images.resourceImages[resourceName] === undefined) {
-                console.log(`[R] no image for ${resourceName}`);
+                console.warn(`[R] no image for ${resourceName}`);
             }
             for (let actionName in resourceData.actions) {
                 const requiresOneOf = resourceData.actions[actionName].requiresOneOf;
@@ -21,7 +21,7 @@ class RacValidator {
                     console.warn(`resource ${get} doesn't exist`);
                 }
                 if (Images.resourceImages[get] === undefined) {
-                    console.log(`[G] no image for ${get}`);
+                    console.warn(`[G] no image for ${get}`);
                 }
 
                 requiresOneOf.forEach((knowledge) => {
@@ -29,7 +29,7 @@ class RacValidator {
                     knowledgesChecker[knowledge].requires++;
 
                     if (learn.includes(knowledge)) {
-                        console.log(`check knowledge loop ${resourceName} -> ${actionName} -> ${knowledge}`);
+                        console.warn(`check knowledge loop ${resourceName} -> ${actionName} -> ${knowledge}`);
                     }
                 });
                 learn.forEach((knowledge) => {
@@ -42,8 +42,10 @@ class RacValidator {
         for (const knowledgeName in knowledgesChecker) {
             const check = knowledgesChecker[knowledgeName];
             if (check.learns === 0 || check.requires === 0) {
-                console.log(`${check.name} : ${knowledgeName} is useless, look :`);
+                console.warn(`${check.name} : ${knowledgeName} is useless, look :`);
                 console.log(check);
+            } else {
+                // console.log(`${check.name} : ${knowledgeName} works.`);
             }
         }
 

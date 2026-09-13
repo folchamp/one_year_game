@@ -6,6 +6,7 @@ class UI {
         this.uiActions = uiActions;
         this.inventory = inventory;
         this.community = community;
+        this.lastMousePosition = { x: 0, y: 0 };
         Util.quickStructure(document.body, this,
             ["uiContainer",
                 [
@@ -47,7 +48,20 @@ class UI {
             ["uiCommunityActionsContainer",
                 "uiCommunityActionsTitle"
             ]
-        )
+        );
+
+        for (const unitName in Data.units) {
+            Util.quickStructure(this.uiCommunityActionsContainer, this,
+                ["uiCreateExplorerContainer",
+                    "uiCreateUnitImage",
+                    "uiCreateUnitButton"
+                ]
+            );
+            this.uiCreateUnitImage.src = `images/units/${unitName}.png`;
+            this.uiCreateUnitButton.innerText = unitName;
+            this.uiCreateUnitButton.addEventListener("click", (event) => { this.uiActions.createUnit(unitName); });
+
+        }
 
         this.panUpButton.addEventListener("click", (event) => { this.uiActions.cameraUp(); });
         this.panLeftButton.addEventListener("click", (event) => { this.uiActions.cameraLeft(); });
@@ -55,7 +69,12 @@ class UI {
         this.panRightButton.addEventListener("click", (event) => { this.uiActions.cameraRight(); });
         this.spaceButton.addEventListener("click", (event) => { this.uiActions.nextTick(); });
 
+
         Util.hide(this.uiContainer);
+        Util.hide(this.uiCommunityActionsContainer);
+    }
+    setLastMousePosition(pos) {
+        this.lastMousePosition = pos;
     }
     updatePopulation() {
         this.populationText.innerText = `${Util.texts["population"]} : ${Math.round(this.community.population)}`;
@@ -170,5 +189,13 @@ class UI {
         }
         this.updateInventory();
         this.updatePopulation();
+
+        if (this.selection.isCommunity) {
+            Util.show(this.uiCommunityActionsContainer);
+            this.uiCommunityActionsContainer.style["left"] = this.lastMousePosition.x + "px";
+            this.uiCommunityActionsContainer.style["top"] = this.lastMousePosition.y + "px";
+        } else {
+            Util.hide(this.uiCommunityActionsContainer);
+        }
     }
 }

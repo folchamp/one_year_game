@@ -7,7 +7,6 @@ class RAC {
         this.savePromise;
 
         this.actionSelector = new ActionSelector();
-        this.knowledgeSelector = new KnowledgeSelector();
         this.lastSelectedResource;
 
         Util.quickStructure(document.body, this,
@@ -30,7 +29,8 @@ class RAC {
 
         // TESTING
 
-        
+        console.log(Data.knowledges);
+        this.knowledgeSelector = new KnowledgeSelector();
 
         // END TESTING
     }
@@ -39,6 +39,21 @@ class RAC {
         if (resources === undefined || resources === null) {
             this.completeResourceList();
         } else {
+
+
+            for (let resourceName in resources) {
+                const resourceData = resources[resourceName];
+                for (let actionName in resourceData.actions) {
+                    const requiresOneOf = resourceData.actions[actionName].requiresOneOf;
+                    const learn = resourceData.actions[actionName].learn;
+                    requiresOneOf.forEach((knowledge) => {
+                        Data.knowledges[knowledge] ??= { name: knowledge };
+                    });
+                    learn.forEach((knowledge) => {
+                        Data.knowledges[knowledge] ??= { name: knowledge };
+                    });
+                }
+            }
             for (let resourceName in resources) {
                 let resourceData = resources[resourceName];
                 let resource = this.addResource(resourceName, resourceData.popGrowth, resourceData.regeneration, resourceData.fatigueRecovery, resourceData.category, resourceData.displayName);

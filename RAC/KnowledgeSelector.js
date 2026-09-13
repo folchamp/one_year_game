@@ -16,7 +16,7 @@ class KnowledgeSelector {
                 this.lastParameters.knowledgeName = knowledgeName;
                 LISTENER.shout("selectKnowledge", this.lastParameters);
             });
-            element.innerText = Data.knowledges[knowledgeName];
+            element.innerText = knowledgeName;
         }
 
         this.knowledgeSelectorContainer.addEventListener("click", (event) => {

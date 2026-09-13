@@ -287,11 +287,24 @@ RAC validator
 créer un validateur : toutes les ressources sont-elles accessibles ?
 oil, concrete et electronics sont de retour
 début de l'implémentation des community actions (pour créer des unités)
+♥ 13/08/2026
+no resources generate 1 fatigue, except science
+work on feed()
+ui is updated when an explorer moves
+ajouter les unités aux Data
+afficher les unités dans l'UI de communauté
+ajouter le prix des unités dans les Data
+le RAC récupère activement les knowledges déjà créés
+fermented_drink & alcohol
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
+fruits fermentés : alcool
+idle select cycles through idles
+explorers see 2 hexes far
+zoom qui suit la souris
 système de pause ?
 menu ?
 passer le jeu en temps réel, un tick par seconde ?

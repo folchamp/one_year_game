@@ -17,6 +17,8 @@ class World {
         });
         this.fillBiomes();
         this.fillResources();
+
+        this.hexes.get(`0, 0`).resources = [];
     }
     seeNeightbours(position) {
         const neightbors = World.getNeightbors(position.q, position.r);
@@ -43,6 +45,7 @@ class World {
     }
     createBiome(biome) {
         // console.log(`${biome.imageName}, ${Math.ceil(biome.amount * (this.mapRadius * this.mapRadius / 100))}, ${biome.amount}`);
+        // on fait en sorte d'augmenter le nombre de "départs de biomes" en fonction de la taille de la carte.
         for (let index = 0; index < Math.ceil(biome.amount * (this.mapRadius * this.mapRadius / 100)); index++) {
             let biomeCenter = this.getRandomHex();
             let tilesVisited = new Map();
