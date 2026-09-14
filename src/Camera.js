@@ -32,16 +32,29 @@ class Camera {
             // this.canvas.releasePointerCapture(event.pointerId);
         });
         this.canvas.addEventListener("wheel", (event) => {
-            const factor = 1.1;
-            event.preventDefault();
-            if (event.deltaY < 0)
-                this.zoom *= factor;
-            else
-                this.zoom /= factor;
+            // const factor = 1.1;
+            // event.preventDefault();
+            // if (event.deltaY < 0)
+            //     this.zoom *= factor;
+            // else
+            //     this.zoom /= factor;
             // TODO zoom minimal et zoom maximal, à décider plus tard
             // this.zoom = Math.max(0.25, Math.min(5, this.zoom));
             // TODO modifier le hexSize pour que les bordures restent visibles même zoomé à fond
             // Settings.hexSize = Settings.basicHexSize + (1 / this.zoom * 1);
+
+            event.preventDefault();
+            const mousePosition = Util.getMousePosition(this.canvas, event);
+            // Position dans le monde AVANT le zoom
+            const worldPosition = this.screenToWorld(mousePosition);
+            const factor = 1.1;
+            if (event.deltaY < 0)
+                this.zoom *= factor;
+            else
+                this.zoom /= factor;
+            // On ajuste la caméra pour que le même point du monde reste sous la souris
+            this.x = worldPosition.x - (mousePosition.x - this.canvas.width / 2) / this.zoom;
+            this.y = worldPosition.y - (mousePosition.y - this.canvas.height / 2) / this.zoom;
         });
     }
     zoomOut() {

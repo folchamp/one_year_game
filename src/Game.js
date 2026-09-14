@@ -67,6 +67,8 @@ class Game {
         this.createCampfire(Settings.startHexPosition.q, Settings.startHexPosition.r);
         this.createExplorer(Settings.startHexPosition.q, Settings.startHexPosition.r);
 
+        this.idleCycleCounter = 0;
+
         // start
         this.tick(); // tick initial, je ne sais plus pourquoi c'est nécessaire
         this.loop();
@@ -189,13 +191,16 @@ class Game {
         this.selection.hoveredHex = hex;
     }
     selectNextIdle() {
+        let idles = [];
         let idle;
-        this.ECS.Harvester.forEach((value, index, array) => {
-            if (this.ECS.Movement.get(index) !== undefined && this.ECS.Movement.get(index).path.length <= 0 && this.ECS.Order.get(index) === undefined) {
-                idle = index;
+        this.ECS.Harvester.forEach((value, entity, array) => {
+            if (this.ECS.Movement.get(entity) !== undefined && this.ECS.Movement.get(entity).path.length <= 0 && this.ECS.Order.get(entity) === undefined) {
+                idles.push(entity);
             }
         });
-        if (idle !== undefined) {
+        if (idles.length > 0) {
+            this.idleCycleCounter++;
+            idle = idles[this.idleCycleCounter % idles.length];
             this.selectEntity(idle);
             this.camera.moveCamera(World.hexToWorld(this.ECS.Position.get(idle)));
         }

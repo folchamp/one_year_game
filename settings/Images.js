@@ -89,6 +89,8 @@ class Images {
         "bronze",
         "copper",
         "steel",
-        "preserved_food"
+        "preserved_food",
+        "fermented_drink",
+        "alcohol"
     ]);
 }
