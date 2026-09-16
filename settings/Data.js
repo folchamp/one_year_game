@@ -3045,6 +3045,25 @@ class Data {
                     "displayName": "Distiller"
                 }
             }
+        },
+        "fish": {
+            "resourceName": "fish",
+            "imageName": "fish",
+            "displayName": "poisson",
+            "category": "food",
+            "popGrowth": 5,
+            "regeneration": 1,
+            "fatigueRecovery": 2,
+            "actions": {
+                "fish": {
+                    "requiresOneOf": [],
+                    "learn": [
+                    ],
+                    "fatigue": 3,
+                    "get": "fish",
+                    "displayName": "Pêcher"
+                }
+            }
         }
     };
 
@@ -3145,6 +3164,7 @@ class Data {
             resources: [
                 "saltwater",
                 "sand",
+                "fish"
                 // "nothing"
             ]
         },

@@ -91,6 +91,7 @@ class Images {
         "steel",
         "preserved_food",
         "fermented_drink",
-        "alcohol"
+        "alcohol",
+        "fish"
     ]);
 }
