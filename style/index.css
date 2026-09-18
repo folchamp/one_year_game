@@ -68,6 +68,8 @@ body {
         padding: 4px;
 
         .inventoryCategoryContainer {
+            display: flex;
+            align-items: center;
             user-select: none;
             background-color: blanchedalmond;
             color: black;

@@ -190,7 +190,7 @@ tool
 clothes
 + others
 ajuster et équilibrer le RAC
-♥ 02/08/2026
+♥ 02/09/2026
 new images 
 rope
 wool
@@ -202,24 +202,24 @@ placer la fatigue sur l'hex plutôt que sur la ressource
 changer le biome quand la hex atteint 50% de fatigue
 réduire les bordures entre les tuiles
 revoir le système de fatigue (global sur la tuile ?)
-♥ 03/08/2026
+♥ 03/09/2026
 city : remove a ressource when fatigue is high
 ouvrir et fermer les catégories de ressources
 la communauté consomme un élément de chaque "inventaire" (nourriture, matériaux de construction, confort et soins)
 revoir community.feed()
 revoir le système de food (ressources directement consommées par le village, barres sims qui évoluent)
 rework pop
-♥ 04/08/2026
+♥ 04/09/2026
 soil
-♥ 05/08/2026
+♥ 05/09/2026
 réparer le RAC
 iddle hotkey
 déplacer la caméra vers l'idle sélectionné
-♥ 06/08/2026
+♥ 06/09/2026
 Libération de Beaumont 
 Gégé et Lio à la maison
 rien fait :-( 
-♥ 07/08/2026
+♥ 07/09/2026
 l'UI s'update quand on séléction un idle
 afficher la fatigue
 l'UI affiche les actions quand on sélectionne le personnage
@@ -235,16 +235,16 @@ bricks
 que faire quand les trois slots de ressources sont pleins -> retirer la ressource originale
 comment obtenir de la brique ??? (clay -> bricks !)
 correction d'une tonne de ressources inaccessibles
-♥ 08/08/2026
+♥ 08/09/2026
 mirroir Saint-Rémy
 Terre des Loups, Rollings Realms
 rien fait :-( 
-♥ 09/08/2026
+♥ 09/09/2026
 Krosmater Arena avec Flo'
 piano Enghien
 Stéphane le soir
 rien fait :-( 
-♥ 10/08/2026
+♥ 10/09/2026
 user-select none sur les UI
 correction de superposition sur le campement
 le movementSystem empêche les unités de se superposer (une seule unité par hex)
@@ -268,7 +268,7 @@ clay image
 resin image
 grosse correction du RAC, plein de ressources sont maintenant accessibles
 cleanup analyse
-♥ 11/08/2026
+♥ 11/09/2026
 mortar 
 plaster
 containers
@@ -282,7 +282,7 @@ preserved_food
 Les ressources sont finies !
 virer les boucles de knowledges (même knowledge dans learn et require d'une action)
 amélioration du RAC, tout est à peu près accessibles (il faut tester)
-♥ 12/08/2026
+♥ 12/09/2026
 rendre toutes les ressources trouvables
 rendre tous les knowledges utiles
 trouver les ressources orphelines (les ressources qui ne sont générées nulle part)
@@ -296,7 +296,7 @@ RAC validator
 créer un validateur : toutes les ressources sont-elles accessibles ?
 oil, concrete et electronics sont de retour
 début de l'implémentation des community actions (pour créer des unités)
-♥ 13/08/2026
+♥ 13/09/2026
 no resources generate 1 fatigue, except science
 work on feed()
 ui is updated when an explorer moves
@@ -305,20 +305,30 @@ afficher les unités dans l'UI de communauté
 ajouter le prix des unités dans les Data
 le RAC récupère activement les knowledges déjà créés
 fermented_drink & alcohol
-♥ 14/08/2026
+♥ 14/09/2026
 fruits fermentés et alcool, images
 zoom qui suit la souris
 idle select cycles through idles
-♥ 15/08/2026
+♥ 15/09/2026
 Aix-la-Chapelle
 rien fait :-( 
-♥ 16/08/2026
+♥ 16/09/2026
 fish image 
 fish
+♥ 17/09/2026
+don de sang
+boulot
+Black Sails
+rien fait :-( 
+♥ 18/09/2026
+category icons
+
+
 ********************
 TODO
 ********************
 ---------- MUST ----------
+les unités coûtent des ressources
 explorers see 2 hexes far
 système de pause ?
 menu ?

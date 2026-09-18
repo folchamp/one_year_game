@@ -19,6 +19,18 @@ class Images {
         "desert"
     ]);
 
+    static categoryImages = Util.loadImages("categories/", [
+        "food",
+        "tool",
+        "raw_material",
+        "building_material",
+        "comfort",
+        "misc",
+        "energy",
+        "medicine",
+        "living"
+    ]);
+
     static unitImages = Util.loadImages("units/", [
         "explorer",
         "campfire"

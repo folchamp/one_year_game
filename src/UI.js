@@ -89,13 +89,16 @@ class UI {
             Util.quickStructure(this.uiInventoryContainer, this,
                 ["inventoryCategoryContainer",
                     "inventoryCategoryNameText",
+                    "inventoryCategoryImage",
                     "inventoryCategoryTotalText",
                     "inventoryCategoryResourcesContainer"
                 ]
             );
             Util.hide(this.inventoryCategoryResourcesContainer);
-            if (Data.resourceCategoriesDisplayNames[categoryName] !== undefined) {
-                this.inventoryCategoryNameText.innerText = `${Data.resourceCategoriesDisplayNames[categoryName]} ▼ `;
+            if (Data.categories[categoryName] !== undefined) {
+                this.inventoryCategoryNameText.innerText = ``; // `${Data.categories[categoryName].categoryDisplayName} ▼ `;
+                console.log(Data.categories[categoryName].categoryImageName);
+                this.inventoryCategoryImage.src = Images.categoryImages[Data.categories[categoryName].categoryImageName].src;
             } else {
                 this.inventoryCategoryNameText.innerText = `${categoryName} (tr. needed) ▼ `;
             }

@@ -3067,15 +3067,33 @@ class Data {
         }
     };
 
-    static resourceCategoriesDisplayNames = {
-        food: "Nourriture",
-        tool: "Outils",
-        raw_material: "Matériaux",
-        building_material: "Matériaux de construction",
-        comfort: "Confort",
-        misc: "Autres",
-        energy: "Énergie",
-        medicine: "Médicaments"
+    static categories = {
+        food: { categoryName: "food", categoryImageName: "food", categoryDisplayName: "Nourriture", },
+        tool: { categoryName: "tool", categoryImageName: "tool", categoryDisplayName: "Outils", },
+        raw_material: { categoryName: "raw_material", categoryImageName: "raw_material", categoryDisplayName: "Matériaux", },
+        building_material: { categoryName: "building_material", categoryImageName: "building_material", categoryDisplayName: "Matériaux de construction", },
+        comfort: { categoryName: "comfort", categoryImageName: "comfort", categoryDisplayName: "Confort", },
+        misc: { categoryName: "misc", categoryImageName: "misc", categoryDisplayName: "Autres", },
+        energy: { categoryName: "energy", categoryImageName: "energy", categoryDisplayName: "Énergie", },
+        medicine: { categoryName: "medicine", categoryImageName: "medicine", categoryDisplayName: "Médicaments" },
+        living: { categoryName: "living", categoryImageName: "living", categoryDisplayName: "Animaux" }
+    }
+
+    static units = {
+        explorer: {
+            unitName: "explorer",
+            unitPrice: {
+                food: 2,
+                tool: 2
+            }
+        },
+        harvester: {
+            unitName: "harvester",
+            unitPrice: {
+                food: 1,
+                tool: 3
+            }
+        }
     }
 
     static biomeNamesForGeneration = [
@@ -3226,21 +3244,4 @@ class Data {
             ]
         }
     };
-
-    static units = {
-        explorer: {
-            unitName: "explorer",
-            unitPrice: {
-                food: 2,
-                tool: 2
-            }
-        },
-        harvester: {
-            unitName: "harvester",
-            unitPrice: {
-                food: 1,
-                tool: 3
-            }
-        }
-    }
 }
