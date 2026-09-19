@@ -60,11 +60,23 @@ body {
 }
 
 .uiTwoContainer {
+    display: flex;
+    flex-direction: row;
     top: 0;
     left: 0;
     padding: 4px;
 
+    .populationContainer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 4px;
+        padding: 4px;
+    }
+
     .uiInventoryContainer {
+        display: flex;
+        flex-direction: row;
         padding: 4px;
 
         .inventoryCategoryContainer {
@@ -75,7 +87,7 @@ body {
             color: black;
             margin: 4px;
             padding: 4px;
-            cursor: pointer;
+            /* cursor: pointer; */
         }
     }
 }

@@ -3,10 +3,12 @@
 class Inventory {
     constructor() {
         this.content = {};
+        for (const categoryName in Data.categories) {
+            this.content[categoryName] ??= {};
+        }
     }
     add(resource) {
         // console.log(resource);
-        this.content[resource.category] ??= {};
         this.content[resource.category][resource.resourceName] ??= 0;
         this.content[resource.category][resource.resourceName]++;
         // console.log(this.content);
@@ -19,7 +21,7 @@ class Inventory {
                     this.content[category][resourceName]--;
                 }
                 if (this.content[category][resourceName] <= 0) {
-                    delete this.content[category][resourceName];
+                    // delete this.content[category][resourceName];
                 }
             }
             // if (Object.keys(content[category]).length === 0) {

@@ -322,6 +322,9 @@ Black Sails
 rien fait :-( 
 ♥ 18/09/2026
 category icons
+♥ 19/09/2026
+afficher en permanence les categories dans l'UI
+afficher le gain de chaque catégorie dans les actions avec le symbole
 
 
 ********************

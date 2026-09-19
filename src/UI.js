@@ -23,7 +23,10 @@ class UI {
 
         Util.quickStructure(document.body, this,
             ["uiTwoContainer",
-                "populationText",
+                ["populationContainer",
+                    "populationImage",
+                    "populationText"
+                ],
                 "uiInventoryContainer"
             ]
         );
@@ -69,6 +72,7 @@ class UI {
         this.panRightButton.addEventListener("click", (event) => { this.uiActions.cameraRight(); });
         this.spaceButton.addEventListener("click", (event) => { this.uiActions.nextTick(); });
 
+        this.populationImage.src = Images.otherImages.population.src;
 
         Util.hide(this.uiContainer);
         Util.hide(this.uiCommunityActionsContainer);
@@ -77,7 +81,7 @@ class UI {
         this.lastMousePosition = pos;
     }
     updatePopulation() {
-        this.populationText.innerText = `${Util.texts["population"]} : ${Math.round(this.community.population)}`;
+        this.populationText.innerText = Math.round(this.community.population);
     }
     updateInventory() {
         this.uiInventoryContainer.replaceChildren();
@@ -88,42 +92,42 @@ class UI {
             let total = 0;
             Util.quickStructure(this.uiInventoryContainer, this,
                 ["inventoryCategoryContainer",
-                    "inventoryCategoryNameText",
+                    // "inventoryCategoryNameText",
                     "inventoryCategoryImage",
                     "inventoryCategoryTotalText",
-                    "inventoryCategoryResourcesContainer"
+                    // "inventoryCategoryResourcesContainer"
                 ]
             );
-            Util.hide(this.inventoryCategoryResourcesContainer);
-            if (Data.categories[categoryName] !== undefined) {
-                this.inventoryCategoryNameText.innerText = ``; // `${Data.categories[categoryName].categoryDisplayName} ▼ `;
-                console.log(Data.categories[categoryName].categoryImageName);
-                this.inventoryCategoryImage.src = Images.categoryImages[Data.categories[categoryName].categoryImageName].src;
-            } else {
-                this.inventoryCategoryNameText.innerText = `${categoryName} (tr. needed) ▼ `;
-            }
+            // Util.hide(this.inventoryCategoryResourcesContainer);
+            // if (Data.categories[categoryName] !== undefined) {
+            // this.inventoryCategoryNameText.innerText = ``; // `${Data.categories[categoryName].categoryDisplayName} ▼ `;
+            // console.log(Data.categories[categoryName].categoryImageName);
+            this.inventoryCategoryImage.src = Images.categoryImages[Data.categories[categoryName].categoryImageName].src;
+            // } else {
+            // this.inventoryCategoryNameText.innerText = `${categoryName} (tr. needed) ▼ `;
+            // }
             for (let resourceName in resources) {
                 const amount = resources[resourceName];
                 total += amount;
-                Util.quickStructure(this.inventoryCategoryResourcesContainer, this,
-                    ["resourceContainer",
-                        "resourceNameText",
-                        "resourceAmountText"]
-                )
-                this.resourceNameText.innerText = Data.resources[resourceName].displayName;
-                this.resourceAmountText.innerText = amount;
+                //     Util.quickStructure(this.inventoryCategoryResourcesContainer, this,
+                //         ["resourceContainer",
+                //             "resourceNameText",
+                //             "resourceAmountText"]
+                //     )
+                //     this.resourceNameText.innerText = Data.resources[resourceName].displayName;
+                //     this.resourceAmountText.innerText = amount;
             }
             this.inventoryCategoryTotalText.innerText = total;
-            {
-                let container = this.inventoryCategoryResourcesContainer;
-                this.inventoryCategoryContainer.addEventListener("click", (event) => { Util.toggle(container) });
-            }
+            // {
+            //     let container = this.inventoryCategoryResourcesContainer;
+            //     this.inventoryCategoryContainer.addEventListener("click", (event) => { Util.toggle(container) });
+            // }
         }
     }
     updateUnit() {
         this.unitImage.src = Images.unitImages[this.selection.selectedEntityData.imageName].src
         Util.show(this.uiContainer);
-        Util.show(this.unitSelectorContainer);
+        // Util.show(this.unitSelectorContainer);
     }
     updateHex(isEntityHex) {
         let hex = this.selection.selectedHex;
@@ -170,7 +174,12 @@ class UI {
             let action = resource.resourceData.actions[actionName];
             if (this.community.fillsConditions(action.requiresOneOf) || !Settings.production) {
                 let actionButton = Util.createDOMElement("actionButton", "span", this.resourceActionsContainer);
+                let getImage = Util.createDOMElement("getImage", "img", this.resourceActionsContainer);
                 actionButton.innerText = action.displayName;
+                // console.log(action.get);
+                // console.log(Data.resources[action.get]);
+                // console.log(Data.categories[Data.resources[action.get].category].categoryImageName);
+                getImage.src = Images.categoryImages[Data.categories[Data.resources[action.get].category].categoryImageName].src;
                 actionButton.addEventListener("click", (event) => {
                     this.uiActions.actionButtonClick(hex, resource, actionName);
                 });

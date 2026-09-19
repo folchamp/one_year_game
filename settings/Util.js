@@ -4,7 +4,6 @@ class Util {
     static texts = {
         // HTML elements 
         giveResourceButtonText: "village",
-        population: "population",
         downloadButton: "télécharger",
         panUpButton: "⬆️",
         panDownButton: "⬇️",

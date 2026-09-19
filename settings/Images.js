@@ -3,6 +3,10 @@
 class Images {
     constructor() { }
 
+    static otherImages = Util.loadImages("others/", [
+        "population",
+    ]);
+
     static tileImages = Util.loadImages("tiles/", [
         "plains",
         "island",
