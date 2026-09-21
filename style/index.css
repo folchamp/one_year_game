@@ -83,11 +83,18 @@ body {
             display: flex;
             align-items: center;
             user-select: none;
-            background-color: blanchedalmond;
             color: black;
             margin: 4px;
             padding: 4px;
             /* cursor: pointer; */
+            background-color: rgb(93, 93, 94);
+
+            .inventoryCategoryImage {
+                background-color: blanchedalmond;
+                margin-right: 4px;
+                border-radius: 18px;
+                padding: 4px;
+            }
         }
     }
 }
@@ -118,7 +125,7 @@ body {
         .hexResourcesContainer {
             display: flex;
             justify-content: center;
-            flex-direction: column;
+            flex-direction: row;
 
             .hexResourceContainer {
                 display: flex;
@@ -134,16 +141,27 @@ body {
                     flex-direction: column;
                     flex-wrap: wrap;
 
-                    .actionButton {
+                    .actionContainer {
+                        display: flex;
+                        flex-direction: column;
                         cursor: pointer;
                         padding: 12px;
                         margin: 4px;
                         border: 1px solid #ddd8c8;
                         border-radius: 8px;
                         background: rgba(38, 43, 38, 0.94);
+                        align-items: center;
+
+                        .getImage {
+                            background-color: blanchedalmond;
+                            background-color: blanchedalmond;
+                            border-radius: 18px;
+                            padding: 4px;
+                            margin-bottom: 4px;
+                        }
                     }
 
-                    .actionButton:hover {
+                    .actionContainer:hover {
                         background: rgba(52, 58, 52, 0.94);
                     }
                 }

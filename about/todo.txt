@@ -325,7 +325,12 @@ category icons
 ♥ 19/09/2026
 afficher en permanence les categories dans l'UI
 afficher le gain de chaque catégorie dans les actions avec le symbole
-
+♥ 20/09/2026
+avec Cyriaque aux Ponts Spalaux
+Fête de Wallonie
+rien fait :-( 
+♥ 21/09/2026
+nouveau design pour les actions des tuiles
 
 ********************
 TODO

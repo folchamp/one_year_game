@@ -7,7 +7,8 @@ class Settings {
     static basicHexSize = 115;
     static tileWidth = 197;
     static tileHeight = 226;
-    static resourceImageSize = 64
+    static resourceImageSize = 64;
+    static categoryImageSize = 32;
     static startHexPosition = { q: 0, r: 0 };
     // static lengthOfFoodMemory = 10;
     static maxFatigue = 36;

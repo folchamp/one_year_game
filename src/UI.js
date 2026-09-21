@@ -145,8 +145,8 @@ class UI {
                     ["hexResourceContainer",
                         ["resourceDescriptionContainer",
                             "resourceImage",
-                            "resourceNameText"],
-                        "resourceActionsContainer"
+                            "resourceNameText",
+                            "resourceActionsContainer"]
                     ]
                 );
                 if (hex.isExplored || !Settings.production) {
@@ -173,14 +173,21 @@ class UI {
         for (let actionName in resource.resourceData.actions) {
             let action = resource.resourceData.actions[actionName];
             if (this.community.fillsConditions(action.requiresOneOf) || !Settings.production) {
-                let actionButton = Util.createDOMElement("actionButton", "span", this.resourceActionsContainer);
-                let getImage = Util.createDOMElement("getImage", "img", this.resourceActionsContainer);
-                actionButton.innerText = action.displayName;
+                Util.quickStructure(this.resourceActionsContainer, this,
+                    ["actionContainer",
+                        "getImage",
+                        "actionText"
+                    ]
+                )
+                // let actionButton = Util.createDOMElement("actionButton", "span", this.resourceActionsContainer);
+                // let getImage = Util.createDOMElement("getImage", "img", this.resourceActionsContainer);
+                this.actionText.innerText = action.displayName;
                 // console.log(action.get);
                 // console.log(Data.resources[action.get]);
                 // console.log(Data.categories[Data.resources[action.get].category].categoryImageName);
-                getImage.src = Images.categoryImages[Data.categories[Data.resources[action.get].category].categoryImageName].src;
-                actionButton.addEventListener("click", (event) => {
+                this.getImage.src = Images.categoryImages[Data.categories[Data.resources[action.get].category].categoryImageName].src;
+                this.getImage.width = Settings.categoryImageSize;
+                this.actionContainer.addEventListener("click", (event) => {
                     this.uiActions.actionButtonClick(hex, resource, actionName);
                 });
             }
