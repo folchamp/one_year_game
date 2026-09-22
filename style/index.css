@@ -51,6 +51,12 @@ body {
     padding: 4px;
     top: 200px;
     left: 200px;
+
+    .uiUnitPriceContainer {
+        width: 100px;
+        height: 30px;
+        background-color: red;
+    }
 }
 
 .uiMobileContainer {

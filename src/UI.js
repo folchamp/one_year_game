@@ -57,6 +57,7 @@ class UI {
             Util.quickStructure(this.uiCommunityActionsContainer, this,
                 ["uiCreateExplorerContainer",
                     "uiCreateUnitImage",
+                    "uiUnitPriceContainer",
                     "uiCreateUnitButton"
                 ]
             );
