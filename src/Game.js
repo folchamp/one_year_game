@@ -37,6 +37,7 @@ class Game {
         this.ECS = {};
         this.ui = new UI(this.selection, this.uiActions, this.inventory, this.community);
 
+        this.unitCreator = new UnitCreator(this.ECS);
         this.movementSystem = new MovementSystem(this.world, this.ECS);
         this.render = new Render(this.context, this.display, this.camera, this.world, this.ECS, this.selection, this.community);
 
@@ -64,8 +65,8 @@ class Game {
         this.display.getCanvas().addEventListener("contextmenu", (event) => { this.rightclick(event); });
 
         // init game
-        this.createCampfire(Settings.startHexPosition.q, Settings.startHexPosition.r);
-        this.createExplorer(Settings.startHexPosition.q, Settings.startHexPosition.r);
+        this.unitCreator.create("campfire", Settings.startHexPosition.q, Settings.startHexPosition.r);
+        this.unitCreator.create("explorer", Settings.startHexPosition.q, Settings.startHexPosition.r);
 
         this.idleCycleCounter = 0;
 
@@ -74,16 +75,20 @@ class Game {
         this.loop();
     }
     createUnit(unitName) {
-        console.log(`Creating unit ${unitName}...`);
-        this.born();
+        const unitData = Data.units[unitName];
+        const price = unitData.unitPrice;
+        if (this.movementSystem.isHexPositionOccupied({ q: Settings.startHexPosition.q, r: Settings.startHexPosition.r })) {
+            alert("hex is not free");
+        } else if (!this.inventory.has(price)) {
+            alert("not enough resources");
+        } else {
+            this.inventory.consume(price)
+            this.unitCreator.create(unitName, Settings.startHexPosition.q, Settings.startHexPosition.r);
+        }
+        this.ui.update();
     }
     downloadResources() {
         navigator.clipboard.writeText(JSON.stringify(Data.resources));
-    }
-    born() {
-        if (!this.movementSystem.isHexPositionOccupied({ q: Settings.startHexPosition.q, r: Settings.startHexPosition.r })) {
-            this.createExplorer(Settings.startHexPosition.q, Settings.startHexPosition.r);
-        }
     }
     cleanOrders() {
         this.ECS.Order.forEach((order, entity) => {
@@ -143,25 +148,6 @@ class Game {
     toggleDev() {
         this.log.toggle();
         Settings.production = !Settings.production;
-    }
-    createCampfire(q, r) {
-        let entity = this.newEntity();
-        this.ECS.Name.set(entity, "campfire");
-        this.ECS.Position.set(entity, { q: q, r: r });
-        this.ECS.Sprite.set(entity, { imageName: "campfire", width: 170, height: 170, radius: 100 });
-        // this.ECS.Hitbox.set(entity, { type: "circle", radius: 100 });
-        return entity;
-    }
-    createExplorer(q, r) {
-        let entity = this.newEntity();
-        this.ECS.Harvester.set(entity, {});
-        this.ECS.Explorer.set(entity, { range: 1 });
-        this.ECS.Name.set(entity, "explorer");
-        this.ECS.Position.set(entity, { q: q, r: r });
-        this.ECS.Movement.set(entity, { path: [] });
-        this.ECS.Sprite.set(entity, { imageName: "explorer", width: 64, height: 64, radius: 48 });
-        this.ECS.Hitbox.set(entity, { type: "circle", radius: 48 });
-        return entity;
     }
     getMouseWorldPosition(event) {
         let mousePosition = Util.getMousePosition(this.display.getCanvas(), event);
@@ -242,12 +228,6 @@ class Game {
             }
         });
         return entity;
-    }
-    newEntity() {
-        if (this.nextID === undefined) {
-            this.nextID = 0;
-        }
-        return this.nextID++;
     }
     tick() {
         // this.community.feed(this.inventory, this.ECS.Explorer.size);

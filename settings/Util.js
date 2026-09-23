@@ -10,7 +10,7 @@ class Util {
         panRightButton: "➡️",
         panLeftButton: "⬅️",
         spaceButton: "pass turn",
-        uiCommunityActionsTitle: "community actions",
+        // uiCommunityActionsTitle: "community actions",
         uiCreateUnitButton: "not found"
     };
 

@@ -3083,14 +3083,14 @@ class Data {
         explorer: {
             unitName: "explorer",
             unitPrice: {
-                food: 2,
+                food: 4,
                 tool: 2
             }
         },
         harvester: {
             unitName: "harvester",
             unitPrice: {
-                food: 1,
+                food: 3,
                 tool: 3
             }
         }

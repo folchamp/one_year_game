@@ -37,6 +37,7 @@ class Images {
 
     static unitImages = Util.loadImages("units/", [
         "explorer",
+        "harvester",
         "campfire"
     ]);
 

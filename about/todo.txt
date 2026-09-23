@@ -332,18 +332,33 @@ rien fait :-(
 ♥ 21/09/2026
 nouveau design pour les actions des tuiles
 ♥ 22/09/2026
+préparer le terrain pour les unitCosts
+♥ 23/09/2026
+les unités coûtent des ressources
+transformation durable des ressources d'un tuile ? blé sauvage -> blé
+ajouter mille ressources + les interactions entre ressources
+on ne peut pas déplacer un explorateur sur une tuile occupée
+max trois ressources par tuile
+afficher la fatigue sur les tuiles ?
+select next available explorer hotkey
+fabriquer des explorateurs
+
 
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
-les unités coûtent des ressources
+séparer harvester et explorer ?
+séparer explorateurs, récolteurs, expérimentateurs etc. ?
+halo vert sur les explorateurs qui n'ont encore rien harvest ce tour-ci
+passer le jeu en temps réel
+passer le jeu en temps réel, un tick par seconde ?
+ne plus vider les "order" après chaque action
+
 explorers see 2 hexes far
 système de pause ?
 menu ?
-passer le jeu en temps réel, un tick par seconde ?
-séparer harvester et explorer ?
 learn priorise les connaissances non-apprises ???
 remplir les learns vides
 refactor/remove "improve" actions
@@ -358,65 +373,58 @@ connaissances === outils
 Les ressources ont des types (naturelle, fabriquée, vestige)
 système de notification
 notifier les nouvelles découvertes
-animaux -> entités
-    // [][][][][][][][][] animaux    [][][][][][][][][]
-    // "aurochs": "aurochs",
-    // "livestock": "bétail",
-    // "cattle": "bovin",
-    // "deer": "cerf",
-    // "mushrooms": "champignons",
-    // "horse": "cheval",
-    // "wild_horse": "cheval sauvage",
-    // "pheasant": "faisan",
-    // "rabbit": "lapin",
-    // "wolf": "loup",
-    // "fish": "poisson",
-    // "chicken": "poule",
-    // "wild_boar": "sanglier",
-transformation durable des ressources d'un tuile ? blé sauvage -> blé
 distribuer les ressources dans les trois catégories (naturelles, fabriquées, vestiges)
 certaines ressources sont "plantables" ?
-ajouter mille ressources + les interactions entre ressources
 les biomes peuvent récupérer
 passer le tour avec un explorateur inoccupé provoque une alerte
 coût logistique en fonction de la distance avec la communauté (récolter des ressources plus loin coûte plus cher)
-on ne peut pas déplacer un explorateur sur une tuile occupée
 nettoyer et optimiser Render.js
 ajouter des méchants
-halo vert sur les explorateurs qui n'ont encore rien harvest ce tour-ci
 coût de harvest ?
-max trois ressources par tuile
-select next available explorer hotkey
-séparer explorateurs, récolteurs, expérimentateurs etc. ?
 message d'erreur quand on essaye de récolter et qu'on a déjà récolté avec cet explorateur
-afficher la fatigue sur les tuiles ?
 petit feedback à hauteur de souris quand un action ne fonctionne pas 
 adversaire sous la forme d'une entité non contrôlée par le joueur
 Écrire des rencontres, des lieux, des morceaux d’histoire pour les tuiles
 Créer un coût logistique (en “humains”)
 Créer une fatigue du village
 Créer une diversité génétique (=condition de victoire)
+animaux -> entités
+decide the next steps
+
 
 ---------- SHOULD ----------
 barre Sims (confort, nourriture, matériaux de construction etc.)
 fatiguerecovery est un attribut des hex, pas des ressources
 line of sight
 construire des bâtiments
-fabriquer des explorateurs
 composant WorldPosition qui est recalculée tout le temps (plutôt que de recalculer pour le rendu, le hitbox, les particules, les animations etc.)
 garder en mémoire la destination au cas où le path devient interrompu for some reason
-decide the next steps
 
 ---------- COULD ----------
 refactor everything
 hotkey settings
-all drawings by me
-
 change the explore action to a whole-tick-action instead of automatic at tile entering ?
 change tick system ? not sure ? 
-- civilisations : explorers have one movement and move immediatly, they recover their movement after the tick
-- Uciana : issue orders, units obbey during next tick
 
 ---------- WONT ----------
-créer un arbre de dépendance des resources (une voiture contient des pneus, un moteur etc. et peut être utilisée pour remplacer n'importe lequel de ces éléments)
 multiplayer
+
+---------- Archives ----------
+créer un arbre de dépendance des resources (une voiture contient des pneus, un moteur etc. et peut être utilisée pour remplacer n'importe lequel de ces éléments)
+Uciana : issue orders, units obbey during next tick
+civilisations : explorers have one movement and move immediatly, they recover their movement after the tick
+all drawings by me
+
+ "aurochs": "aurochs",
+ "livestock": "bétail",
+ "cattle": "bovin",
+ "deer": "cerf",
+ "mushrooms": "champignons",
+ "horse": "cheval",
+ "wild_horse": "cheval sauvage",
+ "pheasant": "faisan",
+ "rabbit": "lapin",
+ "wolf": "loup",
+ "fish": "poisson",
+ "chicken": "poule",
+ "wild_boar": "sanglier",

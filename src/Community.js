@@ -39,45 +39,45 @@ class Community {
         }
         return fills;
     }
-    feed(inventory, minPop) { // TODO work on this, again
-        const content = inventory.getContent();
-        const consumed = [];
-        let growth = 0;
+    // feed(inventory, minPop) { // TODO work on this, again
+    //     const content = inventory.getContent();
+    //     const consumed = [];
+    //     let growth = 0;
 
-        // Une ressource maximum par catégorie
-        for (const category in content) {
-            const resources = content[category];
-            let bestResource = undefined;
-            let bestGrowth = 0;
-            for (const resourceName in resources) {
-                const quantity = resources[resourceName];
-                const resourceData = Data.resources[resourceName];
-                if (resourceData.popGrowth > bestGrowth && quantity > 0) {
-                    bestResource = resourceName;
-                    bestGrowth = resourceData.popGrowth;
-                }
-            }
-            if (bestResource !== undefined) {
-                // Consomme une unité
-                inventory.consume(bestResource);
-                consumed.push(bestResource);
-                growth += bestGrowth;
-            }
-        }
-        if (growth > this.population) {
-            this.population++;
-        }
-        if (growth <= 0) {
-            this.population = Math.max(minPop, this.population - 1);
-        }
+    //     // Une ressource maximum par catégorie
+    //     for (const category in content) {
+    //         const resources = content[category];
+    //         let bestResource = undefined;
+    //         let bestGrowth = 0;
+    //         for (const resourceName in resources) {
+    //             const quantity = resources[resourceName];
+    //             const resourceData = Data.resources[resourceName];
+    //             if (resourceData.popGrowth > bestGrowth && quantity > 0) {
+    //                 bestResource = resourceName;
+    //                 bestGrowth = resourceData.popGrowth;
+    //             }
+    //         }
+    //         if (bestResource !== undefined) {
+    //             // Consomme une unité
+    //             inventory.consume(bestResource);
+    //             consumed.push(bestResource);
+    //             growth += bestGrowth;
+    //         }
+    //     }
+    //     if (growth > this.population) {
+    //         this.population++;
+    //     }
+    //     if (growth <= 0) {
+    //         this.population = Math.max(minPop, this.population - 1);
+    //     }
 
-        // test TODO
-        this.consumed.push(...consumed);
-        // console.log("------------------------------------------");
-        for (let resourceName in Data.resources) {
-            if (!this.consumed.includes(resourceName)) {
-                // console.log(resourceName);
-            }
-        }
-    }
+    //     // test TODO
+    //     this.consumed.push(...consumed);
+    //     // console.log("------------------------------------------");
+    //     for (let resourceName in Data.resources) {
+    //         if (!this.consumed.includes(resourceName)) {
+    //             // console.log(resourceName);
+    //         }
+    //     }
+    // }
 }

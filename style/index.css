@@ -48,14 +48,28 @@ body {
 }
 
 .uiCommunityActionsContainer {
+    display: flex;
+    flex-direction: row;
     padding: 4px;
     top: 200px;
     left: 200px;
+    text-align: center;
 
-    .uiUnitPriceContainer {
-        width: 100px;
-        height: 30px;
-        background-color: red;
+    .uiCreateExplorerContainer {
+        background: rgba(40, 44, 40, 0.94);
+        margin: 4px;
+
+        .uiUnitPriceContainer {
+            display: flex;
+            align-items: center;
+
+            .resourceCategoryPriceImage {
+                background-color: blanchedalmond;
+                margin-right: 4px;
+                border-radius: 18px;
+                padding: 4px;
+            }
+        }
     }
 }
 

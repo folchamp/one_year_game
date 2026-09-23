@@ -49,11 +49,12 @@ class UI {
 
         Util.quickStructure(document.body, this,
             ["uiCommunityActionsContainer",
-                "uiCommunityActionsTitle"
+                // "uiCommunityActionsTitle"
             ]
         );
 
         for (const unitName in Data.units) {
+            const unitPrice = Data.units[unitName].unitPrice;
             Util.quickStructure(this.uiCommunityActionsContainer, this,
                 ["uiCreateExplorerContainer",
                     "uiCreateUnitImage",
@@ -61,9 +62,21 @@ class UI {
                     "uiCreateUnitButton"
                 ]
             );
-            this.uiCreateUnitImage.src = `images/units/${unitName}.png`;
+            // this.uiCreateUnitImage.src = `images/units/${unitName}.png`;
+            this.uiCreateUnitImage.src = Images.unitImages[unitName].src;
             this.uiCreateUnitButton.innerText = unitName;
             this.uiCreateUnitButton.addEventListener("click", (event) => { this.uiActions.createUnit(unitName); });
+
+            for (const resourceCategoryName in unitPrice) {
+                const amount = unitPrice[resourceCategoryName];
+                const amountPriceText = Util.createDOMElement("amountPriceText", "span", this.uiUnitPriceContainer);
+                const resourceCategoryPriceImage = Util.createDOMElement("resourceCategoryPriceImage", "img", this.uiUnitPriceContainer);
+
+                amountPriceText.innerText = amount;
+                console.log(resourceCategoryName);
+                console.log(Data.categories[resourceCategoryName]);
+                resourceCategoryPriceImage.src = Images.categoryImages[Data.categories[resourceCategoryName].categoryImageName].src;
+            }
 
         }
 
@@ -89,8 +102,8 @@ class UI {
         const inventoryContent = this.inventory.getContent();
         // Util.quickStructure(this.uiInventoryContainer, this, ["inventoryResourceContainer"]);
         for (let categoryName in inventoryContent) {
-            const resources = inventoryContent[categoryName];
-            let total = 0;
+            // const resources = inventoryContent[categoryName];
+            let total = inventoryContent[categoryName];;
             Util.quickStructure(this.uiInventoryContainer, this,
                 ["inventoryCategoryContainer",
                     // "inventoryCategoryNameText",
@@ -107,17 +120,17 @@ class UI {
             // } else {
             // this.inventoryCategoryNameText.innerText = `${categoryName} (tr. needed) ▼ `;
             // }
-            for (let resourceName in resources) {
-                const amount = resources[resourceName];
-                total += amount;
-                //     Util.quickStructure(this.inventoryCategoryResourcesContainer, this,
-                //         ["resourceContainer",
-                //             "resourceNameText",
-                //             "resourceAmountText"]
-                //     )
-                //     this.resourceNameText.innerText = Data.resources[resourceName].displayName;
-                //     this.resourceAmountText.innerText = amount;
-            }
+            // for (let resourceName in resources) {
+            //     const amount = resources[resourceName];
+            //     total += amount;
+            //     //     Util.quickStructure(this.inventoryCategoryResourcesContainer, this,
+            //     //         ["resourceContainer",
+            //     //             "resourceNameText",
+            //     //             "resourceAmountText"]
+            //     //     )
+            //     //     this.resourceNameText.innerText = Data.resources[resourceName].displayName;
+            //     //     this.resourceAmountText.innerText = amount;
+            // }
             this.inventoryCategoryTotalText.innerText = total;
             // {
             //     let container = this.inventoryCategoryResourcesContainer;
