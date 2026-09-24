@@ -10,7 +10,7 @@ class UnitCreator {
         }
         return this.nextID++;
     }
-    create(name, q, r) {
+    create(name, q, r, owner) {
         let entity;
         if (name === "explorer") {
             entity = this.createExplorer(q, r);
@@ -21,6 +21,11 @@ class UnitCreator {
         if (name === "campfire") {
             entity = this.createCampfire(q, r);
         }
+        if (owner === undefined) {
+            throw "owner undefined";
+        }
+        this.ECS.Owner.set(entity, owner);
+        console.log(this.ECS.Owner);
         return entity;
     }
     createHarvester(q, r) {
@@ -36,8 +41,8 @@ class UnitCreator {
     }
     createExplorer(q, r) {
         let entity = this.newEntity();
-        this.ECS.Harvester.set(entity, {});
-        this.ECS.Explorer.set(entity, { range: 1 });
+        // this.ECS.Harvester.set(entity, {});
+        this.ECS.Explorer.set(entity, { range: 2 });
         this.ECS.Name.set(entity, "explorer");
         this.ECS.Position.set(entity, { q: q, r: r });
         this.ECS.Movement.set(entity, { path: [] });

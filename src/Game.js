@@ -11,7 +11,7 @@ class Game {
             toggleDev: { description: "Toggle dev mode", f: () => this.toggleDev() },
             nextTick: { description: "Run a tick, advance the game by one time unit", f: () => this.tick() },
             zoomOut: { description: "Zoom out to see everything", f: () => this.camera.zoomOut() },
-            downloadResources: { description: "add Data.resources to clipboard", f: () => this.downloadResources() }
+            downloadResources: { description: "Add Data.resources to clipboard", f: () => this.downloadResources() }
         };
         this.uiActions = {
             createUnit: (unitName) => this.createUnit(unitName),
@@ -41,6 +41,9 @@ class Game {
         this.movementSystem = new MovementSystem(this.world, this.ECS);
         this.render = new Render(this.context, this.display, this.camera, this.world, this.ECS, this.selection, this.community);
 
+        this.player = new Player(0, this.community, this.inventory);
+        this.ia = new Player(1, new Community, new Inventory);
+
         // components (entity-components system)
         this.ECS.Explorer = new Map();
         this.ECS.Harvester = new Map();
@@ -50,6 +53,7 @@ class Game {
         this.ECS.Hitbox = new Map();
         this.ECS.Movement = new Map();
         this.ECS.Order = new Map();
+        this.ECS.Owner = new Map();
 
         // hotkeys
         this.hotkeys.bind("Backquote", this.actions.selectNextIdle);
@@ -65,8 +69,8 @@ class Game {
         this.display.getCanvas().addEventListener("contextmenu", (event) => { this.rightclick(event); });
 
         // init game
-        this.unitCreator.create("campfire", Settings.startHexPosition.q, Settings.startHexPosition.r);
-        this.unitCreator.create("explorer", Settings.startHexPosition.q, Settings.startHexPosition.r);
+        this.unitCreator.create("campfire", Settings.startHexPosition.q, Settings.startHexPosition.r, this.player);
+        this.unitCreator.create("harvester", Settings.startHexPosition.q, Settings.startHexPosition.r, this.player);
 
         this.idleCycleCounter = 0;
 
@@ -79,12 +83,13 @@ class Game {
         const price = unitData.unitPrice;
         if (this.movementSystem.isHexPositionOccupied({ q: Settings.startHexPosition.q, r: Settings.startHexPosition.r })) {
             alert("hex is not free");
-        } else if (!this.inventory.has(price)) {
+        } else if (!this.inventory.has(price) && Settings.production) {
             alert("not enough resources");
         } else {
             this.inventory.consume(price)
-            this.unitCreator.create(unitName, Settings.startHexPosition.q, Settings.startHexPosition.r);
+            this.unitCreator.create(unitName, Settings.startHexPosition.q, Settings.startHexPosition.r, this.player);
         }
+        this.explore();
         this.ui.update();
     }
     downloadResources() {
@@ -106,13 +111,16 @@ class Game {
         });
     }
     actionButtonClick(hex, resource, actionName) {
+        let done = false;
         this.ECS.Harvester.forEach((value, entity, map) => {
             let harvesterPosition = this.ECS.Position.get(entity);
             if (hex.q === harvesterPosition.q && hex.r === harvesterPosition.r) {
                 this.ECS.Order.set(entity, { hex: hex, resource: resource, actionName: actionName });
                 this.ECS.Movement.set(entity, { path: [] });
+                done = true;
             }
         });
+        if (!done) alert("no harvester on this tile");
     }
     action(hex, resource, actionName) {
         let resourceName = resource.resourceData.resourceName;
@@ -152,9 +160,7 @@ class Game {
     getMouseWorldPosition(event) {
         let mousePosition = Util.getMousePosition(this.display.getCanvas(), event);
         let worldPosition = this.camera.screenToWorld(mousePosition);
-
         this.ui.setLastMousePosition(mousePosition);
-
         return worldPosition;
     }
     rightclick(event) {
@@ -179,7 +185,7 @@ class Game {
     selectNextIdle() {
         let idles = [];
         let idle;
-        this.ECS.Harvester.forEach((value, entity, array) => {
+        this.ECS.Movement.forEach((value, entity, array) => {
             if (this.ECS.Movement.get(entity) !== undefined && this.ECS.Movement.get(entity).path.length <= 0 && this.ECS.Order.get(entity) === undefined) {
                 idles.push(entity);
             }
@@ -229,19 +235,19 @@ class Game {
         });
         return entity;
     }
+    explore() {
+        this.ECS.Explorer.forEach((value, entity, map) => {
+            this.world.exploreTile(this.ECS.Position.get(entity));
+            this.world.seeNeighbours(this.ECS.Position.get(entity), value.range);
+        });
+    }
     tick() {
         // this.community.feed(this.inventory, this.ECS.Explorer.size);
         this.movementSystem.update();
         this.ECS.Order.forEach((order, entity, map) => {
             this.action(order.hex, order.resource, order.actionName);
         });
-        this.ECS.Explorer.forEach((value, entity, map) => {
-            if (value.range !== 1) {
-                throw "TODO range !!!";
-            }
-            this.world.exploreTile(this.ECS.Position.get(entity));
-            this.world.seeNeightbours(this.ECS.Position.get(entity));
-        });
+        this.explore();
         // date de l'époque où les unités apparaissaient automatiquement quand il y avait assez de bouffe
         // if (this.ECS.Explorer.size < Math.floor(this.community.population / Settings.bornPopulationCap)) {
         //     this.born();

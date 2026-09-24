@@ -73,11 +73,8 @@ class UI {
                 const resourceCategoryPriceImage = Util.createDOMElement("resourceCategoryPriceImage", "img", this.uiUnitPriceContainer);
 
                 amountPriceText.innerText = amount;
-                console.log(resourceCategoryName);
-                console.log(Data.categories[resourceCategoryName]);
                 resourceCategoryPriceImage.src = Images.categoryImages[Data.categories[resourceCategoryName].categoryImageName].src;
             }
-
         }
 
         this.panUpButton.addEventListener("click", (event) => { this.uiActions.cameraUp(); });
@@ -192,10 +189,10 @@ class UI {
                         "getImage",
                         "actionText"
                     ]
-                )
+                );
                 // let actionButton = Util.createDOMElement("actionButton", "span", this.resourceActionsContainer);
                 // let getImage = Util.createDOMElement("getImage", "img", this.resourceActionsContainer);
-                this.actionText.innerText = action.displayName;
+                this.actionText.innerText = `${action.displayName} (${action.fatigue})`;
                 // console.log(action.get);
                 // console.log(Data.resources[action.get]);
                 // console.log(Data.categories[Data.resources[action.get].category].categoryImageName);

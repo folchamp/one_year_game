@@ -20,16 +20,22 @@ class World {
 
         this.hexes.get(`0, 0`).resources = [];
     }
-    seeNeightbours(position) {
-        const neightbors = World.getNeightbors(position.q, position.r);
+    seeNeighbours(position, range) {
         this.hexes.get(`${position.q}, ${position.r}`).isSeenThroughFog = true;
-        neightbors.forEach((neightbor) => {
-            let hex = this.hexes.get(`${neightbor.q}, ${neightbor.r}`);
-            if (hex !== undefined) {
-                hex.isSeenThroughFog = true;
-            }
-        });
-
+        this.seeNeighboursRecursive(position, range, [...World.getNeighbors(position.q, position.r)]);
+    }
+    seeNeighboursRecursive(position, range, neighbors) {
+        // TODO extrêmement naïf, améliorer (avec un set visitedHexes)
+        if (range > 0) {
+            neighbors.forEach((neighbor) => {
+                let hex = this.hexes.get(`${neighbor.q}, ${neighbor.r}`);
+                if (hex !== undefined) {
+                    hex.isSeenThroughFog = true;
+                }
+                neighbors.push(...World.getNeighbors(neighbor.q, neighbor.r));
+            });
+            this.seeNeighboursRecursive(position, range - 1, neighbors);
+        }
     }
     exploreTile(position) {
         this.hexes.get(`${position.q}, ${position.r}`).isExplored = true;
@@ -63,14 +69,14 @@ class World {
         while (index < tilesToVisitData.length) {
             let tileToVisitData = tilesToVisitData[index];
             let tile = this.get(tileToVisitData.hexPosition.q, tileToVisitData.hexPosition.r);
-            let neightbors = World.getNeightbors(tile.q, tile.r);
+            let neighbors = World.getNeighbors(tile.q, tile.r);
             tile[attributeName] = tileToVisitData.attributeValue;
-            neightbors.forEach((neightbor) => {
-                if (this.get(neightbor.q, neightbor.r) !== undefined && tilesVisited.get(`${neightbor.q}, ${neightbor.r}`) === undefined) {
+            neighbors.forEach((neighbor) => {
+                if (this.get(neighbor.q, neighbor.r) !== undefined && tilesVisited.get(`${neighbor.q}, ${neighbor.r}`) === undefined) {
                     let attributeValue = this.getRandomValue(tileToVisitData.attributeValue, biome);
                     if (attributeValue >= biome.minimum) {
-                        tilesVisited.set(`${neightbor.q}, ${neightbor.r}`, true);
-                        tilesToVisitData.push({ hexPosition: { q: neightbor.q, r: neightbor.r }, attributeValue: attributeValue });
+                        tilesVisited.set(`${neighbor.q}, ${neighbor.r}`, true);
+                        tilesToVisitData.push({ hexPosition: { q: neighbor.q, r: neighbor.r }, attributeValue: attributeValue });
                     }
                 }
             });
@@ -112,7 +118,7 @@ class World {
         const y = Settings.hexSize * 1.5 * hex.r;
         return { x: x, y: y };
     }
-    static getNeightbors(q, r) {
+    static getNeighbors(q, r) {
         return [
             { q: q + 1, r },
             { q: q - 1, r },

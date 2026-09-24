@@ -342,6 +342,13 @@ max trois ressources par tuile
 afficher la fatigue sur les tuiles ?
 select next available explorer hotkey
 fabriquer des explorateurs
+♥ 24/09/2026
+séparer harvester et explorer ?
+séparer explorateurs, récolteurs, expérimentateurs etc. ?
+explorers see 2 hexes far
+afficher la fatigue sur les actions
+créer une classe player
+créer un ECS owner
 
 
 
@@ -349,14 +356,12 @@ fabriquer des explorateurs
 TODO
 ********************
 ---------- MUST ----------
-séparer harvester et explorer ?
-séparer explorateurs, récolteurs, expérimentateurs etc. ?
-halo vert sur les explorateurs qui n'ont encore rien harvest ce tour-ci
-passer le jeu en temps réel
-passer le jeu en temps réel, un tick par seconde ?
-ne plus vider les "order" après chaque action
+préparer game pour accueillir l'IA
+actionButtonClick -> setOrder
 
-explorers see 2 hexes far
+
+halo vert sur les explorateurs qui n'ont encore rien harvest ce tour-ci
+ne plus vider les "order" après chaque action
 système de pause ?
 menu ?
 learn priorise les connaissances non-apprises ???
@@ -393,6 +398,8 @@ decide the next steps
 
 
 ---------- SHOULD ----------
+passer le jeu en temps réel
+passer le jeu en temps réel, un tick par seconde ?
 barre Sims (confort, nourriture, matériaux de construction etc.)
 fatiguerecovery est un attribut des hex, pas des ressources
 line of sight
