@@ -349,6 +349,13 @@ explorers see 2 hexes far
 afficher la fatigue sur les actions
 créer une classe player
 créer un ECS owner
+♥ 25/09/2026
+Black Sails
+Age of avec Céline
+gastro
+rien fait :-( 
+♥ 26/09/2026
+testing
 
 
 

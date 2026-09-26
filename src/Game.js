@@ -72,6 +72,9 @@ class Game {
         this.unitCreator.create("campfire", Settings.startHexPosition.q, Settings.startHexPosition.r, this.player);
         this.unitCreator.create("harvester", Settings.startHexPosition.q, Settings.startHexPosition.r, this.player);
 
+        this.unitCreator.create("campfire", Settings.startHexPosition.q + 2, Settings.startHexPosition.r + 2, this.ia);
+        this.unitCreator.create("harvester", Settings.startHexPosition.q + 2, Settings.startHexPosition.r + 2, this.ia);
+
         this.idleCycleCounter = 0;
 
         // start
