@@ -50,7 +50,7 @@ class Data {
                         // "sampling",
                         "measurement"
                     ],
-                    "fatigue": 1,
+                    "fatigue": 2,
                     "get": "science",
                     "displayName": "Prélever un échantillon"
                 }
@@ -103,7 +103,7 @@ class Data {
                         "chemistry",
                         "microbiology"
                     ],
-                    "fatigue": 1,
+                    "fatigue": 2,
                     "get": "science",
                     "displayName": "Analyser"
                 }
@@ -262,7 +262,7 @@ class Data {
                         // "material_science",
                         "experimentation"
                     ],
-                    "fatigue": 1,
+                    "fatigue": 2,
                     "get": "science",
                     "displayName": "Analyser"
                 }
@@ -372,7 +372,7 @@ class Data {
                         "material_science",
                         "classification"
                     ],
-                    "fatigue": 1,
+                    "fatigue": 2,
                     "get": "science",
                     "displayName": "Analyser"
                 }
@@ -588,7 +588,7 @@ class Data {
                         "silica",
                         "glassmaking"
                     ],
-                    "fatigue": 1,
+                    "fatigue": 2,
                     "get": "science",
                     "displayName": "Analyser"
                 }
@@ -695,7 +695,7 @@ class Data {
                         "pharmacology",
                         "experimentation"
                     ],
-                    "fatigue": 1,
+                    "fatigue": 2,
                     "get": "science",
                     "displayName": "Analyser"
                 }
@@ -747,7 +747,7 @@ class Data {
                         "joining",
                         "material_science"
                     ],
-                    "fatigue": 1,
+                    "fatigue": 2,
                     "get": "science",
                     "displayName": "Mélanger"
                 }
@@ -1536,7 +1536,7 @@ class Data {
                         "poisoning",
                         "food_safety"
                     ],
-                    "fatigue": 1,
+                    "fatigue": 2,
                     "get": "science",
                     "displayName": "Identifier"
                 },
@@ -1626,7 +1626,7 @@ class Data {
                         "dosage",
                         "medicine"
                     ],
-                    "fatigue": 1,
+                    "fatigue": 2,
                     "get": "science",
                     "displayName": "Tester"
                 },
@@ -1641,7 +1641,7 @@ class Data {
                         // "pharmacology",
                         "experimentation"
                     ],
-                    "fatigue": 1,
+                    "fatigue": 2,
                     "get": "science",
                     "displayName": "Analyser"
                 },
@@ -2074,7 +2074,7 @@ class Data {
                         // "chemistry",
                         // "material_science",
                     ],
-                    "fatigue": 1,
+                    "fatigue": 2,
                     "get": "science",
                     "displayName": "Analyser"
                 }
@@ -2237,7 +2237,7 @@ class Data {
                         "chemistry",
                         "ecology"
                     ],
-                    "fatigue": 1,
+                    "fatigue": 2,
                     "get": "science",
                     "displayName": "Analyser"
                 },
@@ -2273,7 +2273,7 @@ class Data {
                         "observation",
                         "ecology",
                     ],
-                    "fatigue": 1,
+                    "fatigue": 2,
                     "get": "science",
                     "displayName": "Observer"
                 },
@@ -2304,7 +2304,7 @@ class Data {
                         // "geology",
                         "chemistry"
                     ],
-                    "fatigue": 1,
+                    "fatigue": 2,
                     "get": "science",
                     "displayName": "Prélever"
                 }
@@ -2362,7 +2362,7 @@ class Data {
                         "ceramics",
                         "classification"
                     ],
-                    "fatigue": 1,
+                    "fatigue": 2,
                     "get": "science",
                     "displayName": "Analyser"
                 }
@@ -2552,7 +2552,7 @@ class Data {
                     "learn": [
                         "metallurgy"
                     ],
-                    "fatigue": 0,
+                    "fatigue": 2,
                     "get": "science",
                     "displayName": "Examiner"
                 },
@@ -2605,7 +2605,7 @@ class Data {
                         // "glassmaking",
                         "material_science"
                     ],
-                    "fatigue": 0,
+                    "fatigue": 2,
                     "get": "science",
                     "displayName": "Examiner"
                 },
@@ -2742,7 +2742,7 @@ class Data {
                     "requiresOneOf": [],
                     "learn":
                         ["agriculture", "alloying", "ancient_world", "archaeology", "architecture", "baking", "botany", "bronze", "carpentry", "casting", "ceramics", "charcoal", "chemistry", "classification", "clay", "clay_working", "combustion", "construction", "containers", "cooking", "cordage", "crafting", "cultivation", "cutting", "drying", "drying_food", "ecology", "evaporation", "experimentation", "farming", "fermentation", "filtration", "fire", "flint_knapping", "food_storage", "forging", "geology", "glassmaking", "grain_processing", "grinding", "heat", "herbalism", "hydrology", "hygiene", "joining", "kiln", "kiln_firing", "leatherworking", "lime", "loom", "machining", "masonry", "material_identification", "material_science", "measurement", "medicinal_plants", "medicine", "metallurgy", "metalworking", "microbiology", "milling", "mineral_identification", "molds", "navigation", "observation", "ore_processing", "plant_reproduction", "plants", "polishing", "pottery", "preservation", "recycling", "resin", "sailing", "salt", "salt_preservation", "salting", "sampling", "sanitation", "science", "seed_selection", "seeds", "sewing", "shaping", "smithing", "smoking_food", "soil", "soil_quality", "spinning", "steelworking", "stone_knapping", "stone_working", "storage", "tanning", "temperature", "textile", "tools", "water_quality", "water_storage", "waterproofing", "weaving", "woodworking"],
-                    "fatigue": 1,
+                    "fatigue": 2,
                     "get": "science",
                     "displayName": "Étudier"
                 }
@@ -2947,7 +2947,7 @@ class Data {
                         // "animal_nutrition",
                         "tanning"
                     ],
-                    "fatigue": 1,
+                    "fatigue": 2,
                     "get": "science",
                     "displayName": "Étudier"
                 }

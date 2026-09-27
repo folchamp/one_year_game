@@ -8,6 +8,6 @@ class Player {
         this.startHexPosition = startHexPosition;
         this.IA = IA;
 
-        this.IA.setId(this.id);
+        this.IA.setOwner(this);
     }
 }

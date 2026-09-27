@@ -23,6 +23,10 @@ class Game {
             cameraDown: () => this.camera.cameraDown(),
             nextTick: () => this.tick()
         }
+        this.iaActions = {
+            setMove: (entity, hex) => this.setMove(entity, hex),
+            setOrder: (hex, resource, actionName, entity) => this.setOrder(hex, resource, actionName, entity)
+        };
 
         // display
         this.display = new Display();
@@ -68,13 +72,13 @@ class Game {
         // player
         this.inventory = new Inventory();
         this.community = new Community();
-        this.player = new Player(0, this.community, this.inventory, Settings.startHexPositions[0], new IA());
+        this.player = new Player(0, this.community, this.inventory, Settings.startHexPositions[0], new IA(this.iaActions));
         this.ui = new UI(this.selection, this.uiActions, this.player);
 
         // init game
         this.computers = [];
-        this.computerOne = new Player(1, new Community, new Inventory, Settings.startHexPositions[1], new IA());
-        this.computerTwo = new Player(2, new Community, new Inventory, Settings.startHexPositions[2], new IA());
+        this.computerOne = new Player(1, new Community, new Inventory, Settings.startHexPositions[1], new IA(this.iaActions));
+        this.computerTwo = new Player(2, new Community, new Inventory, Settings.startHexPositions[2], new IA(this.iaActions));
         this.computers.push(this.computerOne);
         this.computers.push(this.computerTwo);
 
@@ -90,7 +94,8 @@ class Game {
         this.idleCycleCounter = 0;
 
         // start
-        this.tick(); // tick initial, je ne sais plus pourquoi c'est nécessaire
+        // this.tick(); // tick initial, je ne sais plus pourquoi c'est nécessaire
+        this.explore();
         this.loop();
     }
     createUnit(unitName, owner) {
@@ -262,7 +267,7 @@ class Game {
     }
     tick() {
         this.computers.forEach((computer) => {
-            computer.IA.act();
+            computer.IA.act(this.world, this.ECS);
         });
         this.movementSystem.update();
         this.ECS.Order.forEach((order, entity, map) => {
