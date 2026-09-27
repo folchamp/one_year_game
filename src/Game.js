@@ -41,9 +41,6 @@ class Game {
         this.movementSystem = new MovementSystem(this.world, this.ECS);
         this.render = new Render(this.context, this.display, this.camera, this.world, this.ECS, this.selection, this.community);
 
-        this.player = new Player(0, this.community, this.inventory);
-        this.ia = new Player(1, new Community, new Inventory);
-
         // components (entity-components system)
         this.ECS.Explorer = new Map();
         this.ECS.Harvester = new Map();
@@ -69,11 +66,21 @@ class Game {
         this.display.getCanvas().addEventListener("contextmenu", (event) => { this.rightclick(event); });
 
         // init game
+        this.computers = [];
+        this.player = new Player(0, this.community, this.inventory, {});
+        this.computerOne = new Player(1, new Community, new Inventory, new IA());
+        this.computerTwo = new Player(2, new Community, new Inventory, new IA());
+        this.computers.push(this.computerOne);
+        this.computers.push(this.computerTwo);
+
         this.unitCreator.create("campfire", Settings.startHexPosition.q, Settings.startHexPosition.r, this.player);
         this.unitCreator.create("harvester", Settings.startHexPosition.q, Settings.startHexPosition.r, this.player);
 
-        this.unitCreator.create("campfire", Settings.startHexPosition.q + 2, Settings.startHexPosition.r + 2, this.ia);
-        this.unitCreator.create("harvester", Settings.startHexPosition.q + 2, Settings.startHexPosition.r + 2, this.ia);
+        this.unitCreator.create("campfire", Settings.startHexPosition.q + 2, Settings.startHexPosition.r + 2, this.computerOne);
+        this.unitCreator.create("harvester", Settings.startHexPosition.q + 2, Settings.startHexPosition.r + 2, this.computerOne);
+
+        this.unitCreator.create("campfire", Settings.startHexPosition.q - 2, Settings.startHexPosition.r + 2, this.computerTwo);
+        this.unitCreator.create("harvester", Settings.startHexPosition.q - 2, Settings.startHexPosition.r + 2, this.computerTwo);
 
         this.idleCycleCounter = 0;
 
@@ -113,13 +120,16 @@ class Game {
             this.ECS.Order.delete(entity);
         });
     }
+    setOrder(hex, resource, actionName, entity) {
+        this.ECS.Order.set(entity, { hex: hex, resource: resource, actionName: actionName });
+        this.ECS.Movement.set(entity, { path: [] });
+    }
     actionButtonClick(hex, resource, actionName) {
         let done = false;
         this.ECS.Harvester.forEach((value, entity, map) => {
             let harvesterPosition = this.ECS.Position.get(entity);
             if (hex.q === harvesterPosition.q && hex.r === harvesterPosition.r) {
-                this.ECS.Order.set(entity, { hex: hex, resource: resource, actionName: actionName });
-                this.ECS.Movement.set(entity, { path: [] });
+                this.setOrder(hex, resource, actionName, entity);
                 done = true;
             }
         });
@@ -134,24 +144,17 @@ class Game {
                 let knowledges = resource.resourceData.actions[actionName].learn;
                 if (get !== undefined) {
                     if (Data.resources[get] !== undefined) {
-                        this.inventory.add(Data.resources[get]);
-                    } else {
-                        console.log(`${resource.resourceName} n'a pas de get`);
+                        this.inventory.add(Data.resources[get]); // on ajoute la ressource à l'inventaire
                     }
                     if (resource.resourceData.resourceName !== get) {
                         let newResourceData = Data.resources[get];
-                        if (newResourceData === undefined) {
-                            console.warn(`ressource inexistante ${get}`);
-                        } else {
-                            // console.log(`ressource ${JSON.stringify(newResourceData)} gagnée sur la tuile`);
-                            hex.addResource(newResourceData);
-                        }
+                        hex.addResource(newResourceData); // si la ressource get n'est pas sur la tuile, on l'ajoute
                     }
                 }
                 if (knowledges !== undefined) {
                     this.community.learn(knowledges);
                 }
-                hex.harvest(resourceName, actionName);
+                hex.harvest(resourceName, actionName); // on ajoute la fatigue à la tuile
             }
         });
         this.ui.update();
@@ -166,18 +169,21 @@ class Game {
         this.ui.setLastMousePosition(mousePosition);
         return worldPosition;
     }
+    setMove(entity, hex) {
+        let movement = this.ECS.Movement.get(entity);
+        if (movement !== undefined) {
+            let position = this.ECS.Position.get(entity);
+            movement.path = Pathfinding.find(position, hex);
+            this.ECS.Order.delete(entity);
+        }
+    }
     rightclick(event) {
         event.preventDefault();
         if (this.selection.selectedEntity !== undefined) {
             let entity = this.selection.selectedEntity;
             let worldPosition = this.getMouseWorldPosition(event);
             let hex = this.world.getHexFromWorldPosition(worldPosition);
-            let movement = this.ECS.Movement.get(entity);
-            if (movement !== undefined) {
-                let position = this.ECS.Position.get(entity);
-                movement.path = Pathfinding.find(position, hex);
-                this.ECS.Order.delete(entity);
-            }
+            this.setMove(entity, hex);
         }
     }
     mousemove(event) {
@@ -221,7 +227,7 @@ class Game {
         let worldPosition = this.getMouseWorldPosition(event);
         let hex = this.world.getHexFromWorldPosition(worldPosition);
         let entity = this.getEntityFromWorldPosition(worldPosition);
-        if (entity !== undefined) {
+        if (entity !== undefined && this.ECS.Owner.get(entity).id === this.player.id) {
             this.selectEntity(entity);
         } else {
             this.selectHex(hex);
@@ -245,6 +251,9 @@ class Game {
         });
     }
     tick() {
+        this.computers.forEach((computer) => {
+            computer.IA.act();
+        });
         // this.community.feed(this.inventory, this.ECS.Explorer.size);
         this.movementSystem.update();
         this.ECS.Order.forEach((order, entity, map) => {

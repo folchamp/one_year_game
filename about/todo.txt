@@ -356,13 +356,19 @@ gastro
 rien fait :-( 
 ♥ 26/09/2026
 testing
-
+préparer le joueur ordinateur
+♥ 27/09/2026
+cliquer ne sélectionne que les unités du joueur
+séparer setOrder d'actionButtonClick
+retirer les choses dans Game.js qui devraient être dans RacValidator.js
+séparer rightClick() et setMove()
 
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
+passer tous les this.community en this.ECS.Owner.get(entity).community 
 préparer game pour accueillir l'IA
 actionButtonClick -> setOrder
 

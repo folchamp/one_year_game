@@ -17,13 +17,21 @@ class RacValidator {
                 const requiresOneOf = resourceData.actions[actionName].requiresOneOf;
                 const learn = resourceData.actions[actionName].learn;
                 const get = resourceData.actions[actionName].get;
+                if (get === undefined) {
+                    console.log(`${resourceName} ${actionName} n'a pas de get.`)
+                }
                 if (Data.resources[get] === undefined) {
                     console.warn(`resource ${get} doesn't exist`);
                 }
                 if (Images.resourceImages[get] === undefined) {
                     console.warn(`[G] no image for ${get}`);
                 }
-
+                if (resourceData.resourceName !== get) {
+                    let newResourceData = Data.resources[get];
+                    if (newResourceData === undefined) {
+                        console.warn(`ressource inexistante ${get}`);
+                    }
+                }
                 requiresOneOf.forEach((knowledge) => {
                     knowledgesChecker[knowledge] ??= { name: resourceName, requires: 0, learns: 0 };
                     knowledgesChecker[knowledge].requires++;
