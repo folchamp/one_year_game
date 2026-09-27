@@ -23,25 +23,14 @@ class Game {
             cameraDown: () => this.camera.cameraDown(),
             nextTick: () => this.tick()
         }
-        this.inventory = new Inventory();
 
-        // parts
-        this.log = new Log();
-        this.world = new World();
+        // display
         this.display = new Display();
-        this.selection = new Selection();
-        this.hotkeys = new Hotkeys();
-        this.community = new Community();
         this.camera = new Camera(this.display.getCanvas());
         this.context = this.display.getContext();
-        this.ECS = {};
-        this.ui = new UI(this.selection, this.uiActions, this.inventory, this.community);
-
-        this.unitCreator = new UnitCreator(this.ECS);
-        this.movementSystem = new MovementSystem(this.world, this.ECS);
-        this.render = new Render(this.context, this.display, this.camera, this.world, this.ECS, this.selection, this.community);
 
         // components (entity-components system)
+        this.ECS = {};
         this.ECS.Explorer = new Map();
         this.ECS.Harvester = new Map();
         this.ECS.Name = new Map();
@@ -51,6 +40,17 @@ class Game {
         this.ECS.Movement = new Map();
         this.ECS.Order = new Map();
         this.ECS.Owner = new Map();
+
+        // engine
+        this.log = new Log();
+        this.world = new World();
+        this.selection = new Selection();
+        this.hotkeys = new Hotkeys();
+        this.unitCreator = new UnitCreator(this.ECS);
+        this.movementSystem = new MovementSystem(this.world, this.ECS);
+
+        // render
+        this.render = new Render(this.context, this.display, this.camera, this.world, this.ECS, this.selection);
 
         // hotkeys
         this.hotkeys.bind("Backquote", this.actions.selectNextIdle);
@@ -65,9 +65,14 @@ class Game {
         this.display.getCanvas().addEventListener("click", (event) => { this.click(event); });
         this.display.getCanvas().addEventListener("contextmenu", (event) => { this.rightclick(event); });
 
+        // player
+        this.inventory = new Inventory();
+        this.community = new Community();
+        this.player = new Player(0, this.community, this.inventory, new IA());
+        this.ui = new UI(this.selection, this.uiActions, this.player);
+
         // init game
         this.computers = [];
-        this.player = new Player(0, this.community, this.inventory, {});
         this.computerOne = new Player(1, new Community, new Inventory, new IA());
         this.computerTwo = new Player(2, new Community, new Inventory, new IA());
         this.computers.push(this.computerOne);
@@ -88,16 +93,16 @@ class Game {
         this.tick(); // tick initial, je ne sais plus pourquoi c'est nécessaire
         this.loop();
     }
-    createUnit(unitName) {
+    createUnit(unitName, owner) {
         const unitData = Data.units[unitName];
         const price = unitData.unitPrice;
         if (this.movementSystem.isHexPositionOccupied({ q: Settings.startHexPosition.q, r: Settings.startHexPosition.r })) {
             alert("hex is not free");
-        } else if (!this.inventory.has(price) && Settings.production) {
+        } else if (!owner.inventory.has(price) && Settings.production) {
             alert("not enough resources");
         } else {
-            this.inventory.consume(price)
-            this.unitCreator.create(unitName, Settings.startHexPosition.q, Settings.startHexPosition.r, this.player);
+            owner.inventory.consume(price)
+            this.unitCreator.create(unitName, Settings.startHexPosition.q, Settings.startHexPosition.r, owner);
         }
         this.explore();
         this.ui.update();
@@ -139,12 +144,13 @@ class Game {
         let resourceName = resource.resourceData.resourceName;
         this.ECS.Harvester.forEach((value, entity, map) => {
             let harvesterPosition = this.ECS.Position.get(entity);
+            let owner = this.ECS.Owner.get(entity);
             if (hex.q === harvesterPosition.q && hex.r === harvesterPosition.r && resource.isAvailable) {
                 let get = resource.resourceData.actions[actionName].get; // which resource does the action "get" (harvest)
                 let knowledges = resource.resourceData.actions[actionName].learn;
                 if (get !== undefined) {
                     if (Data.resources[get] !== undefined) {
-                        this.inventory.add(Data.resources[get]); // on ajoute la ressource à l'inventaire
+                        owner.inventory.add(Data.resources[get]); // on ajoute la ressource à l'inventaire
                     }
                     if (resource.resourceData.resourceName !== get) {
                         let newResourceData = Data.resources[get];
@@ -152,7 +158,7 @@ class Game {
                     }
                 }
                 if (knowledges !== undefined) {
-                    this.community.learn(knowledges);
+                    owner.community.learn(knowledges);
                 }
                 hex.harvest(resourceName, actionName); // on ajoute la fatigue à la tuile
             }
@@ -254,16 +260,11 @@ class Game {
         this.computers.forEach((computer) => {
             computer.IA.act();
         });
-        // this.community.feed(this.inventory, this.ECS.Explorer.size);
         this.movementSystem.update();
         this.ECS.Order.forEach((order, entity, map) => {
             this.action(order.hex, order.resource, order.actionName);
         });
         this.explore();
-        // date de l'époque où les unités apparaissaient automatiquement quand il y avait assez de bouffe
-        // if (this.ECS.Explorer.size < Math.floor(this.community.population / Settings.bornPopulationCap)) {
-        //     this.born();
-        // }
         this.world.update();
 
         // au cas où des ressources ont disparu, les explorateurs doivent arrêter de travailler

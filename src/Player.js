@@ -7,8 +7,6 @@ class Player {
         this.inventory = inventory;
         this.IA = IA;
 
-        if (this.IA.setId) {
-            this.IA.setId(this.id);
-        }
+        this.IA.setId(this.id);
     }
 }

@@ -1,14 +1,13 @@
 "use strict";
 
 class Render {
-    constructor(context, display, camera, world, ECS, selection, community) {
+    constructor(context, display, camera, world, ECS, selection) {
         this.context = context;
         this.display = display;
         this.camera = camera;
         this.world = world;
         this.ECS = ECS;
         this.selection = selection;
-        this.community = community;
     }
     drawArrow(fromHex, toHex) {
         // merci ChatGPT

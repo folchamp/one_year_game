@@ -25,7 +25,6 @@ class UnitCreator {
             throw "owner undefined";
         }
         this.ECS.Owner.set(entity, owner);
-        console.log(this.ECS.Owner);
         return entity;
     }
     createHarvester(q, r) {

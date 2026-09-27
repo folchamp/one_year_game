@@ -362,12 +362,14 @@ cliquer ne sélectionne que les unités du joueur
 séparer setOrder d'actionButtonClick
 retirer les choses dans Game.js qui devraient être dans RacValidator.js
 séparer rightClick() et setMove()
-
+réorganiser le constructeur de Game.js 
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
+startPosition pour chaque joueur
+idle unit selection ne sélectionne que les unités de l'appeleur
 passer tous les this.community en this.ECS.Owner.get(entity).community 
 préparer game pour accueillir l'IA
 actionButtonClick -> setOrder

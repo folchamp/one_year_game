@@ -1,12 +1,15 @@
 "use strict";
 
 class UI {
-    constructor(selection, uiActions, inventory, community) {
+    constructor(selection, uiActions, player) {
         this.selection = selection;
         this.uiActions = uiActions;
-        this.inventory = inventory;
-        this.community = community;
+        this.player = player;
+
+        this.inventory = this.player.inventory;
+        this.community = this.player.community;
         this.lastMousePosition = { x: 0, y: 0 };
+
         Util.quickStructure(document.body, this,
             ["uiContainer",
                 [
@@ -65,7 +68,7 @@ class UI {
             // this.uiCreateUnitImage.src = `images/units/${unitName}.png`;
             this.uiCreateUnitImage.src = Images.unitImages[unitName].src;
             this.uiCreateUnitButton.innerText = unitName;
-            this.uiCreateUnitButton.addEventListener("click", (event) => { this.uiActions.createUnit(unitName); });
+            this.uiCreateUnitButton.addEventListener("click", (event) => { this.uiActions.createUnit(unitName, this.player); });
 
             for (const resourceCategoryName in unitPrice) {
                 const amount = unitPrice[resourceCategoryName];

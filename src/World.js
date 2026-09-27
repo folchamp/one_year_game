@@ -97,7 +97,6 @@ class World {
                 }
             }
         });
-        this.hexes.get(`${Settings.startHexPosition.q}, ${Settings.startHexPosition.r}`).biome = Data.biomes["plains"];
     }
     fillResources() {
         this.hexes.forEach((hex, key, map) => {
