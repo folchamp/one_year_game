@@ -9,7 +9,13 @@ class Settings {
     static tileHeight = 226;
     static resourceImageSize = 64;
     static categoryImageSize = 32;
-    static startHexPosition = { q: 0, r: 0 };
+    static startHexPositions = [
+        { q: 0, r: 0 },
+        { q: 2, r: 2 },
+        { q: -2, r: -2 },
+        { q: 2, r: -2 },
+        { q: -2, r: 2 },
+    ];
     // static lengthOfFoodMemory = 10;
     static maxFatigue = 36;
     static fatigueRecovery = 1;

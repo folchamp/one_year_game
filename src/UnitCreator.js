@@ -10,16 +10,16 @@ class UnitCreator {
         }
         return this.nextID++;
     }
-    create(name, q, r, owner) {
+    create(name, position, owner) {
         let entity;
         if (name === "explorer") {
-            entity = this.createExplorer(q, r);
+            entity = this.createExplorer(position);
         }
         if (name === "harvester") {
-            entity = this.createHarvester(q, r);
+            entity = this.createHarvester(position);
         }
         if (name === "campfire") {
-            entity = this.createCampfire(q, r);
+            entity = this.createCampfire(position);
         }
         if (owner === undefined) {
             throw "owner undefined";
@@ -27,32 +27,32 @@ class UnitCreator {
         this.ECS.Owner.set(entity, owner);
         return entity;
     }
-    createHarvester(q, r) {
+    createHarvester(pos) {
         let entity = this.newEntity();
         this.ECS.Harvester.set(entity, {});
         this.ECS.Explorer.set(entity, { range: 1 });
         this.ECS.Name.set(entity, "harvester");
-        this.ECS.Position.set(entity, { q: q, r: r });
+        this.ECS.Position.set(entity, { q: pos.q, r: pos.r });
         this.ECS.Movement.set(entity, { path: [] });
         this.ECS.Sprite.set(entity, { imageName: "harvester", width: 64, height: 64, radius: 48 });
         this.ECS.Hitbox.set(entity, { type: "circle", radius: 48 });
         return entity;
     }
-    createExplorer(q, r) {
+    createExplorer(pos) {
         let entity = this.newEntity();
         // this.ECS.Harvester.set(entity, {});
         this.ECS.Explorer.set(entity, { range: 2 });
         this.ECS.Name.set(entity, "explorer");
-        this.ECS.Position.set(entity, { q: q, r: r });
+        this.ECS.Position.set(entity, { q: pos.q, r: pos.r });
         this.ECS.Movement.set(entity, { path: [] });
         this.ECS.Sprite.set(entity, { imageName: "explorer", width: 64, height: 64, radius: 48 });
         this.ECS.Hitbox.set(entity, { type: "circle", radius: 48 });
         return entity;
     }
-    createCampfire(q, r) {
+    createCampfire(pos) {
         let entity = this.newEntity();
         this.ECS.Name.set(entity, "campfire");
-        this.ECS.Position.set(entity, { q: q, r: r });
+        this.ECS.Position.set(entity, { q: pos.q, r: pos.r });
         this.ECS.Sprite.set(entity, { imageName: "campfire", width: 170, height: 170, radius: 100 });
         // this.ECS.Hitbox.set(entity, { type: "circle", radius: 100 });
         return entity;

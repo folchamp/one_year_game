@@ -4,7 +4,7 @@ class Game {
     constructor() {
         // actions
         this.actions = {
-            selectNextIdle: { description: "Selects the next idle entity", f: () => this.selectNextIdle() },
+            selectNextIdle: { description: "Selects the next idle entity", f: () => this.selectNextIdle(this.player) },
             resetCamera: { description: "Resets the camera to the center of the map", f: () => this.camera.resetCamera() },
             resetZoom: { description: "Resets the zoom of the camera", f: () => this.camera.resetZoom() },
             openHotkeysMenu: { description: "Open the hotkeys menu", f: () => { this.log.log(JSON.stringify(this.hotkeys.getHotkeys(), null, 4)); } },
@@ -14,7 +14,7 @@ class Game {
             downloadResources: { description: "Add Data.resources to clipboard", f: () => this.downloadResources() }
         };
         this.uiActions = {
-            createUnit: (unitName) => this.createUnit(unitName),
+            createUnit: (unitName, player) => this.createUnit(unitName, player),
             actionButtonClick: (hex, resource, actionName) => this.actionButtonClick(hex, resource, actionName),
             // feedCommunityClick: (resourceName) => this.feedCommunityClick(resourceName),
             cameraLeft: () => this.camera.cameraLeft(),
@@ -68,24 +68,24 @@ class Game {
         // player
         this.inventory = new Inventory();
         this.community = new Community();
-        this.player = new Player(0, this.community, this.inventory, new IA());
+        this.player = new Player(0, this.community, this.inventory, Settings.startHexPositions[0], new IA());
         this.ui = new UI(this.selection, this.uiActions, this.player);
 
         // init game
         this.computers = [];
-        this.computerOne = new Player(1, new Community, new Inventory, new IA());
-        this.computerTwo = new Player(2, new Community, new Inventory, new IA());
+        this.computerOne = new Player(1, new Community, new Inventory, Settings.startHexPositions[1], new IA());
+        this.computerTwo = new Player(2, new Community, new Inventory, Settings.startHexPositions[2], new IA());
         this.computers.push(this.computerOne);
         this.computers.push(this.computerTwo);
 
-        this.unitCreator.create("campfire", Settings.startHexPosition.q, Settings.startHexPosition.r, this.player);
-        this.unitCreator.create("harvester", Settings.startHexPosition.q, Settings.startHexPosition.r, this.player);
+        this.unitCreator.create("campfire", Settings.startHexPositions[0], this.player);
+        this.unitCreator.create("harvester", Settings.startHexPositions[0], this.player);
 
-        this.unitCreator.create("campfire", Settings.startHexPosition.q + 2, Settings.startHexPosition.r + 2, this.computerOne);
-        this.unitCreator.create("harvester", Settings.startHexPosition.q + 2, Settings.startHexPosition.r + 2, this.computerOne);
+        this.unitCreator.create("campfire", Settings.startHexPositions[1], this.computerOne);
+        this.unitCreator.create("harvester", Settings.startHexPositions[1], this.computerOne);
 
-        this.unitCreator.create("campfire", Settings.startHexPosition.q - 2, Settings.startHexPosition.r + 2, this.computerTwo);
-        this.unitCreator.create("harvester", Settings.startHexPosition.q - 2, Settings.startHexPosition.r + 2, this.computerTwo);
+        this.unitCreator.create("campfire", Settings.startHexPositions[2], this.computerTwo);
+        this.unitCreator.create("harvester", Settings.startHexPositions[2], this.computerTwo);
 
         this.idleCycleCounter = 0;
 
@@ -96,13 +96,13 @@ class Game {
     createUnit(unitName, owner) {
         const unitData = Data.units[unitName];
         const price = unitData.unitPrice;
-        if (this.movementSystem.isHexPositionOccupied({ q: Settings.startHexPosition.q, r: Settings.startHexPosition.r })) {
+        if (this.movementSystem.isHexPositionOccupied({ q: owner.startHexPosition.q, r: owner.startHexPosition.r })) {
             alert("hex is not free");
         } else if (!owner.inventory.has(price) && Settings.production) {
             alert("not enough resources");
         } else {
             owner.inventory.consume(price)
-            this.unitCreator.create(unitName, Settings.startHexPosition.q, Settings.startHexPosition.r, owner);
+            this.unitCreator.create(unitName, owner.startHexPosition, owner);
         }
         this.explore();
         this.ui.update();
@@ -133,6 +133,7 @@ class Game {
         let done = false;
         this.ECS.Harvester.forEach((value, entity, map) => {
             let harvesterPosition = this.ECS.Position.get(entity);
+            console.log(harvesterPosition);
             if (hex.q === harvesterPosition.q && hex.r === harvesterPosition.r) {
                 this.setOrder(hex, resource, actionName, entity);
                 done = true;
@@ -197,11 +198,14 @@ class Game {
         let hex = this.world.getHexFromWorldPosition(worldPosition);
         this.selection.hoveredHex = hex;
     }
-    selectNextIdle() {
+    selectNextIdle(owner) {
         let idles = [];
         let idle;
         this.ECS.Movement.forEach((value, entity, array) => {
-            if (this.ECS.Movement.get(entity) !== undefined && this.ECS.Movement.get(entity).path.length <= 0 && this.ECS.Order.get(entity) === undefined) {
+            if (this.ECS.Owner.get(entity) === owner &&
+                this.ECS.Movement.get(entity) !== undefined &&
+                this.ECS.Movement.get(entity).path.length <= 0 &&
+                this.ECS.Order.get(entity) === undefined) {
                 idles.push(entity);
             }
         });
@@ -221,7 +225,7 @@ class Game {
     }
     selectHex(hex) {
         this.selection.selectHex(hex);
-        if (hex.q === Settings.startHexPosition.q && hex.r === Settings.startHexPosition.r) {
+        if (hex.q === this.player.startHexPosition.q && hex.r === this.player.startHexPosition.r) {
             this.selection.selectCommunity();
         }
         if (hex !== undefined) {
@@ -233,7 +237,7 @@ class Game {
         let worldPosition = this.getMouseWorldPosition(event);
         let hex = this.world.getHexFromWorldPosition(worldPosition);
         let entity = this.getEntityFromWorldPosition(worldPosition);
-        if (entity !== undefined && this.ECS.Owner.get(entity).id === this.player.id) {
+        if (entity !== undefined && this.ECS.Owner.get(entity) === this.player) {
             this.selectEntity(entity);
         } else {
             this.selectHex(hex);
