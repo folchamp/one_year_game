@@ -369,12 +369,12 @@ startPosition pour chaque joueur
 idle unit selection ne sélectionne que les unités de l'appeleur
 passer tous les this.community en this.ECS.Owner.get(entity).community 
 actionButtonClick -> setOrder
+préparer le seenThroughFog et explored pour chaque joueur
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
-préparer le seenThroughFog et explored pour chaque joueur
 vérifier le comportement des cités quand elles ont 0 de fatigue
 les IA cherchent en priorité les tuiles avec de la nourriture et des outils
 
