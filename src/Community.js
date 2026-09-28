@@ -9,7 +9,7 @@ class Community {
     learn(knowledge) {
         let chosenKnowledge = Random.fromArray(knowledge);
         if (chosenKnowledge !== undefined && !this.knowledge.includes(chosenKnowledge)) {
-            console.log(`- learned ${chosenKnowledge}`);
+            // console.log(`- learned ${chosenKnowledge}`);
             this.knowledge.push(chosenKnowledge);
         }
 
@@ -19,7 +19,7 @@ class Community {
             for (let actionName in resourceData.actions) {
                 let actionData = resourceData.actions[actionName];
                 if (actionData.requiresOneOf.includes(chosenKnowledge)) {
-                    console.log(`unlock ${resourceName} -> ${actionName}`);
+                    // console.log(`unlock ${resourceName} -> ${actionName}`);
                 }
             }
         }

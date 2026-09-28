@@ -152,7 +152,7 @@ class UI {
         this.hexResourcesContainer.replaceChildren();
         Util.show(this.uiContainer);
         Util.show(this.hexSelectorContainer);
-        if (hex.isSeenThroughFog || !Settings.production) {
+        if (hex.hasSeen(this.player) || !Settings.production) {
             this.hexImageContainer.style["background-image"] = `url("${Images.tileImages[hex.biome.imageName].src}")`;
             hex.resources.forEach((resource) => {
                 Util.quickStructure(this.hexResourcesContainer, this,

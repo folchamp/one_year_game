@@ -20,21 +20,21 @@ class World {
 
         this.hexes.get(`0, 0`).resources = [];
     }
-    seeNeighbours(position, range) {
-        this.hexes.get(`${position.q}, ${position.r}`).isSeenThroughFog = true;
-        this.seeNeighboursRecursive(position, range, [...World.getNeighbors(position.q, position.r)]);
+    seeNeighbours(position, range, player) {
+        this.hexes.get(`${position.q}, ${position.r}`).see(player);
+        this.seeNeighboursRecursive(position, range, [...World.getNeighbors(position.q, position.r)], player);
     }
-    seeNeighboursRecursive(position, range, neighbors) {
+    seeNeighboursRecursive(position, range, neighbors, player) {
         // TODO extrêmement naïf, améliorer (avec un set visitedHexes)
         if (range > 0) {
             neighbors.forEach((neighbor) => {
                 let hex = this.hexes.get(`${neighbor.q}, ${neighbor.r}`);
                 if (hex !== undefined) {
-                    hex.isSeenThroughFog = true;
+                    hex.see(player);
                 }
                 neighbors.push(...World.getNeighbors(neighbor.q, neighbor.r));
             });
-            this.seeNeighboursRecursive(position, range - 1, neighbors);
+            this.seeNeighboursRecursive(position, range - 1, neighbors, player);
         }
     }
     exploreTile(position, player) {

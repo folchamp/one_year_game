@@ -82,6 +82,9 @@ class Game {
         this.computers.push(this.computerOne);
         this.computers.push(this.computerTwo);
 
+        // testing
+        this.computers.push(this.player);
+
         this.unitCreator.create("campfire", Settings.startHexPositions[0], this.player);
         this.unitCreator.create("harvester", Settings.startHexPositions[0], this.player);
 
@@ -262,7 +265,7 @@ class Game {
     explore() {
         this.ECS.Explorer.forEach((value, entity, map) => {
             this.world.exploreTile(this.ECS.Position.get(entity), this.ECS.Owner.get(entity));
-            this.world.seeNeighbours(this.ECS.Position.get(entity), value.range);
+            this.world.seeNeighbours(this.ECS.Position.get(entity), value.range, this.ECS.Owner.get(entity));
         });
     }
     tick() {

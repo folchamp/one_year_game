@@ -16,7 +16,7 @@ class Hex {
 
         // visibility attributes
         this.isExploredBy = [];
-        this.isSeenThroughFog = false;
+        this.isSeenThroughFogBy = [];
 
         // fatigue
         this.fatigue = 0;
@@ -25,15 +25,21 @@ class Hex {
 
         this.lastResourceTaken;
     }
+    hasSeen(player) {
+        return this.isSeenThroughFogBy.includes(player);
+    }
+    see(player) {
+        if (!this.isSeenThroughFogBy.includes(player)) {
+            this.isSeenThroughFogBy.push(player);
+        }
+    }
     hasExplored(player) {
         return this.isExploredBy.includes(player);
     }
     explore(player) {
-        console.log(this.isExploredBy);
         if (!this.isExploredBy.includes(player)) {
             this.isExploredBy.push(player);
         }
-        console.log(this.isExploredBy);
     }
     setBiome(biome) {
         // évite que biome ait accès aux Data.biomes

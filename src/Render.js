@@ -97,9 +97,17 @@ class Render {
         this.strokeWithSelectionStyle();
     }
     drawEntity(sprite, hexPosition) {
+        let hex = this.world.get(hexPosition.q, hexPosition.r);
         if (hexPosition !== undefined) {
-            let worldPosition = World.hexToWorld(hexPosition);
-            this.context.drawImage(Images.unitImages[sprite.imageName], worldPosition.x - sprite.width / 2, worldPosition.y - sprite.height / 2);
+            if (hex.hasSeen(this.player)) {
+                let worldPosition = World.hexToWorld(hexPosition);
+                this.context.drawImage(Images.unitImages[sprite.imageName], worldPosition.x - sprite.width / 2, worldPosition.y - sprite.height / 2);
+            }
+        } else {
+            console.log(sprite)
+            console.log(hexPosition);
+            console.log(hex);
+            throw "danggg";
         }
     }
     drawHexPath(hex) {
@@ -184,7 +192,7 @@ class Render {
     }
     drawHex(hex) {
         const pos = this.getWorldPosition(hex);
-        if (hex.isSeenThroughFog || !Settings.production) {
+        if (hex.hasSeen(this.player) || !Settings.production) {
             this.context.drawImage(Images.tileImages[hex.biome.imageName], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);
             if (hex.fatigue > 0) {
                 this.drawFatigue(hex);

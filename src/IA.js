@@ -19,7 +19,7 @@ class IA {
                     for (const actionName in actions) {
                         const action = actions[actionName];
                         if (this.owner.community.fillsConditions(action.requiresOneOf)) {
-                            console.log(`${resourceData.displayName} -> ${action.displayName}`);
+                            // console.log(`${resourceData.displayName} -> ${action.displayName}`);
                             this.actions.setOrder(actualHex, resource, actionName, harvester);
                             orderGiven = true;
                         }
