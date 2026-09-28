@@ -53,9 +53,6 @@ class Game {
         this.unitCreator = new UnitCreator(this.ECS);
         this.movementSystem = new MovementSystem(this.world, this.ECS);
 
-        // render
-        this.render = new Render(this.context, this.display, this.camera, this.world, this.ECS, this.selection);
-
         // hotkeys
         this.hotkeys.bind("Backquote", this.actions.selectNextIdle);
         this.hotkeys.bind("KeyR", this.actions.resetCamera);
@@ -74,6 +71,9 @@ class Game {
         this.community = new Community();
         this.player = new Player(0, this.community, this.inventory, Settings.startHexPositions[0], new IA(this.iaActions));
         this.ui = new UI(this.selection, this.uiActions, this.player);
+
+        // render
+        this.render = new Render(this.context, this.display, this.camera, this.world, this.ECS, this.selection, this.player);
 
         // init game
         this.computers = [];
@@ -234,8 +234,8 @@ class Game {
             this.selection.selectCommunity();
         }
         if (hex !== undefined) {
-            this.log.log(JSON.stringify(hex, null, 4));
-            this.log.log(`Fatigue : ${hex.fatigue}/${Settings.maxFatigue}`);
+            // this.log.log(JSON.stringify(hex, null, 4));
+            // this.log.log(`Fatigue : ${hex.fatigue}/${Settings.maxFatigue}`);
         }
     }
     click(event) {
@@ -261,7 +261,7 @@ class Game {
     }
     explore() {
         this.ECS.Explorer.forEach((value, entity, map) => {
-            this.world.exploreTile(this.ECS.Position.get(entity));
+            this.world.exploreTile(this.ECS.Position.get(entity), this.ECS.Owner.get(entity));
             this.world.seeNeighbours(this.ECS.Position.get(entity), value.range);
         });
     }

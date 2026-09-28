@@ -1,13 +1,14 @@
 "use strict";
 
 class Render {
-    constructor(context, display, camera, world, ECS, selection) {
+    constructor(context, display, camera, world, ECS, selection, player) {
         this.context = context;
         this.display = display;
         this.camera = camera;
         this.world = world;
         this.ECS = ECS;
         this.selection = selection;
+        this.player = player;
     }
     drawArrow(fromHex, toHex) {
         // merci ChatGPT
@@ -143,7 +144,7 @@ class Render {
         hex.resources.forEach((resource) => {
             this.context.strokeStyle = "rgba(24, 27, 24, 0.8)";
             // this.context.strokeRect(firstPosition + index * smallSize, height, smallSize, smallSize);
-            if (hex.isExplored || !Settings.production) {
+            if (hex.hasExplored(this.player) || !Settings.production) {
                 if (Images.resourceImages[resource.resourceData.imageName] === undefined) {
                     console.log(`${resource.resourceData.resourceName} n'a pas d'image`);
                     this.context.drawImage(Images.resourceImages["unknownResource"], firstPosition + index * smallSize, height, smallSize, smallSize);

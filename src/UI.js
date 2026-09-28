@@ -163,7 +163,7 @@ class UI {
                             "resourceActionsContainer"]
                     ]
                 );
-                if (hex.isExplored || !Settings.production) {
+                if (hex.hasExplored(this.player) || !Settings.production) {
                     this.addResource(hex, resource);
                 } else {
                     this.resourceImage.src = Images.resourceImages["unknownResource"].src;

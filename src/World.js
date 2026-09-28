@@ -37,8 +37,8 @@ class World {
             this.seeNeighboursRecursive(position, range - 1, neighbors);
         }
     }
-    exploreTile(position) {
-        this.hexes.get(`${position.q}, ${position.r}`).isExplored = true;
+    exploreTile(position, player) {
+        this.hexes.get(`${position.q}, ${position.r}`).explore(player);
     }
     update() {
         this.hexes.forEach((hex) => {

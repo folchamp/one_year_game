@@ -15,7 +15,7 @@ class Hex {
         this.isDegraded = false;
 
         // visibility attributes
-        this.isExplored = false;
+        this.isExploredBy = [];
         this.isSeenThroughFog = false;
 
         // fatigue
@@ -24,6 +24,16 @@ class Hex {
         this.resources = [];
 
         this.lastResourceTaken;
+    }
+    hasExplored(player) {
+        return this.isExploredBy.includes(player);
+    }
+    explore(player) {
+        console.log(this.isExploredBy);
+        if (!this.isExploredBy.includes(player)) {
+            this.isExploredBy.push(player);
+        }
+        console.log(this.isExploredBy);
     }
     setBiome(biome) {
         // évite que biome ait accès aux Data.biomes

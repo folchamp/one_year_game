@@ -363,17 +363,20 @@ séparer setOrder d'actionButtonClick
 retirer les choses dans Game.js qui devraient être dans RacValidator.js
 séparer rightClick() et setMove()
 réorganiser le constructeur de Game.js 
+♥ 28/09/2026
+préparer game pour accueillir l'IA
+startPosition pour chaque joueur
+idle unit selection ne sélectionne que les unités de l'appeleur
+passer tous les this.community en this.ECS.Owner.get(entity).community 
+actionButtonClick -> setOrder
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
-startPosition pour chaque joueur
-idle unit selection ne sélectionne que les unités de l'appeleur
-passer tous les this.community en this.ECS.Owner.get(entity).community 
-préparer game pour accueillir l'IA
-actionButtonClick -> setOrder
-
+préparer le seenThroughFog et explored pour chaque joueur
+vérifier le comportement des cités quand elles ont 0 de fatigue
+les IA cherchent en priorité les tuiles avec de la nourriture et des outils
 
 halo vert sur les explorateurs qui n'ont encore rien harvest ce tour-ci
 ne plus vider les "order" après chaque action
