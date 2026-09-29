@@ -3105,7 +3105,6 @@ class Data {
             degradation: "desert",
             imageName: "desert"
         },
-
         broussailles: {
             biomeName: "broussailles",
             degradation: "desert",
@@ -3226,7 +3225,7 @@ class Data {
         },
         city: {
             biomeName: "city",
-            degradation: undefined,
+            degradation: "city",
             imageName: "city",
             attribute: "humanInfluence",
             amount: 10,

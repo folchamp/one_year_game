@@ -15,7 +15,7 @@ body {
 
 .logContainer {
     position: absolute;
-    right: 0;
+    right: 10px;
     display: flex;
     line-height: 12px;
     overflow: scroll;
@@ -74,16 +74,16 @@ body {
 }
 
 .uiMobileContainer {
-    bottom: 0;
-    right: 0;
+    bottom: 10px;
+    right: 10px;
     text-align: center;
 }
 
 .uiTwoContainer {
     display: flex;
     flex-direction: row;
-    top: 0;
-    left: 0;
+    top: 10px;
+    left: 10px;
     padding: 4px;
 
     .populationContainer {
@@ -121,7 +121,8 @@ body {
 
 .uiContainer {
     user-select: none;
-    bottom: 0;
+    left: 10px;
+    bottom: 10px;
 
     .hexSelectorContainer {
         display: flex;

@@ -55,7 +55,7 @@ class Hex {
             // this.isDegraded = false;
             this.fatigue = 0;
             if (this.biome.degradation) {
-                if (this.biome.degradation === "desert") {
+                if (this.biome.degradation === "desert" || this.biome.degradation === "city") {
                     // quand on atteint le dernier stade de dégradation (le désert), toutes les ressources disparaissent
                     this.resources = [];
                 }
@@ -64,9 +64,9 @@ class Hex {
                 // this.setBiome(Data.biomes["desert"]);
                 // }
             } else if (this.biome.biomeName === "city") {
-                this.resources = this.resources.filter((resource, index, array) => {
-                    return resource.resourceData.resourceName !== this.lastResourceTaken;
-                });
+                // this.resources = this.resources.filter((resource, index, array) => {
+                //     return resource.resourceData.resourceName !== this.lastResourceTaken;
+                // });
             }
         }
     }

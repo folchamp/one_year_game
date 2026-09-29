@@ -24,6 +24,7 @@ class Game {
             nextTick: () => this.tick()
         }
         this.iaActions = {
+            createUnit: (unitName, player) => this.createUnit(unitName, player),
             setMove: (entity, hex) => this.setMove(entity, hex),
             setOrder: (hex, resource, actionName, entity) => this.setOrder(hex, resource, actionName, entity)
         };
@@ -99,6 +100,7 @@ class Game {
         // start
         // this.tick(); // tick initial, je ne sais plus pourquoi c'est nécessaire
         this.explore();
+        this.ui.update();
         this.loop();
     }
     createUnit(unitName, owner) {
@@ -287,8 +289,12 @@ class Game {
             this.selectEntity(this.selection.selectedEntity);
         }
         this.ui.update();
+        this.computers.forEach((computer) => {
+            computer.IA.clean(this.world, this.ECS);
+        });
     }
     loop() {
+        this.camera.update();
         this.render.render(this.world, this.ECS, this.selection);
 
         window.requestAnimationFrame(() => { this.loop(); });

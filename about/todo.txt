@@ -370,14 +370,18 @@ idle unit selection ne sélectionne que les unités de l'appeleur
 passer tous les this.community en this.ECS.Owner.get(entity).community 
 actionButtonClick -> setOrder
 préparer le seenThroughFog et explored pour chaque joueur
+♥ 29/09/2026
+edge panning 
+vérifier le comportement des cités quand elles ont 0 de fatigue
+l'IA ne donne des ordres qu'aux unités inactives
+le IA construisent des unités
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
-vérifier le comportement des cités quand elles ont 0 de fatigue
+les unités nouvellement construites n'agissent pas encore
 les IA cherchent en priorité les tuiles avec de la nourriture et des outils
-
 halo vert sur les explorateurs qui n'ont encore rien harvest ce tour-ci
 ne plus vider les "order" après chaque action
 système de pause ?

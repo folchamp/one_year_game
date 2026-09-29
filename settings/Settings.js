@@ -23,6 +23,7 @@ class Settings {
     static bornPopulationCap = 1;
     static mapRadius = 20;
     static panSpeed = 256;
+    static edgePanSpeed = 32;
     static initialZoom = 1;
     static maxResourcesPerHex = 3;
     static fatigueBarWidth = 100;
