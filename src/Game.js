@@ -70,7 +70,7 @@ class Game {
         // player
         this.inventory = new Inventory();
         this.community = new Community();
-        this.player = new Player(0, this.community, this.inventory, Settings.startHexPositions[0], new IA(this.iaActions));
+        this.player = new Player(0, this.community, this.inventory, new IA(this.iaActions));
         this.ui = new UI(this.selection, this.uiActions, this.player);
 
         // render
@@ -78,8 +78,8 @@ class Game {
 
         // init game
         this.computers = [];
-        this.computerOne = new Player(1, new Community, new Inventory, Settings.startHexPositions[1], new IA(this.iaActions));
-        this.computerTwo = new Player(2, new Community, new Inventory, Settings.startHexPositions[2], new IA(this.iaActions));
+        this.computerOne = new Player(1, new Community, new Inventory, new IA(this.iaActions));
+        this.computerTwo = new Player(2, new Community, new Inventory, new IA(this.iaActions));
         this.computers.push(this.computerOne);
         this.computers.push(this.computerTwo);
 

@@ -375,11 +375,17 @@ edge panning
 vérifier le comportement des cités quand elles ont 0 de fatigue
 l'IA ne donne des ordres qu'aux unités inactives
 le IA construisent des unités
+♥ 30/09/2026
+travailler les todos
+
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
+colorier les unités (une couleur par joueur)
+un hex doit être vidé de ressources pour être constructible
+Le joueur qui a le plus de misc (science etc.) gagne un bonus de combat (+10 attaque)
 les unités nouvellement construites n'agissent pas encore
 les IA cherchent en priorité les tuiles avec de la nourriture et des outils
 halo vert sur les explorateurs qui n'ont encore rien harvest ce tour-ci

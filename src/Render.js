@@ -57,7 +57,7 @@ class Render {
         // draw entities
         this.ECS.Sprite.forEach((sprite, entity, map) => {
             let hexPosition = this.ECS.Position.get(entity);
-            this.drawEntity(sprite, hexPosition);
+            this.drawEntity(entity, hexPosition);
             if (this.ECS.Order.get(entity) !== undefined) {
                 this.drawOrder(entity);
             }
@@ -96,12 +96,35 @@ class Render {
         this.context.drawImage(Images.unitImages[sprite.imageName], worldPosition.x - sprite.width / 2, worldPosition.y - sprite.height / 2);
         this.strokeWithSelectionStyle();
     }
-    drawEntity(sprite, hexPosition) {
-        let hex = this.world.get(hexPosition.q, hexPosition.r);
+    drawEntity(entity, hexPosition) {
+        const sprite = this.ECS.Sprite.get(entity);
+        const hex = this.world.get(hexPosition.q, hexPosition.r);
+        const owner = this.ECS.Owner.get(entity);
         if (hexPosition !== undefined) {
             if (hex.hasSeen(this.player)) {
                 let worldPosition = World.hexToWorld(hexPosition);
-                this.context.drawImage(Images.unitImages[sprite.imageName], worldPosition.x - sprite.width / 2, worldPosition.y - sprite.height / 2);
+                // this.context.drawImage(Images.unitImages[sprite.imageName], worldPosition.x - sprite.width / 2, worldPosition.y - sprite.height / 2);
+
+                // testing
+                this.context.beginPath();
+                this.context.arc(
+                    worldPosition.x - Settings.playerColorArcOffset,
+                    worldPosition.y + sprite.height / 2,
+                    Settings.playerColorArcRadius,
+                    0,
+                    Math.PI * 2
+                );
+                this.context.save();
+                this.context.fillStyle = owner.playerColor;
+                this.context.globalAlpha = 0.5;
+                this.context.fill();
+                this.context.restore();
+                this.context.drawImage(
+                    Images.unitImages[sprite.imageName],
+                    worldPosition.x - sprite.width / 2,
+                    worldPosition.y - sprite.height / 2
+                );
+                // end testing
             }
         } else {
             console.log(sprite)

@@ -16,6 +16,15 @@ class Settings {
         { q: 2, r: -2 },
         { q: -2, r: 2 },
     ];
+    static playerColor = [
+        "blue",
+        "red",
+        "green",
+        "yellow",
+        "purple"
+    ]
+    static playerColorArcRadius = 20;
+    static playerColorArcOffset = 8;
     // static lengthOfFoodMemory = 10;
     static maxFatigue = 36;
     static fatigueRecovery = 1;

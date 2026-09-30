@@ -1,12 +1,14 @@
 "use strict";
 
 class Player {
-    constructor(id, community, inventory, startHexPosition, IA) {
+    constructor(id, community, inventory, IA) {
         this.id = id;
         this.community = community;
         this.inventory = inventory;
-        this.startHexPosition = startHexPosition;
         this.IA = IA;
+
+        this.startHexPosition = Settings.startHexPositions[id];
+        this.playerColor = Settings.playerColor[id];
 
         this.IA.setOwner(this);
     }
