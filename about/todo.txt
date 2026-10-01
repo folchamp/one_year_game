@@ -390,6 +390,7 @@ rework l'UI de création d'unités
 TODO
 ********************
 ---------- MUST ----------
+ajouter une action "wait" et "heal"
 passer le tour avec un explorateur inoccupé provoque une alerte
 petit feedback à hauteur de souris quand un action ne fonctionne pas 
 système de notifications
