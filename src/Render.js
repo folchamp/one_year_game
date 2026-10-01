@@ -56,8 +56,8 @@ class Render {
 
         // draw entities
         this.ECS.Sprite.forEach((sprite, entity, map) => {
-            let hexPosition = this.ECS.Position.get(entity);
-            this.drawEntity(entity, hexPosition);
+            // let hexPosition = this.ECS.Position.get(entity);
+            this.drawEntity(entity);
             if (this.ECS.Order.get(entity) !== undefined) {
                 this.drawOrder(entity);
             }
@@ -96,12 +96,13 @@ class Render {
         this.context.drawImage(Images.unitImages[sprite.imageName], worldPosition.x - sprite.width / 2, worldPosition.y - sprite.height / 2);
         this.strokeWithSelectionStyle();
     }
-    drawEntity(entity, hexPosition) {
+    drawEntity(entity) {
         const sprite = this.ECS.Sprite.get(entity);
-        const hex = this.world.get(hexPosition.q, hexPosition.r);
         const owner = this.ECS.Owner.get(entity);
+        const hexPosition = this.ECS.Position.get(entity);
+        const hex = this.world.get(hexPosition.q, hexPosition.r);
         if (hexPosition !== undefined) {
-            if (hex.hasSeen(this.player)) {
+            if (hex.hasSeen(this.player) || !Settings.production) {
                 let worldPosition = World.hexToWorld(hexPosition);
                 // this.context.drawImage(Images.unitImages[sprite.imageName], worldPosition.x - sprite.width / 2, worldPosition.y - sprite.height / 2);
 
@@ -156,11 +157,16 @@ class Render {
         const height = worldPosition.y - Settings.hexSize * 0.55;
         const smallSize = Settings.resourceImageSize / 2;
         const offsetY = Math.sin(performance.now() / 150) * 3;
-        if (Images.resourceImages[order.resource.resourceData.imageName] === undefined) {
-            console.log(`${order.resource.resourceData.resourceName} n'a pas d'image`);
-            this.context.drawImage(Images.resourceImages["unknownResource"], worldPosition.x - smallSize / 2, height + offsetY, smallSize, smallSize);
-        } else {
-            this.context.drawImage(Images.resourceImages[order.resource.resourceData.imageName], worldPosition.x - smallSize / 2, height + offsetY, smallSize, smallSize);
+        const hex = this.world.get(hexPosition.q, hexPosition.r);
+        if (hexPosition !== undefined) {
+            if (hex.hasSeen(this.player) || !Settings.production) {
+                if (Images.resourceImages[order.resource.resourceData.imageName] === undefined) {
+                    console.log(`${order.resource.resourceData.resourceName} n'a pas d'image`);
+                    this.context.drawImage(Images.resourceImages["unknownResource"], worldPosition.x - smallSize / 2, height + offsetY, smallSize, smallSize);
+                } else {
+                    this.context.drawImage(Images.resourceImages[order.resource.resourceData.imageName], worldPosition.x - smallSize / 2, height + offsetY, smallSize, smallSize);
+                }
+            }
         }
     }
     drawResources(hex) {

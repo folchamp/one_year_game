@@ -30,7 +30,7 @@ body {
     }
 }
 
-.uiCommunityActionsContainer,
+/* .uiCommunityActionsContainer, */
 .uiContainer,
 .uiTwoContainer,
 .uiMobileContainer {
@@ -45,32 +45,6 @@ body {
         0 8px 30px rgba(0, 0, 0, 0.45),
         inset 0 0 30px rgba(255, 255, 255, 0.025);
     backdrop-filter: blur(5px);
-}
-
-.uiCommunityActionsContainer {
-    display: flex;
-    flex-direction: row;
-    padding: 4px;
-    top: 200px;
-    left: 200px;
-    text-align: center;
-
-    .uiCreateExplorerContainer {
-        background: rgba(40, 44, 40, 0.94);
-        margin: 4px;
-
-        .uiUnitPriceContainer {
-            display: flex;
-            align-items: center;
-
-            .resourceCategoryPriceImage {
-                background-color: blanchedalmond;
-                margin-right: 4px;
-                border-radius: 18px;
-                padding: 4px;
-            }
-        }
-    }
 }
 
 .uiMobileContainer {
@@ -123,13 +97,12 @@ body {
     user-select: none;
     left: 10px;
     bottom: 10px;
+    display: flex;
+    padding: 10px;
 
     .hexSelectorContainer {
         display: flex;
         align-items: center;
-        /* justify-content: flex-start; */
-        min-width: 300px;
-        min-height: 210px;
 
         .hexImageContainer {
             width: 100px;
@@ -211,11 +184,42 @@ body {
     }
 
     .unitSelectorContainer {
+        display: flex;
+        align-items: center;
 
         .unitImage {
-            display: block;
-            width: 64px;
-            margin: auto;
+            width: 100px;
+            height: 100px;
+            background-position: center;
+            padding: 3px;
+            border: 1px solid rgba(220, 210, 180, 0.12);
+            border-radius: 4px;
+        }
+    }
+
+    .uiCommunityActionsContainer {
+        display: flex;
+        flex-direction: row;
+        padding: 4px;
+        /* top: 200px; */
+        /* left: 200px; */
+        text-align: center;
+
+        .uiCreateExplorerContainer {
+            background: rgba(40, 44, 40, 0.94);
+            margin: 4px;
+
+            .uiUnitPriceContainer {
+                display: flex;
+                align-items: center;
+
+                .resourceCategoryPriceImage {
+                    background-color: blanchedalmond;
+                    margin-right: 4px;
+                    border-radius: 18px;
+                    padding: 4px;
+                }
+            }
         }
     }
 }

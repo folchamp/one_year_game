@@ -50,7 +50,7 @@ class UI {
             ]
         );
 
-        Util.quickStructure(document.body, this,
+        Util.quickStructure(this.uiContainer, this,
             ["uiCommunityActionsContainer",
                 // "uiCommunityActionsTitle"
             ]
@@ -139,7 +139,7 @@ class UI {
         }
     }
     updateUnit() {
-        this.unitImage.src = Images.unitImages[this.selection.selectedEntityData.imageName].src
+        // this.unitImage.src = Images.unitImages[this.selection.selectedEntityData.imageName].src
         Util.show(this.uiContainer);
         // Util.show(this.unitSelectorContainer);
     }
@@ -225,8 +225,11 @@ class UI {
 
         if (this.selection.isCommunity) {
             Util.show(this.uiCommunityActionsContainer);
-            this.uiCommunityActionsContainer.style["left"] = this.lastMousePosition.x + "px";
-            this.uiCommunityActionsContainer.style["top"] = this.lastMousePosition.y + "px";
+            Util.show(this.unitSelectorContainer);
+            Util.hide(this.hexSelectorContainer);
+            // this.uiCommunityActionsContainer.style["left"] = this.lastMousePosition.x + "px";
+            // this.uiCommunityActionsContainer.style["top"] = this.lastMousePosition.y + "px";
+            this.unitImage.src = Images.unitImages["campfire"].src;
         } else {
             Util.hide(this.uiCommunityActionsContainer);
         }

@@ -377,47 +377,53 @@ l'IA ne donne des ordres qu'aux unités inactives
 le IA construisent des unités
 ♥ 30/09/2026
 travailler les todos
+colorier les unités (une couleur par joueur)
+♥ 01/10/2026
+bugfix hasSeen() et Settings.production
+ne plus vider les "order" après chaque action
+ajouter des méchants
+adversaire sous la forme d'une entité non contrôlée par le joueur
+rework l'UI de création d'unités
 
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
-colorier les unités (une couleur par joueur)
-un hex doit être vidé de ressources pour être constructible
-Le joueur qui a le plus de misc (science etc.) gagne un bonus de combat (+10 attaque)
+passer le tour avec un explorateur inoccupé provoque une alerte
+petit feedback à hauteur de souris quand un action ne fonctionne pas 
+système de notifications
+système de notification
+notifier les nouvelles découvertes
 les unités nouvellement construites n'agissent pas encore
 les IA cherchent en priorité les tuiles avec de la nourriture et des outils
+refactor/remove "improve" actions
+êtes-vous sûr ? oui, non 
+
+Écrire des rencontres, des lieux, des morceaux d’histoire pour les tuiles
 halo vert sur les explorateurs qui n'ont encore rien harvest ce tour-ci
-ne plus vider les "order" après chaque action
+un hex doit être vidé de ressources pour être constructible
+Le joueur qui a le plus de misc (science etc.) gagne un bonus de combat (+10 attaque)
 système de pause ?
 menu ?
 learn priorise les connaissances non-apprises ???
 remplir les learns vides
-refactor/remove "improve" actions
 another crop (crop_cultivation)
 better_tools
 afficher le résultat d'une action dans l'UI
 ECS traversable ou non-traversable
 biomes se regénèrent
+les biomes peuvent récupérer
 rendre les logs cliquables
 ajouter un listener dans Util.js (voir classe Listener)
 connaissances === outils
 Les ressources ont des types (naturelle, fabriquée, vestige)
-système de notification
-notifier les nouvelles découvertes
 distribuer les ressources dans les trois catégories (naturelles, fabriquées, vestiges)
 certaines ressources sont "plantables" ?
-les biomes peuvent récupérer
-passer le tour avec un explorateur inoccupé provoque une alerte
 coût logistique en fonction de la distance avec la communauté (récolter des ressources plus loin coûte plus cher)
 nettoyer et optimiser Render.js
-ajouter des méchants
 coût de harvest ?
 message d'erreur quand on essaye de récolter et qu'on a déjà récolté avec cet explorateur
-petit feedback à hauteur de souris quand un action ne fonctionne pas 
-adversaire sous la forme d'une entité non contrôlée par le joueur
-Écrire des rencontres, des lieux, des morceaux d’histoire pour les tuiles
 Créer un coût logistique (en “humains”)
 Créer une fatigue du village
 Créer une diversité génétique (=condition de victoire)
