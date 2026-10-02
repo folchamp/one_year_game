@@ -3080,18 +3080,46 @@ class Data {
     }
 
     static units = {
+        hunter: {
+            unitName: "hunter",
+            isHarvester: false,
+            range: 1,
+            sprite: { imageName: "hunter", width: 64, height: 64, radius: 48 },
+            hitbox: { type: "circle", radius: 48 },
+            unitPrice: {
+                food: 2,
+                tool: 4
+            },
+            combatStats: {
+
+            }
+        },
         explorer: {
             unitName: "explorer",
+            isHarvester: false,
+            range: 2,
+            sprite: { imageName: "explorer", width: 64, height: 64, radius: 48 },
+            hitbox: { type: "circle", radius: 48 },
             unitPrice: {
                 food: 4,
                 tool: 2
+            },
+            combatStats: {
+
             }
         },
         harvester: {
             unitName: "harvester",
+            isHarvester: true,
+            range: 1,
+            sprite: { imageName: "harvester", width: 64, height: 64, radius: 48 },
+            hitbox: { type: "circle", radius: 48 },
             unitPrice: {
                 food: 3,
                 tool: 3
+            },
+            combatStats: {
+
             }
         }
     }

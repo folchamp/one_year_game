@@ -384,12 +384,14 @@ ne plus vider les "order" après chaque action
 ajouter des méchants
 adversaire sous la forme d'une entité non contrôlée par le joueur
 rework l'UI de création d'unités
+♥ 02/10/2026
 
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
+ajouter une unité de combat
 ajouter une action "wait" et "heal"
 passer le tour avec un explorateur inoccupé provoque une alerte
 petit feedback à hauteur de souris quand un action ne fonctionne pas 
