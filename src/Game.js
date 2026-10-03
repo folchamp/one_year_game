@@ -53,6 +53,7 @@ class Game {
         this.hotkeys = new Hotkeys();
         this.unitCreator = new UnitCreator(this.ECS);
         this.movementSystem = new MovementSystem(this.world, this.ECS);
+        this.actionSystem = new ActionSystem(this.world, this.ECS);
 
         // hotkeys
         this.hotkeys.bind("Backquote", this.actions.selectNextIdle);
@@ -84,7 +85,8 @@ class Game {
         this.computers.push(this.computerTwo);
 
         // testing
-        this.computers.push(this.player);
+        // this.computers.push(this.player);
+        // end testing
 
         this.unitCreator.create("campfire", Settings.startHexPositions[0], this.player);
         this.unitCreator.create("harvester", Settings.startHexPositions[0], this.player);
@@ -101,6 +103,10 @@ class Game {
         // this.tick(); // tick initial, je ne sais plus pourquoi c'est nécessaire
         this.explore();
         this.ui.update();
+
+        // this.intervalTicks = []; // temporaire
+        // setInterval(() => { this.intervalTick(); }, 1500); // temporaire
+
         this.loop();
     }
     createUnit(unitName, owner) {
@@ -150,31 +156,6 @@ class Game {
             }
         });
         if (!done) alert("no harvester on this tile");
-    }
-    action(hex, resource, actionName) {
-        let resourceName = resource.resourceData.resourceName;
-        this.ECS.Harvester.forEach((value, entity, map) => {
-            let harvesterPosition = this.ECS.Position.get(entity);
-            let owner = this.ECS.Owner.get(entity);
-            if (hex.q === harvesterPosition.q && hex.r === harvesterPosition.r && resource.isAvailable) {
-                let get = resource.resourceData.actions[actionName].get; // which resource does the action "get" (harvest)
-                let knowledges = resource.resourceData.actions[actionName].learn;
-                if (get !== undefined) {
-                    if (Data.resources[get] !== undefined) {
-                        owner.inventory.add(Data.resources[get]); // on ajoute la ressource à l'inventaire
-                    }
-                    if (resource.resourceData.resourceName !== get) {
-                        let newResourceData = Data.resources[get];
-                        hex.addResource(newResourceData); // si la ressource get n'est pas sur la tuile, on l'ajoute
-                    }
-                }
-                if (knowledges !== undefined) {
-                    owner.community.learn(knowledges);
-                }
-                hex.harvest(resourceName, actionName); // on ajoute la fatigue à la tuile
-            }
-        });
-        this.ui.update();
     }
     toggleDev() {
         this.log.toggle();
@@ -270,28 +251,37 @@ class Game {
             this.world.seeNeighbours(this.ECS.Position.get(entity), value.range, this.ECS.Owner.get(entity));
         });
     }
-    tick() {
-        this.computers.forEach((computer) => {
-            computer.IA.act(this.world, this.ECS);
-        });
-        this.movementSystem.update();
-        this.ECS.Order.forEach((order, entity, map) => {
-            this.action(order.hex, order.resource, order.actionName);
-        });
+    resolveTick(player) {
+        player.IA.act(this.world, this.ECS);
+        this.movementSystem.update(player);
+        this.actionSystem.update(player);
         this.explore();
         this.world.update();
-
         // au cas où des ressources ont disparu, les explorateurs doivent arrêter de travailler
         this.cleanOrders()
+    }
+    // intervalTick() {
+    // if (this.intervalTicks.length > 0) {
+    // this.intervalTicks.shift()();
+    // }
+    // }
+    tick() {
+        let players = [this.player, ...this.computers];
 
-        // toujours en dernier
+        players.forEach((player) => {
+            // this.intervalTicks.push(() => {
+            this.resolveTick(player);
+            this.ui.update();
+            // });
+        });
+
+
+        // toujours en dernier : on refresh les données de contexte de l'entité sélectionnée (sur quelle tuile elle se trouve etc.)
         if (this.selection.selectedEntity !== undefined) {
             this.selectEntity(this.selection.selectedEntity);
         }
+
         this.ui.update();
-        this.computers.forEach((computer) => {
-            computer.IA.clean(this.world, this.ECS);
-        });
     }
     loop() {
         this.camera.update();

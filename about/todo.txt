@@ -385,13 +385,19 @@ ajouter des méchants
 adversaire sous la forme d'une entité non contrôlée par le joueur
 rework l'UI de création d'unités
 ♥ 02/10/2026
+ajouter une unité de combat
+hunter
+♥ 03/10/2026
+bugfix log debug
+tick update : les joueurs jouent effectivement tour à tour
+un joueur encode ses actions puis les applique, puis les pcs font de même tour à tour
 
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
-ajouter une unité de combat
+passer en bête tour par tour ? En temps réel ?
 ajouter une action "wait" et "heal"
 passer le tour avec un explorateur inoccupé provoque une alerte
 petit feedback à hauteur de souris quand un action ne fonctionne pas 
