@@ -98,7 +98,8 @@ class Hex {
     harvest(resourceName, actionName) {
         this.resources.forEach((resource) => {
             if (resource.isAvailable && resource.resourceData.resourceName === resourceName) {
-                this.fatigue += resource.resourceData.actions[actionName].fatigue;
+                this.fatigue += (resource.resourceData.actions[actionName].fatigue * Settings.amountOfPlayers); 
+                // à trois joueurs, les biomes ont trois ticks de regeneration donc la fatigue doit s'accumuler trois fois plus vite
                 resource.isAvailable = false;
                 resource.regeneratesIn = resource.resourceData.regeneration;
                 this.lastResourceTaken = resourceName;

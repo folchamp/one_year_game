@@ -10,7 +10,7 @@ class IA {
     isHexPositionOccupied(ECS, hexPosition) {
         let isOccupied = false;
         for (const [entity, position] of ECS.Position) { // TODO movement ???
-            if (position.q === hexPosition.q && position.r === hexPosition.r && ECS.Name.get(entity) !== "campfire") {
+            if (hexPosition === undefined || (position.q === hexPosition.q && position.r === hexPosition.r && ECS.Name.get(entity) !== "campfire")) {
                 isOccupied = true;
             }
         }

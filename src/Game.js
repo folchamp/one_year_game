@@ -78,24 +78,17 @@ class Game {
         this.render = new Render(this.context, this.display, this.camera, this.world, this.ECS, this.selection, this.player);
 
         // init game
-        this.computers = [];
-        this.computerOne = new Player(1, new Community, new Inventory, new IA(this.iaActions));
-        this.computerTwo = new Player(2, new Community, new Inventory, new IA(this.iaActions));
-        this.computers.push(this.computerOne);
-        this.computers.push(this.computerTwo);
-
-        // testing
-        // this.computers.push(this.player);
-        // end testing
-
         this.unitCreator.create("campfire", Settings.startHexPositions[0], this.player);
         this.unitCreator.create("harvester", Settings.startHexPositions[0], this.player);
 
-        this.unitCreator.create("campfire", Settings.startHexPositions[1], this.computerOne);
-        this.unitCreator.create("harvester", Settings.startHexPositions[1], this.computerOne);
+        this.computers = [];
+        for (let index = 1; index < Math.min(Settings.amountOfPlayers, Settings.maxAmountOfPlayers); index++) {
+            const computer = new Player(index, new Community, new Inventory, new IA(this.iaActions));
+            this.computers.push(computer);
 
-        this.unitCreator.create("campfire", Settings.startHexPositions[2], this.computerTwo);
-        this.unitCreator.create("harvester", Settings.startHexPositions[2], this.computerTwo);
+            this.unitCreator.create("campfire", Settings.startHexPositions[index], computer);
+            this.unitCreator.create("harvester", Settings.startHexPositions[index], computer);
+        }
 
         this.idleCycleCounter = 0;
 
@@ -106,7 +99,7 @@ class Game {
 
         // this.intervalTicks = []; // temporaire
         // setInterval(() => { this.intervalTick(); }, 1500); // temporaire
-
+        this.selectNextIdle(this.player);
         this.loop();
     }
     createUnit(unitName, owner) {
@@ -252,7 +245,9 @@ class Game {
         });
     }
     resolveTick(player) {
-        player.IA.act(this.world, this.ECS);
+        if (player !== this.player) {
+            player.IA.act(this.world, this.ECS);
+        }
         this.movementSystem.update(player);
         this.actionSystem.update(player);
         this.explore();

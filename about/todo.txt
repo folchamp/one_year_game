@@ -391,7 +391,11 @@ hunter
 bugfix log debug
 tick update : les joueurs jouent effectivement tour à tour
 un joueur encode ses actions puis les applique, puis les pcs font de même tour à tour
-
+♥ 04/10/2026
+plus de joueurs
+joueurs mieux répartis sur la carte
+meilleure lisibilité de l'unité sélectionnée
+bugfixes bord de map
 
 ********************
 TODO

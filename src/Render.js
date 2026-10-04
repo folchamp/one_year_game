@@ -57,14 +57,14 @@ class Render {
         // draw entities
         this.ECS.Sprite.forEach((sprite, entity, map) => {
             // let hexPosition = this.ECS.Position.get(entity);
-            this.drawEntity(entity);
+            this.drawEntity(entity, false);
             if (this.ECS.Order.get(entity) !== undefined) {
                 this.drawOrder(entity);
             }
         });
 
         if (this.selection.selectedEntity !== undefined) {
-            this.drawSelectedEntity(this.ECS.Sprite.get(this.selection.selectedEntity), this.ECS.Position.get(this.selection.selectedEntity));
+            this.drawEntity(this.selection.selectedEntity, true);
         }
 
         // paths (arrows)
@@ -89,14 +89,14 @@ class Render {
         const y = Settings.hexSize * 1.5 * hex.r;
         return { x: x, y: y };
     }
-    drawSelectedEntity(sprite, hexPosition) {
-        let worldPosition = World.hexToWorld(hexPosition);
-        this.context.beginPath();
-        this.context.arc(worldPosition.x, worldPosition.y, sprite.radius, 0, Math.PI * 2);
-        this.context.drawImage(Images.unitImages[sprite.imageName], worldPosition.x - sprite.width / 2, worldPosition.y - sprite.height / 2);
-        this.strokeWithSelectionStyle();
-    }
-    drawEntity(entity) {
+    // drawSelectedEntity(sprite, hexPosition) {
+    //     let worldPosition = World.hexToWorld(hexPosition);
+    //     this.context.beginPath();
+    //     this.context.arc(worldPosition.x, worldPosition.y, sprite.radius, 0, Math.PI * 2);
+    //     this.context.drawImage(Images.unitImages[sprite.imageName], worldPosition.x - sprite.width / 2, worldPosition.y - sprite.height / 2);
+    //     this.strokeWithSelectionStyle();
+    // }
+    drawEntity(entity, isSelected) {
         const sprite = this.ECS.Sprite.get(entity);
         const owner = this.ECS.Owner.get(entity);
         const hexPosition = this.ECS.Position.get(entity);
@@ -115,11 +115,12 @@ class Render {
                     0,
                     Math.PI * 2
                 );
-                this.context.save();
-                this.context.fillStyle = owner.playerColor;
-                this.context.globalAlpha = 0.5;
-                this.context.fill();
-                this.context.restore();
+                if (isSelected) {
+                    this.strokeWithSelectionStyle();
+                } else {
+                    this.fillWithoutSelectionStyle(owner.playerColor);
+                }
+
                 this.context.drawImage(
                     Images.unitImages[sprite.imageName],
                     worldPosition.x - sprite.width / 2,
@@ -265,6 +266,13 @@ class Render {
     drawSelectedHex(hex) {
         this.drawHexPath(hex);
         this.strokeWithSelectionStyle();
+    }
+    fillWithoutSelectionStyle(color) {
+        this.context.save();
+        this.context.fillStyle = color;
+        this.context.globalAlpha = 0.5;
+        this.context.fill();
+        this.context.restore();
     }
     strokeWithSelectionStyle() {
         this.context.save();

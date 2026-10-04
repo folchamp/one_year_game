@@ -10,19 +10,23 @@ class Settings {
     static resourceImageSize = 64;
     static categoryImageSize = 32;
     static startHexPositions = [
-        { q: 0, r: 0 },
-        { q: 2, r: 2 },
-        { q: -2, r: -2 },
-        { q: 2, r: -2 },
-        { q: -2, r: 2 },
+        { q: 0, r: -20 },
+        { q: 20, r: -20 },
+        { q: 20, r: 0 },
+        { q: 0, r: 20 },
+        { q: -20, r: 20 },
+        { q: -20, r: 0 }
     ];
     static playerColor = [
         "blue",
         "red",
         "green",
         "yellow",
-        "purple"
+        "purple",
+        "orange"
     ]
+    static amountOfPlayers = 6;
+    static maxAmountOfPlayers = 6; // TODO make this bigger
     static playerColorArcRadius = 20;
     static playerColorArcOffset = 8;
     // static lengthOfFoodMemory = 10;
