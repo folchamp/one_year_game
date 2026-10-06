@@ -8,7 +8,7 @@ class MovementSystem {
     isHexPositionOccupied(hexPosition) {
         let isOccupied = false;
         for (const [entity, position] of this.ECS.Position) { // TODO movement ???
-            if (hexPosition === undefined || (position.q === hexPosition.q && position.r === hexPosition.r && ECS.Name.get(entity) !== "campfire")) {
+            if (hexPosition === undefined || (position.q === hexPosition.q && position.r === hexPosition.r && this.ECS.Name.get(entity) !== "campfire")) {
                 isOccupied = true;
             }
         }

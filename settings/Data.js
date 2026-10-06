@@ -72,7 +72,7 @@ class Data {
                         "hygiene",
                         "water_quality"
                     ],
-                    "fatigue": 10,
+                    "fatigue": 9,
                     "get": "wild_wheat",
                     "displayName": "Arroser"
                 },
@@ -156,7 +156,7 @@ class Data {
                         "charcoal_making",
                         "smelting"
                     ],
-                    "fatigue": 10,
+                    "fatigue": 9,
                     "get": "ash",
                     "displayName": "Brûler"
                 }
@@ -178,7 +178,7 @@ class Data {
                         "shaping",
                         "crafting"
                     ],
-                    "fatigue": 10,
+                    "fatigue": 9,
                     "get": "lumber",
                     "displayName": "Façonner"
                 },
@@ -194,7 +194,7 @@ class Data {
                         // "woodworking",
                         "preservation"
                     ],
-                    "fatigue": 10,
+                    "fatigue": 9,
                     "get": "charcoal",
                     "displayName": "Carboniser"
                 },
@@ -209,7 +209,7 @@ class Data {
                         // "construction",
                         // "architecture"
                     ],
-                    "fatigue": 10,
+                    "fatigue": 9,
                     "get": "resin",
                     "displayName": "Extraire"
                 }
@@ -231,7 +231,7 @@ class Data {
                         "combustion",
                         "heat"
                     ],
-                    "fatigue": 10,
+                    "fatigue": 9,
                     "get": "charcoal",
                     "displayName": "Produire"
                 },
@@ -247,7 +247,7 @@ class Data {
                         "smelting"
                         // "temperature"
                     ],
-                    "fatigue": 10,
+                    "fatigue": 9,
                     "get": "ash",
                     "displayName": "Brûler"
                 },
@@ -803,7 +803,7 @@ class Data {
                         // "irrigation",
                         "soil_quality"
                     ],
-                    "fatigue": 10,
+                    "fatigue": 9,
                     "get": "wheat",
                     "displayName": "Cultiver"
                 }
@@ -908,7 +908,7 @@ class Data {
                         // "botany",
                         "seed_selection"
                     ],
-                    "fatigue": 10,
+                    "fatigue": 9,
                     "get": "wheat",
                     "displayName": "Sélectionner"
                 }
@@ -961,7 +961,7 @@ class Data {
                         "microbiology",
                         "food_preservation"
                     ],
-                    "fatigue": 10,
+                    "fatigue": 9,
                     "get": "beer",
                     "displayName": "Faire fermenter"
                 }
@@ -1499,7 +1499,7 @@ class Data {
                         // "microbiology",
                         "food_preservation"
                     ],
-                    "fatigue": 10,
+                    "fatigue": 9,
                     "get": "fermented_drink",
                     "displayName": "Faire fermenter"
                 }
@@ -1679,7 +1679,7 @@ class Data {
                         "geology",
                         "ore_processing"
                     ],
-                    "fatigue": 10,
+                    "fatigue": 9,
                     "get": "iron_ore",
                     "displayName": "Extraire"
                 },
@@ -1694,7 +1694,7 @@ class Data {
                         // "grinding",
                         "mineral_identification"
                     ],
-                    "fatigue": 10,
+                    "fatigue": 9,
                     "get": "iron_ore",
                     "displayName": "Broyer"
                 },
@@ -1711,7 +1711,7 @@ class Data {
                         // "metallurgy",
                         // "iron_working"
                     ],
-                    "fatigue": 10,
+                    "fatigue": 9,
                     "get": "iron",
                     "displayName": "Réduire"
                 }
@@ -1868,7 +1868,7 @@ class Data {
                         // "smelting",
                         // "metallurgy"
                     ],
-                    "fatigue": 10,
+                    "fatigue": 9,
                     "get": "copper",
                     "displayName": "Fondre"
                 }
@@ -2413,7 +2413,7 @@ class Data {
                         // "sailing",
                         // "navigation"
                     ],
-                    "fatigue": 10,
+                    "fatigue": 9,
                     "get": "sail",
                     "displayName": "Fabriquer une voile"
                 }
@@ -2916,7 +2916,7 @@ class Data {
                         "tanning",
                         "domestication"
                     ],
-                    "fatigue": 10,
+                    "fatigue": 9,
                     "get": "meat",
                     "displayName": "Chasser"
                 },
@@ -2982,7 +2982,7 @@ class Data {
                         "anatomy",
                         "tanning"
                     ],
-                    "fatigue": 10,
+                    "fatigue": 9,
                     "get": "meat",
                     "displayName": "Abattre"
                 },

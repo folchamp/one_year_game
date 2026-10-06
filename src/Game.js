@@ -91,6 +91,7 @@ class Game {
         }
 
         this.idleCycleCounter = 0;
+        this.lastIdleCount = 0;
 
         // start
         // this.tick(); // tick initial, je ne sais plus pourquoi c'est nécessaire
@@ -182,9 +183,8 @@ class Game {
         let hex = this.world.getHexFromWorldPosition(worldPosition);
         this.selection.hoveredHex = hex;
     }
-    selectNextIdle(owner) {
+    getIdles(owner) {
         let idles = [];
-        let idle;
         this.ECS.Movement.forEach((value, entity, array) => {
             if (this.ECS.Owner.get(entity) === owner &&
                 this.ECS.Movement.get(entity) !== undefined &&
@@ -193,6 +193,11 @@ class Game {
                 idles.push(entity);
             }
         });
+        return idles;
+    }
+    selectNextIdle(owner) {
+        const idles = this.getIdles(owner);
+        let idle;
         if (idles.length > 0) {
             this.idleCycleCounter++;
             idle = idles[this.idleCycleCounter % idles.length];
@@ -261,22 +266,25 @@ class Game {
     // }
     // }
     tick() {
-        let players = [this.player, ...this.computers];
-
-        players.forEach((player) => {
-            // this.intervalTicks.push(() => {
-            this.resolveTick(player);
+        let idleCount = this.getIdles(this.player).length;
+        if (idleCount > 0 && idleCount !== this.lastIdleCount) {
+            alert("inactive workers");
+            this.lastIdleCount = idleCount;
+        } else {
+            this.lastIdleCount = 0;
+            let players = [this.player, ...this.computers];
+            players.forEach((player) => {
+                // this.intervalTicks.push(() => {
+                this.resolveTick(player);
+                this.ui.update();
+                // });
+            });
+            // toujours en dernier : on refresh les données de contexte de l'entité sélectionnée (sur quelle tuile elle se trouve etc.)
+            if (this.selection.selectedEntity !== undefined) {
+                this.selectEntity(this.selection.selectedEntity);
+            }
             this.ui.update();
-            // });
-        });
-
-
-        // toujours en dernier : on refresh les données de contexte de l'entité sélectionnée (sur quelle tuile elle se trouve etc.)
-        if (this.selection.selectedEntity !== undefined) {
-            this.selectEntity(this.selection.selectedEntity);
         }
-
-        this.ui.update();
     }
     loop() {
         this.camera.update();

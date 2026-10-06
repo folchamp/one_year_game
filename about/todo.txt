@@ -396,6 +396,11 @@ plus de joueurs
 joueurs mieux répartis sur la carte
 meilleure lisibilité de l'unité sélectionnée
 bugfixes bord de map
+♥ 05/10/2026
+mirador
+rien fait :-( 
+♥ 06/10/2026
+
 
 ********************
 TODO
