@@ -10,6 +10,9 @@ class UI {
         this.community = this.player.community;
         this.lastMousePosition = { x: 0, y: 0 };
 
+        // **************************************************
+        // UI
+        // **************************************************
         Util.quickStructure(document.body, this,
             ["uiContainer",
                 [
@@ -20,10 +23,16 @@ class UI {
                     "hexSelectorContainer",
                     "hexImageContainer",
                     ["hexResourcesContainer"]
+                ],
+                ["uiCommunityActionsContainer",
+                    // "uiCommunityActionsTitle"
                 ]
             ]
         );
 
+        // **************************************************
+        // UI Two
+        // **************************************************
         Util.quickStructure(document.body, this,
             ["uiTwoContainer",
                 ["populationContainer",
@@ -34,6 +43,9 @@ class UI {
             ]
         );
 
+        // **************************************************
+        // UI Mobile
+        // **************************************************
         Util.quickStructure(document.body, this,
             ["uiMobileContainer",
                 ["upperMobileContainer",
@@ -50,12 +62,21 @@ class UI {
             ]
         );
 
-        Util.quickStructure(this.uiContainer, this,
-            ["uiCommunityActionsContainer",
-                // "uiCommunityActionsTitle"
-            ]
-        );
+        this.populateUnits();
 
+        this.panUpButton.addEventListener("click", (event) => { this.uiActions.cameraUp(); });
+        this.panLeftButton.addEventListener("click", (event) => { this.uiActions.cameraLeft(); });
+        this.panDownButton.addEventListener("click", (event) => { this.uiActions.cameraDown(); });
+        this.panRightButton.addEventListener("click", (event) => { this.uiActions.cameraRight(); });
+        this.spaceButton.addEventListener("click", (event) => { this.uiActions.nextTick(); });
+
+        this.populationImage.src = Images.otherImages.population.src;
+
+        Util.hide(this.uiContainer);
+        Util.hide(this.uiCommunityActionsContainer);
+    }
+    populateUnits() {
+        // populate units in community actions
         for (const unitName in Data.units) {
             const unitPrice = Data.units[unitName].unitPrice;
             Util.quickStructure(this.uiCommunityActionsContainer, this,
@@ -79,17 +100,6 @@ class UI {
                 resourceCategoryPriceImage.src = Images.categoryImages[Data.categories[resourceCategoryName].categoryImageName].src;
             }
         }
-
-        this.panUpButton.addEventListener("click", (event) => { this.uiActions.cameraUp(); });
-        this.panLeftButton.addEventListener("click", (event) => { this.uiActions.cameraLeft(); });
-        this.panDownButton.addEventListener("click", (event) => { this.uiActions.cameraDown(); });
-        this.panRightButton.addEventListener("click", (event) => { this.uiActions.cameraRight(); });
-        this.spaceButton.addEventListener("click", (event) => { this.uiActions.nextTick(); });
-
-        this.populationImage.src = Images.otherImages.population.src;
-
-        Util.hide(this.uiContainer);
-        Util.hide(this.uiCommunityActionsContainer);
     }
     setLastMousePosition(pos) {
         this.lastMousePosition = pos;
@@ -139,9 +149,9 @@ class UI {
         }
     }
     updateUnit() {
-        // this.unitImage.src = Images.unitImages[this.selection.selectedEntityData.imageName].src
+        this.unitImage.src = Images.unitImages[this.selection.selectedEntityData.imageName].src
         Util.show(this.uiContainer);
-        // Util.show(this.unitSelectorContainer);
+        Util.show(this.unitSelectorContainer);
     }
     updateHex(isEntityHex) {
         let hex = this.selection.selectedHex;

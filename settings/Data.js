@@ -3091,7 +3091,13 @@ class Data {
                 tool: 4
             },
             combatStats: {
-
+                hp: 10,
+                powers: {
+                    basicAttack: {
+                        damage: 6,
+                        range: 1
+                    }
+                }
             }
         },
         explorer: {
@@ -3105,7 +3111,13 @@ class Data {
                 tool: 2
             },
             combatStats: {
-
+                hp: 7,
+                powers: {
+                    basicAttack: {
+                        damage: 4,
+                        range: 2
+                    }
+                }
             }
         },
         harvester: {
@@ -3119,7 +3131,13 @@ class Data {
                 tool: 3
             },
             combatStats: {
-
+                hp: 9,
+                powers: {
+                    basicAttack: {
+                        damage: 3,
+                        range: 1
+                    }
+                }
             }
         }
     }

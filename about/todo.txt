@@ -408,13 +408,17 @@ Magic chez Mathieu
 Bomb Busters
 rien fait :-( 
 ♥ 08/10/2026
-
-
+testing
+réorganisation de Game.js
+ajouter des combat stats aux unités
+préparer l'UI des pouvoirs
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
+afficher les combats stats dans l'UI
+les unités ont des pouvoirs à la krosmaster/dofus
 
 passer en bête tour par tour ? En temps réel ?
 ajouter une action "wait" et "heal"
@@ -459,6 +463,8 @@ decide the next steps
 
 
 ---------- SHOULD ----------
+cliquer droit sur un enemi déclenche une attaque au tick
+flèche rouge quand on attaque
 passer le jeu en temps réel
 passer le jeu en temps réel, un tick par seconde ?
 barre Sims (confort, nourriture, matériaux de construction etc.)

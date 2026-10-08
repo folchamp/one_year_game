@@ -103,53 +103,8 @@ class Game {
         this.selectNextIdle(this.player);
         this.loop();
     }
-    createUnit(unitName, owner) {
-        const unitData = Data.units[unitName];
-        const price = unitData.unitPrice;
-        if (this.movementSystem.isHexPositionOccupied({ q: owner.startHexPosition.q, r: owner.startHexPosition.r })) {
-            alert("hex is not free");
-        } else if (!owner.inventory.has(price) && Settings.production) {
-            alert("not enough resources");
-        } else {
-            owner.inventory.consume(price)
-            this.unitCreator.create(unitName, owner.startHexPosition, owner);
-        }
-        this.explore();
-        this.ui.update();
-    }
     downloadResources() {
         navigator.clipboard.writeText(JSON.stringify(Data.resources));
-    }
-    cleanOrders() {
-        this.ECS.Order.forEach((order, entity) => {
-            const stillThere = order.hex.resources.some((resource) => {
-                return resource.resourceData.resourceName === order.resource.resourceData.resourceName;
-            });
-            if (!stillThere) {
-                // la ressource a été supprimée de la tuile, l'ordre ne peut plus être exécuté
-                this.ECS.Order.delete(entity);
-            }
-
-            // TODO think about this
-            // retirer l'ordre de toute façon (test)
-            this.ECS.Order.delete(entity);
-        });
-    }
-    setOrder(hex, resource, actionName, entity) {
-        this.ECS.Order.set(entity, { hex: hex, resource: resource, actionName: actionName });
-        this.ECS.Movement.set(entity, { path: [] });
-    }
-    actionButtonClick(hex, resource, actionName) {
-        let done = false;
-        this.ECS.Harvester.forEach((value, entity, map) => {
-            let harvesterPosition = this.ECS.Position.get(entity);
-            console.log(harvesterPosition);
-            if (hex.q === harvesterPosition.q && hex.r === harvesterPosition.r) {
-                this.setOrder(hex, resource, actionName, entity);
-                done = true;
-            }
-        });
-        if (!done) alert("no harvester on this tile");
     }
     toggleDev() {
         this.log.toggle();
@@ -160,14 +115,6 @@ class Game {
         let worldPosition = this.camera.screenToWorld(mousePosition);
         this.ui.setLastMousePosition(mousePosition);
         return worldPosition;
-    }
-    setMove(entity, hex) {
-        let movement = this.ECS.Movement.get(entity);
-        if (movement !== undefined) {
-            let position = this.ECS.Position.get(entity);
-            movement.path = Pathfinding.find(position, hex);
-            this.ECS.Order.delete(entity);
-        }
     }
     rightclick(event) {
         event.preventDefault();
@@ -182,6 +129,53 @@ class Game {
         let worldPosition = this.getMouseWorldPosition(event);
         let hex = this.world.getHexFromWorldPosition(worldPosition);
         this.selection.hoveredHex = hex;
+    }
+    click(event) {
+        let worldPosition = this.getMouseWorldPosition(event);
+        let hex = this.world.getHexFromWorldPosition(worldPosition);
+        let entity = this.getEntityFromWorldPosition(worldPosition);
+        if (entity !== undefined && this.ECS.Owner.get(entity) === this.player) {
+            this.selectEntity(entity);
+        } else {
+            this.selectHex(hex);
+        }
+        this.ui.update();
+    }
+    getEntityFromWorldPosition(worldPosition) {
+        let entity;
+        this.ECS.Hitbox.forEach((value, key, map) => {
+            let position = this.ECS.Position.get(key);
+            if (value.type === "circle" && Util.isPointInCircle(worldPosition, World.hexToWorld(position), value.radius)) {
+                entity = key;
+            }
+        });
+        return entity;
+    }
+    createUnit(unitName, owner) {
+        const unitData = Data.units[unitName];
+        const price = unitData.unitPrice;
+        if (this.movementSystem.isHexPositionOccupied({ q: owner.startHexPosition.q, r: owner.startHexPosition.r })) {
+            alert("hex is not free");
+        } else if (!owner.inventory.has(price) && Settings.production) {
+            alert("not enough resources");
+        } else {
+            owner.inventory.consume(price)
+            this.unitCreator.create(unitName, owner.startHexPosition, owner);
+        }
+        this.explore();
+        this.ui.update();
+    }
+    actionButtonClick(hex, resource, actionName) {
+        let done = false;
+        this.ECS.Harvester.forEach((value, entity, map) => {
+            let harvesterPosition = this.ECS.Position.get(entity);
+            console.log(harvesterPosition);
+            if (hex.q === harvesterPosition.q && hex.r === harvesterPosition.r) {
+                this.setOrder(hex, resource, actionName, entity);
+                done = true;
+            }
+        });
+        if (!done) alert("no harvester on this tile");
     }
     getIdles(owner) {
         let idles = [];
@@ -221,27 +215,6 @@ class Game {
             // this.log.log(JSON.stringify(hex, null, 4));
             // this.log.log(`Fatigue : ${hex.fatigue}/${Settings.maxFatigue}`);
         }
-    }
-    click(event) {
-        let worldPosition = this.getMouseWorldPosition(event);
-        let hex = this.world.getHexFromWorldPosition(worldPosition);
-        let entity = this.getEntityFromWorldPosition(worldPosition);
-        if (entity !== undefined && this.ECS.Owner.get(entity) === this.player) {
-            this.selectEntity(entity);
-        } else {
-            this.selectHex(hex);
-        }
-        this.ui.update();
-    }
-    getEntityFromWorldPosition(worldPosition) {
-        let entity;
-        this.ECS.Hitbox.forEach((value, key, map) => {
-            let position = this.ECS.Position.get(key);
-            if (value.type === "circle" && Util.isPointInCircle(worldPosition, World.hexToWorld(position), value.radius)) {
-                entity = key;
-            }
-        });
-        return entity;
     }
     explore() {
         this.ECS.Explorer.forEach((value, entity, map) => {
@@ -291,5 +264,35 @@ class Game {
         this.render.render(this.world, this.ECS, this.selection);
 
         window.requestAnimationFrame(() => { this.loop(); });
+    }
+    // **************************************************
+    // unit actions
+    // **************************************************
+    setMove(entity, hex) {
+        let movement = this.ECS.Movement.get(entity);
+        if (movement !== undefined) {
+            let position = this.ECS.Position.get(entity);
+            movement.path = Pathfinding.find(position, hex);
+            this.ECS.Order.delete(entity);
+        }
+    }
+    cleanOrders() {
+        this.ECS.Order.forEach((order, entity) => {
+            const stillThere = order.hex.resources.some((resource) => {
+                return resource.resourceData.resourceName === order.resource.resourceData.resourceName;
+            });
+            if (!stillThere) {
+                // la ressource a été supprimée de la tuile, l'ordre ne peut plus être exécuté
+                this.ECS.Order.delete(entity);
+            }
+
+            // TODO think about this
+            // retirer l'ordre de toute façon (test)
+            this.ECS.Order.delete(entity);
+        });
+    }
+    setOrder(hex, resource, actionName, entity) {
+        this.ECS.Order.set(entity, { hex: hex, resource: resource, actionName: actionName });
+        this.ECS.Movement.set(entity, { path: [] });
     }
 }
