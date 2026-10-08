@@ -400,15 +400,24 @@ bugfixes bord de map
 mirador
 rien fait :-( 
 ♥ 06/10/2026
+passer le tour avec un explorateur inoccupé provoque une alerte
+♥ 07/10/2026
+sieste
+mercredi enfants
+Magic chez Mathieu
+Bomb Busters
+rien fait :-( 
+♥ 08/10/2026
+
 
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
+
 passer en bête tour par tour ? En temps réel ?
 ajouter une action "wait" et "heal"
-passer le tour avec un explorateur inoccupé provoque une alerte
 petit feedback à hauteur de souris quand un action ne fonctionne pas 
 système de notifications
 système de notification
