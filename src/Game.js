@@ -45,6 +45,7 @@ class Game {
         this.ECS.Movement = new Map();
         this.ECS.Order = new Map();
         this.ECS.Owner = new Map();
+        this.ECS.CombatStats = new Map();
 
         // engine
         this.log = new Log();
@@ -203,7 +204,10 @@ class Game {
     selectEntity(entity) {
         const position = this.ECS.Position.get(entity);
         const hex = this.world.get(position.q, position.r);
-        const data = this.ECS.Sprite.get(entity);
+        const data = {
+            sprite: this.ECS.Sprite.get(entity),
+            combatStats: this.ECS.CombatStats.get(entity)
+        };
         this.selection.selectEntity(entity, data, hex);
     }
     selectHex(hex) {

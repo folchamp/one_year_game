@@ -35,6 +35,7 @@ class UnitCreator {
         this.ECS.Movement.set(entity, { path: [] });
         this.ECS.Sprite.set(entity, structuredClone(unitData.sprite));
         this.ECS.Hitbox.set(entity, structuredClone(unitData.hitbox));
+        this.ECS.CombatStats.set(entity, unitData.combatStats);
         return entity;
     }
     // createHarvester(pos) {

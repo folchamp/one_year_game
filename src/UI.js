@@ -17,7 +17,8 @@ class UI {
             ["uiContainer",
                 [
                     "unitSelectorContainer",
-                    "unitImage"
+                    "unitImage",
+                    ["unitSpellsContainer"]
                 ],
                 [
                     "hexSelectorContainer",
@@ -149,7 +150,8 @@ class UI {
         }
     }
     updateUnit() {
-        this.unitImage.src = Images.unitImages[this.selection.selectedEntityData.imageName].src
+        console.log(this.selection.selectedEntityData);
+        this.unitImage.src = Images.unitImages[this.selection.selectedEntityData.sprite.imageName].src
         Util.show(this.uiContainer);
         Util.show(this.unitSelectorContainer);
     }

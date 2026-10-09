@@ -412,6 +412,9 @@ testing
 réorganisation de Game.js
 ajouter des combat stats aux unités
 préparer l'UI des pouvoirs
+♥ 09/10/2026
+préparer le display des sorts et actions des unités
+
 
 ********************
 TODO
