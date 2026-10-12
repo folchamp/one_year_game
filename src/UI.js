@@ -150,8 +150,30 @@ class UI {
         }
     }
     updateUnit() {
+        const powersData = this.selection.selectedEntityData.combatStats.powers;
+        this.unitSpellsContainer.replaceChildren();
         console.log(this.selection.selectedEntityData);
         this.unitImage.src = Images.unitImages[this.selection.selectedEntityData.sprite.imageName].src
+        for (const powerName in powersData) {
+            const power = powersData[powerName];
+            Util.quickStructure(this.unitSpellsContainer, this,
+                ["singlePowerContainer",
+                    ["powerNameContainer",
+                        "powerNameText"],
+                    ["powerRangeContainer",
+                        "rangeImage",
+                        "powerRangeText"],
+                    ["powerDamageContainer",
+                        "damageImage",
+                        "powerDamageText"]
+                ]
+            );
+            this.rangeImage.src = Images.otherImages["range"].src;
+            this.damageImage.src = Images.otherImages["damage"].src;
+            this.powerNameText.innerText = power.powerName;
+            this.powerRangeText.innerText = power.range;
+            this.powerDamageText.innerText = power.damage;
+        }
         Util.show(this.uiContainer);
         Util.show(this.unitSelectorContainer);
     }
@@ -238,7 +260,7 @@ class UI {
         if (this.selection.isCommunity) {
             Util.show(this.uiCommunityActionsContainer);
             Util.show(this.unitSelectorContainer);
-            Util.hide(this.hexSelectorContainer);
+            Util.show(this.hexSelectorContainer);
             // this.uiCommunityActionsContainer.style["left"] = this.lastMousePosition.x + "px";
             // this.uiCommunityActionsContainer.style["top"] = this.lastMousePosition.y + "px";
             this.unitImage.src = Images.unitImages["campfire"].src;

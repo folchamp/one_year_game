@@ -196,6 +196,13 @@ body {
             border: 1px solid rgba(220, 210, 180, 0.12);
             border-radius: 4px;
         }
+
+        .unitSpellsContainer {
+            height: 100px;
+            padding: 3px;
+            border: 1px solid rgba(220, 210, 180, 0.12);
+            border-radius: 4px;
+        }
     }
 
     .uiCommunityActionsContainer {

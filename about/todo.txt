@@ -414,6 +414,12 @@ ajouter des combat stats aux unités
 préparer l'UI des pouvoirs
 ♥ 09/10/2026
 préparer le display des sorts et actions des unités
+♥ 10/10/2026
+mariage d'Allison
+♥ 11/10/2026
+rangement mariage
+♥ 12/10/2026
+
 
 
 ********************

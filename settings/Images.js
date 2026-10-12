@@ -5,6 +5,8 @@ class Images {
 
     static otherImages = Util.loadImages("others/", [
         "population",
+        "range",
+        "damage"
     ]);
 
     static tileImages = Util.loadImages("tiles/", [

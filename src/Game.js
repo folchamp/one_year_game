@@ -244,7 +244,7 @@ class Game {
     // }
     tick() {
         let idleCount = this.getIdles(this.player).length;
-        if (idleCount > 0 && idleCount !== this.lastIdleCount) {
+        if (idleCount > 0 && idleCount !== this.lastIdleCount && Settings.production) {
             alert("inactive workers");
             this.lastIdleCount = idleCount;
         } else {

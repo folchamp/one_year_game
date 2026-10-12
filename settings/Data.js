@@ -3094,6 +3094,7 @@ class Data {
                 hp: 10,
                 powers: {
                     basicAttack: {
+                        powerName : "Lancer de fronde",
                         damage: 6,
                         range: 1
                     }
@@ -3114,6 +3115,7 @@ class Data {
                 hp: 7,
                 powers: {
                     basicAttack: {
+                        powerName : "Tir à l'arc",
                         damage: 4,
                         range: 2
                     }
@@ -3134,6 +3136,7 @@ class Data {
                 hp: 9,
                 powers: {
                     basicAttack: {
+                        powerName : "Coup de fourche",
                         damage: 3,
                         range: 1
                     }
