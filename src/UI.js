@@ -150,6 +150,7 @@ class UI {
         }
     }
     updateUnit() {
+        const entity = this.selection.selectedEntity;
         const powersData = this.selection.selectedEntityData.combatStats.powers;
         this.unitSpellsContainer.replaceChildren();
         console.log(this.selection.selectedEntityData);
@@ -165,7 +166,8 @@ class UI {
                         "powerRangeText"],
                     ["powerDamageContainer",
                         "damageImage",
-                        "powerDamageText"]
+                        "powerDamageText"],
+                    "usePowerButton"
                 ]
             );
             this.rangeImage.src = Images.otherImages["range"].src;
@@ -173,6 +175,9 @@ class UI {
             this.powerNameText.innerText = power.powerName;
             this.powerRangeText.innerText = power.range;
             this.powerDamageText.innerText = power.damage;
+            this.usePowerButton.addEventListener("click", (event) => {
+                this.uiActions.powerButtonClick(entity, power);
+            });
         }
         Util.show(this.uiContainer);
         Util.show(this.unitSelectorContainer);

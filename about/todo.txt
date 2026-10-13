@@ -419,6 +419,9 @@ mariage d'Allison
 ♥ 11/10/2026
 rangement mariage
 ♥ 12/10/2026
+afficher les sorts dans l'UI
+♥ 13/10/2026
+afficher les infos d'un sort
 
 
 
@@ -426,6 +429,7 @@ rangement mariage
 TODO
 ********************
 ---------- MUST ----------
+lancer un sort
 afficher les combats stats dans l'UI
 les unités ont des pouvoirs à la krosmaster/dofus
 

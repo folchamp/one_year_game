@@ -198,6 +198,7 @@ body {
         }
 
         .unitSpellsContainer {
+            display: flex;
             height: 100px;
             padding: 3px;
             border: 1px solid rgba(220, 210, 180, 0.12);

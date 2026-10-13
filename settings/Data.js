@@ -3139,6 +3139,11 @@ class Data {
                         powerName : "Coup de fourche",
                         damage: 3,
                         range: 1
+                    },
+                    sandThrow: {
+                        powerName : "Jet de sable",
+                        damage: 1,
+                        range: 2
                     }
                 }
             }

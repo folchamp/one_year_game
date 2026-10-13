@@ -11,7 +11,8 @@ class Util {
         panLeftButton: "⬅️",
         spaceButton: "pass turn",
         // uiCommunityActionsTitle: "community actions",
-        uiCreateUnitButton: "not found"
+        uiCreateUnitButton: "not found",
+        usePowerButton: "utiliser"
     };
 
     static toggle(element) {

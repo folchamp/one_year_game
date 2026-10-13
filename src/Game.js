@@ -15,6 +15,7 @@ class Game {
         };
         this.uiActions = {
             createUnit: (unitName, player) => this.createUnit(unitName, player),
+            powerButtonClick: (entity, powerData) => this.powerButtonClick(entity, powerData),
             actionButtonClick: (hex, resource, actionName) => this.actionButtonClick(hex, resource, actionName),
             // feedCommunityClick: (resourceName) => this.feedCommunityClick(resourceName),
             cameraLeft: () => this.camera.cameraLeft(),
@@ -110,6 +111,7 @@ class Game {
     toggleDev() {
         this.log.toggle();
         Settings.production = !Settings.production;
+        this.ui.update();
     }
     getMouseWorldPosition(event) {
         let mousePosition = Util.getMousePosition(this.display.getCanvas(), event);
@@ -165,6 +167,9 @@ class Game {
         }
         this.explore();
         this.ui.update();
+    }
+    powerButtonClick(entity, powerData) {
+        console.log(`${entity}, ${powerData.powerName}`);
     }
     actionButtonClick(hex, resource, actionName) {
         let done = false;
