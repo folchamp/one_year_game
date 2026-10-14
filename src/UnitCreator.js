@@ -38,6 +38,18 @@ class UnitCreator {
         this.ECS.CombatStats.set(entity, unitData.combatStats);
         return entity;
     }
+    killUnit(entity) {
+        this.ECS.Harvester.delete(entity);
+        this.ECS.Explorer.delete(entity);
+        this.ECS.Name.delete(entity);
+        this.ECS.Position.delete(entity);
+        this.ECS.Movement.delete(entity);
+        this.ECS.Sprite.delete(entity);
+        this.ECS.Hitbox.delete(entity);
+        this.ECS.CombatStats.delete(entity);
+        this.ECS.Owner.delete(entity);
+
+    }
     // createHarvester(pos) {
     //     let entity = this.newEntity();
     //     this.ECS.Harvester.set(entity, {});

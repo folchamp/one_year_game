@@ -426,14 +426,17 @@ afficher les infos d'un sort
 afficher la portée d'un sort
 lancer un sort
 lancer un sort
+afficher les sorts
+résoudre un sort
 
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
-afficher les sorts
-résoudre un sort
+afficher les hp actuels des entités
+nettoyer l'entité sélectionnée si elle est morte
+
 afficher les combats stats dans l'UI
 les unités ont des pouvoirs à la krosmaster/dofus
 

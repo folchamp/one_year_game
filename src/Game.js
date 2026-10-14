@@ -57,6 +57,7 @@ class Game {
         this.unitCreator = new UnitCreator(this.ECS);
         this.movementSystem = new MovementSystem(this.world, this.ECS);
         this.actionSystem = new ActionSystem(this.world, this.ECS);
+        this.powerSystem = new PowerSystem(this.world, this.ECS);
 
         // hotkeys
         this.hotkeys.bind("Backquote", this.actions.selectNextIdle);
@@ -177,6 +178,7 @@ class Game {
         const targetableHexes = this.world.getHexesWithinRange(entityPosition, powerData.range);
         this.world.targetHexes(targetableHexes);
         this.targetting = {
+            attackerPosition: entityPosition,
             attacker: entity,
             powerData: powerData,
             targetableHexes: targetableHexes
@@ -201,7 +203,8 @@ class Game {
             if (this.ECS.Owner.get(entity) === owner &&
                 this.ECS.Movement.get(entity) !== undefined &&
                 this.ECS.Movement.get(entity).path.length <= 0 &&
-                this.ECS.Order.get(entity) === undefined) {
+                this.ECS.Order.get(entity) === undefined &&
+                this.ECS.Power.get(entity) === undefined) {
                 idles.push(entity);
             }
         });
@@ -249,10 +252,13 @@ class Game {
         }
         this.movementSystem.update(player);
         this.actionSystem.update(player);
+        this.powerSystem.update(player);
         this.explore();
         this.world.update();
         // au cas où des ressources ont disparu, les explorateurs doivent arrêter de travailler
-        this.cleanOrders()
+        this.cleanOrders();
+        this.cleanPowers();
+        this.cleanKilledEntities();
     }
     // intervalTick() {
     // if (this.intervalTicks.length > 0) {
@@ -289,6 +295,14 @@ class Game {
     // **************************************************
     // unit actions
     // **************************************************
+    cleanKilledEntities() {
+        this.ECS.CombatStats.forEach((combatStats, entity, map) => {
+            if (combatStats.actualHP <= 0) {
+                this.unitCreator.killUnit(entity);
+                // TODO clean selection if same entity as killed unit
+            }
+        });
+    }
     cleanEntity(entity) {
         this.ECS.Power.delete(entity);
         this.ECS.Order.delete(entity);
@@ -305,12 +319,14 @@ class Game {
             }
             console.log(`Entity ${this.targetting.attacker} uses ${this.targetting.powerData.powerName} on hex ${targetHex.q}, ${targetHex.r} and hits entity ${entity}`);
             this.cleanEntity(this.targetting.attacker);
-            this.ECS.Power.set(entity, {
+            this.ECS.Power.set(this.targetting.attacker, {
+                attackerPosition: this.targetting.attackerPosition,
                 attacker: this.targetting.attacker,
                 powerData: this.targetting.powerData,
                 targetHex: targetHex,
                 targetEntity: entity
             });
+            console.log(this.ECS.Power);
         } else {
             alert("out of range");
         }
@@ -343,6 +359,11 @@ class Game {
             // TODO think about this
             // retirer l'ordre de toute façon (test)
             this.ECS.Order.delete(entity);
+        });
+    }
+    cleanPowers() {
+        this.ECS.Power.forEach((power, entity) => {
+            this.ECS.Power.delete(entity);
         });
     }
     setOrder(hex, resource, actionName, entity) {

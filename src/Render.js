@@ -44,6 +44,9 @@ class Render {
             if (this.ECS.Order.get(entity) !== undefined) {
                 this.drawOrder(entity);
             }
+            if (this.ECS.Power.get(entity) !== undefined) {
+                this.drawPower(entity);
+            }
         });
 
         if (this.selection.selectedEntity !== undefined) {
@@ -159,6 +162,16 @@ class Render {
                 }
             }
         }
+    }
+    drawPower(entity) {
+        const power = this.ECS.Power.get(entity);
+        this.context.save();
+        this.context.strokeStyle = "red";
+        this.context.lineWidth = 4;
+        this.context.lineCap = "round";
+        this.context.lineJoin = "round";
+        this.drawArrow(power.attackerPosition, power.targetHex);
+        this.context.restore();
     }
     drawResources(hex) {
         const pos = this.getWorldPosition(hex);

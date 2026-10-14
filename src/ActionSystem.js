@@ -5,7 +5,6 @@ class ActionSystem {
         this.world = world;
         this.ECS = ECS;
     }
-
     action(hex, resource, actionName) {
         let resourceName = resource.resourceData.resourceName;
         this.ECS.Harvester.forEach((value, entity, map) => {
