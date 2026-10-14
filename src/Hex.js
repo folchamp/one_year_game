@@ -23,6 +23,7 @@ class Hex {
 
         this.resources = [];
 
+        this.isTargetted = false;
         this.lastResourceTaken;
     }
     hasSeen(player) {

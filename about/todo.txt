@@ -422,14 +422,18 @@ rangement mariage
 afficher les sorts dans l'UI
 ♥ 13/10/2026
 afficher les infos d'un sort
-
+♥ 14/10/2026
+afficher la portée d'un sort
+lancer un sort
+lancer un sort
 
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
-lancer un sort
+afficher les sorts
+résoudre un sort
 afficher les combats stats dans l'UI
 les unités ont des pouvoirs à la krosmaster/dofus
 

@@ -10,29 +10,6 @@ class Render {
         this.selection = selection;
         this.player = player;
     }
-    drawArrow(fromHex, toHex) {
-        // merci ChatGPT
-        const from = World.hexToWorld(fromHex);
-        const to = World.hexToWorld(toHex);
-        const angle = Math.atan2(
-            to.y - from.y,
-            to.x - from.x
-        );
-        const head = 12;
-        this.context.beginPath();
-        this.context.moveTo(from.x, from.y);
-        this.context.lineTo(to.x, to.y);
-        this.context.moveTo(
-            to.x - head * Math.cos(angle - Math.PI / 6),
-            to.y - head * Math.sin(angle - Math.PI / 6)
-        );
-        this.context.lineTo(to.x, to.y);
-        this.context.lineTo(
-            to.x - head * Math.cos(angle + Math.PI / 6),
-            to.y - head * Math.sin(angle + Math.PI / 6)
-        );
-        this.context.stroke();
-    }
     render() {
         // clear
         this.context.clearRect(0, 0, this.display.getWidth(), this.display.getHeight());
@@ -46,6 +23,12 @@ class Render {
         // draw world
         for (const hex of this.world.hexes.values()) {
             this.drawHex(hex);
+        }
+        for (const hex of this.world.hexes.values()) {
+            if (hex.isTargetted) {
+                this.drawHexPath(hex);
+                this.strokeWithTargetStyle();
+            }
         }
         if (this.selection.hoveredHex !== undefined) {
             this.drawHoveredHex(this.selection.hoveredHex);
@@ -135,21 +118,28 @@ class Render {
             throw "danggg";
         }
     }
-    drawHexPath(hex) {
+    drawArrow(fromHex, toHex) {
         // merci ChatGPT
-        const pos = this.getWorldPosition(hex);
-
+        const from = World.hexToWorld(fromHex);
+        const to = World.hexToWorld(toHex);
+        const angle = Math.atan2(
+            to.y - from.y,
+            to.x - from.x
+        );
+        const head = 12;
         this.context.beginPath();
-        for (let i = 0; i < 6; i++) {
-            const angle = Math.PI / 180 * (60 * i - 30);
-            const px = pos.x + Settings.hexSize * Math.cos(angle);
-            const py = pos.y + Settings.hexSize * Math.sin(angle);
-            if (i === 0)
-                this.context.moveTo(px, py);
-            else
-                this.context.lineTo(px, py);
-        }
-        this.context.closePath();
+        this.context.moveTo(from.x, from.y);
+        this.context.lineTo(to.x, to.y);
+        this.context.moveTo(
+            to.x - head * Math.cos(angle - Math.PI / 6),
+            to.y - head * Math.sin(angle - Math.PI / 6)
+        );
+        this.context.lineTo(to.x, to.y);
+        this.context.lineTo(
+            to.x - head * Math.cos(angle + Math.PI / 6),
+            to.y - head * Math.sin(angle + Math.PI / 6)
+        );
+        this.context.stroke();
     }
     drawOrder(entity) {
         const order = this.ECS.Order.get(entity);
@@ -254,18 +244,36 @@ class Render {
             this.context.fillText(text, pos.x, pos.y);
         }
     }
+    drawHexPath(hex) {
+        // merci ChatGPT
+        const pos = this.getWorldPosition(hex);
+
+        this.context.beginPath();
+        for (let i = 0; i < 6; i++) {
+            const angle = Math.PI / 180 * (60 * i - 30);
+            const px = pos.x + Settings.hexSize * Math.cos(angle);
+            const py = pos.y + Settings.hexSize * Math.sin(angle);
+            if (i === 0)
+                this.context.moveTo(px, py);
+            else
+                this.context.lineTo(px, py);
+        }
+        this.context.closePath();
+    }
     drawHoveredHex(hex) {
         this.drawHexPath(hex);
-
+        this.strokeWithHoveredStyle();
+    }
+    drawSelectedHex(hex) {
+        this.drawHexPath(hex);
+        this.strokeWithSelectionStyle();
+    }
+    strokeWithHoveredStyle() {
         this.context.save();
         this.context.strokeStyle = "rgba(107, 105, 133, 0.8)";
         this.context.lineWidth = 9;
         this.context.stroke();
         this.context.restore();
-    }
-    drawSelectedHex(hex) {
-        this.drawHexPath(hex);
-        this.strokeWithSelectionStyle();
     }
     fillWithoutSelectionStyle(color) {
         this.context.save();
@@ -288,5 +296,21 @@ class Render {
         this.context.strokeStyle = "#ffffff";
         this.context.stroke();
         this.context.restore();
+    }
+    strokeWithTargetStyle() {
+        this.context.save();
+        this.context.strokeStyle = "#810000";
+        this.context.lineWidth = 4;
+        // this.context.shadowColor = "#ff4800";
+        // this.context.shadowBlur = 4;
+        this.context.stroke();
+        this.context.lineWidth = 2;
+        this.context.strokeStyle = "#cf5e2a";
+        this.context.stroke();
+        this.context.lineWidth = 1;
+        this.context.strokeStyle = "#d69c9c";
+        this.context.stroke();
+        this.context.restore();
+
     }
 }

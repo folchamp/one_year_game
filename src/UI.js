@@ -153,7 +153,7 @@ class UI {
         const entity = this.selection.selectedEntity;
         const powersData = this.selection.selectedEntityData.combatStats.powers;
         this.unitSpellsContainer.replaceChildren();
-        console.log(this.selection.selectedEntityData);
+        // console.log(this.selection.selectedEntityData);
         this.unitImage.src = Images.unitImages[this.selection.selectedEntityData.sprite.imageName].src
         for (const powerName in powersData) {
             const power = powersData[powerName];

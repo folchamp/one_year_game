@@ -20,23 +20,72 @@ class World {
 
         this.hexes.get(`0, 0`).resources = [];
     }
-    seeNeighbours(position, range, player) {
-        this.hexes.get(`${position.q}, ${position.r}`).see(player);
-        this.seeNeighboursRecursive(position, range, [...World.getNeighbors(position.q, position.r)], player);
-    }
-    seeNeighboursRecursive(position, range, neighbors, player) {
-        // TODO extrêmement naïf, améliorer (avec un set visitedHexes)
-        if (range > 0) {
-            neighbors.forEach((neighbor) => {
-                let hex = this.hexes.get(`${neighbor.q}, ${neighbor.r}`);
+    getHexesWithinRange(position, range) {
+        const result = [];
+        const visited = new Set();
+        const queue = [];
+        let index = 0;
+
+        result.push(this.hexes.get(`${position.q}, ${position.r}`));
+        queue.push({
+            position: position,
+            distance: 0
+        });
+        visited.add(`${position.q}, ${position.r}`);
+
+        while (index < queue.length) {
+            const current = queue[index];
+            index++;
+            if (current.distance > 0) {
+                const hex = this.hexes.get(`${current.position.q}, ${current.position.r}`);
                 if (hex !== undefined) {
-                    hex.see(player);
+                    result.push(hex);
                 }
-                neighbors.push(...World.getNeighbors(neighbor.q, neighbor.r));
-            });
-            this.seeNeighboursRecursive(position, range - 1, neighbors, player);
+            }
+            if (current.distance < range) {
+                const neighbors = World.getNeighbors(current.position.q, current.position.r);
+                for (const neighbor of neighbors) {
+                    const key = `${neighbor.q}, ${neighbor.r}`;
+                    if (!visited.has(key)) {
+                        visited.add(key);
+                        queue.push({
+                            position: neighbor,
+                            distance: current.distance + 1
+                        });
+                    }
+                }
+            }
         }
+        return result;
     }
+    seeNeighbours(position, range, player) {
+        const hexes = this.getHexesWithinRange(position, range);
+        // this.hexes.get(`${position.q}, ${position.r}`).see(player);
+        hexes.forEach((hex) => hex.see(player));
+    }
+    cleanTargets() {
+        this.hexes.forEach(hex => hex.isTargetted = false);
+    }
+    targetHexes(hexes) {
+        hexes.forEach(hex => hex.isTargetted = true);
+    }
+    // seeNeighbours(position, range, player) {
+    //     this.hexes.get(`${position.q}, ${position.r}`).see(player);
+    //     this.seeNeighboursRecursive(position, range, [...World.getNeighbors(position.q, position.r)], player);
+    // }
+    // seeNeighboursRecursive(position, range, neighbors, player) {
+    //     // TODO extrêmement naïf, améliorer (avec un set visitedHexes)
+    //     if (range > 0) {
+    //         neighbors.forEach((neighbor) => {
+    //             let hex = this.hexes.get(`${neighbor.q}, ${neighbor.r}`);
+    //             if (hex !== undefined) {
+    //                 hex.see(player);
+    //             }
+    //             neighbors.push(...World.getNeighbors(neighbor.q, neighbor.r));
+    //         });
+    //         this.seeNeighboursRecursive(position, range - 1, neighbors, player);
+    //     }
+    // }
     exploreTile(position, player) {
         this.hexes.get(`${position.q}, ${position.r}`).explore(player);
     }

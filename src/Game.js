@@ -47,6 +47,7 @@ class Game {
         this.ECS.Order = new Map();
         this.ECS.Owner = new Map();
         this.ECS.CombatStats = new Map();
+        this.ECS.Power = new Map();
 
         // engine
         this.log = new Log();
@@ -94,6 +95,7 @@ class Game {
 
         this.idleCycleCounter = 0;
         this.lastIdleCount = 0;
+        this.targetting = undefined;
 
         // start
         // this.tick(); // tick initial, je ne sais plus pourquoi c'est nécessaire
@@ -137,7 +139,9 @@ class Game {
         let worldPosition = this.getMouseWorldPosition(event);
         let hex = this.world.getHexFromWorldPosition(worldPosition);
         let entity = this.getEntityFromWorldPosition(worldPosition);
-        if (entity !== undefined && this.ECS.Owner.get(entity) === this.player) {
+        if (this.targetting !== undefined) {
+            this.setPower(hex);
+        } else if (entity !== undefined && this.ECS.Owner.get(entity) === this.player) {
             this.selectEntity(entity);
         } else {
             this.selectHex(hex);
@@ -169,7 +173,15 @@ class Game {
         this.ui.update();
     }
     powerButtonClick(entity, powerData) {
-        console.log(`${entity}, ${powerData.powerName}`);
+        const entityPosition = this.ECS.Position.get(entity);
+        const targetableHexes = this.world.getHexesWithinRange(entityPosition, powerData.range);
+        this.world.targetHexes(targetableHexes);
+        this.targetting = {
+            attacker: entity,
+            powerData: powerData,
+            targetableHexes: targetableHexes
+        }
+        // console.log(`${entity}, ${powerData.powerName}`);
     }
     actionButtonClick(hex, resource, actionName) {
         let done = false;
@@ -216,11 +228,11 @@ class Game {
         this.selection.selectEntity(entity, data, hex);
     }
     selectHex(hex) {
-        this.selection.selectHex(hex);
-        if (hex.q === this.player.startHexPosition.q && hex.r === this.player.startHexPosition.r) {
-            this.selection.selectCommunity();
-        }
         if (hex !== undefined) {
+            this.selection.selectHex(hex);
+            if (hex.q === this.player.startHexPosition.q && hex.r === this.player.startHexPosition.r) {
+                this.selection.selectCommunity();
+            }
             // this.log.log(JSON.stringify(hex, null, 4));
             // this.log.log(`Fatigue : ${hex.fatigue}/${Settings.maxFatigue}`);
         }
@@ -277,12 +289,45 @@ class Game {
     // **************************************************
     // unit actions
     // **************************************************
+    cleanEntity(entity) {
+        this.ECS.Power.delete(entity);
+        this.ECS.Order.delete(entity);
+        this.ECS.Movement.set(entity, { path: [] });
+    }
+    setPower(targetHex) {
+        const isTargetable = this.targetting.targetableHexes.some((hex) => targetHex.q === hex.q && targetHex.r === hex.r);
+        if (isTargetable) {
+            let entity;
+            for (const [key, value] of this.ECS.Position) {
+                if (value.q === targetHex.q && value.r === targetHex.r) {
+                    entity = key;
+                }
+            }
+            console.log(`Entity ${this.targetting.attacker} uses ${this.targetting.powerData.powerName} on hex ${targetHex.q}, ${targetHex.r} and hits entity ${entity}`);
+            this.cleanEntity(this.targetting.attacker);
+            this.ECS.Power.set(entity, {
+                attacker: this.targetting.attacker,
+                powerData: this.targetting.powerData,
+                targetHex: targetHex,
+                targetEntity: entity
+            });
+        } else {
+            alert("out of range");
+        }
+        this.cleanTargetting();
+    }
+    cleanTargetting() {
+        this.world.cleanTargets();
+        this.targetting = undefined;
+    }
     setMove(entity, hex) {
+        this.cleanEntity(entity);
         let movement = this.ECS.Movement.get(entity);
         if (movement !== undefined) {
             let position = this.ECS.Position.get(entity);
             movement.path = Pathfinding.find(position, hex);
-            this.ECS.Order.delete(entity);
+            // this.ECS.Order.delete(entity);
+            this.cleanTargetting();
         }
     }
     cleanOrders() {
@@ -301,7 +346,9 @@ class Game {
         });
     }
     setOrder(hex, resource, actionName, entity) {
+        this.cleanEntity(entity)
         this.ECS.Order.set(entity, { hex: hex, resource: resource, actionName: actionName });
-        this.ECS.Movement.set(entity, { path: [] });
+        // this.ECS.Movement.set(entity, { path: [] });
+        this.cleanTargetting();
     }
 }
