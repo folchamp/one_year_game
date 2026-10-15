@@ -87,6 +87,23 @@ class Render {
         const owner = this.ECS.Owner.get(entity);
         const hexPosition = this.ECS.Position.get(entity);
         const hex = this.world.get(hexPosition.q, hexPosition.r);
+        const combatStats = this.ECS.CombatStats.get(entity);
+        // {
+        //     "hp": 9,
+        //         "powers": {
+        //         "basicAttack": {
+        //             "powerName": "Coup de fourche",
+        //                 "damage": 3,
+        //                     "range": 1
+        //         },
+        //         "sandThrow": {
+        //             "powerName": "Jet de sable",
+        //                 "damage": 1,
+        //                     "range": 2
+        //         }
+        //     },
+        //     "actualHP": 8
+        // }
         if (hexPosition !== undefined) {
             if (hex.hasSeen(this.player) || !Settings.production) {
                 let worldPosition = World.hexToWorld(hexPosition);
@@ -112,6 +129,35 @@ class Render {
                     worldPosition.x - sprite.width / 2,
                     worldPosition.y - sprite.height / 2
                 );
+
+                if (combatStats !== undefined) {
+                    const maxHP = combatStats.hp;
+                    const actualHP = combatStats.actualHP;
+                    if (actualHP < maxHP) {
+                        const barWidth = sprite.width;
+                        const barHeight = 5;
+                        const barX = worldPosition.x - barWidth / 2;
+                        const barY = worldPosition.y - sprite.height / 2 - 10;
+
+                        // fond 
+                        this.context.fillStyle = "black";
+                        this.context.fillRect(
+                            barX,
+                            barY,
+                            barWidth,
+                            barHeight
+                        );
+
+                        // hp left
+                        this.context.fillStyle = "green";
+                        this.context.fillRect(
+                            barX,
+                            barY,
+                            barWidth * (actualHP / maxHP),
+                            barHeight
+                        );
+                    }
+                }
                 // end testing
             }
         } else {

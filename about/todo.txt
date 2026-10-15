@@ -428,13 +428,14 @@ lancer un sort
 lancer un sort
 afficher les sorts
 résoudre un sort
+♥ 15/10/2026
+afficher les hp actuels des entités
 
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
-afficher les hp actuels des entités
 nettoyer l'entité sélectionnée si elle est morte
 
 afficher les combats stats dans l'UI
