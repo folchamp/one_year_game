@@ -248,7 +248,8 @@ class Game {
     }
     resolveTick(player) {
         if (player !== this.player) {
-            player.IA.act(this.world, this.ECS);
+            let idles = this.getIdles(player);
+            player.IA.act(this.world, this.ECS, idles);
         }
         this.movementSystem.update(player);
         this.actionSystem.update(player);
@@ -284,6 +285,16 @@ class Game {
                 this.selectEntity(this.selection.selectedEntity);
             }
             this.ui.update();
+        }
+        this.checkVictory();
+    }
+    checkVictory() {
+        const factionsAlive = new Set();
+        this.ECS.Owner.forEach((owner, entity, map) => {
+            factionsAlive.add(owner);
+        });
+        if (factionsAlive.size <= 1) {
+            alert("game over, the last standing wins");
         }
     }
     loop() {

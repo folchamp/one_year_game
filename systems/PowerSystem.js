@@ -6,10 +6,15 @@ class PowerSystem {
         this.ECS = ECS;
     }
     hit(entity, damage) {
+        console.log(this.ECS.Name.get(entity));
         const targetStats = this.ECS.CombatStats.get(entity);
-        targetStats.actualHP ??= targetStats.hp // n'assigner les points de vie actuels que s'il n'en a pas déjà
-        targetStats.actualHP -= damage;
-        console.log(targetStats);
+        if (targetStats !== undefined) {
+            targetStats.actualHP ??= targetStats.hp // n'assigner les points de vie actuels que s'il n'en a pas déjà
+            targetStats.actualHP -= damage;
+            console.log(targetStats);
+        } else {
+            console.log("no entity there bro lol")
+        }
     }
     usePower(power) {
         if (power.powerData.damage !== undefined) {

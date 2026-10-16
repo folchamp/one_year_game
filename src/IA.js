@@ -16,7 +16,7 @@ class IA {
         }
         return isOccupied;
     }
-    clean(world, ECS) { 
+    clean(world, ECS) {
         // TODO
         // on nettoie les ordres de l'IA chaque tour pour éviter 
         // les "lock" où l'IA ne prend plus de décision parce que 
@@ -24,18 +24,20 @@ class IA {
         // ECS.Order.delete(entity);
         // ECS.Movement.set(entity, { path: [] });
     }
-    act(world, ECS) {
-        for (let unitName in Data.units) {
+    act(world, ECS, entitites) {
+        console.log(entitites);
+        Data.creatableUnits.forEach((unitName) => {
             const unit = Data.units[unitName];
-            if (unitName === "harvester" &&
+            if (// unitName === "harvester" &&
                 this.owner.inventory.has(unit.unitPrice) &&
                 !this.isHexPositionOccupied(ECS, { q: this.owner.startHexPosition.q, r: this.owner.startHexPosition.r })) {
                 this.actions.createUnit(unitName, this.owner);
             }
-        }
+        });
         ECS.Harvester.forEach((value, harvester, map) => {
             if (ECS.Owner.get(harvester) === this.owner &&
                 ECS.Order.get(harvester) === undefined &&
+                ECS.Power.get(harvester) === undefined &&
                 ECS.Movement.get(harvester).path.length === 0) {
                 let orderGiven = false;
                 const position = ECS.Position.get(harvester);

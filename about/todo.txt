@@ -430,14 +430,17 @@ afficher les sorts
 résoudre un sort
 ♥ 15/10/2026
 afficher les hp actuels des entités
+♥ 16/10/2026
+détection de fin de game
+taille de la map
 
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
-nettoyer l'entité sélectionnée si elle est morte
-
+BUG nettoyer l'entité sélectionnée si elle est morte
+attaques des IA
 afficher les combats stats dans l'UI
 les unités ont des pouvoirs à la krosmaster/dofus
 

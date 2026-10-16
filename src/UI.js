@@ -78,7 +78,7 @@ class UI {
     }
     populateUnits() {
         // populate units in community actions
-        for (const unitName in Data.units) {
+        Data.creatableUnits.forEach((unitName) => {
             const unitPrice = Data.units[unitName].unitPrice;
             Util.quickStructure(this.uiCommunityActionsContainer, this,
                 ["uiCreateExplorerContainer",
@@ -100,7 +100,7 @@ class UI {
                 amountPriceText.innerText = amount;
                 resourceCategoryPriceImage.src = Images.categoryImages[Data.categories[resourceCategoryName].categoryImageName].src;
             }
-        }
+        });
     }
     setLastMousePosition(pos) {
         this.lastMousePosition = pos;

@@ -3079,6 +3079,10 @@ class Data {
         living: { categoryName: "living", categoryImageName: "living", categoryDisplayName: "Animaux" }
     }
 
+    static creatableUnits = [
+        "hunter", "harvester", "explorer"
+    ]
+
     static units = {
         hunter: {
             unitName: "hunter",
@@ -3094,7 +3098,7 @@ class Data {
                 hp: 10,
                 powers: {
                     basicAttack: {
-                        powerName : "Lancer de fronde",
+                        powerName: "Lancer de fronde",
                         damage: 6,
                         range: 1
                     }
@@ -3115,7 +3119,7 @@ class Data {
                 hp: 7,
                 powers: {
                     basicAttack: {
-                        powerName : "Tir à l'arc",
+                        powerName: "Tir à l'arc",
                         damage: 4,
                         range: 2
                     }
@@ -3136,16 +3140,23 @@ class Data {
                 hp: 9,
                 powers: {
                     basicAttack: {
-                        powerName : "Coup de fourche",
+                        powerName: "Coup de fourche",
                         damage: 3,
                         range: 1
                     },
                     sandThrow: {
-                        powerName : "Jet de sable",
+                        powerName: "Jet de sable",
                         damage: 1,
                         range: 2
                     }
                 }
+            }
+        },
+        campfire: {
+            unitName: "campfire",
+            sprite: { imageName: "campfire", width: 170, height: 170, radius: 100 },
+            combatStats: {
+                hp: 15,
             }
         }
     }

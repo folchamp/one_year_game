@@ -83,7 +83,7 @@ class Hex {
     }
     update() {
         if (this.fatigue > 0 && this.biome.biomeName !== "city") {
-            this.fatigue = Math.max(this.fatigue - Settings.fatigueRecovery, 0);
+            this.fatigue = Math.max(this.fatigue - (Settings.fatigueRecovery /  Settings.amountOfPlayers), 0);
         }
         this.resources.forEach((resource) => {
             if (resource.regeneratesIn > 0) {
@@ -99,7 +99,7 @@ class Hex {
     harvest(resourceName, actionName) {
         this.resources.forEach((resource) => {
             if (resource.isAvailable && resource.resourceData.resourceName === resourceName) {
-                this.fatigue += (resource.resourceData.actions[actionName].fatigue * Settings.amountOfPlayers); 
+                this.fatigue += (resource.resourceData.actions[actionName].fatigue); 
                 // à trois joueurs, les biomes ont trois ticks de regeneration donc la fatigue doit s'accumuler trois fois plus vite
                 resource.isAvailable = false;
                 resource.regeneratesIn = resource.resourceData.regeneration;

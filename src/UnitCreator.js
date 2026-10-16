@@ -35,7 +35,16 @@ class UnitCreator {
         this.ECS.Movement.set(entity, { path: [] });
         this.ECS.Sprite.set(entity, structuredClone(unitData.sprite));
         this.ECS.Hitbox.set(entity, structuredClone(unitData.hitbox));
-        this.ECS.CombatStats.set(entity, unitData.combatStats);
+        this.ECS.CombatStats.set(entity, structuredClone(unitData.combatStats));
+        return entity;
+    }
+    createCampfire(pos) {
+        let entity = this.newEntity();
+        this.ECS.Name.set(entity, "campfire");
+        this.ECS.Position.set(entity, { q: pos.q, r: pos.r });
+        this.ECS.Sprite.set(entity, structuredClone(Data.units["campfire"].sprite));
+        this.ECS.CombatStats.set(entity, structuredClone(Data.units["campfire"].combatStats));
+        // this.ECS.Hitbox.set(entity, { type: "circle", radius: 100 });
         return entity;
     }
     killUnit(entity) {
@@ -72,12 +81,4 @@ class UnitCreator {
     //     this.ECS.Hitbox.set(entity, { type: "circle", radius: 48 });
     //     return entity;
     // }
-    createCampfire(pos) {
-        let entity = this.newEntity();
-        this.ECS.Name.set(entity, "campfire");
-        this.ECS.Position.set(entity, { q: pos.q, r: pos.r });
-        this.ECS.Sprite.set(entity, { imageName: "campfire", width: 170, height: 170, radius: 100 });
-        // this.ECS.Hitbox.set(entity, { type: "circle", radius: 100 });
-        return entity;
-    }
 }
