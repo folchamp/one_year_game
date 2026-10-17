@@ -3068,15 +3068,15 @@ class Data {
     };
 
     static categories = {
-        food: { categoryName: "food", categoryImageName: "food", categoryDisplayName: "Nourriture", },
-        tool: { categoryName: "tool", categoryImageName: "tool", categoryDisplayName: "Outils", },
-        raw_material: { categoryName: "raw_material", categoryImageName: "raw_material", categoryDisplayName: "Matériaux", },
-        building_material: { categoryName: "building_material", categoryImageName: "building_material", categoryDisplayName: "Matériaux de construction", },
-        comfort: { categoryName: "comfort", categoryImageName: "comfort", categoryDisplayName: "Confort", },
-        misc: { categoryName: "misc", categoryImageName: "misc", categoryDisplayName: "Autres", },
-        energy: { categoryName: "energy", categoryImageName: "energy", categoryDisplayName: "Énergie", },
-        medicine: { categoryName: "medicine", categoryImageName: "medicine", categoryDisplayName: "Médicaments" },
-        living: { categoryName: "living", categoryImageName: "living", categoryDisplayName: "Animaux" }
+        food: { categoryName: "food", categoryImageName: "food", categoryDisplayName: "Nourriture", fatigue: 4 },
+        tool: { categoryName: "tool", categoryImageName: "tool", categoryDisplayName: "Outils", fatigue: 5 },
+        raw_material: { categoryName: "raw_material", categoryImageName: "raw_material", categoryDisplayName: "Matériaux", fatigue: 6 },
+        building_material: { categoryName: "building_material", categoryImageName: "building_material", categoryDisplayName: "Matériaux de construction", fatigue: 7 },
+        comfort: { categoryName: "comfort", categoryImageName: "comfort", categoryDisplayName: "Confort", fatigue: 7 },
+        misc: { categoryName: "misc", categoryImageName: "misc", categoryDisplayName: "Autres", fatigue: 6 },
+        energy: { categoryName: "energy", categoryImageName: "energy", categoryDisplayName: "Énergie", fatigue: 5 },
+        medicine: { categoryName: "medicine", categoryImageName: "medicine", categoryDisplayName: "Médicaments", fatigue: 5 },
+        living: { categoryName: "living", categoryImageName: "living", categoryDisplayName: "Animaux", fatigue: 8 }
     }
 
     static creatableUnits = [

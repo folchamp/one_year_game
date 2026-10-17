@@ -57,7 +57,6 @@ class UnitCreator {
         this.ECS.Hitbox.delete(entity);
         this.ECS.CombatStats.delete(entity);
         this.ECS.Owner.delete(entity);
-
     }
     // createHarvester(pos) {
     //     let entity = this.newEntity();

@@ -189,7 +189,6 @@ class Game {
         let done = false;
         this.ECS.Harvester.forEach((value, entity, map) => {
             let harvesterPosition = this.ECS.Position.get(entity);
-            console.log(harvesterPosition);
             if (hex.q === harvesterPosition.q && hex.r === harvesterPosition.r) {
                 this.setOrder(hex, resource, actionName, entity);
                 done = true;
@@ -236,8 +235,6 @@ class Game {
             if (hex.q === this.player.startHexPosition.q && hex.r === this.player.startHexPosition.r) {
                 this.selection.selectCommunity();
             }
-            // this.log.log(JSON.stringify(hex, null, 4));
-            // this.log.log(`Fatigue : ${hex.fatigue}/${Settings.maxFatigue}`);
         }
     }
     explore() {
@@ -307,10 +304,16 @@ class Game {
     // unit actions
     // **************************************************
     cleanKilledEntities() {
-        this.ECS.CombatStats.forEach((combatStats, entity, map) => {
+        const killedEntities = [];
+        this.ECS.CombatStats.forEach((combatStats, entity) => {
             if (combatStats.actualHP <= 0) {
-                this.unitCreator.killUnit(entity);
-                // TODO clean selection if same entity as killed unit
+                killedEntities.push(entity);
+            }
+        });
+        killedEntities.forEach((entity) => {
+            this.unitCreator.killUnit(entity);
+            if (entity === this.selection.selectedEntity) {
+                this.selection.reset();
             }
         });
     }

@@ -53,7 +53,6 @@ class Hex {
     evolveBiome() {
         if (this.fatigue > Settings.maxFatigue) {
             // quand le biome actuel est trop dégradé, il change de nature et recommence son cycle
-            // this.isDegraded = false;
             this.fatigue = 0;
             if (this.biome.degradation) {
                 if (this.biome.degradation === "desert" || this.biome.degradation === "city") {
@@ -61,29 +60,12 @@ class Hex {
                     this.resources = [];
                 }
                 this.setBiome(Data.biomes[this.biome.degradation]);
-                // if (this.resources.length < 1) {
-                // this.setBiome(Data.biomes["desert"]);
-                // }
-            } else if (this.biome.biomeName === "city") {
-                // this.resources = this.resources.filter((resource, index, array) => {
-                //     return resource.resourceData.resourceName !== this.lastResourceTaken;
-                // });
             }
         }
     }
-    cleanResources() {
-        // this.resources = this.resources.filter((resource) => {
-        //     // TODO effondrement 
-        //     let isHealthy = resource.fatigue <= Settings.maxFatigue;
-        //     if (!isHealthy) {
-        //         this.isDegraded = true;
-        //     }
-        //     return isHealthy;
-        // });
-    }
     update() {
         if (this.fatigue > 0 && this.biome.biomeName !== "city") {
-            this.fatigue = Math.max(this.fatigue - (Settings.fatigueRecovery /  Settings.amountOfPlayers), 0);
+            this.fatigue = Math.max(this.fatigue - (Settings.fatigueRecovery / Settings.amountOfPlayers), 0);
         }
         this.resources.forEach((resource) => {
             if (resource.regeneratesIn > 0) {
@@ -93,13 +75,15 @@ class Hex {
                 resource.isAvailable = true;
             }
         });
-        this.cleanResources();
         this.evolveBiome();
     }
     harvest(resourceName, actionName) {
         this.resources.forEach((resource) => {
             if (resource.isAvailable && resource.resourceData.resourceName === resourceName) {
-                this.fatigue += (resource.resourceData.actions[actionName].fatigue); 
+                // this.fatigue += (resource.resourceData.actions[actionName].fatigue);
+                let fatigueIncrease = Data.categories[Data.resources[resourceName].category].fatigue;
+                console.log(`increased fatigue by ${fatigueIncrease}`);
+                this.fatigue += fatigueIncrease;
                 // à trois joueurs, les biomes ont trois ticks de regeneration donc la fatigue doit s'accumuler trois fois plus vite
                 resource.isAvailable = false;
                 resource.regeneratesIn = resource.resourceData.regeneration;

@@ -225,6 +225,8 @@ class UI {
         }
         for (let actionName in resource.resourceData.actions) {
             let action = resource.resourceData.actions[actionName];
+            let get = action.get;
+            let fatigue = Data.categories[Data.resources[get].category].fatigue;
             if (this.community.fillsConditions(action.requiresOneOf) || !Settings.production) {
                 Util.quickStructure(this.resourceActionsContainer, this,
                     ["actionContainer",
@@ -234,7 +236,7 @@ class UI {
                 );
                 // let actionButton = Util.createDOMElement("actionButton", "span", this.resourceActionsContainer);
                 // let getImage = Util.createDOMElement("getImage", "img", this.resourceActionsContainer);
-                this.actionText.innerText = `${action.displayName} (${action.fatigue})`;
+                this.actionText.innerText = `${action.displayName} (${fatigue})`;
                 // console.log(action.get);
                 // console.log(Data.resources[action.get]);
                 // console.log(Data.categories[Data.resources[action.get].category].categoryImageName);

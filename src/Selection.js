@@ -2,11 +2,7 @@
 
 class Selection {
     constructor() {
-        this.hoveredHex;
-        this.selectedHex;
-        this.selectedEntity;
-        this.selectedEntityHex; // la tuile sur laquelle se trouve l'entité sélectionnée
-        this.isCommunity = false;
+        this.reset();
     }
     selectEntity(entity, selectedEntityData, hex) {
         this.selectedEntity = entity;
@@ -23,5 +19,12 @@ class Selection {
     }
     selectCommunity() {
         this.isCommunity = true;
+    }
+    reset() {
+        this.hoveredHex = undefined;
+        this.selectedHex = undefined;
+        this.selectedEntity = undefined;
+        this.selectedEntityHex = undefined; // la tuile sur laquelle se trouve l'entité sélectionnée
+        this.isCommunity = false;
     }
 }

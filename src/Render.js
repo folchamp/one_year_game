@@ -44,14 +44,15 @@ class Render {
             if (this.ECS.Order.get(entity) !== undefined) {
                 this.drawOrder(entity);
             }
-            if (this.ECS.Power.get(entity) !== undefined) {
-                this.drawPower(entity);
-            }
         });
 
         if (this.selection.selectedEntity !== undefined) {
             this.drawEntity(this.selection.selectedEntity, true);
         }
+
+        this.ECS.Power.forEach((power, entity, map) => {
+            this.drawPower(entity, power);
+        });
 
         // paths (arrows)
         this.context.strokeStyle = "white";
@@ -75,41 +76,15 @@ class Render {
         const y = Settings.hexSize * 1.5 * hex.r;
         return { x: x, y: y };
     }
-    // drawSelectedEntity(sprite, hexPosition) {
-    //     let worldPosition = World.hexToWorld(hexPosition);
-    //     this.context.beginPath();
-    //     this.context.arc(worldPosition.x, worldPosition.y, sprite.radius, 0, Math.PI * 2);
-    //     this.context.drawImage(Images.unitImages[sprite.imageName], worldPosition.x - sprite.width / 2, worldPosition.y - sprite.height / 2);
-    //     this.strokeWithSelectionStyle();
-    // }
     drawEntity(entity, isSelected) {
         const sprite = this.ECS.Sprite.get(entity);
         const owner = this.ECS.Owner.get(entity);
         const hexPosition = this.ECS.Position.get(entity);
         const hex = this.world.get(hexPosition.q, hexPosition.r);
         const combatStats = this.ECS.CombatStats.get(entity);
-        // {
-        //     "hp": 9,
-        //         "powers": {
-        //         "basicAttack": {
-        //             "powerName": "Coup de fourche",
-        //                 "damage": 3,
-        //                     "range": 1
-        //         },
-        //         "sandThrow": {
-        //             "powerName": "Jet de sable",
-        //                 "damage": 1,
-        //                     "range": 2
-        //         }
-        //     },
-        //     "actualHP": 8
-        // }
         if (hexPosition !== undefined) {
             if (hex.hasSeen(this.player) || !Settings.production) {
                 let worldPosition = World.hexToWorld(hexPosition);
-                // this.context.drawImage(Images.unitImages[sprite.imageName], worldPosition.x - sprite.width / 2, worldPosition.y - sprite.height / 2);
-
-                // testing
                 this.context.beginPath();
                 this.context.arc(
                     worldPosition.x - Settings.playerColorArcOffset,
@@ -138,27 +113,12 @@ class Render {
                         const barHeight = 5;
                         const barX = worldPosition.x - barWidth / 2;
                         const barY = worldPosition.y - sprite.height / 2 - 10;
-
-                        // fond 
                         this.context.fillStyle = "black";
-                        this.context.fillRect(
-                            barX,
-                            barY,
-                            barWidth,
-                            barHeight
-                        );
-
-                        // hp left
+                        this.context.fillRect(barX, barY, barWidth, barHeight);
                         this.context.fillStyle = "green";
-                        this.context.fillRect(
-                            barX,
-                            barY,
-                            barWidth * (actualHP / maxHP),
-                            barHeight
-                        );
+                        this.context.fillRect(barX, barY, barWidth * (actualHP / maxHP), barHeight);
                     }
                 }
-                // end testing
             }
         } else {
             console.log(sprite)
@@ -209,8 +169,8 @@ class Render {
             }
         }
     }
-    drawPower(entity) {
-        const power = this.ECS.Power.get(entity);
+    drawPower(entity, power) {
+        // const power = this.ECS.Power.get(entity);
         this.context.save();
         this.context.strokeStyle = "red";
         this.context.lineWidth = 4;
