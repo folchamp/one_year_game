@@ -69,23 +69,6 @@ class World {
     targetHexes(hexes) {
         hexes.forEach(hex => hex.isTargetted = true);
     }
-    // seeNeighbours(position, range, player) {
-    //     this.hexes.get(`${position.q}, ${position.r}`).see(player);
-    //     this.seeNeighboursRecursive(position, range, [...World.getNeighbors(position.q, position.r)], player);
-    // }
-    // seeNeighboursRecursive(position, range, neighbors, player) {
-    //     // TODO extrêmement naïf, améliorer (avec un set visitedHexes)
-    //     if (range > 0) {
-    //         neighbors.forEach((neighbor) => {
-    //             let hex = this.hexes.get(`${neighbor.q}, ${neighbor.r}`);
-    //             if (hex !== undefined) {
-    //                 hex.see(player);
-    //             }
-    //             neighbors.push(...World.getNeighbors(neighbor.q, neighbor.r));
-    //         });
-    //         this.seeNeighboursRecursive(position, range - 1, neighbors, player);
-    //     }
-    // }
     exploreTile(position, player) {
         this.hexes.get(`${position.q}, ${position.r}`).explore(player);
     }

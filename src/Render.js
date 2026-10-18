@@ -213,6 +213,9 @@ class Render {
         const fatigue = Math.max(0, Math.min(1, hex.fatigue / Settings.maxFatigue));
         const healthyWidth = width * (1 - fatigue);
         const gradient = this.context.createLinearGradient(x, 0, x + width, 0);
+        const radius = 10;
+        const circleX = x - radius - 5;
+        const circleY = y + height / 2;
 
         gradient.addColorStop(0, "#1f6b3a");
         gradient.addColorStop(0.55, "#6f9f3d");
@@ -228,6 +231,18 @@ class Render {
         this.context.strokeStyle = "#26351f";
         this.context.lineWidth = 2;
         this.context.strokeRect(x, y, width, height);
+
+        this.context.beginPath();
+        this.context.arc(circleX, circleY, radius, 0, Math.PI * 2);
+
+        this.context.fillStyle = "#26351f";
+        this.context.fill();
+
+        this.context.fillStyle = "#ffffff";
+        this.context.font = "bold 11px Arial";
+        this.context.textAlign = "center";
+        this.context.textBaseline = "middle";
+        this.context.fillText(Math.max(0, Math.round(Settings.maxFatigue - hex.fatigue)), circleX, circleY);
     }
     drawHex(hex) {
         const pos = this.getWorldPosition(hex);

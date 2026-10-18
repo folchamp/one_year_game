@@ -437,21 +437,21 @@ taille de la map
 nettoyer l'entité sélectionnée si elle est morte
 les flèches power apparaissent au dessus des entités
 chaque "categorie" de ressource coûte autant de fatigue
-
+♥ 18/10/2026
+retirer la fatigue des ressources
+rendre la fatigue des hexagones plus lisible
+afficher les actions impossibles grisées 
+attaques des IA
 
 ********************
 TODO
 ********************
 ---------- MUST ----------
-retirer la fatigue des ressources
-afficher les actions impossibles grisées 
-avoir une taille d'UI fixe à tout moment 
-rework RAC, chaque action d'une même ressource donne une ressource différente
-
-attaques des IA
 afficher les combats stats dans l'UI
 les unités ont des pouvoirs à la krosmaster/dofus
 
+avoir une taille d'UI fixe à tout moment 
+rework RAC, chaque action d'une même ressource donne une ressource différente
 passer en bête tour par tour ? En temps réel ?
 ajouter une action "wait" et "heal"
 petit feedback à hauteur de souris quand un action ne fonctionne pas 

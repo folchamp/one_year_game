@@ -82,7 +82,6 @@ class Hex {
             if (resource.isAvailable && resource.resourceData.resourceName === resourceName) {
                 // this.fatigue += (resource.resourceData.actions[actionName].fatigue);
                 let fatigueIncrease = Data.categories[Data.resources[resourceName].category].fatigue;
-                console.log(`increased fatigue by ${fatigueIncrease}`);
                 this.fatigue += fatigueIncrease;
                 // à trois joueurs, les biomes ont trois ticks de regeneration donc la fatigue doit s'accumuler trois fois plus vite
                 resource.isAvailable = false;

@@ -27,7 +27,8 @@ class Game {
         this.iaActions = {
             createUnit: (unitName, player) => this.createUnit(unitName, player),
             setMove: (entity, hex) => this.setMove(entity, hex),
-            setOrder: (hex, resource, actionName, entity) => this.setOrder(hex, resource, actionName, entity)
+            setOrder: (hex, resource, actionName, entity) => this.setOrder(hex, resource, actionName, entity),
+            setPower: (targetHex, targetting) => this.setPower(targetHex, targetting)
         };
 
         // display
@@ -75,7 +76,7 @@ class Game {
         // player
         this.inventory = new Inventory();
         this.community = new Community();
-        this.player = new Player(0, this.community, this.inventory, new IA(this.iaActions));
+        this.player = new Player(0, this.community, this.inventory, new IA(this.ECS, this.world, this.iaActions));
         this.ui = new UI(this.selection, this.uiActions, this.player);
 
         // render
@@ -87,7 +88,7 @@ class Game {
 
         this.computers = [];
         for (let index = 1; index < Math.min(Settings.amountOfPlayers, Settings.maxAmountOfPlayers); index++) {
-            const computer = new Player(index, new Community, new Inventory, new IA(this.iaActions));
+            const computer = new Player(index, new Community, new Inventory, new IA(this.ECS, this.world, this.iaActions));
             this.computers.push(computer);
 
             this.unitCreator.create("campfire", Settings.startHexPositions[index], computer);
@@ -141,7 +142,7 @@ class Game {
         let hex = this.world.getHexFromWorldPosition(worldPosition);
         let entity = this.getEntityFromWorldPosition(worldPosition);
         if (this.targetting !== undefined) {
-            this.setPower(hex);
+            this.setPower(hex, this.targetting);
         } else if (entity !== undefined && this.ECS.Owner.get(entity) === this.player) {
             this.selectEntity(entity);
         } else {
@@ -162,7 +163,7 @@ class Game {
     createUnit(unitName, owner) {
         const unitData = Data.units[unitName];
         const price = unitData.unitPrice;
-        if (this.movementSystem.isHexPositionOccupied({ q: owner.startHexPosition.q, r: owner.startHexPosition.r })) {
+        if (owner === this.player && this.movementSystem.isHexPositionOccupied({ q: owner.startHexPosition.q, r: owner.startHexPosition.r })) {
             alert("hex is not free");
         } else if (!owner.inventory.has(price) && Settings.production) {
             alert("not enough resources");
@@ -246,7 +247,7 @@ class Game {
     resolveTick(player) {
         if (player !== this.player) {
             let idles = this.getIdles(player);
-            player.IA.act(this.world, this.ECS, idles);
+            player.IA.act(idles);
         }
         this.movementSystem.update(player);
         this.actionSystem.update(player);
@@ -322,8 +323,8 @@ class Game {
         this.ECS.Order.delete(entity);
         this.ECS.Movement.set(entity, { path: [] });
     }
-    setPower(targetHex) {
-        const isTargetable = this.targetting.targetableHexes.some((hex) => targetHex.q === hex.q && targetHex.r === hex.r);
+    setPower(targetHex, targetting) {
+        const isTargetable = targetting.targetableHexes.some((hex) => targetHex.q === hex.q && targetHex.r === hex.r);
         if (isTargetable) {
             let entity;
             for (const [key, value] of this.ECS.Position) {
@@ -331,16 +332,15 @@ class Game {
                     entity = key;
                 }
             }
-            console.log(`Entity ${this.targetting.attacker} uses ${this.targetting.powerData.powerName} on hex ${targetHex.q}, ${targetHex.r} and hits entity ${entity}`);
-            this.cleanEntity(this.targetting.attacker);
-            this.ECS.Power.set(this.targetting.attacker, {
-                attackerPosition: this.targetting.attackerPosition,
-                attacker: this.targetting.attacker,
-                powerData: this.targetting.powerData,
+            // console.log(`Entity ${this.targetting.attacker} uses ${this.targetting.powerData.powerName} on hex ${targetHex.q}, ${targetHex.r} and hits entity ${entity}`);
+            this.cleanEntity(targetting.attacker);
+            this.ECS.Power.set(targetting.attacker, {
+                attackerPosition: targetting.attackerPosition,
+                attacker: targetting.attacker,
+                powerData: targetting.powerData,
                 targetHex: targetHex,
                 targetEntity: entity
             });
-            console.log(this.ECS.Power);
         } else {
             alert("out of range");
         }

@@ -50,5 +50,5 @@ class Settings {
     static maxResourcesPerHex = 3;
     static fatigueBarWidth = 100;
     static fatigueBarHeight = 8;
-    static fatigueBarVerticalOffset = 80;
+    static fatigueBarVerticalOffset = 58;
 }

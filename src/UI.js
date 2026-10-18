@@ -197,8 +197,10 @@ class UI {
                 Util.quickStructure(this.hexResourcesContainer, this,
                     ["hexResourceContainer",
                         ["resourceDescriptionContainer",
-                            "resourceImage",
-                            "resourceNameText",
+                            ["resourceDetailsContainer",
+                                "resourceImage",
+                                "resourceNameText",
+                            ],
                             "resourceActionsContainer"]
                     ]
                 );
@@ -227,24 +229,21 @@ class UI {
             let action = resource.resourceData.actions[actionName];
             let get = action.get;
             let fatigue = Data.categories[Data.resources[get].category].fatigue;
+            Util.quickStructure(this.resourceActionsContainer, this,
+                ["actionContainer",
+                    "getImage",
+                    "actionText"
+                ]
+            );
+            this.actionText.innerText = `${action.displayName} (${fatigue})`;
+            this.getImage.src = Images.categoryImages[Data.categories[Data.resources[action.get].category].categoryImageName].src;
+            this.getImage.width = Settings.categoryImageSize;
             if (this.community.fillsConditions(action.requiresOneOf) || !Settings.production) {
-                Util.quickStructure(this.resourceActionsContainer, this,
-                    ["actionContainer",
-                        "getImage",
-                        "actionText"
-                    ]
-                );
-                // let actionButton = Util.createDOMElement("actionButton", "span", this.resourceActionsContainer);
-                // let getImage = Util.createDOMElement("getImage", "img", this.resourceActionsContainer);
-                this.actionText.innerText = `${action.displayName} (${fatigue})`;
-                // console.log(action.get);
-                // console.log(Data.resources[action.get]);
-                // console.log(Data.categories[Data.resources[action.get].category].categoryImageName);
-                this.getImage.src = Images.categoryImages[Data.categories[Data.resources[action.get].category].categoryImageName].src;
-                this.getImage.width = Settings.categoryImageSize;
                 this.actionContainer.addEventListener("click", (event) => {
                     this.uiActions.actionButtonClick(hex, resource, actionName);
                 });
+            } else {
+                this.actionContainer.classList.add("grayedOut");
             }
         };
     }
