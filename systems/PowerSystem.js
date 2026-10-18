@@ -17,16 +17,13 @@ class PowerSystem {
     usePower(power) {
         if (power.powerData.damage !== undefined) {
             this.hit(power.targetEntity, power.powerData.damage);
-            // const targetStats = this.ECS.CombatStats.get(power.targetEntity);
-            // targetStats.hp -= power.powerData.damage;
         }
     }
-    update(player) {
-        this.ECS.Power.forEach((power, entity, map) => {
-            const owner = this.ECS.Owner.get(entity);
-            if (owner === player) {
-                this.usePower(power);
-            }
-        });
+    update(entity) {
+        const power = this.ECS.Power.get(entity);
+        if (this.ECS.Available.get(entity) === true) {
+            this.usePower(power);
+            this.ECS.Available.set(entity, false);
+        }
     }
 }

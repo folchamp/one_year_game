@@ -14,18 +14,17 @@ class MovementSystem {
         }
         return isOccupied;
     }
-    update(player) {
-        this.ECS.Movement.forEach((value, key, map) => {
-            let position = this.ECS.Position.get(key);
-            let owner = this.ECS.Owner.get(key);
-            if (position && value.path.length > 0 && owner === player) {
-                let newHexPosition = value.path[0];
-                if (!this.isHexPositionOccupied(newHexPosition)) {
-                    position.q = newHexPosition.q;
-                    position.r = newHexPosition.r;
-                    value.path.shift();
-                }
+    update(entity) {
+        const movement = this.ECS.Movement.get(entity);
+        let position = this.ECS.Position.get(entity);
+        if (position && movement.path.length > 0) {
+            let newHexPosition = movement.path[0];
+            if (!this.isHexPositionOccupied(newHexPosition) && this.ECS.Available.get(entity) === true) {
+                position.q = newHexPosition.q;
+                position.r = newHexPosition.r;
+                movement.path.shift();
+                this.ECS.Available.set(entity, false);
             }
-        });
+        }
     }
 }

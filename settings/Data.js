@@ -2723,15 +2723,15 @@ class Data {
             sprite: { imageName: "hunter", width: 64, height: 64, radius: 48 },
             hitbox: { type: "circle", radius: 48 },
             unitPrice: {
-                food: 4,
-                tool: 4
+                food: 5,
+                tool: 3
             },
             combatStats: {
-                hp: 10,
+                hp: 20,
                 powers: {
                     basicAttack: {
                         powerName: "Lancer de fronde",
-                        damage: 6,
+                        damage: 9,
                         range: 1
                     }
                 }
@@ -2744,15 +2744,15 @@ class Data {
             sprite: { imageName: "explorer", width: 64, height: 64, radius: 48 },
             hitbox: { type: "circle", radius: 48 },
             unitPrice: {
-                food: 4,
+                food: 6,
                 tool: 4
             },
             combatStats: {
-                hp: 7,
+                hp: 17,
                 powers: {
                     basicAttack: {
                         powerName: "Tir à l'arc",
-                        damage: 4,
+                        damage: 6,
                         range: 2
                     }
                 }
@@ -2766,7 +2766,7 @@ class Data {
             hitbox: { type: "circle", radius: 48 },
             unitPrice: {
                 food: 3,
-                tool: 3
+                raw_material: 3
             },
             combatStats: {
                 hp: 9,

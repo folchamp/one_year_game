@@ -49,6 +49,7 @@ class Game {
         this.ECS.Owner = new Map();
         this.ECS.CombatStats = new Map();
         this.ECS.Power = new Map();
+        this.ECS.Available = new Map();
 
         // engine
         this.log = new Log();
@@ -199,12 +200,17 @@ class Game {
     }
     getIdles(owner) {
         let idles = [];
-        this.ECS.Movement.forEach((value, entity, array) => {
-            if (this.ECS.Owner.get(entity) === owner &&
-                this.ECS.Movement.get(entity) !== undefined &&
-                this.ECS.Movement.get(entity).path.length <= 0 &&
-                this.ECS.Order.get(entity) === undefined &&
-                this.ECS.Power.get(entity) === undefined) {
+        // this.ECS.Movement.forEach((value, entity, array) => {
+        //     if (this.ECS.Owner.get(entity) === owner &&
+        //         this.ECS.Movement.get(entity) !== undefined &&
+        //         this.ECS.Movement.get(entity).path.length <= 0 &&
+        //         this.ECS.Order.get(entity) === undefined &&
+        //         this.ECS.Power.get(entity) === undefined) {
+        //         idles.push(entity);
+        //     }
+        // });
+        this.ECS.Available.forEach((isAvailable, entity, array) => {
+            if (this.ECS.Owner.get(entity) === owner && isAvailable) {
                 idles.push(entity);
             }
         });
@@ -244,46 +250,43 @@ class Game {
             this.world.seeNeighbours(this.ECS.Position.get(entity), value.range, this.ECS.Owner.get(entity));
         });
     }
-    resolveTick(player) {
+    makeAvailable() {
+        this.ECS.Available.forEach((isAvailable, entity, map) => {
+            this.ECS.Available.set(entity, true);
+        });
+    }
+    resolveTick(player) { // attention joueur par joueur !!! TODO check
         if (player !== this.player) {
             let idles = this.getIdles(player);
             player.IA.act(idles);
         }
-        this.movementSystem.update(player);
-        this.actionSystem.update(player);
-        this.powerSystem.update(player);
-        this.explore();
         this.world.update();
         // au cas où des ressources ont disparu, les explorateurs doivent arrêter de travailler
         this.cleanOrders();
         this.cleanPowers();
         this.cleanKilledEntities();
+        this.makeAvailable();
     }
-    // intervalTick() {
-    // if (this.intervalTicks.length > 0) {
-    // this.intervalTicks.shift()();
-    // }
-    // }
     tick() {
-        let idleCount = this.getIdles(this.player).length;
-        if (idleCount > 0 && idleCount !== this.lastIdleCount && Settings.production) {
-            alert("inactive workers");
-            this.lastIdleCount = idleCount;
-        } else {
-            this.lastIdleCount = 0;
-            let players = [this.player, ...this.computers];
-            players.forEach((player) => {
-                // this.intervalTicks.push(() => {
-                this.resolveTick(player);
-                this.ui.update();
-                // });
-            });
-            // toujours en dernier : on refresh les données de contexte de l'entité sélectionnée (sur quelle tuile elle se trouve etc.)
-            if (this.selection.selectedEntity !== undefined) {
-                this.selectEntity(this.selection.selectedEntity);
-            }
+        // let idleCount = this.getIdles(this.player).length;
+        // if (idleCount > 0 && idleCount !== this.lastIdleCount && Settings.production) {
+        // alert("inactive workers");
+        // this.lastIdleCount = idleCount;
+        // } else {
+        // this.lastIdleCount = 0;
+        let players = [this.player, ...this.computers];
+        players.forEach((player) => {
+            // this.intervalTicks.push(() => {
+            this.resolveTick(player);
             this.ui.update();
+            // });
+        });
+        // toujours en dernier : on refresh les données de contexte de l'entité sélectionnée (sur quelle tuile elle se trouve etc.)
+        if (this.selection.selectedEntity !== undefined) {
+            this.selectEntity(this.selection.selectedEntity);
         }
+        this.ui.update();
+        // }
         this.checkVictory();
     }
     checkVictory() {
@@ -324,25 +327,32 @@ class Game {
         this.ECS.Movement.set(entity, { path: [] });
     }
     setPower(targetHex, targetting) {
-        const isTargetable = targetting.targetableHexes.some((hex) => targetHex.q === hex.q && targetHex.r === hex.r);
-        if (isTargetable) {
-            let entity;
-            for (const [key, value] of this.ECS.Position) {
-                if (value.q === targetHex.q && value.r === targetHex.r) {
-                    entity = key;
+        if (this.ECS.Available.get(targetting.attacker)) {
+            const isTargetable = targetting.targetableHexes.some((hex) => targetHex.q === hex.q && targetHex.r === hex.r);
+            if (isTargetable) {
+                let entity;
+                for (const [key, value] of this.ECS.Position) {
+                    if (value.q === targetHex.q && value.r === targetHex.r) {
+                        entity = key;
+                    }
                 }
+                // console.log(`Entity ${this.targetting.attacker} uses ${this.targetting.powerData.powerName} on hex ${targetHex.q}, ${targetHex.r} and hits entity ${entity}`);
+                this.cleanEntity(targetting.attacker);
+                this.ECS.Power.set(targetting.attacker, {
+                    attackerPosition: targetting.attackerPosition,
+                    attacker: targetting.attacker,
+                    powerData: targetting.powerData,
+                    targetHex: targetHex,
+                    targetEntity: entity
+                });
+                this.powerSystem.update(targetting.attacker);
+                this.cleanEntity(targetting.attacker);
+                this.explore();
+                this.selectEntity(this.selection.selectedEntity);
+                this.ui.update();
+            } else {
+                alert("out of range");
             }
-            // console.log(`Entity ${this.targetting.attacker} uses ${this.targetting.powerData.powerName} on hex ${targetHex.q}, ${targetHex.r} and hits entity ${entity}`);
-            this.cleanEntity(targetting.attacker);
-            this.ECS.Power.set(targetting.attacker, {
-                attackerPosition: targetting.attackerPosition,
-                attacker: targetting.attacker,
-                powerData: targetting.powerData,
-                targetHex: targetHex,
-                targetEntity: entity
-            });
-        } else {
-            alert("out of range");
         }
         this.cleanTargetting();
     }
@@ -351,13 +361,20 @@ class Game {
         this.targetting = undefined;
     }
     setMove(entity, hex) {
-        this.cleanEntity(entity);
-        let movement = this.ECS.Movement.get(entity);
-        if (movement !== undefined) {
-            let position = this.ECS.Position.get(entity);
-            movement.path = Pathfinding.find(position, hex);
-            // this.ECS.Order.delete(entity);
-            this.cleanTargetting();
+        if (this.ECS.Available.get(entity)) {
+            this.cleanEntity(entity);
+            let movement = this.ECS.Movement.get(entity);
+            if (movement !== undefined) {
+                let position = this.ECS.Position.get(entity);
+                movement.path = [Pathfinding.find(position, hex)[0]];
+                // this.ECS.Order.delete(entity);
+                this.movementSystem.update(entity);
+                this.explore();
+                this.cleanEntity(entity);
+                this.cleanTargetting();
+                this.selectEntity(this.selection.selectedEntity);
+                this.ui.update();
+            }
         }
     }
     cleanOrders() {
@@ -369,7 +386,6 @@ class Game {
                 // la ressource a été supprimée de la tuile, l'ordre ne peut plus être exécuté
                 this.ECS.Order.delete(entity);
             }
-
             // TODO think about this
             // retirer l'ordre de toute façon (test)
             this.ECS.Order.delete(entity);
@@ -381,9 +397,15 @@ class Game {
         });
     }
     setOrder(hex, resource, actionName, entity) {
-        this.cleanEntity(entity)
-        this.ECS.Order.set(entity, { hex: hex, resource: resource, actionName: actionName });
-        // this.ECS.Movement.set(entity, { path: [] });
-        this.cleanTargetting();
+        if (this.ECS.Available.get(entity)) {
+            this.cleanEntity(entity);
+            this.ECS.Order.set(entity, { hex: hex, resource: resource, actionName: actionName });
+            // this.ECS.Movement.set(entity, { path: [] });
+            this.actionSystem.update(entity);
+            this.cleanEntity(entity);
+            this.cleanTargetting();
+            this.selectEntity(this.selection.selectedEntity);
+            this.ui.update();
+        }
     }
 }

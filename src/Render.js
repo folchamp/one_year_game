@@ -42,12 +42,20 @@ class Render {
             // let hexPosition = this.ECS.Position.get(entity);
             this.drawEntity(entity, false);
             if (this.ECS.Order.get(entity) !== undefined) {
-                this.drawOrder(entity);
+                // this.drawOrder(entity);
             }
         });
 
         if (this.selection.selectedEntity !== undefined) {
             this.drawEntity(this.selection.selectedEntity, true);
+        }
+
+
+        for (const hex of this.world.hexes.values()) {
+            // this.drawHex(hex);
+            if ((hex.hasSeen(this.player) && hex.fatigue > 0) || !Settings.production) {
+                this.drawFatigue(hex);
+            }
         }
 
         this.ECS.Power.forEach((power, entity, map) => {
@@ -82,49 +90,50 @@ class Render {
         const hexPosition = this.ECS.Position.get(entity);
         const hex = this.world.get(hexPosition.q, hexPosition.r);
         const combatStats = this.ECS.CombatStats.get(entity);
-        if (hexPosition !== undefined) {
-            if (hex.hasSeen(this.player) || !Settings.production) {
-                let worldPosition = World.hexToWorld(hexPosition);
-                this.context.beginPath();
-                this.context.arc(
-                    worldPosition.x - Settings.playerColorArcOffset,
-                    worldPosition.y + sprite.height / 2,
-                    Settings.playerColorArcRadius,
-                    0,
-                    Math.PI * 2
-                );
-                if (isSelected) {
-                    this.strokeWithSelectionStyle();
-                } else {
-                    this.fillWithoutSelectionStyle(owner.playerColor);
-                }
-
-                this.context.drawImage(
-                    Images.unitImages[sprite.imageName],
-                    worldPosition.x - sprite.width / 2,
-                    worldPosition.y - sprite.height / 2
-                );
-
-                if (combatStats !== undefined) {
-                    const maxHP = combatStats.hp;
-                    const actualHP = combatStats.actualHP;
-                    if (actualHP < maxHP) {
-                        const barWidth = sprite.width;
-                        const barHeight = 5;
-                        const barX = worldPosition.x - barWidth / 2;
-                        const barY = worldPosition.y - sprite.height / 2 - 10;
-                        this.context.fillStyle = "black";
-                        this.context.fillRect(barX, barY, barWidth, barHeight);
-                        this.context.fillStyle = "green";
-                        this.context.fillRect(barX, barY, barWidth * (actualHP / maxHP), barHeight);
-                    }
+        if (hex.hasSeen(this.player) || !Settings.production) {
+            let worldPosition = World.hexToWorld(hexPosition);
+            this.context.beginPath();
+            this.context.arc(
+                worldPosition.x - Settings.playerColorArcOffset,
+                worldPosition.y + sprite.height / 2,
+                Settings.playerColorArcRadius,
+                0,
+                Math.PI * 2
+            );
+            if (isSelected) {
+                this.strokeWithSelectionStyle();
+            } else {
+                this.fillWithoutSelectionStyle(owner.playerColor);
+            }
+            this.context.drawImage(
+                Images.unitImages[sprite.imageName],
+                worldPosition.x - sprite.width / 2,
+                worldPosition.y - sprite.height / 2
+            );
+            if (this.ECS.Available.get(entity) === true) {
+                this.context.save();
+                const indicatorSize = 20;
+                const indicatorY = worldPosition.y - sprite.height / 2 - 8;
+                this.context.translate(worldPosition.x, indicatorY);
+                this.context.rotate(Math.PI / 4);
+                this.context.fillStyle = "#00ff22";
+                this.context.fillRect(-indicatorSize / 2, -indicatorSize / 2, indicatorSize, indicatorSize);
+                this.context.restore();
+            }
+            if (combatStats !== undefined) {
+                const maxHP = combatStats.hp;
+                const actualHP = combatStats.actualHP;
+                if (actualHP < maxHP) {
+                    const barWidth = sprite.width;
+                    const barHeight = 5;
+                    const barX = worldPosition.x - barWidth / 2;
+                    const barY = worldPosition.y - sprite.height / 2 - 10;
+                    this.context.fillStyle = "black";
+                    this.context.fillRect(barX, barY, barWidth, barHeight);
+                    this.context.fillStyle = "green";
+                    this.context.fillRect(barX, barY, barWidth * (actualHP / maxHP), barHeight);
                 }
             }
-        } else {
-            console.log(sprite)
-            console.log(hexPosition);
-            console.log(hex);
-            throw "danggg";
         }
     }
     drawArrow(fromHex, toHex) {
@@ -248,9 +257,6 @@ class Render {
         const pos = this.getWorldPosition(hex);
         if (hex.hasSeen(this.player) || !Settings.production) {
             this.context.drawImage(Images.tileImages[hex.biome.imageName], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);
-            if (hex.fatigue > 0) {
-                this.drawFatigue(hex);
-            }
             this.drawResources(hex);
         } else {
             this.context.drawImage(Images.tileImages["fog_of_war"], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);

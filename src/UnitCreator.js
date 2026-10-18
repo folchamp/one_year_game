@@ -36,6 +36,7 @@ class UnitCreator {
         this.ECS.Sprite.set(entity, structuredClone(unitData.sprite));
         this.ECS.Hitbox.set(entity, structuredClone(unitData.hitbox));
         this.ECS.CombatStats.set(entity, structuredClone(unitData.combatStats));
+        this.ECS.Available.set(entity, true);
         return entity;
     }
     createCampfire(pos) {
@@ -44,7 +45,6 @@ class UnitCreator {
         this.ECS.Position.set(entity, { q: pos.q, r: pos.r });
         this.ECS.Sprite.set(entity, structuredClone(Data.units["campfire"].sprite));
         this.ECS.CombatStats.set(entity, structuredClone(Data.units["campfire"].combatStats));
-        // this.ECS.Hitbox.set(entity, { type: "circle", radius: 100 });
         return entity;
     }
     killUnit(entity) {
@@ -57,27 +57,6 @@ class UnitCreator {
         this.ECS.Hitbox.delete(entity);
         this.ECS.CombatStats.delete(entity);
         this.ECS.Owner.delete(entity);
+        this.ECS.Available.delete(entity);
     }
-    // createHarvester(pos) {
-    //     let entity = this.newEntity();
-    //     this.ECS.Harvester.set(entity, {});
-    //     this.ECS.Explorer.set(entity, { range: 1 });
-    //     this.ECS.Name.set(entity, "harvester");
-    //     this.ECS.Position.set(entity, { q: pos.q, r: pos.r });
-    //     this.ECS.Movement.set(entity, { path: [] });
-    //     this.ECS.Sprite.set(entity, { imageName: "harvester", width: 64, height: 64, radius: 48 });
-    //     this.ECS.Hitbox.set(entity, { type: "circle", radius: 48 });
-    //     return entity;
-    // }
-    // createExplorer(pos) {
-    //     let entity = this.newEntity();
-    //     // this.ECS.Harvester.set(entity, {});
-    //     this.ECS.Explorer.set(entity, { range: 2 });
-    //     this.ECS.Name.set(entity, "explorer");
-    //     this.ECS.Position.set(entity, { q: pos.q, r: pos.r });
-    //     this.ECS.Movement.set(entity, { path: [] });
-    //     this.ECS.Sprite.set(entity, { imageName: "explorer", width: 64, height: 64, radius: 48 });
-    //     this.ECS.Hitbox.set(entity, { type: "circle", radius: 48 });
-    //     return entity;
-    // }
 }
