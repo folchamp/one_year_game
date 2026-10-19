@@ -47,7 +47,7 @@ class Settings {
     static panSpeed = 256;
     static edgePanSpeed = 32;
     static initialZoom = 1;
-    static maxResourcesPerHex = 3;
+    static maxResourcesPerHex = 1;
     static fatigueBarWidth = 100;
     static fatigueBarHeight = 8;
     static fatigueBarVerticalOffset = 58;

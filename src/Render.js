@@ -108,7 +108,9 @@ class Render {
             this.context.drawImage(
                 Images.unitImages[sprite.imageName],
                 worldPosition.x - sprite.width / 2,
-                worldPosition.y - sprite.height / 2
+                worldPosition.y - sprite.height / 2,
+                sprite.width,
+                sprite.height
             );
             if (this.ECS.Available.get(entity) === true) {
                 this.context.save();

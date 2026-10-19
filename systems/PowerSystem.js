@@ -15,8 +15,15 @@ class PowerSystem {
         }
     }
     usePower(power) {
+        console.log(power);
         if (power.powerData.damage !== undefined) {
             this.hit(power.targetEntity, power.powerData.damage);
+        }
+        if (power.powerData.effect === "transposition" && power.targetEntity !== undefined) {
+            const attackerPosition = this.ECS.Position.get(power.attacker);
+            const targetPosition = this.ECS.Position.get(power.targetEntity);
+            this.ECS.Position.set(power.attacker, { q: targetPosition.q, r: targetPosition.r });
+            this.ECS.Position.set(power.targetEntity, { q: attackerPosition.q, r: attackerPosition.r });
         }
     }
     update(entity) {

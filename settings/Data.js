@@ -2712,10 +2712,32 @@ class Data {
     }
 
     static creatableUnits = [
-        "harvester", "hunter", "explorer"
+        "harvester", "hunter", "explorer", "sacrieur"
     ]
 
     static units = {
+        sacrieur: {
+            unitName: "sacrieur",
+            isHarvester: false,
+            range: 2,
+            sprite: { imageName: "sacrieur", width: 64, height: 64, radius: 48 },
+            hitbox: { type: "circle", radius: 48 },
+            unitPrice: {
+                food: 5,
+                tool: 3
+            },
+            combatStats: {
+                hp: 20,
+                powers: {
+                    basicAttack: {
+                        powerName: "transposition",
+                        damage: 0,
+                        range: 3,
+                        effect: "transposition"
+                    }
+                }
+            }
+        },
         hunter: {
             unitName: "hunter",
             isHarvester: false,

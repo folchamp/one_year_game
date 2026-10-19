@@ -233,6 +233,11 @@ body {
             background: rgba(40, 44, 40, 0.94);
             margin: 4px;
 
+            .uiCreateUnitImage {
+                width: 64px;
+                height: 64px;
+            }
+
             .uiUnitPriceContainer {
                 display: flex;
                 align-items: center;
