@@ -59,7 +59,7 @@ class Game {
         this.unitCreator = new UnitCreator(this.ECS);
         this.movementSystem = new MovementSystem(this.world, this.ECS);
         this.actionSystem = new ActionSystem(this.world, this.ECS);
-        this.powerSystem = new PowerSystem(this.world, this.ECS);
+        this.powerSystem = new PowerSystem(this.world, this.ECS, this.unitCreator);
 
         // hotkeys
         this.hotkeys.bind("Backquote", this.actions.selectNextIdle);

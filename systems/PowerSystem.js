@@ -1,9 +1,10 @@
 "use strict";
 
 class PowerSystem {
-    constructor(world, ECS) {
+    constructor(world, ECS, unitCreator) {
         this.world = world;
         this.ECS = ECS;
+        this.unitCreator = unitCreator;
     }
     hit(entity, damage) {
         const targetStats = this.ECS.CombatStats.get(entity);
@@ -15,15 +16,18 @@ class PowerSystem {
         }
     }
     usePower(power) {
+        const attackerPosition = this.ECS.Position.get(power.attacker);
+        const targetPosition = this.ECS.Position.get(power.targetEntity);
         console.log(power);
         if (power.powerData.damage !== undefined) {
             this.hit(power.targetEntity, power.powerData.damage);
         }
         if (power.powerData.effect === "transposition" && power.targetEntity !== undefined) {
-            const attackerPosition = this.ECS.Position.get(power.attacker);
-            const targetPosition = this.ECS.Position.get(power.targetEntity);
             this.ECS.Position.set(power.attacker, { q: targetPosition.q, r: targetPosition.r });
             this.ECS.Position.set(power.targetEntity, { q: attackerPosition.q, r: attackerPosition.r });
+        }
+        if (power.powerData.effect === "summon") {
+            this.unitCreator.create(power.powerData.summonName, power.targetHex, this.ECS.Owner.get(power.attacker));
         }
     }
     update(entity) {

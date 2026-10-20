@@ -2712,10 +2712,54 @@ class Data {
     }
 
     static creatableUnits = [
-        "harvester", "hunter", "explorer", "sacrieur"
+        "harvester", "hunter", "explorer", "sacrieur", "osamodas"
     ]
 
     static units = {
+        tofu: {
+            unitName: "tofu",
+            isHarvester: false,
+            range: 2,
+            sprite: { imageName: "tofu", width: 64, height: 64, radius: 48 },
+            hitbox: { type: "circle", radius: 48 },
+            unitPrice: {
+                food: 5,
+                tool: 3
+            },
+            combatStats: {
+                hp: 1,
+                powers: {
+                    basicAttack: {
+                        powerName: "bécot",
+                        damage: 1,
+                        range: 1
+                    }
+                }
+            }
+        },
+        osamodas: {
+            unitName: "osamodas",
+            isHarvester: false,
+            range: 2,
+            sprite: { imageName: "osamodas", width: 64, height: 64, radius: 48 },
+            hitbox: { type: "circle", radius: 48 },
+            unitPrice: {
+                food: 5,
+                tool: 3
+            },
+            combatStats: {
+                hp: 20,
+                powers: {
+                    basicAttack: {
+                        powerName: "summon",
+                        damage: 0,
+                        range: 1,
+                        effect: "summon",
+                        summonName: "tofu"
+                    }
+                }
+            }
+        },
         sacrieur: {
             unitName: "sacrieur",
             isHarvester: false,
