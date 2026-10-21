@@ -445,15 +445,56 @@ attaques des IA
 supprimer le système de ticks, passer en simple tour par tour
 ajouter du raw_material dans les coûts d'unités
 rééquilibrer les unités
+♥ 19/10/2026
+courses
+P-O
+boulot
+rien fait :-( 
+♥ 20/10/2026
+osamodas
+♥ 21/10/2026
+début du gros refactor
 
 ********************
 TODO
 ********************
----------- MUST ----------
-gros, gros, clean du code
-repasser dans chaque fichier et tout nettoyer
+---------- EN COURS ----------
 les unités ont des pouvoirs à la krosmaster/dofus
+créer les dessins !
 
+gros, gros, clean du code
+questionner chaque ligne, chaque choix
+repasser dans chaque fichier et tout nettoyer
+data
+images
+index
+racvalidator
+random
+settings
+util
+camera
+community
+display
+game
+hex
+hotkeys
+ia
+inventory
+log
+pathfinding
+player
+render
+selection
+ui
+unitcreator
+world
+actionsystem
+movementsystem
+powersystem
+todo
+
+
+---------- MUST ----------
 afficher les combats stats dans l'UI
 avoir une taille d'UI fixe à tout moment 
 rework RAC, chaque action d'une même ressource donne une ressource différente
