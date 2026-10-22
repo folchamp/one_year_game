@@ -2745,7 +2745,7 @@ class Data {
             hitbox: { type: "circle", radius: 48 },
             unitPrice: {
                 food: 5,
-                tool: 3
+                living: 3
             },
             combatStats: {
                 hp: 20,

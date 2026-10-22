@@ -12,7 +12,7 @@ class PowerSystem {
             targetStats.actualHP ??= targetStats.hp // n'assigner les points de vie actuels que s'il n'en a pas déjà
             targetStats.actualHP -= damage;
         } else {
-            console.log("no entity there bro lol")
+            console.log("no entity there bro lol");
         }
     }
     usePower(power) {
@@ -27,7 +27,9 @@ class PowerSystem {
             this.ECS.Position.set(power.targetEntity, { q: attackerPosition.q, r: attackerPosition.r });
         }
         if (power.powerData.effect === "summon") {
-            this.unitCreator.create(power.powerData.summonName, power.targetHex, this.ECS.Owner.get(power.attacker));
+            if (this.ECS.Summons.get(power.attacker).length === 0) {
+                this.unitCreator.createSummon(power.powerData.summonName, power.targetHex, this.ECS.Owner.get(power.attacker), power.attacker);
+            }
         }
     }
     update(entity) {

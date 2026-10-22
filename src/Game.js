@@ -50,6 +50,8 @@ class Game {
         this.ECS.CombatStats = new Map();
         this.ECS.Power = new Map();
         this.ECS.Available = new Map();
+        this.ECS.Summons = new Map();
+        this.ECS.Summoner = new Map();
 
         // engine
         this.log = new Log();
@@ -354,6 +356,7 @@ class Game {
                 alert("out of range");
             }
         }
+        this.cleanKilledEntities();
         this.cleanTargetting();
     }
     cleanTargetting() {

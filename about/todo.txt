@@ -454,6 +454,9 @@ rien fait :-(
 osamodas
 ♥ 21/10/2026
 début du gros refactor
+♥ 22/10/2026
+réflexion sur la suite
+invocations et invocateurs dans l'ECS
 
 ********************
 TODO
@@ -465,33 +468,33 @@ créer les dessins !
 gros, gros, clean du code
 questionner chaque ligne, chaque choix
 repasser dans chaque fichier et tout nettoyer
-data
-images
-index
-racvalidator
-random
-settings
-util
-camera
-community
-display
-game
-hex
-hotkeys
-ia
-inventory
-log
-pathfinding
-player
-render
-selection
-ui
-unitcreator
-world
-actionsystem
-movementsystem
-powersystem
-todo
+- data
+- images
+- index
+- racvalidator
+- random
+- settings
+- util
+- camera
+- community
+- display
+- game
+- hex
+- hotkeys
+- ia
+- inventory
+- log
+- pathfinding
+- player
+- render
+- selection
+- ui
+- unitcreator
+- world
+- actionsystem
+- movementsystem
+- powersystem
+- todo
 
 
 ---------- MUST ----------

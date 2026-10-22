@@ -10,6 +10,13 @@ class UnitCreator {
         }
         return this.nextID++;
     }
+    createSummon(name, position, owner, summoner) {
+        let entity = this.create(name, position, owner);
+        this.ECS.Summons.get(summoner).push(entity);
+        this.ECS.Summoner.set(entity, summoner);
+        console.log(this.ECS.Summons.get(summoner));
+        console.log(this.ECS.Summoner.get(entity));
+    }
     create(name, position, owner) {
         let entity;
         if (name === "campfire") {
@@ -37,6 +44,7 @@ class UnitCreator {
         this.ECS.Hitbox.set(entity, structuredClone(unitData.hitbox));
         this.ECS.CombatStats.set(entity, structuredClone(unitData.combatStats));
         this.ECS.Available.set(entity, true);
+        this.ECS.Summons.set(entity, []);
         return entity;
     }
     createCampfire(pos) {
@@ -58,5 +66,13 @@ class UnitCreator {
         this.ECS.CombatStats.delete(entity);
         this.ECS.Owner.delete(entity);
         this.ECS.Available.delete(entity);
+        if (this.ECS.Summoner.get(entity)) {
+            // TODO retirer l'entité décédée de la liste des invocations de l'invocateur
+        }
+        if (this.ECS.Summons.get(entity)) {
+            // TODO tuer les invocations de l'invocateur
+        }
+        this.ECS.Summons.delete(entity);
+        this.ECS.Summoner.delete(entity);
     }
 }
