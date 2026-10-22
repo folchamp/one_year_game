@@ -20,49 +20,57 @@ class Render {
         this.context.scale(this.camera.zoom, this.camera.zoom);
         this.context.translate(-this.camera.x, -this.camera.y);
 
+        // --------------------
         // draw world
+        // --------------------
+        // on dessine les hex
         for (const hex of this.world.hexes.values()) {
             this.drawHex(hex);
         }
+        // on redessine le contour des hex à portée du sort actuellement utilisé
         for (const hex of this.world.hexes.values()) {
             if (hex.isTargetted) {
                 this.drawHexPath(hex);
                 this.strokeWithTargetStyle();
             }
         }
+        // on redessiner le hex survolé par la souris
         if (this.selection.hoveredHex !== undefined) {
             this.drawHoveredHex(this.selection.hoveredHex);
         }
+        // on redessine le hex actuellement sélectionné
         if (this.selection.selectedHex !== undefined) {
             this.drawSelectedHex(this.selection.selectedHex);
         }
 
+        // --------------------
         // draw entities
+        // --------------------
+        // on dessine les entités
         this.ECS.Sprite.forEach((sprite, entity, map) => {
-            // let hexPosition = this.ECS.Position.get(entity);
             this.drawEntity(entity, false);
             if (this.ECS.Order.get(entity) !== undefined) {
-                // this.drawOrder(entity);
             }
         });
-
+        // on dessine l'entité sélectionnée
         if (this.selection.selectedEntity !== undefined) {
             this.drawEntity(this.selection.selectedEntity, true);
         }
 
-
+        // --------------------
+        // draw other things
+        // --------------------
+        // on dessine les barres de fatigue
         for (const hex of this.world.hexes.values()) {
-            // this.drawHex(hex);
             if ((hex.hasSeen(this.player) && hex.fatigue > 0) || !Settings.production) {
                 this.drawFatigue(hex);
             }
         }
-
+        // on dessine les attaques
         this.ECS.Power.forEach((power, entity, map) => {
             this.drawPower(entity, power);
         });
-
-        // paths (arrows)
+        // on dessine les intentions de déplacement
         this.context.strokeStyle = "white";
         this.context.lineWidth = 4;
         this.context.lineCap = "round";

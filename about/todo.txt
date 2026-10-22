@@ -479,7 +479,7 @@ x camera
 x community
 x display
 - game
-- hex
+x hex
 x hotkeys
 - ia
 x inventory
@@ -505,6 +505,7 @@ x unitcreator
 
 
 ---------- MUST ----------
+faire jouer les attributs des biomes et générer de nouveaux biomes avec de nouvelles ressources 
 afficher les combats stats dans l'UI
 avoir une taille d'UI fixe à tout moment 
 rework RAC, chaque action d'une même ressource donne une ressource différente

@@ -11,8 +11,6 @@ class Hex {
         this.humidity = 0.5
         this.life = 0;
         this.humans = 0.1;
-        // ecology attributes
-        this.isDegraded = false;
 
         // visibility attributes
         this.isExploredBy = [];
@@ -23,8 +21,10 @@ class Hex {
 
         this.resources = [];
 
+        // flag qui indique si le hex fait partie des hex dans la portée d'un sort
+        // TODO ce n'est pas le bon endroit pour stocker cet info, ça ne fait pas vraiment partie du hex
+        // mais plutôt du système de targetting
         this.isTargetted = false;
-        this.lastResourceTaken;
     }
     hasSeen(player) {
         return this.isSeenThroughFogBy.includes(player);
@@ -43,7 +43,6 @@ class Hex {
         }
     }
     setBiome(biome) {
-        // évite que biome ait accès aux Data.biomes
         this.biome = {
             biomeName: biome.biomeName,
             degradation: biome.degradation,
@@ -65,7 +64,8 @@ class Hex {
     }
     update() {
         if (this.fatigue > 0 && this.biome.biomeName !== "city") {
-            this.fatigue = Math.max(this.fatigue - (Settings.fatigueRecovery / Settings.amountOfPlayers), 0);
+            const fatigueToRecover = Settings.fatigueRecovery / Settings.amountOfPlayers; // combien de fatigue on perd par tour
+            this.fatigue = Math.max(0, this.fatigue - fatigueToRecover); // ne pas descendre en dessous de 0 de fatigue
         }
         this.resources.forEach((resource) => {
             if (resource.regeneratesIn > 0) {
@@ -77,16 +77,13 @@ class Hex {
         });
         this.evolveBiome();
     }
-    harvest(resourceName, actionName) {
+    harvest(resourceName) {
         this.resources.forEach((resource) => {
             if (resource.isAvailable && resource.resourceData.resourceName === resourceName) {
-                // this.fatigue += (resource.resourceData.actions[actionName].fatigue);
                 let fatigueIncrease = Data.categories[Data.resources[resourceName].category].fatigue;
                 this.fatigue += fatigueIncrease;
-                // à trois joueurs, les biomes ont trois ticks de regeneration donc la fatigue doit s'accumuler trois fois plus vite
                 resource.isAvailable = false;
                 resource.regeneratesIn = resource.resourceData.regeneration;
-                this.lastResourceTaken = resourceName;
             }
         });
     }
@@ -101,7 +98,6 @@ class Hex {
     addResource(resourceData) {
         let resource = {
             resourceData: resourceData,
-            // fatigue: 0,
             regeneratesIn: 0,
             isAvailable: true
         }

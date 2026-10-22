@@ -26,7 +26,7 @@ class ActionSystem {
             if (knowledges !== undefined) {
                 owner.community.learn(knowledges);
             }
-            hex.harvest(resourceName, actionName); // on ajoute la fatigue à la tuile
+            hex.harvest(resourceName); // on ajoute la fatigue à la tuile
         }
         // });
         // this.ui.update();
