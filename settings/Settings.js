@@ -51,4 +51,5 @@ class Settings {
     static fatigueBarWidth = 100;
     static fatigueBarHeight = 8;
     static fatigueBarVerticalOffset = 58;
+    static edgePanningWidth = 10;
 }

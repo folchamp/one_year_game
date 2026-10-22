@@ -1,5 +1,17 @@
 "use strict";
 
+
+// const factor = 1.1;
+// event.preventDefault();
+// if (event.deltaY < 0)
+//     this.zoom *= factor;
+// else
+//     this.zoom /= factor;
+// TODO zoom minimal et zoom maximal, à décider plus tard
+// this.zoom = Math.max(0.25, Math.min(5, this.zoom));
+// TODO modifier le hexSize pour que les bordures restent visibles même zoomé à fond
+// Settings.hexSize = Settings.basicHexSize + (1 / this.zoom * 1);
+
 // merci CHATGPT pour l'inspiration
 
 /*

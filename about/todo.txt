@@ -458,33 +458,32 @@ début du gros refactor
 réflexion sur la suite
 invocations et invocateurs dans l'ECS
 
+
 ********************
 TODO
 ********************
 ---------- EN COURS ----------
 les unités ont des pouvoirs à la krosmaster/dofus
 créer les dessins !
+le cra peut lancer une flèche-oiseau comme Ashe pour explorer une zone
+les hexagones que tu es le seul à avoir exploré ont un marquage
+pouvoir de déplacement "galop" en ligne qui touche tous les adversaires sur le chemin
+hôtel de vent dans lequel tu peux échanger des ressources, 1 pour 1
+
 
 gros, gros, clean du code
 questionner chaque ligne, chaque choix
 repasser dans chaque fichier et tout nettoyer
-- data
-- images
-- index
-- racvalidator
-- random
-- settings
-- util
-- camera
-- community
-- display
+x camera
+x community
+x display
 - game
 - hex
-- hotkeys
+x hotkeys
 - ia
-- inventory
-- log
-- pathfinding
+x inventory
+x log
+x pathfinding
 - player
 - render
 - selection
@@ -495,6 +494,13 @@ repasser dans chaque fichier et tout nettoyer
 - movementsystem
 - powersystem
 - todo
+- data
+- images
+- index
+- racvalidator
+- random
+- settings
+- util
 
 
 ---------- MUST ----------

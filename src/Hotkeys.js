@@ -19,6 +19,7 @@ class Hotkeys {
         });
     }
     getHotkeys() {
+        // on récupère le tableau des raccourcis, par exemple pour pouvoir l'afficher dans un menu d'aide
         let hotkeys = [];
         this.Bindings.forEach((value, key, map) => {
             hotkeys.push({ key: key, description: value.description });

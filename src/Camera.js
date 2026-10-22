@@ -28,22 +28,7 @@ class Camera {
             this.isDragging = false;
             this.canvas.releasePointerCapture(event.pointerId);
         });
-        this.canvas.addEventListener("pointercancel", (event) => {
-            // this.isDragging = false;
-            // this.canvas.releasePointerCapture(event.pointerId);
-        });
         this.canvas.addEventListener("wheel", (event) => {
-            // const factor = 1.1;
-            // event.preventDefault();
-            // if (event.deltaY < 0)
-            //     this.zoom *= factor;
-            // else
-            //     this.zoom /= factor;
-            // TODO zoom minimal et zoom maximal, à décider plus tard
-            // this.zoom = Math.max(0.25, Math.min(5, this.zoom));
-            // TODO modifier le hexSize pour que les bordures restent visibles même zoomé à fond
-            // Settings.hexSize = Settings.basicHexSize + (1 / this.zoom * 1);
-
             event.preventDefault();
             const mousePosition = Util.getMousePosition(this.canvas, event);
             // Position dans le monde AVANT le zoom
@@ -60,16 +45,16 @@ class Camera {
     }
     update() {
         if (this.edgePanningMousePosition !== undefined) {
-            if (this.edgePanningMousePosition.x < 10) {
+            if (this.edgePanningMousePosition.x < Settings.edgePanningWidth) {
                 this.cameraLeft(Settings.edgePanSpeed);
             }
-            if (this.edgePanningMousePosition.y < 10) {
+            if (this.edgePanningMousePosition.y < Settings.edgePanningWidth) {
                 this.cameraUp(Settings.edgePanSpeed);
             }
-            if (this.edgePanningMousePosition.x > this.canvas.width - 10) {
+            if (this.edgePanningMousePosition.x > this.canvas.width - Settings.edgePanningWidth) {
                 this.cameraRight(Settings.edgePanSpeed);
             }
-            if (this.edgePanningMousePosition.y > this.canvas.height - 10) {
+            if (this.edgePanningMousePosition.y > this.canvas.height - Settings.edgePanningWidth) {
                 this.cameraDown(Settings.edgePanSpeed);
             }
         }

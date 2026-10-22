@@ -5,7 +5,6 @@ class Pathfinding {
 
     }
     static getNeighbors(q, r) {
-        // console.log(`${q}, ${r}`);
         return [
             { q: q + 1, r },
             { q: q - 1, r },
@@ -14,35 +13,20 @@ class Pathfinding {
             { q: q + 1, r: r - 1 },
             { q: q - 1, r: r + 1 }]
     };
-    static findOld(start, end) {
-        // TODO retirer cette méthode obsolète, placeholder créé par ChatGPT le temps de programmer ma propre version
-        // Merci ChatGPT
-        // pathfinding naïf
-        const path = [];
-        let q = start.q;
-        let r = start.r;
-        while (q !== end.q || r !== end.r) {
-            if (q < end.q) q++;
-            else if (q > end.q) q--;
-            if (r < end.r) r++;
-            else if (r > end.r) r--;
-            path.push({ q, r });
-        }
-        return path;
-    }
     static find(start, end) {
         let hexesToGoThrough = [start];
         let hexesAlreadyChecked = {};
         let bestPaths = {};
         bestPaths[`${Pathfinding.key(start)}`] = { length: 0, previous: start };
-        bestPaths = Pathfinding.findBetterRecursive(hexesToGoThrough, bestPaths, hexesAlreadyChecked, start, end);
+        bestPaths = Pathfinding.findBetterRecursive(hexesToGoThrough, bestPaths, hexesAlreadyChecked, end);
         return Pathfinding.recomposePath(start, end, bestPaths);
 
     }
-    static findBetterRecursive(hexesToGoThrough, bestPaths, hexesAlreadyChecked, previous, end) {
+    static findBetterRecursive(hexesToGoThrough, bestPaths, hexesAlreadyChecked, end) {
         let actualHex = hexesToGoThrough.shift();
+        let pathToReturn;
         if (this.key(actualHex) === this.key(end)) {
-            return bestPaths;
+            pathToReturn = bestPaths;
         } else {
             let potentialNewHexes = Pathfinding.getNeighbors(actualHex.q, actualHex.r);
             potentialNewHexes.forEach((potential) => {
@@ -52,8 +36,9 @@ class Pathfinding {
                     bestPaths[Pathfinding.key(potential)] = { length: bestPaths[Pathfinding.key(actualHex)].length + 1, previous: actualHex };
                 }
             });
-            return Pathfinding.findBetterRecursive(hexesToGoThrough, bestPaths, hexesAlreadyChecked, actualHex, end);
+            pathToReturn = Pathfinding.findBetterRecursive(hexesToGoThrough, bestPaths, hexesAlreadyChecked, end);
         }
+        return pathToReturn;
     }
     static recomposePath(start, end, bestPaths) {
         let path = [];
