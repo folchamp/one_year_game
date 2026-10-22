@@ -2,7 +2,6 @@
 
 class Community {
     constructor() {
-        this.population = Settings.startingPopulation;
         this.knowledge = ["starter"];
     }
     learn(knowledge) {

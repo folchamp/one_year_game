@@ -68,21 +68,11 @@ class Render {
         }
         // on dessine les attaques
         this.ECS.Power.forEach((power, entity, map) => {
-            this.drawPower(entity, power);
+            this.drawPower(power);
         });
         // on dessine les intentions de déplacement
-        this.context.strokeStyle = "white";
-        this.context.lineWidth = 4;
-        this.context.lineCap = "round";
-        this.context.lineJoin = "round";
-        this.ECS.Movement.forEach((value, key, map) => {
-            let path = value.path;
-            let previous = this.ECS.Position.get(key);
-            for (let index = 0; index < path.length; index++) {
-                const element = path[index];
-                this.drawArrow(previous, element);
-                previous = element;
-            }
+        this.ECS.Movement.forEach((movement, entity, map) => {
+            this.drawMovement(movement, entity)
         });
         // end
         this.context.restore();
@@ -91,6 +81,21 @@ class Render {
         const x = Settings.hexSize * Math.sqrt(3) * (hex.q + hex.r / 2);
         const y = Settings.hexSize * 1.5 * hex.r;
         return { x: x, y: y };
+    }
+    drawMovement(movement, entity) {
+        let path = movement.path;
+        let previous = this.ECS.Position.get(entity);
+        this.context.save();
+        this.context.strokeStyle = "white";
+        this.context.lineWidth = 4;
+        this.context.lineCap = "round";
+        this.context.lineJoin = "round";
+        for (let index = 0; index < path.length; index++) {
+            const element = path[index];
+            this.drawArrow(previous, element);
+            previous = element;
+        }
+        this.context.restore();
     }
     drawEntity(entity, isSelected) {
         const sprite = this.ECS.Sprite.get(entity);
@@ -150,23 +155,14 @@ class Render {
         // merci ChatGPT
         const from = World.hexToWorld(fromHex);
         const to = World.hexToWorld(toHex);
-        const angle = Math.atan2(
-            to.y - from.y,
-            to.x - from.x
-        );
+        const angle = Math.atan2(to.y - from.y, to.x - from.x);
         const head = 12;
         this.context.beginPath();
         this.context.moveTo(from.x, from.y);
         this.context.lineTo(to.x, to.y);
-        this.context.moveTo(
-            to.x - head * Math.cos(angle - Math.PI / 6),
-            to.y - head * Math.sin(angle - Math.PI / 6)
-        );
+        this.context.moveTo(to.x - head * Math.cos(angle - Math.PI / 6), to.y - head * Math.sin(angle - Math.PI / 6));
         this.context.lineTo(to.x, to.y);
-        this.context.lineTo(
-            to.x - head * Math.cos(angle + Math.PI / 6),
-            to.y - head * Math.sin(angle + Math.PI / 6)
-        );
+        this.context.lineTo(to.x - head * Math.cos(angle + Math.PI / 6), to.y - head * Math.sin(angle + Math.PI / 6));
         this.context.stroke();
     }
     drawOrder(entity) {
@@ -188,8 +184,7 @@ class Render {
             }
         }
     }
-    drawPower(entity, power) {
-        // const power = this.ECS.Power.get(entity);
+    drawPower(power) {
         this.context.save();
         this.context.strokeStyle = "red";
         this.context.lineWidth = 4;
@@ -206,13 +201,10 @@ class Render {
         const firstPosition = pos.x - resourcesWidth / 2;
         const height = pos.y + Settings.hexSize * 0.45;
         let index = 0;
-        // display resource
         hex.resources.forEach((resource) => {
             this.context.strokeStyle = "rgba(24, 27, 24, 0.8)";
-            // this.context.strokeRect(firstPosition + index * smallSize, height, smallSize, smallSize);
             if (hex.hasExplored(this.player) || !Settings.production) {
                 if (Images.resourceImages[resource.resourceData.imageName] === undefined) {
-                    console.log(`${resource.resourceData.resourceName} n'a pas d'image`);
                     this.context.drawImage(Images.resourceImages["unknownResource"], firstPosition + index * smallSize, height, smallSize, smallSize);
                 } else {
                     this.context.drawImage(Images.resourceImages[resource.resourceData.imageName], firstPosition + index * smallSize, height, smallSize, smallSize);
@@ -235,28 +227,23 @@ class Render {
         const radius = 10;
         const circleX = x - radius - 5;
         const circleY = y + height / 2;
-
+        // fatigue bar
         gradient.addColorStop(0, "#1f6b3a");
         gradient.addColorStop(0.55, "#6f9f3d");
         gradient.addColorStop(0.8, "#b59b45");
         gradient.addColorStop(1, "#a66a3f");
-
         this.context.fillStyle = "#ff0000";
         this.context.fillRect(x, y, width, height);
-
         this.context.fillStyle = gradient;
         this.context.fillRect(x, y, healthyWidth, height);
-
         this.context.strokeStyle = "#26351f";
         this.context.lineWidth = 2;
         this.context.strokeRect(x, y, width, height);
-
+        // numerical value
         this.context.beginPath();
         this.context.arc(circleX, circleY, radius, 0, Math.PI * 2);
-
         this.context.fillStyle = "#26351f";
         this.context.fill();
-
         this.context.fillStyle = "#ffffff";
         this.context.font = "bold 11px Arial";
         this.context.textAlign = "center";
@@ -271,25 +258,16 @@ class Render {
         } else {
             this.context.drawImage(Images.tileImages["fog_of_war"], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);
         }
-
         if (!Settings.production) {
+            // draw coordinates
             const text = `${hex.q},${hex.r}`;
-
             this.context.font = "48px arial";
             this.context.textAlign = "center";
             this.context.textBaseline = "middle";
-
             const metrics = this.context.measureText(text);
             const padding = 8;
-
             this.context.fillStyle = "rgba(0, 0, 0, 0.7)";
-            this.context.fillRect(
-                pos.x - metrics.width / 2 - padding,
-                pos.y - 24 - padding,
-                metrics.width + padding * 2,
-                48 + padding * 2
-            );
-
+            this.context.fillRect(pos.x - metrics.width / 2 - padding, pos.y - 24 - padding, metrics.width + padding * 2, 48 + padding * 2);
             this.context.fillStyle = "white";
             this.context.fillText(text, pos.x, pos.y);
         }
@@ -297,7 +275,6 @@ class Render {
     drawHexPath(hex) {
         // merci ChatGPT
         const pos = this.getWorldPosition(hex);
-
         this.context.beginPath();
         for (let i = 0; i < 6; i++) {
             const angle = Math.PI / 180 * (60 * i - 30);
@@ -351,8 +328,6 @@ class Render {
         this.context.save();
         this.context.strokeStyle = "#810000";
         this.context.lineWidth = 4;
-        // this.context.shadowColor = "#ff4800";
-        // this.context.shadowBlur = 4;
         this.context.stroke();
         this.context.lineWidth = 2;
         this.context.strokeStyle = "#cf5e2a";
@@ -361,6 +336,5 @@ class Render {
         this.context.strokeStyle = "#d69c9c";
         this.context.stroke();
         this.context.restore();
-
     }
 }

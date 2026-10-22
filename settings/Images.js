@@ -4,9 +4,9 @@ class Images {
     constructor() { }
 
     static otherImages = Util.loadImages("others/", [
-        "population",
         "range",
-        "damage"
+        "damage",
+        "effect"
     ]);
 
     static tileImages = Util.loadImages("tiles/", [

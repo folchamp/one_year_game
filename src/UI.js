@@ -25,9 +25,7 @@ class UI {
                     "hexImageContainer",
                     ["hexResourcesContainer"]
                 ],
-                ["uiCommunityActionsContainer",
-                    // "uiCommunityActionsTitle"
-                ]
+                ["uiCommunityActionsContainer"]
             ]
         );
 
@@ -36,10 +34,6 @@ class UI {
         // **************************************************
         Util.quickStructure(document.body, this,
             ["uiTwoContainer",
-                ["populationContainer",
-                    "populationImage",
-                    "populationText"
-                ],
                 "uiInventoryContainer"
             ]
         );
@@ -71,13 +65,12 @@ class UI {
         this.panRightButton.addEventListener("click", (event) => { this.uiActions.cameraRight(); });
         this.spaceButton.addEventListener("click", (event) => { this.uiActions.nextTick(); });
 
-        this.populationImage.src = Images.otherImages.population.src;
-
         Util.hide(this.uiContainer);
         Util.hide(this.uiCommunityActionsContainer);
     }
     populateUnits() {
         // populate units in community actions
+        this.uiCommunityActionsContainer.replaceChildren();
         Data.creatableUnits.forEach((unitName) => {
             const unitPrice = Data.units[unitName].unitPrice;
             Util.quickStructure(this.uiCommunityActionsContainer, this,
@@ -87,16 +80,13 @@ class UI {
                     "uiCreateUnitButton"
                 ]
             );
-            // this.uiCreateUnitImage.src = `images/units/${unitName}.png`;
             this.uiCreateUnitImage.src = Images.unitImages[unitName].src;
             this.uiCreateUnitButton.innerText = unitName;
-            this.uiCreateUnitButton.addEventListener("click", (event) => { this.uiActions.createUnit(unitName, this.player); });
-
+            this.uiCreateUnitButton.addEventListener("click", () => { this.uiActions.createUnit(unitName, this.player); });
             for (const resourceCategoryName in unitPrice) {
                 const amount = unitPrice[resourceCategoryName];
                 const amountPriceText = Util.createDOMElement("amountPriceText", "span", this.uiUnitPriceContainer);
                 const resourceCategoryPriceImage = Util.createDOMElement("resourceCategoryPriceImage", "img", this.uiUnitPriceContainer);
-
                 amountPriceText.innerText = amount;
                 resourceCategoryPriceImage.src = Images.categoryImages[Data.categories[resourceCategoryName].categoryImageName].src;
             }
@@ -105,56 +95,26 @@ class UI {
     setLastMousePosition(pos) {
         this.lastMousePosition = pos;
     }
-    updatePopulation() {
-        this.populationText.innerText = Math.round(this.community.population);
-    }
     updateInventory() {
+        // TODO optimiser, ne pas tout récréer chaque fois
         this.uiInventoryContainer.replaceChildren();
         const inventoryContent = this.inventory.getContent();
-        // Util.quickStructure(this.uiInventoryContainer, this, ["inventoryResourceContainer"]);
         for (let categoryName in inventoryContent) {
-            // const resources = inventoryContent[categoryName];
             let total = inventoryContent[categoryName];;
             Util.quickStructure(this.uiInventoryContainer, this,
                 ["inventoryCategoryContainer",
-                    // "inventoryCategoryNameText",
                     "inventoryCategoryImage",
                     "inventoryCategoryTotalText",
-                    // "inventoryCategoryResourcesContainer"
                 ]
             );
-            // Util.hide(this.inventoryCategoryResourcesContainer);
-            // if (Data.categories[categoryName] !== undefined) {
-            // this.inventoryCategoryNameText.innerText = ``; // `${Data.categories[categoryName].categoryDisplayName} ▼ `;
-            // console.log(Data.categories[categoryName].categoryImageName);
             this.inventoryCategoryImage.src = Images.categoryImages[Data.categories[categoryName].categoryImageName].src;
-            // } else {
-            // this.inventoryCategoryNameText.innerText = `${categoryName} (tr. needed) ▼ `;
-            // }
-            // for (let resourceName in resources) {
-            //     const amount = resources[resourceName];
-            //     total += amount;
-            //     //     Util.quickStructure(this.inventoryCategoryResourcesContainer, this,
-            //     //         ["resourceContainer",
-            //     //             "resourceNameText",
-            //     //             "resourceAmountText"]
-            //     //     )
-            //     //     this.resourceNameText.innerText = Data.resources[resourceName].displayName;
-            //     //     this.resourceAmountText.innerText = amount;
-            // }
             this.inventoryCategoryTotalText.innerText = total;
-            // {
-            //     let container = this.inventoryCategoryResourcesContainer;
-            //     this.inventoryCategoryContainer.addEventListener("click", (event) => { Util.toggle(container) });
-            // }
         }
     }
     updateUnit() {
         const entity = this.selection.selectedEntity;
         const powersData = this.selection.selectedEntityData.combatStats.powers;
         this.unitSpellsContainer.replaceChildren();
-        // console.log(this.selection.selectedEntityData);
-        this.unitImage.src = Images.unitImages[this.selection.selectedEntityData.sprite.imageName].src
         for (const powerName in powersData) {
             const power = powersData[powerName];
             Util.quickStructure(this.unitSpellsContainer, this,
@@ -167,27 +127,33 @@ class UI {
                     ["powerDamageContainer",
                         "damageImage",
                         "powerDamageText"],
+                    ["powerEffectContainer",
+                        "effectImage",
+                        "powerEffectText"
+                    ],
                     "usePowerButton"
                 ]
             );
+            this.effectImage.src = Images.otherImages["effect"].src;
             this.rangeImage.src = Images.otherImages["range"].src;
             this.damageImage.src = Images.otherImages["damage"].src;
             this.powerNameText.innerText = power.powerName;
             this.powerRangeText.innerText = power.range;
             this.powerDamageText.innerText = power.damage;
+            if (power.effect !== undefined) {
+                this.powerEffectText.innerText = power.effect;
+            } else {
+                this.powerEffectText.innerText = "/";
+            }
             this.usePowerButton.addEventListener("click", (event) => {
                 this.uiActions.powerButtonClick(entity, power);
             });
         }
+        this.unitImage.src = Images.unitImages[this.selection.selectedEntityData.sprite.imageName].src
         Util.show(this.uiContainer);
         Util.show(this.unitSelectorContainer);
     }
-    updateHex(isEntityHex) {
-        let hex = this.selection.selectedHex;
-        if (isEntityHex) {
-            hex = this.selection.selectedEntityHex;
-            // console.log(hex);
-        }
+    updateHex(hex) {
         this.hexResourcesContainer.replaceChildren();
         Util.show(this.uiContainer);
         Util.show(this.hexSelectorContainer);
@@ -255,14 +221,9 @@ class UI {
             this.updateUnit();
         }
         if (this.selection.selectedHex !== undefined) {
-            this.updateHex(false);
-        }
-        if (this.selection.selectedEntityHex !== undefined) {
-            this.updateHex(true);
+            this.updateHex(this.selection.selectedHex);
         }
         this.updateInventory();
-        this.updatePopulation();
-
         if (this.selection.isCommunity) {
             Util.show(this.uiCommunityActionsContainer);
             Util.show(this.unitSelectorContainer);

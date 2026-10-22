@@ -40,8 +40,6 @@ class Settings {
     // static lengthOfFoodMemory = 10;
     static maxFatigue = 12;
     static fatigueRecovery = 1;
-    static startingPopulation = 1;
-    static bornPopulationCap = 1;
     static mapRadius = 8;
     // static mapRadius = 20;
     static panSpeed = 256;
