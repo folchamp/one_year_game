@@ -2749,6 +2749,7 @@ class Data {
             },
             combatStats: {
                 hp: 20,
+                amountOfSummons: 3,
                 powers: {
                     basicAttack: {
                         powerName: "summon",

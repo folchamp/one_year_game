@@ -145,10 +145,13 @@ class Game {
         let hex = this.world.getHexFromWorldPosition(worldPosition);
         let entity = this.getEntityFromWorldPosition(worldPosition);
         if (this.targetting !== undefined) {
+            // si on est en mode ciblage, le hex sur lequel on a cliqué devient la cible
             this.setPower(hex, this.targetting);
         } else if (entity !== undefined && this.ECS.Owner.get(entity) === this.player) {
+            // si une entité est sous le clic, on la sélectionne
             this.selectEntity(entity);
         } else {
+            // sinon, on sélectionne le hex
             this.selectHex(hex);
         }
         this.ui.update();

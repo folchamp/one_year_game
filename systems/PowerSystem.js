@@ -27,7 +27,7 @@ class PowerSystem {
             this.ECS.Position.set(power.targetEntity, { q: attackerPosition.q, r: attackerPosition.r });
         }
         if (power.powerData.effect === "summon") {
-            if (this.ECS.Summons.get(power.attacker).length === 0) {
+            if (this.ECS.Summons.get(power.attacker).length < this.ECS.CombatStats.get(power.attacker).amountOfSummons) {
                 this.unitCreator.createSummon(power.powerData.summonName, power.targetHex, this.ECS.Owner.get(power.attacker), power.attacker);
             }
         }

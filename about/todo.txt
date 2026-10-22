@@ -469,7 +469,8 @@ le cra peut lancer une flèche-oiseau comme Ashe pour explorer une zone
 les hexagones que tu es le seul à avoir exploré ont un marquage
 pouvoir de déplacement "galop" en ligne qui touche tous les adversaires sur le chemin
 hôtel de vent dans lequel tu peux échanger des ressources, 1 pour 1
-
+persistance
+menu ♦ new game ♦ continue ♦ help ♦ about  
 
 gros, gros, clean du code
 questionner chaque ligne, chaque choix
@@ -484,11 +485,11 @@ x hotkeys
 x inventory
 x log
 x pathfinding
-- player
+x player
 - render
-- selection
+x selection
 - ui
-- unitcreator
+x unitcreator
 - world
 - actionsystem
 - movementsystem

@@ -5,17 +5,14 @@ class Selection {
         this.reset();
     }
     selectEntity(entity, selectedEntityData, hex) {
+        this.reset();
         this.selectedEntity = entity;
         this.selectedEntityData = selectedEntityData;
-        this.selectedHex = undefined;
         this.selectedEntityHex = hex;
-        this.isCommunity = false;
     }
     selectHex(hex) {
-        this.selectedEntityHex = undefined;
-        this.selectedEntity = undefined;
+        this.reset();
         this.selectedHex = hex;
-        this.isCommunity = false;
     }
     selectCommunity() {
         this.isCommunity = true;
