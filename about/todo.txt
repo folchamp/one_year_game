@@ -488,9 +488,9 @@ x pathfinding
 x player
 - render
 x selection
-- ui (updateHex(hex)) <<<---
+x ui
 x unitcreator
-- world
+x world
 - actionsystem
 - movementsystem
 - powersystem

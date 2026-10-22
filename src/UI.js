@@ -155,8 +155,6 @@ class UI {
     }
     updateHex(hex) {
         this.hexResourcesContainer.replaceChildren();
-        Util.show(this.uiContainer);
-        Util.show(this.hexSelectorContainer);
         if (hex.hasSeen(this.player) || !Settings.production) {
             this.hexImageContainer.style["background-image"] = `url("${Images.tileImages[hex.biome.imageName].src}")`;
             hex.resources.forEach((resource) => {
@@ -179,14 +177,11 @@ class UI {
         } else {
             this.hexImageContainer.style["background-image"] = `url("${Images.tileImages["fog_of_war"].src}")`;
         }
+        Util.show(this.uiContainer);
+        Util.show(this.hexSelectorContainer);
     }
     addResource(hex, resource) {
-        if (Images.resourceImages[resource.resourceData.imageName] === undefined) {
-            this.resourceImage.src = Images.resourceImages["unknownResource"].src;
-            console.log(`${resource.resourceData.resourceName} n'a pas d'image`);
-        } else {
-            this.resourceImage.src = Images.resourceImages[resource.resourceData.imageName].src;
-        }
+        this.resourceImage.src = Images.resourceImages[resource.resourceData.imageName].src;
         this.resourceNameText.innerText = resource.resourceData.displayName;
         if (!resource.isAvailable) {
             this.resourceImage.classList.add("resourceUnavailable");
@@ -217,22 +212,17 @@ class UI {
         Util.hide(this.uiContainer);
         Util.hide(this.unitSelectorContainer);
         Util.hide(this.hexSelectorContainer);
+        Util.hide(this.uiCommunityActionsContainer);
         if (this.selection.selectedEntity !== undefined) {
             this.updateUnit();
         }
         if (this.selection.selectedHex !== undefined) {
             this.updateHex(this.selection.selectedHex);
         }
-        this.updateInventory();
         if (this.selection.isCommunity) {
             Util.show(this.uiCommunityActionsContainer);
-            Util.show(this.unitSelectorContainer);
-            Util.show(this.hexSelectorContainer);
-            // this.uiCommunityActionsContainer.style["left"] = this.lastMousePosition.x + "px";
-            // this.uiCommunityActionsContainer.style["top"] = this.lastMousePosition.y + "px";
             this.unitImage.src = Images.unitImages["campfire"].src;
-        } else {
-            Util.hide(this.uiCommunityActionsContainer);
         }
+        this.updateInventory();
     }
 }

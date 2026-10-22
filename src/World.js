@@ -4,6 +4,7 @@ class World {
     constructor() {
         this.mapRadius = Settings.mapRadius;
 
+        this.hexesArray = [];
         this.hexes = new Map();
         for (let q = -this.mapRadius; q <= this.mapRadius; q++) {
             const r1 = Math.max(-this.mapRadius, -q - this.mapRadius);
@@ -17,8 +18,6 @@ class World {
         });
         this.fillBiomes();
         this.fillResources();
-
-        this.hexes.get(`0, 0`).resources = [];
     }
     getHexesWithinRange(position, range) {
         const result = [];
@@ -60,7 +59,6 @@ class World {
     }
     seeNeighbours(position, range, player) {
         const hexes = this.getHexesWithinRange(position, range);
-        // this.hexes.get(`${position.q}, ${position.r}`).see(player);
         hexes.forEach((hex) => hex.see(player));
     }
     cleanTargets() {
@@ -73,16 +71,12 @@ class World {
         this.hexes.get(`${position.q}, ${position.r}`).explore(player);
     }
     update() {
-        this.hexes.forEach((hex) => {
-            hex.update();
-        });
+        this.hexes.forEach((hex) => hex.update());
     }
     getRandomHex() {
-        // très naïf, crée un array à chaque fois
-        return Random.fromArray([...this.hexes.values()]);
+        return Random.fromArray(this.hexesArray);
     }
     createBiome(biome) {
-        // console.log(`${biome.imageName}, ${Math.ceil(biome.amount * (this.mapRadius * this.mapRadius / 100))}, ${biome.amount}`);
         // on fait en sorte d'augmenter le nombre de "départs de biomes" en fonction de la taille de la carte.
         for (let index = 0; index < Math.ceil(biome.amount * (this.mapRadius * this.mapRadius / 100)); index++) {
             let biomeCenter = this.getRandomHex();
@@ -120,7 +114,7 @@ class World {
         return Math.round((attributeValue - random) * 100) / 100;
     }
     fillBiomes() {
-        this.hexes.forEach((hex, key, map) => {
+        this.hexes.forEach((hex) => {
             hex.biome = Data.biomes["plains"];
             for (let biomeName in Data.biomes) {
                 let biome = Data.biomes[biomeName];
@@ -131,14 +125,14 @@ class World {
         });
     }
     fillResources() {
-        this.hexes.forEach((hex, key, map) => {
+        this.hexes.forEach((hex) => {
             for (let index = 0; index < hex.biome.amountOfResources; index++) {
                 let resourceName = Random.fromArray(hex.biome.resources);
                 if (resourceName !== "nothing") {
                     hex.addResource((Data.resources[resourceName]));
                 }
             }
-            hex.setBiome(hex.biome);
+            hex.setBiome(hex.biome); // why this ? Can't remember
         });
     }
     getRandomBiome() {
@@ -169,6 +163,7 @@ class World {
     createHex(q, r) {
         let hex = new Hex(q, r, this.getRandomBiome());
         this.hexes.set(`${q}, ${r}`, hex);
+        this.hexesArray.push(hex);
         return hex;
     }
     worldToHex(pos) {
