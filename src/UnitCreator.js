@@ -43,6 +43,7 @@ class UnitCreator {
         this.ECS.CombatStats.set(entity, structuredClone(unitData.combatStats));
         this.ECS.Available.set(entity, true);
         this.ECS.Summons.set(entity, []);
+        this.ECS.Passable.set(entity, false);
         return entity;
     }
     createCampfire(pos) {
@@ -51,6 +52,7 @@ class UnitCreator {
         this.ECS.Position.set(entity, { q: pos.q, r: pos.r });
         this.ECS.Sprite.set(entity, structuredClone(Data.units["campfire"].sprite));
         this.ECS.CombatStats.set(entity, structuredClone(Data.units["campfire"].combatStats));
+        this.ECS.Passable.set(entity, true);
         return entity;
     }
     killUnit(entity) {

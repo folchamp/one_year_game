@@ -2712,7 +2712,7 @@ class Data {
     }
 
     static creatableUnits = [
-        "harvester", "hunter", "explorer", "sacrieur", "osamodas"
+        "harvester", "sacrieur", "osamodas"
     ]
 
     static units = {
@@ -2783,48 +2783,48 @@ class Data {
                 }
             }
         },
-        hunter: {
-            unitName: "hunter",
-            isHarvester: false,
-            range: 2,
-            sprite: { imageName: "hunter", width: 64, height: 64, radius: 48 },
-            hitbox: { type: "circle", radius: 48 },
-            unitPrice: {
-                food: 5,
-                tool: 3
-            },
-            combatStats: {
-                hp: 20,
-                powers: {
-                    basicAttack: {
-                        powerName: "Lancer de fronde",
-                        damage: 9,
-                        range: 1
-                    }
-                }
-            }
-        },
-        explorer: {
-            unitName: "explorer",
-            isHarvester: false,
-            range: 4,
-            sprite: { imageName: "explorer", width: 64, height: 64, radius: 48 },
-            hitbox: { type: "circle", radius: 48 },
-            unitPrice: {
-                food: 6,
-                tool: 4
-            },
-            combatStats: {
-                hp: 17,
-                powers: {
-                    basicAttack: {
-                        powerName: "Tir à l'arc",
-                        damage: 6,
-                        range: 2
-                    }
-                }
-            }
-        },
+        // hunter: {
+        //     unitName: "hunter",
+        //     isHarvester: false,
+        //     range: 2,
+        //     sprite: { imageName: "hunter", width: 64, height: 64, radius: 48 },
+        //     hitbox: { type: "circle", radius: 48 },
+        //     unitPrice: {
+        //         food: 5,
+        //         tool: 3
+        //     },
+        //     combatStats: {
+        //         hp: 20,
+        //         powers: {
+        //             basicAttack: {
+        //                 powerName: "Lancer de fronde",
+        //                 damage: 9,
+        //                 range: 1
+        //             }
+        //         }
+        //     }
+        // },
+        // explorer: {
+        //     unitName: "explorer",
+        //     isHarvester: false,
+        //     range: 4,
+        //     sprite: { imageName: "explorer", width: 64, height: 64, radius: 48 },
+        //     hitbox: { type: "circle", radius: 48 },
+        //     unitPrice: {
+        //         food: 6,
+        //         tool: 4
+        //     },
+        //     combatStats: {
+        //         hp: 17,
+        //         powers: {
+        //             basicAttack: {
+        //                 powerName: "Tir à l'arc",
+        //                 damage: 6,
+        //                 range: 2
+        //             }
+        //         }
+        //     }
+        // },
         harvester: {
             unitName: "harvester",
             isHarvester: true,
@@ -2912,7 +2912,6 @@ class Data {
                 "flint",
                 "plants",
                 "wild_wheat",
-                "wild_wheat",
             ]
         },
         swamp: {
@@ -2929,7 +2928,6 @@ class Data {
                 "water",
                 "mushrooms",
                 "clay",
-                // "nothing"
             ]
         },
         island: {
@@ -2946,7 +2944,6 @@ class Data {
                 "saltwater",
                 "sand",
                 "fish"
-                // "nothing"
             ]
         },
         forest: {
@@ -2960,11 +2957,9 @@ class Data {
             treshold: 0.4,
             amountOfResources: 1,
             resources: [
-                // "water",
                 "wood",
                 "fruits",
                 "animals"
-                // "nothing"
             ]
         },
         mountain: {
@@ -2980,8 +2975,6 @@ class Data {
             resources: [
                 "iron_ore",
                 "copper_ore",
-                "limestone",
-                // "limestone",
                 "limestone",
                 "flint",
                 "nothing",

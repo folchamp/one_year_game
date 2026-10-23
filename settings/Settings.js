@@ -4,7 +4,6 @@ class Settings {
     static production = true;
     static appName = "one_year_game";
     static hexSize = 112;
-    static basicHexSize = 115;
     static tileWidth = 197;
     static tileHeight = 226;
     static resourceImageSize = 64;
@@ -37,7 +36,6 @@ class Settings {
     static maxAmountOfPlayers = 6; // TODO make this bigger
     static playerColorArcRadius = 20;
     static playerColorArcOffset = 8;
-    // static lengthOfFoodMemory = 10;
     static maxFatigue = 12;
     static fatigueRecovery = 1;
     static mapRadius = 8;

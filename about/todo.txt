@@ -457,7 +457,8 @@ début du gros refactor
 ♥ 22/10/2026
 réflexion sur la suite
 invocations et invocateurs dans l'ECS
-
+♥ 23/10/2026
+continuer le refactor général
 
 ********************
 TODO
@@ -475,33 +476,11 @@ menu ♦ new game ♦ continue ♦ help ♦ about
 gros, gros, clean du code
 questionner chaque ligne, chaque choix
 repasser dans chaque fichier et tout nettoyer
-x camera
-x community
-x display
 - game
-x hex
-x hotkeys
 - ia
-x inventory
-x log
-x pathfinding
-x player
 - render
-x selection
-x ui
-x unitcreator
-x world
-- actionsystem
-- movementsystem
 - powersystem
 - todo
-- data
-- images
-- index
-- racvalidator
-- random
-- settings
-- util
 
 
 ---------- MUST ----------

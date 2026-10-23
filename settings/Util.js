@@ -3,15 +3,12 @@
 class Util {
     static texts = {
         // HTML elements 
-        giveResourceButtonText: "village",
         downloadButton: "télécharger",
         panUpButton: "⬆️",
         panDownButton: "⬇️",
         panRightButton: "➡️",
         panLeftButton: "⬅️",
         spaceButton: "pass turn",
-        // uiCommunityActionsTitle: "community actions",
-        uiCreateUnitButton: "not found",
         usePowerButton: "utiliser"
     };
 

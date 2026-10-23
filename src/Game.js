@@ -52,6 +52,7 @@ class Game {
         this.ECS.Available = new Map();
         this.ECS.Summons = new Map();
         this.ECS.Summoner = new Map();
+        this.ECS.Passable = new Map();
 
         // engine
         this.log = new Log();
