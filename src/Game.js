@@ -17,7 +17,6 @@ class Game {
             createUnit: (unitName, player) => this.createUnit(unitName, player),
             powerButtonClick: (entity, powerData) => this.powerButtonClick(entity, powerData),
             actionButtonClick: (hex, resource, actionName) => this.actionButtonClick(hex, resource, actionName),
-            // feedCommunityClick: (resourceName) => this.feedCommunityClick(resourceName),
             cameraLeft: () => this.camera.cameraLeft(),
             cameraRight: () => this.camera.cameraRight(),
             cameraUp: () => this.camera.cameraUp(),
@@ -104,12 +103,9 @@ class Game {
         this.targetting = undefined;
 
         // start
-        // this.tick(); // tick initial, je ne sais plus pourquoi c'est nécessaire
         this.explore();
         this.ui.update();
 
-        // this.intervalTicks = []; // temporaire
-        // setInterval(() => { this.intervalTick(); }, 1500); // temporaire
         this.selectNextIdle(this.player);
         this.loop();
     }
@@ -159,10 +155,10 @@ class Game {
     }
     getEntityFromWorldPosition(worldPosition) {
         let entity;
-        this.ECS.Hitbox.forEach((value, key, map) => {
-            let position = this.ECS.Position.get(key);
-            if (value.type === "circle" && Util.isPointInCircle(worldPosition, World.hexToWorld(position), value.radius)) {
-                entity = key;
+        this.ECS.Hitbox.forEach((hitbox, targetedEntity, map) => {
+            let position = this.ECS.Position.get(targetedEntity);
+            if (hitbox.type === "circle" && Util.isPointInCircle(worldPosition, World.hexToWorld(position), hitbox.radius)) {
+                entity = targetedEntity;
             }
         });
         return entity;
@@ -191,7 +187,6 @@ class Game {
             powerData: powerData,
             targetableHexes: targetableHexes
         }
-        // console.log(`${entity}, ${powerData.powerName}`);
     }
     actionButtonClick(hex, resource, actionName) {
         let done = false;
@@ -206,15 +201,6 @@ class Game {
     }
     getIdles(owner) {
         let idles = [];
-        // this.ECS.Movement.forEach((value, entity, array) => {
-        //     if (this.ECS.Owner.get(entity) === owner &&
-        //         this.ECS.Movement.get(entity) !== undefined &&
-        //         this.ECS.Movement.get(entity).path.length <= 0 &&
-        //         this.ECS.Order.get(entity) === undefined &&
-        //         this.ECS.Power.get(entity) === undefined) {
-        //         idles.push(entity);
-        //     }
-        // });
         this.ECS.Available.forEach((isAvailable, entity, array) => {
             if (this.ECS.Owner.get(entity) === owner && isAvailable) {
                 idles.push(entity);
@@ -234,13 +220,15 @@ class Game {
         this.ui.update();
     }
     selectEntity(entity) {
-        const position = this.ECS.Position.get(entity);
-        const hex = this.world.get(position.q, position.r);
-        const data = {
-            sprite: this.ECS.Sprite.get(entity),
-            combatStats: this.ECS.CombatStats.get(entity)
-        };
-        this.selection.selectEntity(entity, data, hex);
+        if (entity !== undefined) {
+            const position = this.ECS.Position.get(entity);
+            const hex = this.world.get(position.q, position.r);
+            const data = {
+                sprite: this.ECS.Sprite.get(entity),
+                combatStats: this.ECS.CombatStats.get(entity)
+            };
+            this.selection.selectEntity(entity, data, hex);
+        }
     }
     selectHex(hex) {
         if (hex !== undefined) {
@@ -261,7 +249,7 @@ class Game {
             this.ECS.Available.set(entity, true);
         });
     }
-    resolveTick(player) { // attention joueur par joueur !!! TODO check
+    resolveTick(player) {
         if (player !== this.player) {
             let idles = this.getIdles(player);
             player.IA.act(idles);
@@ -269,30 +257,19 @@ class Game {
         this.world.update();
         // au cas où des ressources ont disparu, les explorateurs doivent arrêter de travailler
         this.cleanOrders();
-        this.cleanPowers();
+        // this.cleanPowers();
         this.cleanKilledEntities();
         this.makeAvailable();
     }
     tick() {
-        // let idleCount = this.getIdles(this.player).length;
-        // if (idleCount > 0 && idleCount !== this.lastIdleCount && Settings.production) {
-        // alert("inactive workers");
-        // this.lastIdleCount = idleCount;
-        // } else {
-        // this.lastIdleCount = 0;
         let players = [this.player, ...this.computers];
         players.forEach((player) => {
-            // this.intervalTicks.push(() => {
             this.resolveTick(player);
             this.ui.update();
-            // });
         });
         // toujours en dernier : on refresh les données de contexte de l'entité sélectionnée (sur quelle tuile elle se trouve etc.)
-        if (this.selection.selectedEntity !== undefined) {
-            this.selectEntity(this.selection.selectedEntity);
-        }
+        this.selectEntity(this.selection.selectedEntity);
         this.ui.update();
-        // }
         this.checkVictory();
     }
     checkVictory() {
@@ -307,7 +284,6 @@ class Game {
     loop() {
         this.camera.update();
         this.render.render(this.world, this.ECS, this.selection);
-
         window.requestAnimationFrame(() => { this.loop(); });
     }
     // **************************************************
@@ -332,6 +308,24 @@ class Game {
         this.ECS.Order.delete(entity);
         this.ECS.Movement.set(entity, { path: [] });
     }
+    cleanTargetting() {
+        this.world.cleanTargets();
+        this.targetting = undefined;
+    }
+    cleanOrders() {
+        this.ECS.Order.forEach((order, entity) => {
+            const stillThere = order.hex.resources.some((resource) => {
+                return resource.resourceData.resourceName === order.resource.resourceData.resourceName;
+            });
+            if (!stillThere) {
+                // la ressource a été supprimée de la tuile, l'ordre ne peut plus être exécuté
+                this.ECS.Order.delete(entity);
+            }
+            // TODO think about this
+            // retirer l'ordre de toute façon (test)
+            this.ECS.Order.delete(entity);
+        });
+    }
     setPower(targetHex, targetting) {
         if (this.ECS.Available.get(targetting.attacker)) {
             const isTargetable = targetting.targetableHexes.some((hex) => targetHex.q === hex.q && targetHex.r === hex.r);
@@ -342,7 +336,6 @@ class Game {
                         entity = key;
                     }
                 }
-                // console.log(`Entity ${this.targetting.attacker} uses ${this.targetting.powerData.powerName} on hex ${targetHex.q}, ${targetHex.r} and hits entity ${entity}`);
                 this.cleanEntity(targetting.attacker);
                 this.ECS.Power.set(targetting.attacker, {
                     attackerPosition: targetting.attackerPosition,
@@ -363,10 +356,6 @@ class Game {
         this.cleanKilledEntities();
         this.cleanTargetting();
     }
-    cleanTargetting() {
-        this.world.cleanTargets();
-        this.targetting = undefined;
-    }
     setMove(entity, hex) {
         if (this.ECS.Available.get(entity)) {
             this.cleanEntity(entity);
@@ -374,7 +363,6 @@ class Game {
             if (movement !== undefined) {
                 let position = this.ECS.Position.get(entity);
                 movement.path = [Pathfinding.find(position, hex)[0]];
-                // this.ECS.Order.delete(entity);
                 this.movementSystem.update(entity);
                 this.explore();
                 this.cleanEntity(entity);
@@ -384,30 +372,10 @@ class Game {
             }
         }
     }
-    cleanOrders() {
-        this.ECS.Order.forEach((order, entity) => {
-            const stillThere = order.hex.resources.some((resource) => {
-                return resource.resourceData.resourceName === order.resource.resourceData.resourceName;
-            });
-            if (!stillThere) {
-                // la ressource a été supprimée de la tuile, l'ordre ne peut plus être exécuté
-                this.ECS.Order.delete(entity);
-            }
-            // TODO think about this
-            // retirer l'ordre de toute façon (test)
-            this.ECS.Order.delete(entity);
-        });
-    }
-    cleanPowers() {
-        this.ECS.Power.forEach((power, entity) => {
-            this.ECS.Power.delete(entity);
-        });
-    }
     setOrder(hex, resource, actionName, entity) {
         if (this.ECS.Available.get(entity)) {
             this.cleanEntity(entity);
             this.ECS.Order.set(entity, { hex: hex, resource: resource, actionName: actionName });
-            // this.ECS.Movement.set(entity, { path: [] });
             this.actionSystem.update(entity);
             this.cleanEntity(entity);
             this.cleanTargetting();

@@ -459,11 +459,16 @@ réflexion sur la suite
 invocations et invocateurs dans l'ECS
 ♥ 23/10/2026
 continuer le refactor général
+♥ 24/10/2026
+repair next idle selection
+
 
 ********************
 TODO
 ********************
 ---------- EN COURS ----------
+victoryscreen
+revoir les alert() et faire un système propre
 les unités ont des pouvoirs à la krosmaster/dofus
 créer les dessins !
 le cra peut lancer une flèche-oiseau comme Ashe pour explorer une zone
@@ -476,7 +481,6 @@ menu ♦ new game ♦ continue ♦ help ♦ about
 gros, gros, clean du code
 questionner chaque ligne, chaque choix
 repasser dans chaque fichier et tout nettoyer
-- game
 - ia
 - todo
 - index.css
