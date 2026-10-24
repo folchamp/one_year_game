@@ -42,45 +42,55 @@ body {
     /* border: 1px solid rgba(220, 210, 180, 0.25); */
     /* border-radius: 6px; */
     /* box-shadow: */
-        /* 0 8px 30px rgba(0, 0, 0, 0.45), */
-        /* inset 0 0 30px rgba(255, 255, 255, 0.025); */
+    /* 0 8px 30px rgba(0, 0, 0, 0.45), */
+    /* inset 0 0 30px rgba(255, 255, 255, 0.025); */
     /* backdrop-filter: blur(5px); */
 }
 
 .uiMobileContainer {
     display: none;
-    bottom: 10px;
-    right: 10px;
-    text-align: center;
+    /* bottom: 10px; */
+    /* right: 10px; */
+    /* text-align: center; */
 }
 
 .uiTwoContainer {
-    display: flex;
-    flex-direction: row;
-    top: 10px;
-    left: 10px;
-    padding: 4px;
+    /* display: flex; */
+    /* flex-direction: column; */
+    bottom: 0px;
+    left: 0px;
+    /* padding: 4px; */
 
     .uiInventoryContainer {
         display: flex;
-        flex-direction: row;
-        padding: 4px;
+        height: 160px;
+        width: 96px;
+        flex-direction: column;
+        /* align-items:flex-start; */
+        flex-wrap: wrap;
+        /* justify-content: flex-start; */
+        /* padding: 4px; */
+        background-color: rgb(15, 20, 30);
+        color: rgb(250, 250, 250);
+        border-top: 2px solid rgb(50, 60, 90);
+        border-right: 2px solid rgb(50, 60, 90);
+        border-top-right-radius: 2px;
 
         .inventoryCategoryContainer {
             display: flex;
             align-items: center;
             user-select: none;
-            color: black;
-            margin: 4px;
-            padding: 4px;
+            /* color: black; */
+            /* margin: 4px; */
+            /* padding: 4px; */
             /* cursor: pointer; */
-            background-color: rgb(93, 93, 94);
+            /* background-color: rgb(93, 93, 94); */
 
             .inventoryCategoryImage {
-                background-color: blanchedalmond;
-                margin-right: 4px;
-                border-radius: 18px;
-                padding: 4px;
+                /* background-color: blanchedalmond; */
+                /* margin-right: 4px; */
+                /* border-radius: 18px; */
+                /* padding: 4px; */
             }
         }
     }
@@ -88,141 +98,138 @@ body {
 
 .uiContainer {
     user-select: none;
-    left: 10px;
-    bottom: 10px;
-    display: flex;
-    padding: 10px;
+    left: 100px;
+    bottom: 0px;
+    /* display: flex; */
+    /* padding: 10px; */
 
     .hexSelectorContainer {
         display: flex;
-        align-items: center;
+        height: 160px;
+        background-color: rgb(15, 20, 30);
+        color: rgb(250, 250, 250);
+        border-top: 2px solid rgb(50, 60, 90);
+        border-right: 2px solid rgb(50, 60, 90);
+        border-left: 2px solid rgb(50, 60, 90);
+        border-top-right-radius: 2px;
+        border-top-left-radius: 2px;
+        /* align-items: center; */
 
         .hexImageContainer {
-            width: 100px;
-            height: 100px;
+            width: 96px;
+            height: 160px;
             background-position: center;
-            padding: 3px;
-            border: 1px solid rgba(220, 210, 180, 0.12);
-            border-radius: 4px;
-            margin: auto;
-            margin-top: 10px;
-            margin-bottom: 10px;
+            /* padding: 3px; */
+            /* border: 1px solid rgba(220, 210, 180, 0.12); */
+            /* border-radius: 4px; */
+            /* margin: auto; */
+            /* margin-top: 10px; */
+            /* margin-bottom: 10px; */
         }
 
         .hexResourcesContainer {
-            display: flex;
-            justify-content: center;
-            flex-direction: row;
+            /* display: flex; */
+            /* justify-content: center; */
+            /* flex-direction: row; */
 
             .hexResourceContainer {
-                display: flex;
+                /* display: flex; */
 
                 .resourceDescriptionContainer {
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
+                    /* display: flex; */
+                    /* flex-direction: row; */
+                    /* align-items: center; */
 
                     .resourceDetailsContainer {
                         display: flex;
                         flex-direction: column;
                         align-items: center;
+                        border-bottom: rgb(45, 60, 60) 1px solid;
+                        padding: 4px;
+
+                        .resourceImage {
+                            width: 32px;
+                            height: 32px;
+                            /* padding: 3px; */
+                            /* border: 1px solid rgba(220, 210, 180, 0.12); */
+                            /* border-radius: 4px; */
+                            /* margin: 4px; */
+                        }
                     }
 
                     .resourceActionsContainer {
-                        display: flex;
-                        flex-direction: row;
-                        flex-wrap: wrap;
+                        /* display: flex; */
+                        /* flex-direction: row; */
+                        /* flex-wrap: wrap; */
 
                         .actionContainer {
-                            display: flex;
-                            flex-direction: column;
+                            /* display: flex; */
+                            /* flex-direction: column; */
                             cursor: pointer;
-                            padding: 12px;
-                            margin: 4px;
-                            border: 1px solid #ddd8c8;
-                            border-radius: 8px;
-                            background: rgba(38, 43, 38, 0.94);
-                            align-items: center;
+                            /* padding: 12px; */
+                            /* margin: 4px; */
+                            /* border: 1px solid #ddd8c8; */
+                            /* border-radius: 8px; */
+                            /* background: rgba(38, 43, 38, 0.94); */
+                            /* align-items: center; */
 
                             .getImage {
-                                background-color: blanchedalmond;
-                                background-color: blanchedalmond;
-                                border-radius: 18px;
-                                padding: 4px;
-                                margin-bottom: 4px;
+                                /* background-color: blanchedalmond; */
+                                /* background-color: blanchedalmond; */
+                                /* border-radius: 18px; */
+                                /* padding: 4px; */
+                                /* margin-bottom: 4px; */
                             }
                         }
 
                         .actionContainer.grayedOut {
-                            opacity: 0.4;
+                            /* opacity: 0.4; */
                             filter: grayscale(100%);
-                            cursor: not-allowed;
-                            pointer-events: none;
-                            box-shadow: none;
+                            /* cursor: not-allowed; */
+                            /* pointer-events: none; */
+                            /* box-shadow: none; */
                         }
 
                         .actionContainer:hover {
-                            background: rgba(52, 58, 52, 0.94);
+                            /* background: rgba(52, 58, 52, 0.94); */
                         }
                     }
-                }
-
-                .resourceImage {
-                    width: 64px;
-                    height: 64px;
-                    padding: 3px;
-                    /* background: rgba(255, 255, 255, 0.045); */
-                    border: 1px solid rgba(220, 210, 180, 0.12);
-                    border-radius: 4px;
-                    margin: 4px;
-                }
-
-                .resourceUnknown {
-                    opacity: 0.2;
-                    filter: grayscale(1);
-                }
-
-                .resourceUnavailable {
-                    opacity: 0.45;
-                    filter: grayscale(1);
                 }
             }
         }
     }
 
     .unitSelectorContainer {
-        display: flex;
-        align-items: center;
+        /* display: flex; */
+        /* align-items: center; */
 
         .unitImage {
-            width: 100px;
-            height: 100px;
-            background-position: center;
-            padding: 3px;
-            border: 1px solid rgba(220, 210, 180, 0.12);
-            border-radius: 4px;
+            /* width: 100px; */
+            /* height: 100px; */
+            /* background-position: center; */
+            /* padding: 3px; */
+            /* border: 1px solid rgba(220, 210, 180, 0.12); */
+            /* border-radius: 4px; */
         }
 
         .unitSpellsContainer {
-            display: flex;
-            height: 100px;
-            padding: 3px;
-            border: 1px solid rgba(220, 210, 180, 0.12);
-            border-radius: 4px;
+            /* display: flex; */
+            /* height: 100px; */
+            /* padding: 3px; */
+            /* border: 1px solid rgba(220, 210, 180, 0.12); */
+            /* border-radius: 4px; */
         }
     }
 
     .uiCommunityActionsContainer {
-        display: flex;
-        flex-direction: row;
-        padding: 4px;
-        /* top: 200px; */
-        /* left: 200px; */
-        text-align: center;
+        /* display: flex; */
+        /* flex-direction: row; */
+        /* padding: 4px; */
+        /* text-align: center; */
 
         .uiCreateExplorerContainer {
-            background: rgba(40, 44, 40, 0.94);
-            margin: 4px;
+            /* background: rgba(40, 44, 40, 0.94); */
+            /* margin: 4px; */
 
             .uiCreateUnitImage {
                 width: 64px;
@@ -230,14 +237,14 @@ body {
             }
 
             .uiUnitPriceContainer {
-                display: flex;
-                align-items: center;
+                /* display: flex; */
+                /* align-items: center; */
 
                 .resourceCategoryPriceImage {
-                    background-color: blanchedalmond;
-                    margin-right: 4px;
-                    border-radius: 18px;
-                    padding: 4px;
+                    /* background-color: blanchedalmond; */
+                    /* margin-right: 4px; */
+                    /* border-radius: 18px; */
+                    /* padding: 4px; */
                 }
             }
         }
