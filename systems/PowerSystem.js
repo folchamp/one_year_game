@@ -11,14 +11,11 @@ class PowerSystem {
         if (targetStats !== undefined) {
             targetStats.actualHP ??= targetStats.hp // n'assigner les points de vie actuels que s'il n'en a pas déjà
             targetStats.actualHP -= damage;
-        } else {
-            console.log("no entity there bro lol");
         }
     }
     usePower(power) {
         const attackerPosition = this.ECS.Position.get(power.attacker);
         const targetPosition = this.ECS.Position.get(power.targetEntity);
-        console.log(power);
         if (power.powerData.damage !== undefined) {
             this.hit(power.targetEntity, power.powerData.damage);
         }

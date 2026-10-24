@@ -19,6 +19,26 @@ class World {
         this.fillBiomes();
         this.fillResources();
     }
+    static getDistance(positionA, positionB) {
+        // merci ChatGPT
+        const dq = positionA.q - positionB.q;
+        const dr = positionA.r - positionB.r;
+        return Math.max(Math.abs(dq), Math.abs(dr), Math.abs(dq + dr));
+    }
+    static hexToWorld(hex) {
+        const x = Settings.hexSize * Math.sqrt(3) * (hex.q + hex.r / 2);
+        const y = Settings.hexSize * 1.5 * hex.r;
+        return { x: x, y: y };
+    }
+    static getNeighbors(q, r) {
+        return [
+            { q: q + 1, r },
+            { q: q - 1, r },
+            { q, r: r + 1 },
+            { q, r: r - 1 },
+            { q: q + 1, r: r - 1 },
+            { q: q - 1, r: r + 1 }]
+    };
     getHexesWithinRange(position, range) {
         const result = [];
         const visited = new Set();
@@ -77,7 +97,7 @@ class World {
         return Random.fromArray(this.hexesArray);
     }
     createBiome(biome) {
-        // on fait en sorte d'augmenter le nombre de "départs de biomes" en fonction de la taille de la carte.
+        // on fait en sorte d'augmenter le nombre de "départs" de biomes en fonction de la taille de la carte.
         for (let index = 0; index < Math.ceil(biome.amount * (this.mapRadius * this.mapRadius / 100)); index++) {
             let biomeCenter = this.getRandomHex();
             let tilesVisited = new Map();
@@ -138,20 +158,6 @@ class World {
     getRandomBiome() {
         return Data.biomes[Random.fromArray(Data.biomeNamesForGeneration)];
     }
-    static hexToWorld(hex) {
-        const x = Settings.hexSize * Math.sqrt(3) * (hex.q + hex.r / 2);
-        const y = Settings.hexSize * 1.5 * hex.r;
-        return { x: x, y: y };
-    }
-    static getNeighbors(q, r) {
-        return [
-            { q: q + 1, r },
-            { q: q - 1, r },
-            { q, r: r + 1 },
-            { q, r: r - 1 },
-            { q: q + 1, r: r - 1 },
-            { q: q - 1, r: r + 1 }]
-    };
     getHexFromWorldPosition(worldPosition) {
         let hexPosition = this.worldToHex(worldPosition);
         let hex = this.get(hexPosition.q, hexPosition.r);
@@ -188,9 +194,6 @@ class World {
             ry = -rx - rz;
         else
             rz = -rx - ry;
-        return {
-            q: rx,
-            r: rz
-        };
+        return { q: rx, r: rz };
     }
 }

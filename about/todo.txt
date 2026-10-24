@@ -478,9 +478,8 @@ questionner chaque ligne, chaque choix
 repasser dans chaque fichier et tout nettoyer
 - game
 - ia
-- render
-- powersystem
 - todo
+- index.css
 
 
 ---------- MUST ----------
