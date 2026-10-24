@@ -480,7 +480,7 @@ menu ♦ new game ♦ continue ♦ help ♦ about
 
 gros, gros, clean du code
 questionner chaque ligne, chaque choix
-repasser dans chaque fichier et tout nettoyer
+repasser dans ces fichiers et tout nettoyer
 - ia
 - todo
 - index.css
