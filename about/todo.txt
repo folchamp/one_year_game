@@ -461,6 +461,12 @@ invocations et invocateurs dans l'ECS
 continuer le refactor général
 ♥ 24/10/2026
 repair next idle selection
+♥ 25/10/2026
+Spiel Essen
+Vincent à la maison
+rien fait :-( 
+♥ 26/10/2026
+Euh...
 
 
 ********************
