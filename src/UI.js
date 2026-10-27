@@ -131,21 +131,30 @@ class UI {
                         "effectImage",
                         "powerEffectText"
                     ],
-                    "usePowerButton"
+                    // "usePowerButton"
                 ]
             );
+            this.powerRangeContainer.classList.add("powerDetailContainer");
+            this.powerDamageContainer.classList.add("powerDetailContainer");
+            this.powerEffectContainer.classList.add("powerDetailContainer");
+
             this.effectImage.src = Images.otherImages["effect"].src;
             this.rangeImage.src = Images.otherImages["range"].src;
             this.damageImage.src = Images.otherImages["damage"].src;
             this.powerNameText.innerText = power.powerName;
             this.powerRangeText.innerText = power.range;
             this.powerDamageText.innerText = power.damage;
-            if (power.effect !== undefined) {
-                this.powerEffectText.innerText = power.effect;
-            } else {
-                this.powerEffectText.innerText = "/";
+            this.powerEffectText.innerText = power.effect;
+            if (power.effect === undefined) {
+                Util.hide(this.powerEffectContainer);
             }
-            this.usePowerButton.addEventListener("click", (event) => {
+            if (power.range === 0) {
+                Util.hide(this.powerRangeContainer);
+            }
+            if (power.damage === 0) {
+                Util.hide(this.powerDamageContainer);
+            }
+            this.singlePowerContainer.addEventListener("click", (event) => {
                 this.uiActions.powerButtonClick(entity, power);
             });
         }
@@ -172,6 +181,7 @@ class UI {
                     this.addResource(hex, resource);
                 } else {
                     this.resourceImage.src = Images.resourceImages["unknownResource"].src;
+                    this.resourceNameText.innerText = "";
                 }
             });
         } else {

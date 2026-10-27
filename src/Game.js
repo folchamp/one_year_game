@@ -180,6 +180,7 @@ class Game {
     powerButtonClick(entity, powerData) {
         const entityPosition = this.ECS.Position.get(entity);
         const targetableHexes = this.world.getHexesWithinRange(entityPosition, powerData.range);
+        this.cleanTargetting();
         this.world.targetHexes(targetableHexes);
         this.targetting = {
             attackerPosition: entityPosition,

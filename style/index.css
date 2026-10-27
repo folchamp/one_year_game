@@ -9,7 +9,6 @@ body {
 
 .gameCanvas {
     display: block;
-    /* background: black; */
     touch-action: none;
 }
 
@@ -36,40 +35,22 @@ body {
 .uiMobileContainer {
     position: absolute;
     line-height: 12px;
-    /* padding-bottom: 10px; */
-    /* background: rgba(24, 27, 24, 0.94); */
-    /* color: #ddd8c8; */
-    /* border: 1px solid rgba(220, 210, 180, 0.25); */
-    /* border-radius: 6px; */
-    /* box-shadow: */
-    /* 0 8px 30px rgba(0, 0, 0, 0.45), */
-    /* inset 0 0 30px rgba(255, 255, 255, 0.025); */
-    /* backdrop-filter: blur(5px); */
 }
 
 .uiMobileContainer {
     display: none;
-    /* bottom: 10px; */
-    /* right: 10px; */
-    /* text-align: center; */
 }
 
 .uiTwoContainer {
-    /* display: flex; */
-    /* flex-direction: column; */
     bottom: 0px;
     left: 0px;
-    /* padding: 4px; */
 
     .uiInventoryContainer {
         display: flex;
-        height: 160px;
+        height: 164px;
         width: 96px;
         flex-direction: column;
-        /* align-items:flex-start; */
         flex-wrap: wrap;
-        /* justify-content: flex-start; */
-        /* padding: 4px; */
         background-color: rgb(50, 50, 50);
         color: rgb(250, 250, 250);
         border-top: 2px solid rgb(50, 60, 90);
@@ -80,32 +61,21 @@ body {
             display: flex;
             align-items: center;
             user-select: none;
-            /* color: black; */
-            /* margin: 4px; */
-            /* padding: 4px; */
-            /* cursor: pointer; */
-            /* background-color: rgb(93, 93, 94); */
 
-            .inventoryCategoryImage {
-                /* background-color: blanchedalmond; */
-                /* margin-right: 4px; */
-                /* border-radius: 18px; */
-                /* padding: 4px; */
-            }
+            .inventoryCategoryImage {}
         }
     }
 }
 
 .uiContainer {
+    display: flex;
     user-select: none;
     left: 102px;
     bottom: 0px;
-    /* display: flex; */
-    /* padding: 10px; */
 
     .hexSelectorContainer {
         display: flex;
-        height: 160px;
+        height: 164px;
         background-color: rgb(50, 50, 50);
         color: rgb(250, 250, 250);
         border-top: 2px solid rgb(50, 60, 90);
@@ -113,91 +83,54 @@ body {
         border-left: 2px solid rgb(50, 60, 90);
         border-top-right-radius: 2px;
         border-top-left-radius: 2px;
-        /* align-items: center; */
+        margin-right: 4px;
 
         .hexImageContainer {
             width: 96px;
-            height: 160px;
+            height: 164px;
             background-position: center;
-            /* padding: 3px; */
-            /* border: 1px solid rgba(220, 210, 180, 0.12); */
-            /* border-radius: 4px; */
-            /* margin: auto; */
-            /* margin-top: 10px; */
-            /* margin-bottom: 10px; */
+            background-size: contain;
+            background-repeat: no-repeat;
         }
 
         .hexResourcesContainer {
-            /* display: flex; */
-            /* justify-content: center; */
-            /* flex-direction: row; */
+            display: flex;
+            align-items: center;
 
             .hexResourceContainer {
-                /* display: flex; */
 
                 .resourceDescriptionContainer {
-                    /* display: flex; */
-                    /* flex-direction: row; */
-                    /* align-items: center; */
 
                     .resourceDetailsContainer {
                         display: flex;
                         flex-direction: column;
                         align-items: center;
-                        /* border-bottom: rgb(45, 60, 60) 1px solid; */
-                        /* padding: 4px; */
 
                         .resourceImage {
                             width: 32px;
                             height: 32px;
-                            /* padding: 3px; */
-                            /* border: 1px solid rgba(220, 210, 180, 0.12); */
-                            /* border-radius: 4px; */
-                            /* margin: 4px; */
                         }
                     }
 
                     .resourceActionsContainer {
-                        /* display: flex; */
-                        /* flex-direction: row; */
-                        /* flex-wrap: wrap; */
 
                         .actionContainer {
                             background-color: rgb(25, 40, 40);
                             display: flex;
-                            /* display: flex; */
-                            /* flex-direction: column; */
                             cursor: pointer;
-                            /* padding: 12px; */
-                            /* margin: 4px; */
-                            /* border: 1px solid #ddd8c8; */
-                            /* border-radius: 8px; */
-                            /* background: rgba(38, 43, 38, 0.94); */
                             align-items: center;
                             margin: 6px;
                             box-shadow: 2px 2px 1px 1px black;
-                            /* border-right: 2px solid black; */
 
-                            .getImage {
-                                /* background-color: blanchedalmond; */
-                                /* background-color: blanchedalmond; */
-                                /* border-radius: 18px; */
-                                /* padding: 4px; */
-                                /* margin-bottom: 4px; */
-                            }
+                            .getImage {}
                         }
 
                         .actionContainer.grayedOut {
-                            /* opacity: 0.4; */
                             filter: grayscale(100%);
-                            /* cursor: not-allowed; */
-                            /* pointer-events: none; */
-                            /* box-shadow: none; */
                         }
 
                         .actionContainer:hover {
                             background-color: rgb(45, 60, 60);
-                            /* background: rgba(52, 58, 52, 0.94); */
                         }
                     }
                 }
@@ -206,36 +139,51 @@ body {
     }
 
     .unitSelectorContainer {
-        /* display: flex; */
-        /* align-items: center; */
+        display: flex;
+        height: 164px;
+        background-color: rgb(50, 50, 50);
+        color: rgb(250, 250, 250);
+        border-top: 2px solid rgb(50, 60, 90);
+        border-right: 2px solid rgb(50, 60, 90);
+        border-left: 2px solid rgb(50, 60, 90);
+        border-top-right-radius: 2px;
+        border-top-left-radius: 2px;
+        margin-right: 4px;
 
-        .unitImage {
-            /* width: 100px; */
-            /* height: 100px; */
-            /* background-position: center; */
-            /* padding: 3px; */
-            /* border: 1px solid rgba(220, 210, 180, 0.12); */
-            /* border-radius: 4px; */
-        }
+        .unitImage {}
 
         .unitSpellsContainer {
-            /* display: flex; */
-            /* height: 100px; */
-            /* padding: 3px; */
-            /* border: 1px solid rgba(220, 210, 180, 0.12); */
-            /* border-radius: 4px; */
+
+            .singlePowerContainer {
+                background-color: rgb(25, 40, 40);
+                cursor: pointer;
+                margin: 6px;
+                box-shadow: 2px 2px 1px 1px black;
+                padding: 4px;
+
+                .powerDetailContainer {
+                    display: inline-block;
+                }
+            }
+
+            .singlePowerContainer:hover {
+                background-color: rgb(45, 60, 60);
+            }
         }
     }
 
     .uiCommunityActionsContainer {
-        /* display: flex; */
-        /* flex-direction: row; */
-        /* padding: 4px; */
-        /* text-align: center; */
+        display: flex;
+        height: 164px;
+        background-color: rgb(50, 50, 50);
+        color: rgb(250, 250, 250);
+        border-top: 2px solid rgb(50, 60, 90);
+        border-right: 2px solid rgb(50, 60, 90);
+        border-left: 2px solid rgb(50, 60, 90);
+        border-top-right-radius: 2px;
+        border-top-left-radius: 2px;
 
         .uiCreateExplorerContainer {
-            /* background: rgba(40, 44, 40, 0.94); */
-            /* margin: 4px; */
 
             .uiCreateUnitImage {
                 width: 64px;
@@ -243,15 +191,8 @@ body {
             }
 
             .uiUnitPriceContainer {
-                /* display: flex; */
-                /* align-items: center; */
 
-                .resourceCategoryPriceImage {
-                    /* background-color: blanchedalmond; */
-                    /* margin-right: 4px; */
-                    /* border-radius: 18px; */
-                    /* padding: 4px; */
-                }
+                .resourceCategoryPriceImage {}
             }
         }
     }

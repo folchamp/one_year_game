@@ -14,6 +14,7 @@ class ActionSystem {
             let get = resource.resourceData.actions[actionName].get; // which resource does the action "get" (harvest)
             let knowledges = resource.resourceData.actions[actionName].learn;
             owner.inventory.add(Data.resources[get]); // on ajoute la ressource à l'inventaire
+            hex.harvest(resourceName); // on ajoute la fatigue à la tuile
             if (resource.resourceData.resourceName !== get) {
                 let newResourceData = Data.resources[get];
                 hex.addResource(newResourceData); // si la ressource get n'est pas sur la tuile, on l'ajoute
@@ -21,7 +22,6 @@ class ActionSystem {
             if (knowledges !== undefined) {
                 owner.community.learn(knowledges);
             }
-            hex.harvest(resourceName); // on ajoute la fatigue à la tuile
         }
     }
     update(entity) {
