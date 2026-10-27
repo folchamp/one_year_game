@@ -1,13 +1,13 @@
 "use strict";
 
 class UI {
-    constructor(selection, uiActions, player) {
+    constructor(selection, uiActions, humanPlayer) {
         this.selection = selection;
         this.uiActions = uiActions;
-        this.player = player;
+        this.humanPlayer = humanPlayer;
 
-        this.inventory = this.player.inventory;
-        this.community = this.player.community;
+        this.inventory = this.humanPlayer.inventory;
+        this.community = this.humanPlayer.community;
         this.lastMousePosition = { x: 0, y: 0 };
 
         // **************************************************
@@ -82,7 +82,7 @@ class UI {
             );
             this.uiCreateUnitImage.src = Images.unitImages[unitName].src;
             this.uiCreateUnitButton.innerText = unitName;
-            this.uiCreateUnitButton.addEventListener("click", () => { this.uiActions.createUnit(unitName, this.player); });
+            this.uiCreateUnitButton.addEventListener("click", () => { this.uiActions.createUnit(unitName, this.humanPlayer); });
             for (const resourceCategoryName in unitPrice) {
                 const amount = unitPrice[resourceCategoryName];
                 const amountPriceText = Util.createDOMElement("amountPriceText", "span", this.uiUnitPriceContainer);
@@ -141,7 +141,7 @@ class UI {
             this.effectImage.src = Images.otherImages["effect"].src;
             this.rangeImage.src = Images.otherImages["range"].src;
             this.damageImage.src = Images.otherImages["damage"].src;
-            this.powerNameText.innerText = power.powerName;
+            this.powerNameText.innerText = power.displayName;
             this.powerRangeText.innerText = power.range;
             this.powerDamageText.innerText = power.damage;
             this.powerEffectText.innerText = power.effect;
@@ -164,7 +164,7 @@ class UI {
     }
     updateHex(hex) {
         this.hexResourcesContainer.replaceChildren();
-        if (hex.hasSeen(this.player) || !Settings.production) {
+        if (hex.hasSeen(this.humanPlayer) || !Settings.production) {
             this.hexImageContainer.style["background-image"] = `url("${Images.tileImages[hex.biome.imageName].src}")`;
             hex.resources.forEach((resource) => {
                 Util.quickStructure(this.hexResourcesContainer, this,
@@ -177,7 +177,7 @@ class UI {
                             "resourceActionsContainer"]
                     ]
                 );
-                if (hex.hasExplored(this.player) || !Settings.production) {
+                if (hex.hasExplored(this.humanPlayer) || !Settings.production) {
                     this.addResource(hex, resource);
                 } else {
                     this.resourceImage.src = Images.resourceImages["unknownResource"].src;

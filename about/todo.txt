@@ -466,8 +466,10 @@ Spiel Essen
 Vincent à la maison
 rien fait :-( 
 ♥ 26/10/2026
-Euh...
-
+Euh... chipotage
+♥ 27/10/2026
+refactor css
+design épuré
 
 ********************
 TODO
@@ -489,8 +491,14 @@ questionner chaque ligne, chaque choix
 repasser dans ces fichiers et tout nettoyer
 - ia
 - todo
-- index.css
 
+Je viens de faire une game :
+- trop pénible d'explorer toutes les tuiles : créer un personnage explorateur qui peut révéler le explorer des tuiles en zone
+- trop pénible de récolter des ressources : réduire le coût des unités à 1 de chaque (plutôt que 3 ou 5)
+- trop pénible de subir les "chocs de caméra", fluidifier le mouvement de caméra
+- trop pénible de ne pas se souvenir du mouvement de ses troupes : ajouter des animations de mouvement 
+- trop pénible de ne pas voir les attaques : ajouter des animations d'attaque
+- trop facile de créer plein d'unités (et donc de surencombrer la map) : créer un système de population (genre Praetorians)
 
 ---------- MUST ----------
 faire jouer les attributs des biomes et générer de nouveaux biomes avec de nouvelles ressources 

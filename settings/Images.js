@@ -42,9 +42,9 @@ class Images {
         "harvester",
         "campfire",
         "hunter",
-        "sacrieur",
-        "osamodas",
-        "tofu"
+        "explorer",
+        "hunter",
+        "crow"
     ]);
 
     static resourceImages = Util.loadImages("resources/", [

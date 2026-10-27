@@ -4,7 +4,7 @@ class Game {
     constructor() {
         // actions
         this.actions = {
-            selectNextIdle: { description: "Selects the next idle entity", f: () => this.selectNextIdle(this.player) },
+            selectNextIdle: { description: "Selects the next idle entity", f: () => this.selectNextIdle(this.humanPlayer) },
             resetCamera: { description: "Resets the camera to the center of the map", f: () => this.camera.resetCamera() },
             resetZoom: { description: "Resets the zoom of the camera", f: () => this.camera.resetZoom() },
             openHotkeysMenu: { description: "Open the hotkeys menu", f: () => { this.log.log(JSON.stringify(this.hotkeys.getHotkeys(), null, 4)); } },
@@ -79,15 +79,15 @@ class Game {
         // player
         this.inventory = new Inventory();
         this.community = new Community();
-        this.player = new Player(0, this.community, this.inventory, new IA(this.ECS, this.world, this.iaActions));
-        this.ui = new UI(this.selection, this.uiActions, this.player);
+        this.humanPlayer = new Player(0, this.community, this.inventory, new IA(this.ECS, this.world, this.iaActions));
+        this.ui = new UI(this.selection, this.uiActions, this.humanPlayer);
 
         // render
-        this.render = new Render(this.context, this.display, this.camera, this.world, this.ECS, this.selection, this.player);
+        this.render = new Render(this.context, this.display, this.camera, this.world, this.ECS, this.selection, this.humanPlayer);
 
         // init game
-        this.unitCreator.create("campfire", Settings.startHexPositions[0], this.player);
-        this.unitCreator.create("harvester", Settings.startHexPositions[0], this.player);
+        this.unitCreator.create("campfire", Settings.startHexPositions[0], this.humanPlayer);
+        this.unitCreator.create("harvester", Settings.startHexPositions[0], this.humanPlayer);
 
         this.computers = [];
         for (let index = 1; index < Math.min(Settings.amountOfPlayers, Settings.maxAmountOfPlayers); index++) {
@@ -106,7 +106,7 @@ class Game {
         this.explore();
         this.ui.update();
 
-        this.selectNextIdle(this.player);
+        this.selectNextIdle(this.humanPlayer);
         this.loop();
     }
     downloadResources() {
@@ -144,7 +144,7 @@ class Game {
         if (this.targetting !== undefined) {
             // si on est en mode ciblage, le hex sur lequel on a cliqué devient la cible
             this.setPower(hex, this.targetting);
-        } else if (entity !== undefined && this.ECS.Owner.get(entity) === this.player) {
+        } else if (entity !== undefined && this.ECS.Owner.get(entity) === this.humanPlayer) {
             // si une entité est sous le clic, on la sélectionne
             this.selectEntity(entity);
         } else {
@@ -166,7 +166,7 @@ class Game {
     createUnit(unitName, owner) {
         const unitData = Data.units[unitName];
         const price = unitData.unitPrice;
-        if (owner === this.player && this.movementSystem.isHexPositionOccupied({ q: owner.startHexPosition.q, r: owner.startHexPosition.r })) {
+        if (owner === this.humanPlayer && this.movementSystem.isHexPositionOccupied({ q: owner.startHexPosition.q, r: owner.startHexPosition.r })) {
             alert("hex is not free");
         } else if (!owner.inventory.has(price) && Settings.production) {
             alert("not enough resources");
@@ -234,7 +234,7 @@ class Game {
     selectHex(hex) {
         if (hex !== undefined) {
             this.selection.selectHex(hex);
-            if (hex.q === this.player.startHexPosition.q && hex.r === this.player.startHexPosition.r) {
+            if (hex.q === this.humanPlayer.startHexPosition.q && hex.r === this.humanPlayer.startHexPosition.r) {
                 this.selection.selectCommunity();
             }
         }
@@ -251,7 +251,7 @@ class Game {
         });
     }
     resolveTick(player) {
-        if (player !== this.player) {
+        if (player !== this.humanPlayer) {
             let idles = this.getIdles(player);
             player.IA.act(idles);
         }
@@ -263,7 +263,7 @@ class Game {
         this.makeAvailable();
     }
     tick() {
-        let players = [this.player, ...this.computers];
+        let players = [this.humanPlayer, ...this.computers];
         players.forEach((player) => {
             this.resolveTick(player);
             this.ui.update();

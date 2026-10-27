@@ -1,14 +1,14 @@
 "use strict";
 
 class Render {
-    constructor(context, display, camera, world, ECS, selection, player) {
+    constructor(context, display, camera, world, ECS, selection, humanPlayer) {
         this.context = context;
         this.display = display;
         this.camera = camera;
         this.world = world;
         this.ECS = ECS;
         this.selection = selection;
-        this.player = player;
+        this.humanPlayer = humanPlayer;
     }
     render() {
         // clear
@@ -62,7 +62,7 @@ class Render {
         // --------------------
         // on dessine les barres de fatigue
         for (const hex of this.world.hexes.values()) {
-            if ((hex.hasSeen(this.player) && hex.fatigue > 0) || !Settings.production) {
+            if ((hex.hasSeen(this.humanPlayer) && hex.fatigue > 0) || !Settings.production) {
                 this.drawFatigue(hex);
             }
         }
@@ -103,7 +103,7 @@ class Render {
         const hexPosition = this.ECS.Position.get(entity);
         const hex = this.world.get(hexPosition.q, hexPosition.r);
         const combatStats = this.ECS.CombatStats.get(entity);
-        if (hex.hasSeen(this.player) || !Settings.production) {
+        if (hex.hasSeen(this.humanPlayer) || !Settings.production) {
             let worldPosition = World.hexToWorld(hexPosition);
             this.context.beginPath();
             this.context.arc(worldPosition.x - Settings.playerColorArcOffset, worldPosition.y + sprite.height / 2, Settings.playerColorArcRadius, 0, Math.PI * 2);
@@ -162,7 +162,7 @@ class Render {
         const smallSize = Settings.resourceImageSize / 2;
         const offsetY = Math.sin(performance.now() / 150) * 3;
         const hex = this.world.get(hexPosition.q, hexPosition.r);
-        if (hex.hasSeen(this.player) || !Settings.production) {
+        if (hex.hasSeen(this.humanPlayer) || !Settings.production) {
             this.context.drawImage(Images.resourceImages[order.resource.resourceData.imageName], worldPosition.x - smallSize / 2, height + offsetY, smallSize, smallSize);
         }
     }
@@ -185,7 +185,7 @@ class Render {
         let index = 0;
         hex.resources.forEach((resource) => {
             this.context.strokeStyle = "rgba(24, 27, 24, 0.8)";
-            if (hex.hasExplored(this.player) || !Settings.production) {
+            if (hex.hasExplored(this.humanPlayer) || !Settings.production) {
                 this.context.drawImage(Images.resourceImages[resource.resourceData.imageName], firstPosition + index * smallSize, height, smallSize, smallSize);
             } else {
                 this.context.drawImage(Images.resourceImages["unknownResource"], firstPosition + index * smallSize, height, smallSize, smallSize);
@@ -230,7 +230,7 @@ class Render {
     }
     drawHex(hex) {
         const pos = this.getWorldPosition(hex);
-        if (hex.hasSeen(this.player) || !Settings.production) {
+        if (hex.hasSeen(this.humanPlayer) || !Settings.production) {
             this.context.drawImage(Images.tileImages[hex.biome.imageName], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);
             this.drawResources(hex);
         } else {

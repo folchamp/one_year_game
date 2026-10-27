@@ -2712,15 +2712,15 @@ class Data {
     }
 
     static creatableUnits = [
-        "harvester", "sacrieur", "osamodas"
+        "harvester", "explorer", "hunter"
     ]
 
     static units = {
-        tofu: {
-            unitName: "tofu",
+        crow: {
+            unitName: "crow",
             isHarvester: false,
             range: 2,
-            sprite: { imageName: "tofu", width: 64, height: 64, radius: 48 },
+            sprite: { imageName: "crow", width: 64, height: 64, radius: 48 },
             hitbox: { type: "circle", radius: 48 },
             unitPrice: {
                 food: 5,
@@ -2730,18 +2730,18 @@ class Data {
                 hp: 1,
                 powers: {
                     basicAttack: {
-                        powerName: "bécot",
+                        displayName: "bécot",
                         damage: 1,
                         range: 1
                     }
                 }
             }
         },
-        osamodas: {
-            unitName: "osamodas",
+        hunter: {
+            unitName: "hunter",
             isHarvester: false,
             range: 2,
-            sprite: { imageName: "osamodas", width: 64, height: 64, radius: 48 },
+            sprite: { imageName: "hunter", width: 64, height: 64, radius: 48 },
             hitbox: { type: "circle", radius: 48 },
             unitPrice: {
                 food: 5,
@@ -2752,20 +2752,20 @@ class Data {
                 amountOfSummons: 3,
                 powers: {
                     basicAttack: {
-                        powerName: "summon",
+                        displayName: "corbeau",
                         damage: 0,
                         range: 1,
                         effect: "summon",
-                        summonName: "tofu"
+                        summonName: "crow"
                     }
                 }
             }
         },
-        sacrieur: {
-            unitName: "sacrieur",
+        explorer: {
+            unitName: "explorer",
             isHarvester: false,
             range: 2,
-            sprite: { imageName: "sacrieur", width: 64, height: 64, radius: 48 },
+            sprite: { imageName: "explorer", width: 64, height: 64, radius: 48 },
             hitbox: { type: "circle", radius: 48 },
             unitPrice: {
                 food: 5,
@@ -2775,7 +2775,7 @@ class Data {
                 hp: 20,
                 powers: {
                     basicAttack: {
-                        powerName: "transposition",
+                        displayName: "transposition",
                         damage: 0,
                         range: 3,
                         effect: "transposition"
@@ -2839,12 +2839,12 @@ class Data {
                 hp: 9,
                 powers: {
                     basicAttack: {
-                        powerName: "Coup de fourche",
+                        displayName: "Coup de fourche",
                         damage: 3,
                         range: 1
                     },
                     sandThrow: {
-                        powerName: "Jet de sable",
+                        displayName: "Jet de sable",
                         damage: 1,
                         range: 2
                     }
