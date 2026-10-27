@@ -9,6 +9,12 @@ class Camera {
         this.zoom = Settings.initialZoom;
 
         this.isDragging = false;
+        document.addEventListener("mouseleave", () => {
+            this.mouseInside = false;
+        });
+        document.addEventListener("mouseenter", () => {
+            this.mouseInside = true;
+        });
         this.canvas.addEventListener("pointerdown", (event) => {
             this.isDragging = true;
             this.lastMousePosition = Util.getMousePosition(this.canvas, event);
@@ -44,7 +50,7 @@ class Camera {
         });
     }
     update() {
-        if (this.edgePanningMousePosition !== undefined) {
+        if (this.edgePanningMousePosition !== undefined && this.mouseInside) {
             if (this.edgePanningMousePosition.x < Settings.edgePanningWidth) {
                 this.cameraLeft(Settings.edgePanSpeed);
             }
