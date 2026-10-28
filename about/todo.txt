@@ -496,12 +496,13 @@ remplir les learns vides
 ECS traversable ou non-traversable
 biomes se regénèrent
 les biomes peuvent récupérer
+tooltips
 
 ********************
 TODO
 ********************
 ---------- EN COURS ----------
-tooltips
+refaire l'ia
 
 victoryscreen
 revoir les alert() et faire un système propre
@@ -510,7 +511,6 @@ pouvoir de déplacement "galop" en ligne qui touche tous les adversaires sur le 
 hôtel de vent dans lequel tu peux échanger des ressources, 1 pour 1
 persistance des données
 menu ♦ new game ♦ continue ♦ help ♦ about  
-refaire l'ia
 1 de bouffe par personnnage à payer chaque tour pour éviter le snowball infini : sinon -1hp à chaque personnage
 trop pénible de ne pas voir les attaques : ajouter des animations d'attaque
 trop facile de créer plein d'unités (et donc de surencombrer la map) : créer un système de population (genre Praetorians)

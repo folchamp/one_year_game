@@ -2752,7 +2752,7 @@ class Data {
             combatStats: {
                 hp: 20,
                 actions: 3,
-                amountOfSummons: 3,
+                amountOfSummons: 1,
                 powers: {
                     basicAttack: {
                         displayName: "corbeau",

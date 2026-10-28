@@ -29,6 +29,15 @@ class IA {
     findHexWith(categoryName) {
 
     }
+    roam(entity) {
+        const position = this.ECS.Position.get(entity);
+        const neighbors = World.getNeighbors(position.q, position.r);
+        const destinationPosition = Random.fromArray(neighbors); //findHexWith...
+        const destinationHex = this.world.get(destinationPosition.q, destinationPosition.r);
+        if (!this.isHexPositionOccupied(destinationHex)) {
+            this.actions.setMove(entity, destinationHex);
+        }
+    }
     harvest(harvester) {
         let orderGiven = false;
         const position = this.ECS.Position.get(harvester);
@@ -46,12 +55,7 @@ class IA {
             }
         });
         if (!orderGiven) {
-            const neighbors = World.getNeighbors(position.q, position.r);
-            const destinationPosition = Random.fromArray(neighbors); //findHexWith...
-            const destinationHex = this.world.get(destinationPosition.q, destinationPosition.r);
-            if (!this.isHexPositionOccupied(destinationHex)) {
-                this.actions.setMove(harvester, destinationHex);
-            }
+            this.roam(harvester);
         }
     }
     createUnits() {
@@ -95,8 +99,10 @@ class IA {
         return targetting;
     }
     act(entitites) {
+        let isDone = true;
         this.createUnits();
         entitites.forEach((entity) => {
+            let actionsCount = this.ECS.Available.get(entity);
             let targetting = this.getTargetting(entity);
             if (targetting !== undefined) {
                 // kick his ass
@@ -105,8 +111,14 @@ class IA {
             } else if (this.ECS.Name.get(entity) === "harvester") {
                 this.harvest(entity)
             } else {
-                "sleep";
+                this.roam(entity);
+            }
+            if (actionsCount !== this.ECS.Available.get(entity)) {
+                isDone = false;
             }
         });
+        if (!isDone) {
+            this.act(entitites);
+        }
     }
 }

@@ -171,12 +171,13 @@ class UI {
         this.tooltip.attach(this.hexImageContainer, `Cette tuile est cachée par le brouillard de guerre`);
         if (hex.hasSeen(this.humanPlayer) || !Settings.production) {
             let resourcesText = "";
-            Data.biomes[hex.biome.biomeName].resources.forEach((resourceName) => {
-                console.log(resourceName)
-                if (resourceName !== "nothing") {
-                    resourcesText += `${Data.resources[resourceName].displayName}\n`;
-                }
-            })
+            if (Data.biomes[hex.biome.biomeName].resources !== undefined) {
+                Data.biomes[hex.biome.biomeName].resources.forEach((resourceName) => {
+                    if (resourceName !== "nothing") {
+                        resourcesText += `${Data.resources[resourceName].displayName}\n`;
+                    }
+                });
+            }
             this.hexImageContainer.style["background-image"] = `url("${Images.tileImages[hex.biome.imageName].src}")`;
             this.tooltip.attach(this.hexImageContainer, `Peut contenir : \n${resourcesText}`);
             hex.resources.forEach((resource) => {

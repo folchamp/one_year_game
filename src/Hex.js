@@ -68,7 +68,6 @@ class Hex {
             const fatigueToRecover = Settings.fatigueRecovery / Settings.amountOfPlayers; // combien de fatigue on perd par tour
             this.fatigue = Math.min(this.fatigue, Settings.maxFatigue);
             this.fatigue = Math.max(0, this.fatigue - fatigueToRecover); // ne pas descendre en dessous de 0 de fatigue
-            console.log(fatigueToRecover);
         }
         this.resources.forEach((resource) => {
             if (resource.regeneratesIn > 0) {
