@@ -501,6 +501,7 @@ les biomes peuvent récupérer
 TODO
 ********************
 ---------- EN COURS ----------
+tooltips
 
 victoryscreen
 revoir les alert() et faire un système propre

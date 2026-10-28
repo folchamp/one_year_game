@@ -202,12 +202,15 @@ class UI {
             let fatigue = Data.categories[Data.resources[get].category].fatigue;
             Util.quickStructure(this.resourceActionsContainer, this,
                 ["actionContainer",
-                    "getImage",
-                    "actionText"
+                    "categoryImage",
+                    "actionText",
+                    "getImage"
                 ]
             );
-            this.actionText.innerText = `${action.displayName} (${fatigue})`;
-            this.getImage.src = Images.categoryImages[Data.categories[Data.resources[action.get].category].categoryImageName].src;
+            this.actionText.innerText = `${action.displayName} (${fatigue}) -> `;
+            this.categoryImage.src = Images.categoryImages[Data.categories[Data.resources[action.get].category].categoryImageName].src;
+            this.categoryImage.width = Settings.categoryImageSize;
+            this.getImage.src = Images.resourceImages[get].src;
             this.getImage.width = Settings.categoryImageSize;
             if (this.community.fillsConditions(action.requiresOneOf) || !Settings.production) {
                 this.actionContainer.addEventListener("click", (event) => {

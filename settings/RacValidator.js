@@ -6,6 +6,7 @@ class RacValidator {
         let countResources = 0;
         let knowledgesChecker = {};
         for (let resourceName in Data.resources) {
+            let countDuplicateGets = 0;
             const resourceData = Data.resources[resourceName];
             countResources++;
             if (Images.resourceImages[resourceName] === undefined) {
@@ -15,6 +16,9 @@ class RacValidator {
                 const requiresOneOf = resourceData.actions[actionName].requiresOneOf;
                 const learn = resourceData.actions[actionName].learn;
                 const get = resourceData.actions[actionName].get;
+                if (get === resourceName) {
+                    countDuplicateGets++;
+                }
                 if (get === undefined) {
                     console.warn(`${resourceName} ${actionName} n'a pas de get.`)
                 }
@@ -42,6 +46,9 @@ class RacValidator {
                     knowledgesChecker[knowledge] ??= { name: resourceName, requires: 0, learns: 0 };
                     knowledgesChecker[knowledge].learns++;
                 });
+            }
+            if (countDuplicateGets > 1) {
+                console.warn(`${resourceName} has duplicate gets`);
             }
         }
         // console.log(knowledgesChecker);
