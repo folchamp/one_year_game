@@ -118,14 +118,14 @@ class Render {
                 // actions disponibles
                 this.context.save();
                 const indicatorSize = 20;
-                const indicatorY = worldPosition.y - sprite.height / 2 - 8;
+                const indicatorY = worldPosition.y - sprite.height / 2 - 28;
                 this.context.translate(worldPosition.x, indicatorY);
                 this.context.rotate(Math.PI / 4);
                 this.context.fillStyle = "#00ff22";
                 this.context.fillRect(-indicatorSize / 2, -indicatorSize / 2, indicatorSize, indicatorSize);
                 this.context.restore();
                 this.context.font = "20px Arial";
-                this.context.fillText(this.ECS.Available.get(entity), worldPosition.x - 6, worldPosition.y - (sprite.height / 2) - 1);
+                this.context.fillText(this.ECS.Available.get(entity), worldPosition.x - 6, worldPosition.y - (sprite.height / 2) - 21);
             }
             if (combatStats !== undefined) {
                 const maxHP = combatStats.hp;

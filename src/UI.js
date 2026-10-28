@@ -1,10 +1,11 @@
 "use strict";
 
 class UI {
-    constructor(selection, uiActions, humanPlayer) {
+    constructor(selection, uiActions, humanPlayer, tooltip) {
         this.selection = selection;
         this.uiActions = uiActions;
         this.humanPlayer = humanPlayer;
+        this.tooltip = tooltip;
 
         this.inventory = this.humanPlayer.inventory;
         this.community = this.humanPlayer.community;
@@ -72,17 +73,17 @@ class UI {
         // populate units in community actions
         this.uiCommunityActionsContainer.replaceChildren();
         Data.creatableUnits.forEach((unitName) => {
-            const unitPrice = Data.units[unitName].unitPrice;
+            const unit = Data.units[unitName];
+            const unitPrice = unit.unitPrice;
             Util.quickStructure(this.uiCommunityActionsContainer, this,
                 ["uiCreateExplorerContainer",
                     "uiCreateUnitImage",
-                    "uiUnitPriceContainer",
-                    "uiCreateUnitButton"
+                    "uiUnitPriceContainer"
                 ]
             );
+            this.tooltip.attach(this.uiCreateExplorerContainer, unit.description);
             this.uiCreateUnitImage.src = Images.unitImages[unitName].src;
-            this.uiCreateUnitButton.innerText = unitName;
-            this.uiCreateUnitButton.addEventListener("click", () => { this.uiActions.createUnit(unitName, this.humanPlayer); });
+            this.uiCreateExplorerContainer.addEventListener("click", () => { this.uiActions.createUnit(unitName, this.humanPlayer); });
             for (const resourceCategoryName in unitPrice) {
                 const amount = unitPrice[resourceCategoryName];
                 const amountPriceText = Util.createDOMElement("amountPriceText", "span", this.uiUnitPriceContainer);
@@ -100,7 +101,8 @@ class UI {
         this.uiInventoryContainer.replaceChildren();
         const inventoryContent = this.inventory.getContent();
         for (let categoryName in inventoryContent) {
-            let total = inventoryContent[categoryName];;
+            const category = Data.categories[categoryName];
+            let total = inventoryContent[categoryName];
             Util.quickStructure(this.uiInventoryContainer, this,
                 ["inventoryCategoryContainer",
                     "inventoryCategoryImage",
@@ -109,6 +111,7 @@ class UI {
             );
             this.inventoryCategoryImage.src = Images.categoryImages[Data.categories[categoryName].categoryImageName].src;
             this.inventoryCategoryTotalText.innerText = total;
+            this.tooltip.attach(this.inventoryCategoryContainer, `${category.categoryDisplayName} : catégorie de ressources`)
         }
     }
     updateUnit() {
@@ -157,6 +160,7 @@ class UI {
             this.singlePowerContainer.addEventListener("click", (event) => {
                 this.uiActions.powerButtonClick(entity, power);
             });
+            this.tooltip.attach(this.singlePowerContainer, power.description);
         }
         this.unitImage.src = Images.unitImages[this.selection.selectedEntityData.sprite.imageName].src
         Util.show(this.uiContainer);
@@ -164,8 +168,17 @@ class UI {
     }
     updateHex(hex) {
         this.hexResourcesContainer.replaceChildren();
+        this.tooltip.attach(this.hexImageContainer, `Cette tuile est cachée par le brouillard de guerre`);
         if (hex.hasSeen(this.humanPlayer) || !Settings.production) {
+            let resourcesText = "";
+            Data.biomes[hex.biome.biomeName].resources.forEach((resourceName) => {
+                console.log(resourceName)
+                if (resourceName !== "nothing") {
+                    resourcesText += `${Data.resources[resourceName].displayName}\n`;
+                }
+            })
             this.hexImageContainer.style["background-image"] = `url("${Images.tileImages[hex.biome.imageName].src}")`;
+            this.tooltip.attach(this.hexImageContainer, `Peut contenir : \n${resourcesText}`);
             hex.resources.forEach((resource) => {
                 Util.quickStructure(this.hexResourcesContainer, this,
                     ["hexResourceContainer",
@@ -219,6 +232,9 @@ class UI {
             } else {
                 this.actionContainer.classList.add("grayedOut");
             }
+            this.tooltip.attach(this.actionContainer, `${action.displayName} : ${resource.resourceData.displayName}\n
+                Vous gagnez 1x${Data.resources[get].displayName} (catégorie ${Data.categories[Data.resources[action.get].category].categoryDisplayName}).\n
+                La tuile prend ${fatigue} points de fatigue.`);
         };
     }
     update() {

@@ -30,11 +30,34 @@ body {
     }
 }
 
+.tooltipContainer,
 .uiContainer,
 .uiTwoContainer,
 .uiMobileContainer {
     position: absolute;
     line-height: 12px;
+}
+
+.tooltipContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    top: 300px;
+    left: 300px;
+    min-width: 150px;
+    max-width: 300px;
+    height: 150px;
+    color: rgb(250, 250, 250);
+    background-color: rgb(87, 85, 85);
+    z-index: 5;
+    border: 1px solid black;
+    padding: 8px;
+    font-style: italic;
+    text-align: justify;
+    font-size: 18px;
+    line-height: 20px;
+    border-radius: 8px;
 }
 
 .uiMobileContainer {
@@ -128,6 +151,11 @@ body {
                         .actionContainer.grayedOut {
                             text-decoration: line-through;
                             filter: grayscale(100%);
+                            cursor: auto;
+                        }
+
+                        .actionContainer.grayedOut:hover {
+                            background-color: rgb(25, 40, 40);
                         }
 
                         .actionContainer:hover {
@@ -184,7 +212,19 @@ body {
         border-top-right-radius: 2px;
         border-top-left-radius: 2px;
 
+        .uiCreateExplorerContainer:hover {
+            background-color: rgb(45, 60, 60);
+        }
+
         .uiCreateExplorerContainer {
+            box-sizing: border-box;
+            background-color: rgb(25, 40, 40);
+            /* display: flex; */
+            cursor: pointer;
+            /* align-items: center; */
+            margin: 6px;
+            box-shadow: 2px 2px 1px 1px black;
+
 
             .uiCreateUnitImage {
                 width: 64px;

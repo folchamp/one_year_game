@@ -2733,7 +2733,8 @@ class Data {
                     basicAttack: {
                         displayName: "bécot",
                         damage: 1,
-                        range: 1
+                        range: 1,
+                        description: "Une attaque peu douloureuse mais mortelle quand elle est subie en grande quantité."
                     }
                 }
             }
@@ -2758,10 +2759,12 @@ class Data {
                         damage: 0,
                         range: 1,
                         effect: "summon",
-                        summonName: "crow"
+                        summonName: "crow",
+                        description: "Invocation d'un corbeau"
                     }
                 }
-            }
+            },
+            description: "Le chasseur dresse des corbeaux pour accomplir ses sales besognes à sa place."
         },
         explorer: {
             unitName: "explorer",
@@ -2781,16 +2784,19 @@ class Data {
                         displayName: "transposition",
                         damage: 0,
                         range: 3,
-                        effect: "transposition"
+                        effect: "transposition",
+                        description: "Une ruse permettant de prendre la place d'une autre entité"
                     },
                     vision: {
                         displayName: "vision",
                         damage: 0,
                         range: 5,
-                        effect: "vision"
+                        effect: "vision",
+                        description: "Interprétation des histoires locales permettant d'obtenir des informations sur des lieux éloignés"
                     }
                 }
-            }
+            },
+            description: "L'espion parcoure les landes à la recherche d'informations. Il est capable d'interprêter les histoires racontées par les passants et de ruser pour prendre la place d'autrui."
         },
         harvester: {
             unitName: "harvester",
@@ -2809,15 +2815,18 @@ class Data {
                     basicAttack: {
                         displayName: "Coup de fourche",
                         damage: 3,
-                        range: 1
+                        range: 1,
+                        description: "Les outils ne sont pas des armes, leurs coups font néanmoins mal"
                     },
                     sandThrow: {
                         displayName: "Jet de sable",
                         damage: 1,
-                        range: 2
+                        range: 2,
+                        description: "Un jet de sable qui ralentit l'ennemi (TODO): ne ralentit pas encore"
                     }
                 }
-            }
+            },
+            description: "Le villageois s'occupe des récoltes."
         },
         fighter: {
             unitName: "fighter",
@@ -2837,15 +2846,18 @@ class Data {
                         displayName: "coup d'épée",
                         damage: 4,
                         range: 1,
+                        description: "Comme son nom l'indique"
                     },
                     jump: {
                         displayName: "bond",
                         damage: 0,
                         range: 2,
-                        effect: "jump"
+                        effect: "jump",
+                        description: "Un gigantesque bond permettant d'atteindre l'ennemi où qu'il se cache"
                     }
                 }
-            }
+            },
+            description: "Le guerrier est capable de se mouvoir très rapidement et de frapper fort quand la situation l'exige."
         },
         campfire: {
             unitName: "campfire",

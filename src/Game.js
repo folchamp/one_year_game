@@ -56,6 +56,7 @@ class Game {
 
         // engine
         this.log = new Log();
+        this.tooltip = new Tooltip();
         this.world = new World();
         this.selection = new Selection();
         this.hotkeys = new Hotkeys();
@@ -81,7 +82,7 @@ class Game {
         this.inventory = new Inventory();
         this.community = new Community();
         this.humanPlayer = new Player(0, this.community, this.inventory, new IA(this.ECS, this.world, this.iaActions));
-        this.ui = new UI(this.selection, this.uiActions, this.humanPlayer);
+        this.ui = new UI(this.selection, this.uiActions, this.humanPlayer, this.tooltip);
 
         // render
         this.render = new Render(this.context, this.display, this.camera, this.world, this.ECS, this.selection, this.humanPlayer);
