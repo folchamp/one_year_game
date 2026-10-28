@@ -2712,7 +2712,7 @@ class Data {
     }
 
     static creatableUnits = [
-        "harvester", "explorer", "hunter"
+        "harvester", "explorer", "hunter", "fighter"
     ]
 
     static units = {
@@ -2782,6 +2782,12 @@ class Data {
                         damage: 0,
                         range: 3,
                         effect: "transposition"
+                    },
+                    vision: {
+                        displayName: "vision",
+                        damage: 0,
+                        range: 5,
+                        effect: "vision"
                     }
                 }
             }
@@ -2809,6 +2815,34 @@ class Data {
                         displayName: "Jet de sable",
                         damage: 1,
                         range: 2
+                    }
+                }
+            }
+        },
+        fighter: {
+            unitName: "fighter",
+            isHarvester: false,
+            range: 2,
+            sprite: { imageName: "fighter", width: 64, height: 64, radius: 48 },
+            hitbox: { type: "circle", radius: 48 },
+            unitPrice: {
+                food: 5,
+                building_material: 5
+            },
+            combatStats: {
+                hp: 30,
+                actions: 3,
+                powers: {
+                    basicAttack: {
+                        displayName: "coup d'épée",
+                        damage: 4,
+                        range: 1,
+                    },
+                    jump: {
+                        displayName: "bond",
+                        damage: 0,
+                        range: 2,
+                        effect: "jump"
                     }
                 }
             }

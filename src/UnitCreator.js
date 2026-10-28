@@ -44,6 +44,7 @@ class UnitCreator {
         this.ECS.Available.set(entity, unitData.combatStats.actions);
         this.ECS.Summons.set(entity, []);
         this.ECS.Passable.set(entity, false);
+        this.ECS.WorldPosition.set(entity, World.hexToWorld(pos));
         return entity;
     }
     createCampfire(pos) {
@@ -53,9 +54,13 @@ class UnitCreator {
         this.ECS.Sprite.set(entity, structuredClone(Data.units["campfire"].sprite));
         this.ECS.CombatStats.set(entity, structuredClone(Data.units["campfire"].combatStats));
         this.ECS.Passable.set(entity, true);
+        this.ECS.Summons.set(entity, []);
+        this.ECS.WorldPosition.set(entity, World.hexToWorld(pos));
         return entity;
     }
     killUnit(entity) {
+        const summoner = this.ECS.Summoner.get(entity);
+        const summons = this.ECS.Summons.get(summoner);
         this.ECS.Harvester.delete(entity);
         this.ECS.Explorer.delete(entity);
         this.ECS.Name.delete(entity);
@@ -67,8 +72,6 @@ class UnitCreator {
         this.ECS.Owner.delete(entity);
         this.ECS.Available.delete(entity);
         if (this.ECS.Summoner.get(entity)) {
-            const summoner = this.ECS.Summoner.get(entity);
-            const summons = this.ECS.Summons.get(summoner);
             const filteredSummons = summons.filter((summon) => { return summon !== entity }); // on ne garde dans la liste que les autres invocations
             // retirer l'entité décédée de la liste des invocations de l'invocateur
             this.ECS.Summons.set(summoner, filteredSummons);

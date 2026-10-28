@@ -50,13 +50,14 @@ class Hex {
         }
     }
     evolveBiome() {
-        if (this.fatigue > Settings.maxFatigue) {
+        if (this.fatigue >= Settings.maxFatigue) {
             // quand le biome actuel est trop dégradé, il change de nature et recommence son cycle
-            this.fatigue = 0;
             if (this.biome.degradation) {
                 if (this.biome.degradation === "desert" || this.biome.degradation === "city") {
                     // quand on atteint le dernier stade de dégradation (le désert), toutes les ressources disparaissent
                     this.resources = [];
+                } else {
+                    this.fatigue = 0;
                 }
                 this.setBiome(Data.biomes[this.biome.degradation]);
             }
@@ -65,7 +66,9 @@ class Hex {
     update() {
         if (this.fatigue > 0 && this.biome.biomeName !== "city") {
             const fatigueToRecover = Settings.fatigueRecovery / Settings.amountOfPlayers; // combien de fatigue on perd par tour
+            this.fatigue = Math.min(this.fatigue, Settings.maxFatigue);
             this.fatigue = Math.max(0, this.fatigue - fatigueToRecover); // ne pas descendre en dessous de 0 de fatigue
+            console.log(fatigueToRecover);
         }
         this.resources.forEach((resource) => {
             if (resource.regeneratesIn > 0) {
@@ -87,6 +90,7 @@ class Hex {
                 resource.regeneratesIn = resource.resourceData.regeneration;
             }
         });
+        this.evolveBiome();
     }
     isSame(hex) {
         return this.q === hex.q && this.r === hex.r;

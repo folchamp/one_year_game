@@ -472,54 +472,53 @@ refactor css
 design épuré
 ♥ 28/10/2026
 nouvelles idées de gameplay et d'équilibrage
-- 10 ressources de chaque au début
-- 3 actions par personnage
+10 ressources de chaque au début
+3 actions par personnage
+bug dégradation
+créer un personnage explorateur qui peut révéler des tuiles en zone
+ajouter des explorateurs, on a vraiment besoin de connaître la map plus rapidement
+trop pénible de subir les "chocs de caméra", fluidifier le mouvement de caméra
+les déserts reprennent vie
+trop pénible de ne pas se souvenir du mouvement de ses troupes : ajouter des animations de mouvement 
+gros, gros, clean du code
+questionner chaque ligne, chaque choix
+les unités ont des pouvoirs à la krosmaster/dofus
+créer les dessins !
+le cra peut lancer une flèche-oiseau comme Ashe pour explorer une zone
+repasser dans ces fichiers et tout nettoyer
+repasser dans toute la todo
+faire jouer les attributs des biomes et générer de nouveaux biomes avec de nouvelles ressources 
+afficher les combats stats dans l'UI
+avoir une taille d'UI fixe à tout moment 
+halo vert sur les explorateurs qui n'ont encore rien harvest ce tour-ci
+learn priorise les connaissances non-apprises ???
+remplir les learns vides
+ECS traversable ou non-traversable
+biomes se regénèrent
+les biomes peuvent récupérer
 
 ********************
 TODO
 ********************
 ---------- EN COURS ----------
-bug dégradation
 
 victoryscreen
 revoir les alert() et faire un système propre
-les unités ont des pouvoirs à la krosmaster/dofus
-créer les dessins !
-le cra peut lancer une flèche-oiseau comme Ashe pour explorer une zone
 les hexagones que tu es le seul à avoir exploré ont un marquage
 pouvoir de déplacement "galop" en ligne qui touche tous les adversaires sur le chemin
 hôtel de vent dans lequel tu peux échanger des ressources, 1 pour 1
-persistance
+persistance des données
 menu ♦ new game ♦ continue ♦ help ♦ about  
-
-gros, gros, clean du code
-questionner chaque ligne, chaque choix
-repasser dans ces fichiers et tout nettoyer
-- ia
-- todo
-
-Je viens de faire une game :
-- certaines actions donnent plus de ressources (ajouter un amount au get)
-- 1 de bouffe par personnnage à payer chaque tour pour éviter le snowball infini : sinon -1hp à chaque personnage
-- ajouter des explorateurs, on a vraiment besoin de connaître la map plus rapidement
----------------------------------
-- trop pénible d'explorer toutes les tuiles : créer un personnage explorateur qui peut révéler le explorer des tuiles en zone
-- trop pénible de récolter des ressources : réduire le coût des unités à 1 de chaque (plutôt que 3 ou 5)
-- trop pénible de subir les "chocs de caméra", fluidifier le mouvement de caméra
-- trop pénible de ne pas se souvenir du mouvement de ses troupes : ajouter des animations de mouvement 
-- trop pénible de ne pas voir les attaques : ajouter des animations d'attaque
-- trop facile de créer plein d'unités (et donc de surencombrer la map) : créer un système de population (genre Praetorians)
+refaire l'ia
+1 de bouffe par personnnage à payer chaque tour pour éviter le snowball infini : sinon -1hp à chaque personnage
+trop pénible de ne pas voir les attaques : ajouter des animations d'attaque
+trop facile de créer plein d'unités (et donc de surencombrer la map) : créer un système de population (genre Praetorians)
+rework RAC, chaque action d'une même ressource donne une ressource différente
 
 ---------- MUST ----------
-faire jouer les attributs des biomes et générer de nouveaux biomes avec de nouvelles ressources 
-afficher les combats stats dans l'UI
-avoir une taille d'UI fixe à tout moment 
-rework RAC, chaque action d'une même ressource donne une ressource différente
-passer en bête tour par tour ? En temps réel ?
 ajouter une action "wait" et "heal"
 petit feedback à hauteur de souris quand un action ne fonctionne pas 
 système de notifications
-système de notification
 notifier les nouvelles découvertes
 les unités nouvellement construites n'agissent pas encore
 les IA cherchent en priorité les tuiles avec de la nourriture et des outils
@@ -527,29 +526,19 @@ refactor/remove "improve" actions
 êtes-vous sûr ? oui, non 
 
 Écrire des rencontres, des lieux, des morceaux d’histoire pour les tuiles
-halo vert sur les explorateurs qui n'ont encore rien harvest ce tour-ci
 un hex doit être vidé de ressources pour être constructible
 Le joueur qui a le plus de misc (science etc.) gagne un bonus de combat (+10 attaque)
 système de pause ?
 menu ?
-learn priorise les connaissances non-apprises ???
-remplir les learns vides
 another crop (crop_cultivation)
 better_tools
 afficher le résultat d'une action dans l'UI
-ECS traversable ou non-traversable
-biomes se regénèrent
-les biomes peuvent récupérer
 rendre les logs cliquables
 ajouter un listener dans Util.js (voir classe Listener)
 connaissances === outils
-Les ressources ont des types (naturelle, fabriquée, vestige)
-distribuer les ressources dans les trois catégories (naturelles, fabriquées, vestiges)
 certaines ressources sont "plantables" ?
-coût logistique en fonction de la distance avec la communauté (récolter des ressources plus loin coûte plus cher)
 nettoyer et optimiser Render.js
 coût de harvest ?
-message d'erreur quand on essaye de récolter et qu'on a déjà récolté avec cet explorateur
 Créer un coût logistique (en “humains”)
 Créer une fatigue du village
 Créer une diversité génétique (=condition de victoire)
@@ -558,6 +547,13 @@ decide the next steps
 
 
 ---------- SHOULD ----------
+coût logistique en fonction de la distance avec la communauté (récolter des ressources plus loin coûte plus cher)
+Les ressources ont des types (naturelle, fabriquée, vestige)
+distribuer les ressources dans les trois catégories (naturelles, fabriquées, vestiges)
+message d'erreur quand on essaye de récolter et qu'on a déjà récolté avec cet explorateur
+passer en bête tour par tour ? En temps réel ?
+certaines actions donnent plus de ressources (ajouter un amount au get)
+trop pénible de récolter des ressources : réduire le coût des unités à 1 de chaque (plutôt que 3 ou 5)
 cliquer droit sur un enemi déclenche une attaque au tick
 flèche rouge quand on attaque
 passer le jeu en temps réel

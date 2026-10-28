@@ -4,8 +4,8 @@ class Camera {
     constructor(canvas) {
         this.canvas = canvas;
 
-        this.x = 0;
-        this.y = 0;
+        this.position = { x: 0, y: 0 };
+        this.destination = { x: 0, y: 0 };
         this.zoom = Settings.initialZoom;
 
         this.isDragging = false;
@@ -25,8 +25,10 @@ class Camera {
             if (this.isDragging) {
                 const mousePosition = Util.getMousePosition(this.canvas, event);
                 const diff = { x: mousePosition.x - this.lastMousePosition.x, y: mousePosition.y - this.lastMousePosition.y };
-                this.x -= diff.x / this.zoom; // on divise par le zoom pour que la vitesse de panning reste la même
-                this.y -= diff.y / this.zoom;
+                this.position.x -= diff.x / this.zoom; // on divise par le zoom pour que la vitesse de panning reste la même
+                this.position.y -= diff.y / this.zoom;
+                this.destination.x = this.position.x;
+                this.destination.y = this.position.y;
                 this.lastMousePosition = mousePosition;
             }
         });
@@ -45,11 +47,14 @@ class Camera {
             else
                 this.zoom /= factor;
             // On ajuste la caméra pour que le même point du monde reste sous la souris
-            this.x = worldPosition.x - (mousePosition.x - this.canvas.width / 2) / this.zoom;
-            this.y = worldPosition.y - (mousePosition.y - this.canvas.height / 2) / this.zoom;
+            this.position.x = worldPosition.x - (mousePosition.x - this.canvas.width / 2) / this.zoom;
+            this.position.y = worldPosition.y - (mousePosition.y - this.canvas.height / 2) / this.zoom;
+            this.destination.x = this.position.x;
+            this.destination.y = this.position.y;
         });
     }
-    update() {
+    update(deltaTime) {
+        Animator.animate(this.position, this.destination, Settings.cameraSpeed, deltaTime)
         if (this.edgePanningMousePosition !== undefined && this.mouseInside) {
             if (this.edgePanningMousePosition.x < Settings.edgePanningWidth) {
                 this.cameraLeft(Settings.edgePanSpeed);
@@ -72,29 +77,29 @@ class Camera {
         this.zoom = 1;
     }
     resetCamera() {
-        this.x = 0;
-        this.y = 0;
+        this.destination.x = 0;
+        this.destination.y = 0;
     }
     moveCamera(position) {
-        this.x = position.x;
-        this.y = position.y;
+        this.destination.x = position.x;
+        this.destination.y = position.y;
     }
     cameraLeft(panSpeed = Settings.panSpeed) {
-        this.x -= panSpeed / this.zoom;
+        this.destination.x = this.position.x - panSpeed / this.zoom;
     }
     cameraRight(panSpeed = Settings.panSpeed) {
-        this.x += panSpeed / this.zoom;
+        this.destination.x = this.position.x + panSpeed / this.zoom;
     }
     cameraUp(panSpeed = Settings.panSpeed) {
-        this.y -= panSpeed / this.zoom;
+        this.destination.y = this.position.y - panSpeed / this.zoom;
     }
     cameraDown(panSpeed = Settings.panSpeed) {
-        this.y += panSpeed / this.zoom;
+        this.destination.y = this.position.y + panSpeed / this.zoom;
     }
     screenToWorld(position) {
         return {
-            x: (position.x - this.canvas.width / 2) / this.zoom + this.x,
-            y: (position.y - this.canvas.height / 2) / this.zoom + this.y
+            x: (position.x - this.canvas.width / 2) / this.zoom + this.position.x,
+            y: (position.y - this.canvas.height / 2) / this.zoom + this.position.y
         };
     }
 }

@@ -1,0 +1,26 @@
+food
+tool
+raw_material
+building_material
+comfort
+misc
+energy
+medicine
+living
+
+
+        const dx = this.destinationX - this.x;
+        const dy = this.destinationY - this.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        const angle = Math.atan2(dy, dx);
+        const velocityX = Math.cos(angle);
+        const velocityY = Math.sin(angle);
+        if (distance > 1) {
+            const stepX = Math.min(distance, deltaTime * Settings.cameraSpeed);
+            const stepY = Math.min(distance, deltaTime * Settings.cameraSpeed);
+            this.x += stepX * velocityX;
+            this.y += stepY * velocityY;
+        } else {
+            this.x = this.destinationX;
+            this.y = this.destinationY
+        }

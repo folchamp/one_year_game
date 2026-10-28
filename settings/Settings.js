@@ -36,12 +36,13 @@ class Settings {
     static maxAmountOfPlayers = 6; // TODO make this bigger
     static playerColorArcRadius = 20;
     static playerColorArcOffset = 8;
-    static maxFatigue = 12;
+    static maxFatigue = 13;
     static fatigueRecovery = 1;
     static mapRadius = 8;
     // static mapRadius = 20;
     static panSpeed = 256;
     static edgePanSpeed = 32;
+    static cameraSpeed = 5;
     static initialZoom = 1;
     static maxResourcesPerHex = 1;
     static fatigueBarWidth = 100;

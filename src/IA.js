@@ -58,7 +58,7 @@ class IA {
         Data.creatableUnits.forEach((unitName) => {
             const unit = Data.units[unitName];
             if (this.owner.inventory.has(unit.unitPrice) &&
-                !this.isHexPositionOccupied(this.ECS, { q: this.owner.startHexPosition.q, r: this.owner.startHexPosition.r })) {
+                !this.isHexPositionOccupied({ q: this.owner.startHexPosition.q, r: this.owner.startHexPosition.r })) {
                 this.actions.createUnit(unitName, this.owner);
             }
         });

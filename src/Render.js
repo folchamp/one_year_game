@@ -10,7 +10,7 @@ class Render {
         this.selection = selection;
         this.humanPlayer = humanPlayer;
     }
-    render() {
+    render(deltaTime) {
         // clear
         this.context.clearRect(0, 0, this.display.getWidth(), this.display.getHeight());
 
@@ -18,7 +18,7 @@ class Render {
         this.context.save();
         this.context.translate(this.display.getWidth() / 2, this.display.getHeight() / 2);
         this.context.scale(this.camera.zoom, this.camera.zoom);
-        this.context.translate(-this.camera.x, -this.camera.y);
+        this.context.translate(-this.camera.position.x, -this.camera.position.y);
 
         // --------------------
         // draw world
@@ -48,13 +48,11 @@ class Render {
         // --------------------
         // on dessine les entités
         this.ECS.Sprite.forEach((sprite, entity, map) => {
-            this.drawEntity(entity, false);
-            if (this.ECS.Order.get(entity) !== undefined) {
-            }
+            this.drawEntity(entity, false, deltaTime);
         });
         // on dessine l'entité sélectionnée
         if (this.selection.selectedEntity !== undefined) {
-            this.drawEntity(this.selection.selectedEntity, true);
+            this.drawEntity(this.selection.selectedEntity, true, deltaTime);
         }
 
         // --------------------
@@ -97,14 +95,16 @@ class Render {
         }
         this.context.restore();
     }
-    drawEntity(entity, isSelected) {
+    drawEntity(entity, isSelected, deltaTime) {
         const sprite = this.ECS.Sprite.get(entity);
         const owner = this.ECS.Owner.get(entity);
         const hexPosition = this.ECS.Position.get(entity);
         const hex = this.world.get(hexPosition.q, hexPosition.r);
         const combatStats = this.ECS.CombatStats.get(entity);
         if (hex.hasSeen(this.humanPlayer) || !Settings.production) {
-            let worldPosition = World.hexToWorld(hexPosition);
+            const worldRealPosition = World.hexToWorld(hexPosition);
+            const worldPosition = this.ECS.WorldPosition.get(entity);
+            Animator.animate(worldPosition, worldRealPosition, 1, deltaTime);
             this.context.beginPath();
             this.context.arc(worldPosition.x - Settings.playerColorArcOffset, worldPosition.y + sprite.height / 2, Settings.playerColorArcRadius, 0, Math.PI * 2);
             if (isSelected) {
@@ -229,7 +229,7 @@ class Render {
         this.context.font = "bold 11px Arial";
         this.context.textAlign = "center";
         this.context.textBaseline = "middle";
-        this.context.fillText(Math.max(0, Math.round(Settings.maxFatigue - hex.fatigue)), circleX, circleY);
+        this.context.fillText(Math.max(0, Math.ceil(Settings.maxFatigue - hex.fatigue)), circleX, circleY);
     }
     drawHex(hex) {
         const pos = this.getWorldPosition(hex);

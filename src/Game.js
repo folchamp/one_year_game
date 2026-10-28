@@ -52,6 +52,7 @@ class Game {
         this.ECS.Summons = new Map();
         this.ECS.Summoner = new Map();
         this.ECS.Passable = new Map();
+        this.ECS.WorldPosition = new Map();
 
         // engine
         this.log = new Log();
@@ -105,8 +106,9 @@ class Game {
         // start
         this.explore();
         this.ui.update();
-
         this.selectNextIdle(this.humanPlayer);
+
+        this.lastTimeStamp = Date.now();
         this.loop();
     }
     downloadResources() {
@@ -125,7 +127,9 @@ class Game {
     }
     rightclick(event) {
         event.preventDefault();
-        if (this.selection.selectedEntity !== undefined) {
+        if (this.targetting !== undefined) {
+            this.cleanTargetting();
+        } else if (this.selection.selectedEntity !== undefined) {
             let entity = this.selection.selectedEntity;
             let worldPosition = this.getMouseWorldPosition(event);
             let hex = this.world.getHexFromWorldPosition(worldPosition);
@@ -284,8 +288,12 @@ class Game {
         }
     }
     loop() {
-        this.camera.update();
-        this.render.render(this.world, this.ECS, this.selection);
+        const now = Date.now();
+        const deltaTime = now - this.lastTimeStamp;
+        this.lastTimeStamp = now;
+
+        this.camera.update(deltaTime);
+        this.render.render(deltaTime);
         window.requestAnimationFrame(() => { this.loop(); });
     }
     // **************************************************

@@ -39,6 +39,15 @@ class World {
             { q: q + 1, r: r - 1 },
             { q: q - 1, r: r + 1 }]
     };
+    update() {
+        this.hexes.forEach((hex) => {
+            hex.update();
+            if (hex.biome.biomeName === "desert" && hex.fatigue === 0) {
+                this.fillBiome(hex);
+                this.fillHexResources(hex);
+            }
+        });
+    }
     getHexesWithinRange(position, range) {
         const result = [];
         const visited = new Set();
@@ -90,9 +99,6 @@ class World {
     exploreTile(position, player) {
         this.hexes.get(`${position.q}, ${position.r}`).explore(player);
     }
-    update() {
-        this.hexes.forEach((hex) => hex.update());
-    }
     getRandomHex() {
         return Random.fromArray(this.hexesArray);
     }
@@ -135,25 +141,31 @@ class World {
     }
     fillBiomes() {
         this.hexes.forEach((hex) => {
-            hex.biome = Data.biomes["plains"];
-            for (let biomeName in Data.biomes) {
-                let biome = Data.biomes[biomeName];
-                if (hex[biome.attribute] > biome.treshold) {
-                    hex.biome = biome;
-                }
-            }
+            this.fillBiome(hex);
         });
+    }
+    fillBiome(hex) {
+        hex.biome = Data.biomes["plains"];
+        for (let biomeName in Data.biomes) {
+            let biome = Data.biomes[biomeName];
+            if (hex[biome.attribute] > biome.treshold) {
+                hex.biome = biome;
+            }
+        }
     }
     fillResources() {
         this.hexes.forEach((hex) => {
-            for (let index = 0; index < hex.biome.amountOfResources; index++) {
-                let resourceName = Random.fromArray(hex.biome.resources);
-                if (resourceName !== "nothing") {
-                    hex.addResource((Data.resources[resourceName]));
-                }
-            }
-            hex.setBiome(hex.biome); // why this ? Can't remember
+            this.fillHexResources(hex);
         });
+    }
+    fillHexResources(hex) {
+        for (let index = 0; index < hex.biome.amountOfResources; index++) {
+            let resourceName = Random.fromArray(hex.biome.resources);
+            if (resourceName !== "nothing") {
+                hex.addResource((Data.resources[resourceName]));
+            }
+        }
+        hex.setBiome(hex.biome); // why this ? Can't remember
     }
     getRandomBiome() {
         return Data.biomes[Random.fromArray(Data.biomeNamesForGeneration)];
