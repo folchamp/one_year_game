@@ -41,7 +41,7 @@ class UnitCreator {
         this.ECS.Sprite.set(entity, structuredClone(unitData.sprite));
         this.ECS.Hitbox.set(entity, structuredClone(unitData.hitbox));
         this.ECS.CombatStats.set(entity, structuredClone(unitData.combatStats));
-        this.ECS.Available.set(entity, true);
+        this.ECS.Available.set(entity, unitData.combatStats.actions);
         this.ECS.Summons.set(entity, []);
         this.ECS.Passable.set(entity, false);
         return entity;

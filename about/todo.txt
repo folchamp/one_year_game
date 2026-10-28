@@ -470,11 +470,17 @@ Euh... chipotage
 ♥ 27/10/2026
 refactor css
 design épuré
+♥ 28/10/2026
+nouvelles idées de gameplay et d'équilibrage
+- 10 ressources de chaque au début
+- 3 actions par personnage
 
 ********************
 TODO
 ********************
 ---------- EN COURS ----------
+bug dégradation
+
 victoryscreen
 revoir les alert() et faire un système propre
 les unités ont des pouvoirs à la krosmaster/dofus
@@ -493,6 +499,10 @@ repasser dans ces fichiers et tout nettoyer
 - todo
 
 Je viens de faire une game :
+- certaines actions donnent plus de ressources (ajouter un amount au get)
+- 1 de bouffe par personnnage à payer chaque tour pour éviter le snowball infini : sinon -1hp à chaque personnage
+- ajouter des explorateurs, on a vraiment besoin de connaître la map plus rapidement
+---------------------------------
 - trop pénible d'explorer toutes les tuiles : créer un personnage explorateur qui peut révéler le explorer des tuiles en zone
 - trop pénible de récolter des ressources : réduire le coût des unités à 1 de chaque (plutôt que 3 ou 5)
 - trop pénible de subir les "chocs de caméra", fluidifier le mouvement de caméra

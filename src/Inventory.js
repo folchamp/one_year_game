@@ -4,7 +4,7 @@ class Inventory {
     constructor() {
         this.content = {};
         for (const categoryName in Data.categories) {
-            this.content[categoryName] ??= 0;
+            this.content[categoryName] ??= Settings.startingResources;
         }
     }
     add(resource) {

@@ -203,7 +203,7 @@ class Game {
     getIdles(owner) {
         let idles = [];
         this.ECS.Available.forEach((isAvailable, entity, array) => {
-            if (this.ECS.Owner.get(entity) === owner && isAvailable) {
+            if (this.ECS.Owner.get(entity) === owner && isAvailable > 0) {
                 idles.push(entity);
             }
         });
@@ -247,7 +247,8 @@ class Game {
     }
     makeAvailable() {
         this.ECS.Available.forEach((isAvailable, entity, map) => {
-            this.ECS.Available.set(entity, true);
+            const maxActions = this.ECS.CombatStats.get(entity).actions;
+            this.ECS.Available.set(entity, maxActions);
         });
     }
     resolveTick(player) {
@@ -328,7 +329,7 @@ class Game {
         });
     }
     setPower(targetHex, targetting) {
-        if (this.ECS.Available.get(targetting.attacker)) {
+        if (this.ECS.Available.get(targetting.attacker) > 0) {
             const isTargetable = targetting.targetableHexes.some((hex) => targetHex.q === hex.q && targetHex.r === hex.r);
             if (isTargetable) {
                 let entity;
@@ -358,7 +359,7 @@ class Game {
         this.cleanTargetting();
     }
     setMove(entity, hex) {
-        if (this.ECS.Available.get(entity)) {
+        if (this.ECS.Available.get(entity) > 0) {
             this.cleanEntity(entity);
             let movement = this.ECS.Movement.get(entity);
             if (movement !== undefined) {
@@ -374,7 +375,7 @@ class Game {
         }
     }
     setOrder(hex, resource, actionName, entity) {
-        if (this.ECS.Available.get(entity)) {
+        if (this.ECS.Available.get(entity) > 0) {
             this.cleanEntity(entity);
             this.ECS.Order.set(entity, { hex: hex, resource: resource, actionName: actionName });
             this.actionSystem.update(entity);

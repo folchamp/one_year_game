@@ -82,7 +82,8 @@ class Hex {
             if (resource.isAvailable && resource.resourceData.resourceName === resourceName) {
                 let fatigueIncrease = Data.categories[Data.resources[resourceName].category].fatigue;
                 this.fatigue += fatigueIncrease;
-                resource.isAvailable = false;
+                // test sans le concept 
+                // resource.isAvailable = false; 
                 resource.regeneratesIn = resource.resourceData.regeneration;
             }
         });

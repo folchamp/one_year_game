@@ -2719,7 +2719,7 @@ class Data {
         crow: {
             unitName: "crow",
             isHarvester: false,
-            range: 2,
+            range: 1,
             sprite: { imageName: "crow", width: 64, height: 64, radius: 48 },
             hitbox: { type: "circle", radius: 48 },
             unitPrice: {
@@ -2728,6 +2728,7 @@ class Data {
             },
             combatStats: {
                 hp: 1,
+                actions: 6,
                 powers: {
                     basicAttack: {
                         displayName: "bécot",
@@ -2749,6 +2750,7 @@ class Data {
             },
             combatStats: {
                 hp: 20,
+                actions: 3,
                 amountOfSummons: 3,
                 powers: {
                     basicAttack: {
@@ -2773,6 +2775,7 @@ class Data {
             },
             combatStats: {
                 hp: 20,
+                actions: 3,
                 powers: {
                     basicAttack: {
                         displayName: "transposition",
@@ -2783,48 +2786,6 @@ class Data {
                 }
             }
         },
-        // hunter: {
-        //     unitName: "hunter",
-        //     isHarvester: false,
-        //     range: 2,
-        //     sprite: { imageName: "hunter", width: 64, height: 64, radius: 48 },
-        //     hitbox: { type: "circle", radius: 48 },
-        //     unitPrice: {
-        //         food: 5,
-        //         tool: 3
-        //     },
-        //     combatStats: {
-        //         hp: 20,
-        //         powers: {
-        //             basicAttack: {
-        //                 powerName: "Lancer de fronde",
-        //                 damage: 9,
-        //                 range: 1
-        //             }
-        //         }
-        //     }
-        // },
-        // explorer: {
-        //     unitName: "explorer",
-        //     isHarvester: false,
-        //     range: 4,
-        //     sprite: { imageName: "explorer", width: 64, height: 64, radius: 48 },
-        //     hitbox: { type: "circle", radius: 48 },
-        //     unitPrice: {
-        //         food: 6,
-        //         tool: 4
-        //     },
-        //     combatStats: {
-        //         hp: 17,
-        //         powers: {
-        //             basicAttack: {
-        //                 powerName: "Tir à l'arc",
-        //                 damage: 6,
-        //                 range: 2
-        //             }
-        //         }
-        //     }
-        // },
         harvester: {
             unitName: "harvester",
             isHarvester: true,
@@ -2837,6 +2798,7 @@ class Data {
             },
             combatStats: {
                 hp: 9,
+                actions: 4,
                 powers: {
                     basicAttack: {
                         displayName: "Coup de fourche",

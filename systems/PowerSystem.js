@@ -31,9 +31,10 @@ class PowerSystem {
     }
     update(entity) {
         const power = this.ECS.Power.get(entity);
-        if (this.ECS.Available.get(entity) === true) {
+        const actualActions = this.ECS.Available.get(entity);
+        if (actualActions > 0) {
             this.usePower(power);
-            this.ECS.Available.set(entity, false);
+            this.ECS.Available.set(entity, actualActions - 1);
         }
     }
 }

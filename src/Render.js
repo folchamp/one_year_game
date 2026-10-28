@@ -114,7 +114,8 @@ class Render {
             }
             this.context.drawImage(Images.unitImages[sprite.imageName],
                 worldPosition.x - sprite.width / 2, worldPosition.y - sprite.height / 2, sprite.width, sprite.height);
-            if (this.ECS.Available.get(entity) === true) {
+            if (this.ECS.Available.get(entity) > 0) {
+                // actions disponibles
                 this.context.save();
                 const indicatorSize = 20;
                 const indicatorY = worldPosition.y - sprite.height / 2 - 8;
@@ -123,6 +124,8 @@ class Render {
                 this.context.fillStyle = "#00ff22";
                 this.context.fillRect(-indicatorSize / 2, -indicatorSize / 2, indicatorSize, indicatorSize);
                 this.context.restore();
+                this.context.font = "20px Arial";
+                this.context.fillText(this.ECS.Available.get(entity), worldPosition.x - 6, worldPosition.y - (sprite.height / 2) - 1);
             }
             if (combatStats !== undefined) {
                 const maxHP = combatStats.hp;

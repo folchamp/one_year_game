@@ -16,14 +16,15 @@ class MovementSystem {
     }
     update(entity) {
         const movement = this.ECS.Movement.get(entity);
+        const actualActions = this.ECS.Available.get(entity);
         let position = this.ECS.Position.get(entity);
         if (position && movement.path.length > 0) {
             let newHexPosition = movement.path[0];
-            if (!this.isHexPositionOccupied(newHexPosition) && this.ECS.Available.get(entity) === true) {
+            if (!this.isHexPositionOccupied(newHexPosition) && actualActions > 0) {
                 position.q = newHexPosition.q;
                 position.r = newHexPosition.r;
                 movement.path.shift();
-                this.ECS.Available.set(entity, false);
+                this.ECS.Available.set(entity, actualActions - 1);
             }
         }
     }

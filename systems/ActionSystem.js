@@ -26,9 +26,10 @@ class ActionSystem {
     }
     update(entity) {
         const order = this.ECS.Order.get(entity);
-        if (this.ECS.Available.get(entity) === true) {
+        const actualActions = this.ECS.Available.get(entity);
+        if (actualActions > 0) {
             this.action(order.hex, order.resource, order.actionName, entity);
-            this.ECS.Available.set(entity, false);
+            this.ECS.Available.set(entity, actualActions - 1);
         }
     }
 }
