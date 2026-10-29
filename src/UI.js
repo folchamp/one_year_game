@@ -11,6 +11,8 @@ class UI {
         this.community = this.humanPlayer.community;
         this.lastMousePosition = { x: 0, y: 0 };
 
+        this.hotkeys = ["A", "Z", "E", "R"];
+
         // **************************************************
         // UI
         // **************************************************
@@ -114,10 +116,20 @@ class UI {
             this.tooltip.attach(this.inventoryCategoryContainer, `${category.categoryDisplayName} : catégorie de ressources`)
         }
     }
+    usePower(index) {
+        this[this.hotkeys[index]]();
+    }
+    resetHotkeys() {
+        for (let index = 0; index < this.hotkeys.length; index++) {
+            this[this.hotkeys[index]] = () => { };
+        }
+    }
     updateUnit() {
         const entity = this.selection.selectedEntity;
         const powersData = this.selection.selectedEntityData.combatStats.powers;
+        let powerCount = 0;
         this.unitSpellsContainer.replaceChildren();
+        this.resetHotkeys();
         for (const powerName in powersData) {
             const power = powersData[powerName];
             Util.quickStructure(this.unitSpellsContainer, this,
@@ -144,7 +156,7 @@ class UI {
             this.effectImage.src = Images.otherImages["effect"].src;
             this.rangeImage.src = Images.otherImages["range"].src;
             this.damageImage.src = Images.otherImages["damage"].src;
-            this.powerNameText.innerText = power.displayName;
+            this.powerNameText.innerText = `${power.displayName} (${this.hotkeys[powerCount]})`;
             this.powerRangeText.innerText = power.range;
             this.powerDamageText.innerText = power.damage;
             this.powerEffectText.innerText = power.effect;
@@ -160,8 +172,8 @@ class UI {
             this.singlePowerContainer.addEventListener("click", (event) => {
                 this.uiActions.powerButtonClick(entity, power);
             });
-            // TODO reset buttons
-            // TODO link the action to a button
+            this[this.hotkeys[powerCount]] = () => { this.uiActions.powerButtonClick(entity, power); };
+            powerCount++;
             this.tooltip.attach(this.singlePowerContainer, power.description);
         }
         this.unitImage.src = Images.unitImages[this.selection.selectedEntityData.sprite.imageName].src
@@ -245,6 +257,7 @@ class UI {
         Util.hide(this.unitSelectorContainer);
         Util.hide(this.hexSelectorContainer);
         Util.hide(this.uiCommunityActionsContainer);
+        this.resetHotkeys();
         if (this.selection.selectedEntity !== undefined) {
             this.updateUnit();
         }

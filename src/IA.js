@@ -59,13 +59,15 @@ class IA {
         }
     }
     createUnits() {
+        let units = [];
         Data.creatableUnits.forEach((unitName) => {
             const unit = Data.units[unitName];
             if (this.owner.inventory.has(unit.unitPrice) &&
                 !this.isHexPositionOccupied({ q: this.owner.startHexPosition.q, r: this.owner.startHexPosition.r })) {
-                this.actions.createUnit(unitName, this.owner);
+                units.push(this.actions.createUnit(unitName, this.owner));
             }
         });
+        return units;
     }
     getTargetting(entity) {
         let targetting;
@@ -100,11 +102,14 @@ class IA {
     }
     act(entitites) {
         let isDone = true;
-        this.createUnits();
+        entitites.push(...this.createUnits());
         entitites.forEach((entity) => {
+            let position = this.ECS.Position.get(entity);
             let actionsCount = this.ECS.Available.get(entity);
             let targetting = this.getTargetting(entity);
-            if (targetting !== undefined) {
+            if ((this.owner.startHexPosition.q === position.q && this.owner.startHexPosition.r === position.r)) {
+                this.roam(entity);
+            } else if (targetting !== undefined) {
                 // kick his ass
                 this.actions.setPower(targetting.targetHexPosition, targetting);
                 // console.log(this.ECS.Name.get(nearbyEnemy));

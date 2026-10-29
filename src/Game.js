@@ -11,10 +11,14 @@ class Game {
             toggleDev: { description: "Toggle dev mode", f: () => this.toggleDev() },
             nextTick: { description: "Run a tick, advance the game by one time unit", f: () => this.tick() },
             zoomOut: { description: "Zoom out to see everything", f: () => this.camera.zoomOut() },
-            downloadResources: { description: "Add Data.resources to clipboard", f: () => this.downloadResources() }
+            downloadResources: { description: "Add Data.resources to clipboard", f: () => this.downloadResources() },
+            usePower1: { description: "use power", f: () => this.ui.usePower(0) },
+            usePower2: { description: "use power", f: () => this.ui.usePower(1) },
+            usePower3: { description: "use power", f: () => this.ui.usePower(2) },
+            usePower4: { description: "use power", f: () => this.ui.usePower(3) }
         };
         this.uiActions = {
-            createUnit: (unitName, player) => this.createUnit(unitName, player),
+            createUnit: (unitName, player) => { return this.createUnit(unitName, player); },
             powerButtonClick: (entity, powerData) => this.powerButtonClick(entity, powerData),
             actionButtonClick: (hex, resource, actionName) => this.actionButtonClick(hex, resource, actionName),
             cameraLeft: () => this.camera.cameraLeft(),
@@ -24,7 +28,7 @@ class Game {
             nextTick: () => this.tick()
         }
         this.iaActions = {
-            createUnit: (unitName, player) => this.createUnit(unitName, player),
+            createUnit: (unitName, player) => { return this.createUnit(unitName, player); },
             setMove: (entity, hex) => this.setMove(entity, hex),
             setOrder: (hex, resource, actionName, entity) => this.setOrder(hex, resource, actionName, entity),
             setPower: (targetHex, targetting) => this.setPower(targetHex, targetting)
@@ -65,6 +69,12 @@ class Game {
         this.actionSystem = new ActionSystem(this.world, this.ECS);
         this.powerSystem = new PowerSystem(this.world, this.ECS, this.unitCreator);
 
+        // player
+        this.inventory = new Inventory();
+        this.community = new Community();
+        this.humanPlayer = new Player(0, this.community, this.inventory, new IA(this.ECS, this.world, this.iaActions));
+        this.ui = new UI(this.selection, this.uiActions, this.humanPlayer, this.tooltip);
+
         // hotkeys
         this.hotkeys.bind("Backquote", this.actions.selectNextIdle);
         this.hotkeys.bind("KeyY", this.actions.resetCamera);
@@ -74,15 +84,13 @@ class Game {
         this.hotkeys.bind("Space", this.actions.nextTick);
         this.hotkeys.bind("KeyU", this.actions.zoomOut);
         this.hotkeys.bind("KeyT", this.actions.downloadResources);
+        this.hotkeys.bind("KeyQ", this.actions.usePower1);
+        this.hotkeys.bind("KeyW", this.actions.usePower2);
+        this.hotkeys.bind("KeyE", this.actions.usePower3);
+        this.hotkeys.bind("KeyR", this.actions.usePower4);
         this.display.getCanvas().addEventListener("mousemove", (event) => { this.mousemove(event); });
         this.display.getCanvas().addEventListener("click", (event) => { this.click(event); });
         this.display.getCanvas().addEventListener("contextmenu", (event) => { this.rightclick(event); });
-
-        // player
-        this.inventory = new Inventory();
-        this.community = new Community();
-        this.humanPlayer = new Player(0, this.community, this.inventory, new IA(this.ECS, this.world, this.iaActions));
-        this.ui = new UI(this.selection, this.uiActions, this.humanPlayer, this.tooltip);
 
         // render
         this.render = new Render(this.context, this.display, this.camera, this.world, this.ECS, this.selection, this.humanPlayer);
@@ -171,16 +179,18 @@ class Game {
     createUnit(unitName, owner) {
         const unitData = Data.units[unitName];
         const price = unitData.unitPrice;
+        let unit;
         if (owner === this.humanPlayer && this.movementSystem.isHexPositionOccupied({ q: owner.startHexPosition.q, r: owner.startHexPosition.r })) {
             alert("hex is not free");
         } else if (!owner.inventory.has(price) && Settings.production) {
             alert("not enough resources");
         } else {
             owner.inventory.consume(price)
-            this.unitCreator.create(unitName, owner.startHexPosition, owner);
+            unit = this.unitCreator.create(unitName, owner.startHexPosition, owner);
         }
         this.explore();
         this.ui.update();
+        return unit;
     }
     powerButtonClick(entity, powerData) {
         const entityPosition = this.ECS.Position.get(entity);
