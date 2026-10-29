@@ -160,6 +160,8 @@ class UI {
             this.singlePowerContainer.addEventListener("click", (event) => {
                 this.uiActions.powerButtonClick(entity, power);
             });
+            // TODO reset buttons
+            // TODO link the action to a button
             this.tooltip.attach(this.singlePowerContainer, power.description);
         }
         this.unitImage.src = Images.unitImages[this.selection.selectedEntityData.sprite.imageName].src

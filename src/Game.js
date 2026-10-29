@@ -67,12 +67,12 @@ class Game {
 
         // hotkeys
         this.hotkeys.bind("Backquote", this.actions.selectNextIdle);
-        this.hotkeys.bind("KeyR", this.actions.resetCamera);
-        this.hotkeys.bind("KeyW", this.actions.resetZoom);
+        this.hotkeys.bind("KeyY", this.actions.resetCamera);
+        this.hotkeys.bind("KeyI", this.actions.resetZoom);
         this.hotkeys.bind("KeyH", this.actions.openHotkeysMenu);
         this.hotkeys.bind("KeyD", this.actions.toggleDev);
         this.hotkeys.bind("Space", this.actions.nextTick);
-        this.hotkeys.bind("KeyQ", this.actions.zoomOut);
+        this.hotkeys.bind("KeyU", this.actions.zoomOut);
         this.hotkeys.bind("KeyT", this.actions.downloadResources);
         this.display.getCanvas().addEventListener("mousemove", (event) => { this.mousemove(event); });
         this.display.getCanvas().addEventListener("click", (event) => { this.click(event); });
