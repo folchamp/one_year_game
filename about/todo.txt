@@ -499,6 +499,9 @@ les biomes peuvent récupérer
 tooltips
 ♥ 29/10/2026
 prepare spell hotkeys
+ia upgrade
+♥ 30/10/2026
+testing
 
 
 ********************
@@ -518,6 +521,13 @@ menu ♦ new game ♦ continue ♦ help ♦ about
 trop pénible de ne pas voir les attaques : ajouter des animations d'attaque
 trop facile de créer plein d'unités (et donc de surencombrer la map) : créer un système de population (genre Praetorians)
 rework RAC, chaque action d'une même ressource donne une ressource différente
+
+J'ai joué une game 
+- commencer est un trop grand avantage
+- fabriquer plusieurs untiés par tour est trop explosif
+- certaines unités ne font aucun dégât
+- l'IA n'utilise pas les invocations
+- il y a trop peu d'untités différentes
 
 ---------- MUST ----------
 ajouter une action "wait" et "heal"
