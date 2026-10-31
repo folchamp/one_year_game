@@ -151,6 +151,12 @@ class Game {
     mousemove(event) {
         let worldPosition = this.getMouseWorldPosition(event);
         let hex = this.world.getHexFromWorldPosition(worldPosition);
+        if (this.targetting && this.targetting.powerData.zone !== undefined && hex !== this.selection.hoveredHex) {
+            const zone = this.targetting.powerData.zone;
+            let affectedHexes = this.world.getHexesInZone(hex, zone);
+            this.world.cleanAffects();
+            this.world.affectHexes(affectedHexes);
+        }
         this.selection.hoveredHex = hex;
     }
     click(event) {
@@ -203,6 +209,10 @@ class Game {
         const targetableHexes = this.world.getHexesWithinRange(entityPosition, powerData.range);
         this.cleanTargetting();
         this.world.targetHexes(targetableHexes);
+        if (powerData.zone === undefined) {
+            // on considère qu'un sort sans zone est un sort avec une zone d'une seule case
+            powerData.zone = { type: "circle", size: 0 };
+        }
         this.targetting = {
             attackerPosition: entityPosition,
             attacker: entity,
@@ -338,6 +348,7 @@ class Game {
     }
     cleanTargetting() {
         this.world.cleanTargets();
+        this.world.cleanAffects();
         this.targetting = undefined;
     }
     cleanOrders() {
@@ -358,21 +369,37 @@ class Game {
         if (this.ECS.Available.get(targetting.attacker) > 0) {
             const isTargetable = targetting.targetableHexes.some((hex) => targetHex.q === hex.q && targetHex.r === hex.r);
             if (isTargetable) {
+                const zone = targetting.powerData.zone
+                const affectedHexes = this.world.getHexesInZone(targetHex, zone);
                 let entity;
+                let entities = [];
+                // main target
                 for (const [key, value] of this.ECS.Position) {
                     if (value.q === targetHex.q && value.r === targetHex.r) {
                         entity = key;
                     }
                 }
+                // secondary targets
+                affectedHexes.forEach((hex) => {
+                    for (const [key, value] of this.ECS.Position) {
+                        if (value.q === hex.q && value.r === hex.r) {
+                            entities.push(key);
+                        }
+                    }
+                });
                 this.cleanEntity(targetting.attacker);
                 this.ECS.Power.set(targetting.attacker, {
                     attackerPosition: targetting.attackerPosition,
                     attacker: targetting.attacker,
                     powerData: targetting.powerData,
-                    targetHex: targetHex,
-                    targetEntity: entity
+                    targetHex: targetHex, // main
+                    affectedHexes: affectedHexes, // secondary
+                    targetEntity: entity,
+                    targetEntities: entities
                 });
+                console.log(this.ECS.Power.get(targetting.attacker));
                 this.powerSystem.update(targetting.attacker);
+                // clean up 
                 this.cleanEntity(targetting.attacker);
                 this.explore();
                 this.selectEntity(this.selection.selectedEntity);
@@ -380,6 +407,8 @@ class Game {
             } else {
                 alert("out of range");
             }
+        } else {
+            alert("no more actions");
         }
         this.cleanKilledEntities();
         this.cleanTargetting();

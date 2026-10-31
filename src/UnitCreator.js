@@ -85,6 +85,6 @@ class UnitCreator {
         this.ECS.Summons.delete(entity);
         this.ECS.Summoner.delete(entity);
         this.ECS.Passable.delete(entity);
-        // this.ECS.WorldPosition.delete(entity);
+        // this.ECS.WorldPosition.delete(entity); // still used for animations
     }
 }

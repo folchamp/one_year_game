@@ -66,7 +66,6 @@ class IA {
                 this.owner.unitsCreated < Settings.unitsPerTurn &&
                 !this.isHexPositionOccupied({ q: this.owner.startHexPosition.q, r: this.owner.startHexPosition.r })) {
                 const newUnit = this.actions.createUnit(unitName, this.owner);
-                console.log(newUnit);
                 units.push(newUnit);
             }
         });

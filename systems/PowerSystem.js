@@ -48,7 +48,6 @@ class PowerSystem {
             }
         }
         if (power.powerData.effect === "jump" && power.targetEntity === undefined) {
-            console.log(power);
             this.ECS.Position.set(power.attacker, { q: power.targetHex.q, r: power.targetHex.r });
         }
         if (power.powerData.effect === "vision") {

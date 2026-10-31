@@ -2874,6 +2874,13 @@ class Data {
                         range: 2,
                         effect: "jump",
                         description: "Un gigantesque bond permettant d'atteindre l'ennemi où qu'il se cache"
+                    },
+                    taille: {
+                        displayName: "taille",
+                        damage: 2,
+                        range: 1,
+                        zone: { type: "circle", size: "1" },
+                        description: "Un large coup (maladroit) qui peut atteindre plusieurs adversaires"
                     }
                 }
             },

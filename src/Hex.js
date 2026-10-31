@@ -25,6 +25,7 @@ class Hex {
         // TODO ce n'est pas le bon endroit pour stocker cet info, ça ne fait pas vraiment partie du hex
         // mais plutôt du système de targetting
         this.isTargetted = false;
+        this.isAffected = false;
     }
     hasSeen(player) {
         return this.isSeenThroughFogBy.includes(player);

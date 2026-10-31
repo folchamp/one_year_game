@@ -34,6 +34,10 @@ class Render {
                 this.drawHexPath(hex);
                 this.strokeWithTargetStyle();
             }
+            if (hex.isAffected) {
+                this.drawHexPath(hex);
+                this.fillWithAffectStyle();
+            }
         }
         // on redessiner le hex survolé par la souris
         if (this.selection.hoveredHex !== undefined) {
@@ -440,6 +444,12 @@ class Render {
         this.context.lineWidth = 1;
         this.context.strokeStyle = "#d69c9c";
         this.context.stroke();
+        this.context.restore();
+    }
+    fillWithAffectStyle() {
+        this.context.save();
+        this.context.fillStyle = "rgba(129, 18, 180, 0.2)";
+        this.context.fill();
         this.context.restore();
     }
 }

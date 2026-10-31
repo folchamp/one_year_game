@@ -510,6 +510,9 @@ animations de perte de points de vie
 observer pattern pour les animations
 toutes les unités ont une attaque
 une unité donne 1 point d'action (pour un point d'action)
+fabriquer plusieurs unités par tour est trop explosif
+certaines unités ne font aucun dégât
+début des attaques de zone
 
 ********************
 TODO
@@ -529,11 +532,7 @@ menu ♦ new game ♦ continue ♦ help ♦ about
 trop pénible de ne pas voir les attaques : ajouter des animations d'attaque
 trop facile de créer plein d'unités (et donc de surencombrer la map) : créer un système de population (genre Praetorians)
 rework RAC, chaque action d'une même ressource donne une ressource différente
-
-J'ai joué une game 
 - commencer est un trop grand avantage
-- fabriquer plusieurs unités par tour est trop explosif
-- certaines unités ne font aucun dégât
 - l'IA n'utilise pas les invocations
 - il y a trop peu d'untités différentes
 

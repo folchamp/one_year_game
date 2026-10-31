@@ -48,6 +48,25 @@ class World {
             }
         });
     }
+    getHexesInLine(start, direction, range) {
+        const result = [];
+        for (let i = 1; i <= range; i++) {
+            const q = start.q + direction.q * i;
+            const r = start.r + direction.r * i;
+            const hex = this.get(q, r);
+            if (hex !== undefined) {
+                result.push(hex);
+            }
+        }
+        return result;
+    }
+    getHexesInZone(hex, zone) {
+        let affectedHexes = [];
+        if (zone.type === "circle") {
+            affectedHexes = this.getHexesWithinRange(hex, zone.size);
+        }
+        return affectedHexes;
+    }
     getHexesWithinRange(position, range) {
         const result = [];
         const visited = new Set();
@@ -93,8 +112,14 @@ class World {
     cleanTargets() {
         this.hexes.forEach(hex => hex.isTargetted = false);
     }
+    cleanAffects() {
+        this.hexes.forEach(hex => hex.isAffected = false);
+    }
     targetHexes(hexes) {
         hexes.forEach(hex => hex.isTargetted = true);
+    }
+    affectHexes(hexes) {
+        hexes.forEach(hex => hex.isAffected = true);
     }
     exploreTile(position, player) {
         this.hexes.get(`${position.q}, ${position.r}`).explore(player);
