@@ -252,7 +252,8 @@ class Data {
                         "tools",
                         "stone_knapping",
                         "crafting",
-                        "strength"
+                        "strength",
+                        "quarrying"
                     ],
                     "learn": [
                         "shaping",
@@ -447,7 +448,7 @@ class Data {
                         "material_science",
                         "classification"
                     ],
-                    "get": "sand",
+                    "get": "saltwater",
                     "displayName": "Laver"
                 },
                 "melt": {
@@ -914,7 +915,7 @@ class Data {
                         "bread_making",
                         "microbiology"
                     ],
-                    "get": "dough",
+                    "get": "fermented_drink",
                     "displayName": "Faire fermenter"
                 },
                 "bake": {
@@ -1094,18 +1095,6 @@ class Data {
                     ],
                     "get": "leather",
                     "displayName": "Tanner"
-                },
-                "dry": {
-                    "requiresOneOf": [
-                        "drying",
-                        "preservation",
-                        "leatherworking"
-                    ],
-                    "learn": [
-                        "hide_processing"
-                    ],
-                    "get": "hide",
-                    "displayName": "Sécher"
                 }
             }
         },
@@ -1445,24 +1434,13 @@ class Data {
                     "get": "iron_ore",
                     "displayName": "Extraire"
                 },
-                "crush": {
-                    "requiresOneOf": [
-                        "grinding",
-                        "ore_processing",
-                        "tools"
-                    ],
-                    "learn": [
-                        "mineral_identification"
-                    ],
-                    "get": "iron_ore",
-                    "displayName": "Broyer"
-                },
                 "smelt": {
                     "requiresOneOf": [
                         "fire",
                         "charcoal",
                         "metallurgy",
                         "smelting",
+                        "ore_processing",
                         "iron_working"
                     ],
                     "learn": [],
@@ -1576,20 +1554,9 @@ class Data {
                     "get": "copper_ore",
                     "displayName": "Extraire"
                 },
-                "crush": {
-                    "requiresOneOf": [
-                        "grinding",
-                        "ore_processing",
-                        "tools"
-                    ],
-                    "learn": [
-                        "mineral_identification"
-                    ],
-                    "get": "copper_ore",
-                    "displayName": "Broyer"
-                },
                 "smelt": {
                     "requiresOneOf": [
+                        "ore_processing",
                         "fire",
                         "charcoal",
                         "metallurgy",
@@ -1698,7 +1665,8 @@ class Data {
                     "learn": [
                         "geology",
                         "quarrying",
-                        "stone_working"
+                        "stone_working",
+                        "material_science"
                     ],
                     "get": "limestone",
                     "displayName": "Extraire"
@@ -1717,19 +1685,6 @@ class Data {
                     ],
                     "get": "lime",
                     "displayName": "Calciner"
-                },
-                "crush": {
-                    "requiresOneOf": [
-                        "grinding",
-                        "tools",
-                        "stone_working",
-                        "quarrying"
-                    ],
-                    "learn": [
-                        "material_science"
-                    ],
-                    "get": "limestone",
-                    "displayName": "Broyer"
                 }
             }
         },
@@ -2030,16 +1985,6 @@ class Data {
             "category": "building_material",
             "regeneration": 1,
             "actions": {
-                "lengthen": {
-                    "requiresOneOf": [],
-                    "learn": [
-                        "cordage",
-                        "knots",
-                        "construction"
-                    ],
-                    "get": "rope",
-                    "displayName": "Allonger"
-                },
                 "weave": {
                     "requiresOneOf": [
                         "weaving",
@@ -2047,7 +1992,9 @@ class Data {
                         "cordage"
                     ],
                     "learn": [
-                        "strength"
+                        "strength",
+                        "knots",
+                        "construction"
                     ],
                     "get": "rope",
                     "displayName": "Tresser"
@@ -2115,41 +2062,23 @@ class Data {
             "category": "tool",
             "regeneration": 1,
             "actions": {
-                "copy": {
-                    "requiresOneOf": [],
-                    "learn": [
-                        "crafting",
-                        "tools",
-                        "experimentation"
-                    ],
-                    "get": "tool",
-                    "displayName": "Répliquer"
-                },
-                "repair": {
+                "craft": {
                     "requiresOneOf": [
-                        "crafting",
                         "metalworking",
                         "woodworking",
                         "timber",
                         "adhesives",
-                        "hammering"
-                    ],
-                    "learn": [
-                        "repair",
-                        "material_science"
-                    ],
-                    "get": "tool",
-                    "displayName": "Réparer"
-                },
-                "improve": {
-                    "requiresOneOf": [
+                        "hammering",
                         "experimentation",
                         "material_science",
-                        "crafting"
                     ],
-                    "learn": [],
+                    "learn": [
+                        "crafting",
+                        "tools",
+                        "repair",
+                    ],
                     "get": "tool",
-                    "displayName": "Améliorer"
+                    "displayName": "Fabriquer"
                 }
             }
         },
@@ -2173,7 +2102,8 @@ class Data {
                     "requiresOneOf": [
                         "archaeology",
                         "observation",
-                        "science"
+                        "science",
+                        "ancient_world"
                     ],
                     "learn": [
                         "metallurgy"
@@ -2218,7 +2148,8 @@ class Data {
                     "requiresOneOf": [
                         "archaeology",
                         "science",
-                        "glassmaking"
+                        "glassmaking",
+                        "ancient_world"
                     ],
                     "learn": [
                         "material_science"
@@ -2247,34 +2178,16 @@ class Data {
             "category": "building_material",
             "regeneration": 1,
             "actions": {
-                "salvage": {
-                    "requiresOneOf": [],
-                    "learn": [
-                        "material_science",
-                        "recycling",
-                        "ancient_world"
-                    ],
-                    "get": "ancient_plastic",
-                    "displayName": "Récupérer"
-                },
-                "identify": {
-                    "requiresOneOf": [
-                        "material_science",
-                        "chemistry",
-                        "ancient_world"
-                    ],
-                    "learn": [],
-                    "get": "ancient_plastic",
-                    "displayName": "Identifier"
-                },
                 "recycle": {
                     "requiresOneOf": [
                         "recycling",
                         "chemistry",
-                        "material_science",
-                        "repair"
+                        "repair",
+                        "chemistry",
                     ],
-                    "learn": [],
+                    "learn": [
+                        "material_science",
+                        "ancient_world"],
                     "get": "ancient_plastic",
                     "displayName": "Recycler"
                 }
@@ -2638,7 +2551,8 @@ class Data {
                     "requiresOneOf": [
                         "animal_husbandry",
                         "animal_nutrition",
-                        "domestication"
+                        "domestication",
+                        "leatherworking"
                     ],
                     "learn": [],
                     "get": "hide",

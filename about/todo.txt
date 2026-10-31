@@ -513,30 +513,31 @@ une unité donne 1 point d'action (pour un point d'action)
 fabriquer plusieurs unités par tour est trop explosif
 certaines unités ne font aucun dégât
 début des attaques de zone
+trop pénible de ne pas voir les attaques : ajouter des animations d'attaque
+rework RAC, chaque action d'une même ressource donne une ressource différente
 
 ********************
 TODO
 ********************
 ---------- EN COURS ----------
-refaire l'ia
-chaque ressource sert pour une unité
+sorts en ligne
+chaque categorie de ressource sert pour une unité
+les hexagones que tu es le seul à avoir exploré ont un marquage
+menu ♦ new game ♦ continue ♦ help ♦ about  
+1 de bouffe par personnnage à payer chaque tour pour éviter le snowball infini : sinon -1hp à chaque personnage
+créer un système de population (genre Praetorians) pour limiter l'explosivité
+réduire l'avantage de celui qui commence
+augmenter le nombre d'unités différentes
+améliorer l'ia
+l'IA n'utilise pas les invocations
+pouvoir de déplacement "galop" en ligne qui touche tous les adversaires sur le chemin
 retirer toutes les valeurs encodées en dur et aller les glisser dans Settings
 victoryscreen
 revoir les alert() et faire un système propre
-les hexagones que tu es le seul à avoir exploré ont un marquage
-pouvoir de déplacement "galop" en ligne qui touche tous les adversaires sur le chemin
-hôtel de vent dans lequel tu peux échanger des ressources, 1 pour 1
-persistance des données
-menu ♦ new game ♦ continue ♦ help ♦ about  
-1 de bouffe par personnnage à payer chaque tour pour éviter le snowball infini : sinon -1hp à chaque personnage
-trop pénible de ne pas voir les attaques : ajouter des animations d'attaque
-trop facile de créer plein d'unités (et donc de surencombrer la map) : créer un système de population (genre Praetorians)
-rework RAC, chaque action d'une même ressource donne une ressource différente
-- commencer est un trop grand avantage
-- l'IA n'utilise pas les invocations
-- il y a trop peu d'untités différentes
 
 ---------- MUST ----------
+hôtel de vente dans lequel tu peux échanger des ressources, 1 pour 1
+persistance des données
 ajouter une action "wait" et "heal"
 petit feedback à hauteur de souris quand un action ne fonctionne pas 
 système de notifications
