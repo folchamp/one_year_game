@@ -2750,7 +2750,7 @@ class Data {
                 living: 3
             },
             combatStats: {
-                hp: 20,
+                hp: 6,
                 actions: 3,
                 amountOfSummons: 1,
                 powers: {
@@ -2761,6 +2761,19 @@ class Data {
                         effect: "summon",
                         summonName: "crow",
                         description: "Invocation d'un corbeau"
+                    },
+                    motivation: {
+                        displayName: "motivation",
+                        damage: 0,
+                        range: 2,
+                        effect: "boostPA",
+                        description: "Les encouragements en combat peuvent transformer une défaite en victoire"
+                    },
+                    frappe: {
+                        displayName: "frappe",
+                        damage: 1,
+                        range: 1,
+                        description: "La façon la plus simple d'exprimer de la violence"
                     }
                 }
             },
@@ -2793,10 +2806,16 @@ class Data {
                         range: 5,
                         effect: "vision",
                         description: "Interprétation des histoires locales permettant d'obtenir des informations sur des lieux éloignés"
+                    },
+                    frappe: {
+                        displayName: "frappe",
+                        damage: 1,
+                        range: 1,
+                        description: "La façon la plus simple d'exprimer de la violence"
                     }
                 }
             },
-            description: "L'espion parcoure les landes à la recherche d'informations. Il est capable d'interprêter les histoires racontées par les passants et de ruser pour prendre la place d'autrui."
+            description: "L'espion parcourt les landes à la recherche d'informations. Il est capable d'interprêter les histoires racontées par les passants et de ruser pour prendre la place d'autrui."
         },
         harvester: {
             unitName: "harvester",
@@ -2816,14 +2835,14 @@ class Data {
                         displayName: "Coup de fourche",
                         damage: 3,
                         range: 1,
-                        description: "Les outils ne sont pas des armes, leurs coups font néanmoins mal"
+                        description: "Les outils ne sont pas des armes, leurs coups font néanmoins très mal"
                     },
                     sandThrow: {
                         displayName: "Jet de sable",
                         damage: 1,
                         range: 2,
                         effect: "ral",
-                        description: "Un jet de sable qui ralentit l'ennemi (TODO): ne ralentit pas encore"
+                        description: "Un jet de sable qui aveugle l'ennemi"
                     }
                 }
             },

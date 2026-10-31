@@ -61,13 +61,15 @@ class Game {
         // engine
         this.log = new Log();
         this.tooltip = new Tooltip();
+        this.eventDispatcher = new EventDispatcher();
+        this.animator = new Animator(this.eventDispatcher);
         this.world = new World();
         this.selection = new Selection();
         this.hotkeys = new Hotkeys();
         this.unitCreator = new UnitCreator(this.ECS);
         this.movementSystem = new MovementSystem(this.world, this.ECS);
         this.actionSystem = new ActionSystem(this.world, this.ECS);
-        this.powerSystem = new PowerSystem(this.world, this.ECS, this.unitCreator);
+        this.powerSystem = new PowerSystem(this.world, this.ECS, this.unitCreator, this.eventDispatcher);
 
         // player
         this.inventory = new Inventory();
@@ -93,7 +95,7 @@ class Game {
         this.display.getCanvas().addEventListener("contextmenu", (event) => { this.rightclick(event); });
 
         // render
-        this.render = new Render(this.context, this.display, this.camera, this.world, this.ECS, this.selection, this.humanPlayer);
+        this.render = new Render(this.context, this.display, this.camera, this.world, this.ECS, this.selection, this.humanPlayer, this.animator);
 
         // init game
         this.unitCreator.create("campfire", Settings.startHexPositions[0], this.humanPlayer);
@@ -307,8 +309,8 @@ class Game {
         const now = Date.now();
         const deltaTime = now - this.lastTimeStamp;
         this.lastTimeStamp = now;
-
         this.camera.update(deltaTime);
+        this.animator.update(deltaTime);
         this.render.render(deltaTime);
         window.requestAnimationFrame(() => { this.loop(); });
     }
@@ -323,10 +325,10 @@ class Game {
             }
         });
         killedEntities.forEach((entity) => {
-            this.unitCreator.killUnit(entity);
             if (entity === this.selection.selectedEntity) {
                 this.selection.reset();
             }
+            this.unitCreator.killUnit(entity);
         });
     }
     cleanEntity(entity) {

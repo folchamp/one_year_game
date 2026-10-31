@@ -1,23 +1,26 @@
 "use strict";
 
 class PowerSystem {
-    constructor(world, ECS, unitCreator) {
+    constructor(world, ECS, unitCreator, eventDispatcher) {
         this.world = world;
         this.ECS = ECS;
         this.unitCreator = unitCreator;
+        this.eventDispatcher = eventDispatcher;
     }
     hit(entity, damage) {
         const targetStats = this.ECS.CombatStats.get(entity);
         if (targetStats !== undefined) {
             targetStats.actualHP ??= targetStats.hp // n'assigner les points de vie actuels que s'il n'en a pas déjà
             targetStats.actualHP -= damage;
+            this.eventDispatcher.emit("damage", { entity, damage });
+            this.eventDispatcher.emit("attack", { entity });
         }
     }
     usePower(power) {
         const attackerOwner = this.ECS.Owner.get(power.attacker);
         const attackerPosition = this.ECS.Position.get(power.attacker);
         const targetPosition = this.ECS.Position.get(power.targetEntity);
-        if (power.powerData.damage !== undefined) {
+        if (power.powerData.damage !== undefined && power.powerData.damage > 0) {
             this.hit(power.targetEntity, power.powerData.damage);
         }
         if (power.powerData.effect === "transposition" && power.targetEntity !== undefined) {
@@ -29,6 +32,14 @@ class PowerSystem {
                 let availableActions = this.ECS.Available.get(power.targetEntity);
                 availableActions = Math.max(availableActions - 1, 0);
                 this.ECS.Available.set(power.targetEntity, availableActions);
+            }
+        }
+        if (power.powerData.effect === "boostPA") {
+            if (power.targetEntity !== undefined) {
+                let availableActions = this.ECS.Available.get(power.targetEntity);
+                availableActions = availableActions + 1;
+                this.ECS.Available.set(power.targetEntity, availableActions);
+                this.eventDispatcher.emit("boostPA", { entity: power.targetEntity });
             }
         }
         if (power.powerData.effect === "summon") {

@@ -1,7 +1,7 @@
 "use strict";
 
 class Render {
-    constructor(context, display, camera, world, ECS, selection, humanPlayer) {
+    constructor(context, display, camera, world, ECS, selection, humanPlayer, animator) {
         this.context = context;
         this.display = display;
         this.camera = camera;
@@ -9,6 +9,7 @@ class Render {
         this.ECS = ECS;
         this.selection = selection;
         this.humanPlayer = humanPlayer;
+        this.animator = animator;
     }
     render(deltaTime) {
         // clear
@@ -48,11 +49,15 @@ class Render {
         // --------------------
         // on dessine les entités
         this.ECS.Sprite.forEach((sprite, entity, map) => {
-            this.drawEntity(entity, false, deltaTime);
+            if (this.ECS.Position.get(entity) !== undefined) {
+                this.drawEntity(entity, false, deltaTime);
+            }
         });
         // on dessine l'entité sélectionnée
         if (this.selection.selectedEntity !== undefined) {
-            this.drawEntity(this.selection.selectedEntity, true, deltaTime);
+            if (this.ECS.Position.get(this.selection.selectedEntity) !== undefined) {
+                this.drawEntity(this.selection.selectedEntity, true, deltaTime);
+            }
         }
 
         // --------------------
@@ -73,7 +78,98 @@ class Render {
             this.drawMovement(movement, entity)
         });
         // end
+
+        // animate things
+        this.drawAnimations();
+
         this.context.restore();
+    }
+    drawDamageAnimation(animation) {
+        const delayedAnimation = animation.elapsed - animation.delay;
+        if (delayedAnimation > 0) {
+            const worldPosition = this.ECS.WorldPosition.get(animation.entity);
+            const progress = animation.elapsed / animation.end;
+            const offsetY = -30 * progress;
+            const alpha = Math.min(1, 1.75 - progress);
+            this.context.save();
+            this.context.globalAlpha = alpha;
+            this.context.fillStyle = "red";
+            this.context.font = "bold 40px Arial";
+            this.context.textAlign = "center";
+            this.context.textBaseline = "middle";
+            this.context.fillText(`-${animation.damage}`, worldPosition.x, worldPosition.y - 35 + offsetY);
+            this.context.restore();
+        }
+    }
+    drawBoostPAAnimation(animation) {
+        const worldPosition = this.ECS.WorldPosition.get(animation.entity);
+        const progress = animation.elapsed / animation.end;
+        const alpha = Math.min(1, 1.75 - progress);
+        this.context.save();
+        this.context.globalAlpha = alpha;
+        this.context.fillStyle = "#48ff00";
+        animation.particles.forEach((particle) => {
+            const offsetY = 50 + -particle.speed * progress;
+            this.context.fillRect(worldPosition.x + particle.x, worldPosition.y - 35 + offsetY + particle.y, 10, 10);
+        });
+        this.context.restore();
+    }
+    drawAttackAnimation(animation) {
+        // merci ChatGPT
+        const worldPosition = this.ECS.WorldPosition.get(animation.entity);
+        const fallProgress = Math.min(1, animation.elapsed / animation.end);
+        this.context.save();
+        // Accélération progressive
+        const easedProgress = fallProgress * fallProgress;
+        const startY = worldPosition.y - 100;
+        const endY = worldPosition.y - 10;
+        const rockY = startY + (endY - startY) * easedProgress;
+        // Légère rotation pendant la chute
+        const rotation = fallProgress * Math.PI * 0.5;
+        // Le rocher grossit légèrement en approchant
+        this.context.translate(worldPosition.x, rockY);
+        this.context.rotate(rotation);
+        // Forme du rocher
+        this.context.beginPath();
+        this.context.moveTo(-22, -5);
+        this.context.lineTo(-15, -20);
+        this.context.lineTo(2, -25);
+        this.context.lineTo(20, -12);
+        this.context.lineTo(24, 5);
+        this.context.lineTo(10, 20);
+        this.context.lineTo(-12, 18);
+        this.context.lineTo(-25, 5);
+        this.context.closePath();
+        this.context.fillStyle = "#77716a";
+        this.context.fill();
+        this.context.lineWidth = 3;
+        this.context.strokeStyle = "#393633";
+        this.context.stroke();
+        // Quelques détails sur la surface
+        this.context.fillStyle = "#a49a8c";
+        this.context.beginPath();
+        this.context.moveTo(-15, -8);
+        this.context.lineTo(-8, -17);
+        this.context.lineTo(2, -19);
+        this.context.lineTo(-4, -7);
+        this.context.closePath();
+        this.context.fill();
+        this.context.restore();
+    }
+    drawAnimations() {
+        for (const animation of this.animator.animations) {
+            switch (animation.type) {
+                case "damage":
+                    this.drawDamageAnimation(animation);
+                    break;
+                case "boostPA":
+                    this.drawBoostPAAnimation(animation);
+                    break;
+                case "attack":
+                    this.drawAttackAnimation(animation);
+                    break;
+            }
+        }
     }
     getWorldPosition(hex) {
         const x = Settings.hexSize * Math.sqrt(3) * (hex.q + hex.r / 2);
@@ -124,8 +220,11 @@ class Render {
                 this.context.fillStyle = "#00ff22";
                 this.context.fillRect(-indicatorSize / 2, -indicatorSize / 2, indicatorSize, indicatorSize);
                 this.context.restore();
+                this.context.save();
+                this.context.fillStyle = "#070707";
                 this.context.font = "20px Arial";
                 this.context.fillText(this.ECS.Available.get(entity), worldPosition.x - 6, worldPosition.y - (sprite.height / 2) - 21);
+                this.context.restore();
             }
             if (combatStats !== undefined) {
                 const maxHP = combatStats.hp;
@@ -135,10 +234,35 @@ class Render {
                     const barHeight = 5;
                     const barX = worldPosition.x - barWidth / 2;
                     const barY = worldPosition.y - sprite.height / 2 - 10;
+                    const text = actualHP;
+                    const textX = worldPosition.x - barWidth / 2 - 12;
+                    const textY = barY + 10;
+                    const radius = 11;
+
+                    this.context.beginPath();
+                    this.context.arc(textX, textY - 8, radius, 0, Math.PI * 2);
+                    this.context.fillStyle = "#601818";
+                    this.context.fill();
+
+                    this.context.lineWidth = 2;
+                    this.context.strokeStyle = "#777";
+                    this.context.stroke();
+
+                    this.context.save();
                     this.context.fillStyle = "black";
                     this.context.fillRect(barX, barY, barWidth, barHeight);
                     this.context.fillStyle = "green";
                     this.context.fillRect(barX, barY, barWidth * (actualHP / maxHP), barHeight);
+                    this.context.font = "bold 14px Arial";
+                    this.context.textAlign = "center";
+                    this.context.textBaseline = "bottom";
+
+                    this.context.lineWidth = 3;
+                    this.context.strokeStyle = "black";
+                    this.context.strokeText(text, textX, textY);
+                    this.context.fillStyle = "white";
+                    this.context.fillText(text, textX, textY);
+                    this.context.restore();
                 }
             }
         }

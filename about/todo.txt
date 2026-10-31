@@ -505,19 +505,19 @@ testing
 ♥ 31/10/2026
 on ne crée qu'une unité par tour
 retrait de point d'action
+animations de dégâts
+animations de perte de points de vie
+observer pattern pour les animations
+toutes les unités ont une attaque
+une unité donne 1 point d'action (pour un point d'action)
 
 ********************
 TODO
 ********************
 ---------- EN COURS ----------
-Observer pattern pour les animations
-
 refaire l'ia
-toutes les unités ont une attaque
-une unité donne 1 point d'action (pour un point d'action)
 chaque ressource sert pour une unité
-animations de perte de points de vie
-
+retirer toutes les valeurs encodées en dur et aller les glisser dans Settings
 victoryscreen
 revoir les alert() et faire un système propre
 les hexagones que tu es le seul à avoir exploré ont un marquage

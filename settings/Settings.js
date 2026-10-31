@@ -51,4 +51,7 @@ class Settings {
     static edgePanningWidth = 10;
     static startingResources = 10;
     static unitsPerTurn = 1;
+    static damageAnimationDuration = 1800;
+    static damageAnimationDelay = 600;
+    static attackAnimationDuration = 800;
 }
