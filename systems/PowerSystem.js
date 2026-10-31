@@ -24,6 +24,13 @@ class PowerSystem {
             this.ECS.Position.set(power.attacker, { q: targetPosition.q, r: targetPosition.r });
             this.ECS.Position.set(power.targetEntity, { q: attackerPosition.q, r: attackerPosition.r });
         }
+        if (power.powerData.effect === "ral") {
+            if (power.targetEntity !== undefined) {
+                let availableActions = this.ECS.Available.get(power.targetEntity);
+                availableActions = Math.max(availableActions - 1, 0);
+                this.ECS.Available.set(power.targetEntity, availableActions);
+            }
+        }
         if (power.powerData.effect === "summon") {
             if (this.ECS.Summons.get(power.attacker).length < this.ECS.CombatStats.get(power.attacker).amountOfSummons) {
                 this.unitCreator.createSummon(power.powerData.summonName, power.targetHex, this.ECS.Owner.get(power.attacker), power.attacker);

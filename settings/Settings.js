@@ -50,4 +50,5 @@ class Settings {
     static fatigueBarVerticalOffset = 58;
     static edgePanningWidth = 10;
     static startingResources = 10;
+    static unitsPerTurn = 1;
 }

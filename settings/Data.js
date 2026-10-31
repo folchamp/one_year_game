@@ -2822,6 +2822,7 @@ class Data {
                         displayName: "Jet de sable",
                         damage: 1,
                         range: 2,
+                        effect: "ral",
                         description: "Un jet de sable qui ralentit l'ennemi (TODO): ne ralentit pas encore"
                     }
                 }

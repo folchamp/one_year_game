@@ -113,6 +113,7 @@ class Game {
         this.targetting = undefined;
 
         // start
+        this.humanPlayer.newTurn();
         this.explore();
         this.ui.update();
         this.selectNextIdle(this.humanPlayer);
@@ -184,8 +185,11 @@ class Game {
             alert("hex is not free");
         } else if (!owner.inventory.has(price) && Settings.production) {
             alert("not enough resources");
+        } else if (owner.unitsCreated >= Settings.unitsPerTurn) {
+            alert(`only ${Settings.unitsPerTurn} per turn`)
         } else {
             owner.inventory.consume(price)
+            owner.unitsCreated++;
             unit = this.unitCreator.create(unitName, owner.startHexPosition, owner);
         }
         this.explore();
@@ -267,6 +271,7 @@ class Game {
         });
     }
     resolveTick(player) {
+        player.newTurn();
         if (player !== this.humanPlayer) {
             let idles = this.getIdles(player);
             player.IA.act(idles);

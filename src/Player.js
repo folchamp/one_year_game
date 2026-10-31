@@ -10,6 +10,11 @@ class Player {
         this.startHexPosition = Settings.startHexPositions[id];
         this.playerColor = Settings.playerColor[id];
 
+        this.unitsCreated = 0;
+
         this.IA.setOwner(this);
+    }
+    newTurn() {
+        this.unitsCreated = 0;
     }
 }
