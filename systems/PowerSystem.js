@@ -17,39 +17,66 @@ class PowerSystem {
         }
     }
     usePower(power) {
+        console.log(power);
         const attackerOwner = this.ECS.Owner.get(power.attacker);
         const attackerPosition = this.ECS.Position.get(power.attacker);
         const targetPosition = this.ECS.Position.get(power.targetEntity);
-        if (power.powerData.damage !== undefined && power.powerData.damage > 0) {
-            this.hit(power.targetEntity, power.powerData.damage);
-        }
+        power.targetEntities.forEach((targetEntity) => {
+            // ----
+            // damage (multiple targets)
+            // ----
+            if (power.powerData.damage !== undefined && power.powerData.damage > 0 && targetEntity !== power.attacker) {
+                this.hit(targetEntity, power.powerData.damage);
+            }
+            // ----
+            // ral (multiple targets)
+            // ----
+            if (power.powerData.effect === "ral") {
+                if (targetEntity !== undefined && targetEntity !== power.attacker) {
+                    let availableActions = this.ECS.Available.get(targetEntity);
+                    availableActions = Math.max(availableActions - 1, 0);
+                    this.ECS.Available.set(targetEntity, availableActions);
+                    this.eventDispatcher.emit("ralPA", { entity: targetEntity });
+                }
+            }
+            // ----
+            // boost PA (multiple targets)
+            // ----
+            if (power.powerData.effect === "boostPA") {
+                if (targetEntity !== undefined && targetEntity !== power.attacker) {
+                    let availableActions = this.ECS.Available.get(targetEntity);
+                    availableActions = availableActions + 1;
+                    this.ECS.Available.set(targetEntity, availableActions);
+                    this.eventDispatcher.emit("boostPA", { entity: targetEntity });
+                }
+            }
+        });
+        // ----
+        // transposition (single target)
+        // ----
         if (power.powerData.effect === "transposition" && power.targetEntity !== undefined) {
             this.ECS.Position.set(power.attacker, { q: targetPosition.q, r: targetPosition.r });
             this.ECS.Position.set(power.targetEntity, { q: attackerPosition.q, r: attackerPosition.r });
+            this.eventDispatcher.emit("boostPA", { entity: power.targetEntity });
+            this.eventDispatcher.emit("boostPA", { entity: power.attacker });
         }
-        if (power.powerData.effect === "ral") {
-            if (power.targetEntity !== undefined) {
-                let availableActions = this.ECS.Available.get(power.targetEntity);
-                availableActions = Math.max(availableActions - 1, 0);
-                this.ECS.Available.set(power.targetEntity, availableActions);
-            }
-        }
-        if (power.powerData.effect === "boostPA") {
-            if (power.targetEntity !== undefined) {
-                let availableActions = this.ECS.Available.get(power.targetEntity);
-                availableActions = availableActions + 1;
-                this.ECS.Available.set(power.targetEntity, availableActions);
-                this.eventDispatcher.emit("boostPA", { entity: power.targetEntity });
-            }
-        }
+        // ----
+        // summon (single hex target)
+        // ----
         if (power.powerData.effect === "summon") {
             if (this.ECS.Summons.get(power.attacker).length < this.ECS.CombatStats.get(power.attacker).amountOfSummons) {
                 this.unitCreator.createSummon(power.powerData.summonName, power.targetHex, this.ECS.Owner.get(power.attacker), power.attacker);
             }
         }
+        // ----
+        // jump (single hex target)
+        // ----
         if (power.powerData.effect === "jump" && power.targetEntity === undefined) {
             this.ECS.Position.set(power.attacker, { q: power.targetHex.q, r: power.targetHex.r });
         }
+        // ----
+        // vision (single hex target)
+        // ----
         if (power.powerData.effect === "vision") {
             this.world.seeNeighbours(power.targetHex, 0, attackerOwner);
             this.world.exploreTile(power.targetHex, attackerOwner);

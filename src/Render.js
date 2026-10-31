@@ -105,6 +105,19 @@ class Render {
             this.context.restore();
         }
     }
+    drawRalPAAnimation(animation) {
+        const worldPosition = this.ECS.WorldPosition.get(animation.entity);
+        const progress = animation.elapsed / animation.end;
+        const alpha = Math.min(1, 1.75 - progress);
+        this.context.save();
+        this.context.globalAlpha = alpha;
+        this.context.fillStyle = "#e01212";
+        animation.particles.forEach((particle) => {
+            const offsetY = 50 + -particle.speed * progress;
+            this.context.fillRect(worldPosition.x + particle.x, worldPosition.y - 35 + offsetY + particle.y, 10, 10);
+        });
+        this.context.restore();
+    }
     drawBoostPAAnimation(animation) {
         const worldPosition = this.ECS.WorldPosition.get(animation.entity);
         const progress = animation.elapsed / animation.end;
@@ -168,6 +181,9 @@ class Render {
                     break;
                 case "boostPA":
                     this.drawBoostPAAnimation(animation);
+                    break;
+                case "ralPA":
+                    this.drawRalPAAnimation(animation);
                     break;
                 case "attack":
                     this.drawAttackAnimation(animation);

@@ -397,7 +397,6 @@ class Game {
                     targetEntity: entity,
                     targetEntities: entities
                 });
-                console.log(this.ECS.Power.get(targetting.attacker));
                 this.powerSystem.update(targetting.attacker);
                 // clean up 
                 this.cleanEntity(targetting.attacker);

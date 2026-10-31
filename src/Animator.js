@@ -8,6 +8,7 @@ class Animator {
 
         this.eventDispatcher.on("damage", (data) => { this.addDamageAnimation(data); });
         this.eventDispatcher.on("boostPA", (data) => { this.addBoostPAAnimation(data); });
+        this.eventDispatcher.on("ralPA", (data) => { this.addRalPAAnimation(data); });
         this.eventDispatcher.on("attack", (data) => { this.addAttackAnimation(data); });
     }
     addAttackAnimation(data) {
@@ -26,6 +27,20 @@ class Animator {
             elapsed: 0,
             end: Settings.damageAnimationDuration,
             delay: Settings.damageAnimationDelay,
+        });
+    }
+    addRalPAAnimation(data) {
+        const particles = [];
+        for (let index = 0; index < 15; index++) {
+            const particle = { x: Random.value(-64, 64), y: Random.value(-64, 64), speed: Random.value(25, 65) };
+            particles.push(particle);
+        }
+        this.animations.push({
+            type: "ralPA",
+            entity: data.entity,
+            elapsed: 0,
+            end: Settings.damageAnimationDuration,
+            particles: particles
         });
     }
     addBoostPAAnimation(data) {
