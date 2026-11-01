@@ -52,6 +52,30 @@ class PowerSystem {
             }
         });
         // ----
+        // push (single target)
+        // ----
+        if (power.powerData.effect === "push" && power.targetEntity !== undefined) {
+            const direction = this.world.findDirection(attackerPosition, targetPosition);
+            if (direction !== undefined) {
+                const pushDistance = power.powerData.pushDistance;
+                for (let distance = 1; distance <= pushDistance; distance++) {
+                    let newPosition = {
+                        q: targetPosition.q + direction.q * distance,
+                        r: targetPosition.r + direction.r * distance
+                    };
+                    let movementIsPossible = true;
+                    this.ECS.Position.forEach((position, entity) => {
+                        if (position.q === newPosition.q && position.r === newPosition.r && !this.ECS.Passable.get(entity)) {
+                            movementIsPossible = false;
+                        }
+                    });
+                    if (movementIsPossible) {
+                        this.ECS.Position.set(power.targetEntity, { q: newPosition.q, r: newPosition.r });
+                    }
+                }
+            }
+        }
+        // ----
         // transposition (single target)
         // ----
         if (power.powerData.effect === "transposition" && power.targetEntity !== undefined) {

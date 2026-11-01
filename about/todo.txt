@@ -515,11 +515,17 @@ certaines unités ne font aucun dégât
 début des attaques de zone
 trop pénible de ne pas voir les attaques : ajouter des animations d'attaque
 rework RAC, chaque action d'une même ressource donne une ressource différente
+♥ 01/11/2026
+préparer l'archer
 
 ********************
 TODO
 ********************
 ---------- EN COURS ----------
+coup de pied
+soins
+tir de précision
+
 sorts en ligne
 chaque categorie de ressource sert pour une unité
 les hexagones que tu es le seul à avoir exploré ont un marquage

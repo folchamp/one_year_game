@@ -39,6 +39,9 @@ class World {
             { q: q + 1, r: r - 1 },
             { q: q - 1, r: r + 1 }]
     };
+    static getDirections() {
+        return this.getNeighbors(0, 0);
+    }
     update() {
         this.hexes.forEach((hex) => {
             hex.update();
@@ -47,6 +50,20 @@ class World {
                 this.fillHexResources(hex);
             }
         });
+    }
+    findDirection(from, to) {
+        const directions = World.getDirections();
+        let foundDirection;
+        for (let index = 0; index < directions.length; index++) {
+            const direction = directions[index];
+            for (let j = 0; j < Settings.mapRadius; j++) {
+                if (from.q + (direction.q * j) === to.q &&
+                    from.r + (direction.r * j) === to.r) {
+                    foundDirection = direction;
+                }
+            }
+        }
+        return foundDirection;
     }
     getHexesInLine(start, direction, range) {
         const result = [];

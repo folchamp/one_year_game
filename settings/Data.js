@@ -2626,10 +2626,52 @@ class Data {
     }
 
     static creatableUnits = [
-        "harvester", "explorer", "hunter", "fighter"
+        "harvester", "explorer", "hunter", "fighter", "archer"
     ]
 
     static units = {
+        archer: {
+            unitName: "archer",
+            isHarvester: false,
+            range: 3,
+            sprite: { imageName: "archer", width: 64, height: 64, radius: 48 },
+            hitbox: { type: "circle", radius: 48 },
+            unitPrice: {
+                food: 5,
+                medicine: 6
+            },
+            combatStats: {
+                hp: 10,
+                actions: 2,
+                amountOfSummons: 1,
+                powers: {
+                    basicAttack: {
+                        displayName: "coup de pied",
+                        damage: 1,
+                        range: 1,
+                        effect: "push",
+                        pushDistance: 2,
+                        description: "Un coup de pied pour éloigner les malpropres"
+                    },
+                    heal: {
+                        displayName: "herbes curatives",
+                        damage: 0,
+                        range: 1,
+                        effect: "heal",
+                        healAmount: 2,
+                        description: "Vous connaissez l’athelas ? On l'appelle feuille de roi."
+                    },
+                    frappe: {
+                        displayName: "tir de précision",
+                        damage: 5,
+                        range: 5,
+                        inline: true,
+                        description: "Un tir à longue distance qui nécessite d'avoir le vent dans le dos"
+                    }
+                }
+            },
+            description: "Le chasseur dresse des corbeaux pour accomplir ses sales besognes à sa place."
+        },
         crow: {
             unitName: "crow",
             isHarvester: false,
