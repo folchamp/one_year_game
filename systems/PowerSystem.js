@@ -17,7 +17,6 @@ class PowerSystem {
         }
     }
     usePower(power) {
-        console.log(power);
         const attackerOwner = this.ECS.Owner.get(power.attacker);
         const attackerPosition = this.ECS.Position.get(power.attacker);
         const targetPosition = this.ECS.Position.get(power.targetEntity);
@@ -27,6 +26,14 @@ class PowerSystem {
             // ----
             if (power.powerData.damage !== undefined && power.powerData.damage > 0 && targetEntity !== power.attacker) {
                 this.hit(targetEntity, power.powerData.damage);
+            }
+            // ----
+            // heal
+            // ----
+            if (power.powerData.effect === "heal" && targetEntity !== undefined) {
+                const combatStats = this.ECS.CombatStats.get(targetEntity);
+                combatStats.actualHP = Math.min(combatStats.hp, combatStats.actualHP + power.powerData.healAmount);
+                this.eventDispatcher.emit("boostPA", { entity: targetEntity });
             }
             // ----
             // ral (multiple targets)

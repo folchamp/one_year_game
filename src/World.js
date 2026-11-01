@@ -77,10 +77,23 @@ class World {
         }
         return result;
     }
-    getHexesInZone(hex, zone) {
+    getTargettableHexes(position, powerData) {
+        let hexes = [];
+        if (powerData.inline) {
+            const directions = World.getDirections();
+            for (let index = 0; index < directions.length; index++) {
+                const direction = directions[index];
+                hexes.push(...this.getHexesInLine(position, direction, powerData.range));
+            }
+        } else {
+            hexes = this.getHexesWithinRange(position, powerData.range);
+        }
+        return hexes;
+    }
+    getHexesInZone(position, zone) {
         let affectedHexes = [];
         if (zone.type === "circle") {
-            affectedHexes = this.getHexesWithinRange(hex, zone.size);
+            affectedHexes = this.getHexesWithinRange(position, zone.size);
         }
         return affectedHexes;
     }

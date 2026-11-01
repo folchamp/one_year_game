@@ -80,7 +80,7 @@ class IA {
         const hexPosition = this.ECS.Position.get(entity);
         for (const powerName in powers) {
             const powerData = powers[powerName];
-            const targetableHexes = this.world.getHexesWithinRange(hexPosition, powerData.range);
+            const targetableHexes = this.world.getTargettableHexes(hexPosition, powerData);
             this.ECS.Position.forEach((position, target, map) => {
                 targetableHexes.forEach((targetableHex) => {
                     if (position.q === targetableHex.q &&

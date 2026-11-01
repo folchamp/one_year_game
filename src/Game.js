@@ -151,7 +151,7 @@ class Game {
     mousemove(event) {
         let worldPosition = this.getMouseWorldPosition(event);
         let hex = this.world.getHexFromWorldPosition(worldPosition);
-        if (this.targetting && this.targetting.powerData.zone !== undefined && hex !== this.selection.hoveredHex) {
+        if (this.targetting !== undefined && this.targetting.powerData.zone !== undefined && hex !== this.selection.hoveredHex) {
             const zone = this.targetting.powerData.zone;
             let affectedHexes = this.world.getHexesInZone(hex, zone);
             this.world.cleanAffects();
@@ -206,13 +206,9 @@ class Game {
     }
     powerButtonClick(entity, powerData) {
         const entityPosition = this.ECS.Position.get(entity);
-        const targetableHexes = this.world.getHexesWithinRange(entityPosition, powerData.range);
+        const targetableHexes = this.world.getTargettableHexes(entityPosition, powerData);
         this.cleanTargetting();
         this.world.targetHexes(targetableHexes);
-        if (powerData.zone === undefined) {
-            // on considère qu'un sort sans zone est un sort avec une zone d'une seule case
-            powerData.zone = { type: "circle", size: 0 };
-        }
         this.targetting = {
             attackerPosition: entityPosition,
             attacker: entity,
@@ -407,7 +403,8 @@ class Game {
                 alert("out of range");
             }
         } else {
-            alert("no more actions");
+            // j'ai retiré ceci parce que, BUG, certaines IA tentent de faire des actions alors qu'elles n'en ont plus
+            // alert("no more actions");
         }
         this.cleanKilledEntities();
         this.cleanTargetting();

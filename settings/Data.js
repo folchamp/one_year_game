@@ -2651,7 +2651,8 @@ class Data {
                         range: 1,
                         effect: "push",
                         pushDistance: 2,
-                        description: "Un coup de pied pour éloigner les malpropres"
+                        description: "Un coup de pied pour éloigner les malpropres",
+                        zone: { type: "circle", size: 0 }
                     },
                     heal: {
                         displayName: "herbes curatives",
@@ -2659,14 +2660,16 @@ class Data {
                         range: 1,
                         effect: "heal",
                         healAmount: 2,
-                        description: "Vous connaissez l’athelas ? On l'appelle feuille de roi."
+                        description: "Vous connaissez l’athelas ? On l'appelle feuille de roi.",
+                        zone: { type: "circle", size: 0 }
                     },
                     frappe: {
                         displayName: "tir de précision",
                         damage: 5,
                         range: 5,
                         inline: true,
-                        description: "Un tir à longue distance qui nécessite d'avoir le vent dans le dos"
+                        description: "Un tir à longue distance qui nécessite d'avoir le vent dans le dos",
+                        zone: { type: "circle", size: 0 }
                     }
                 }
             },
@@ -2690,7 +2693,8 @@ class Data {
                         displayName: "bécot",
                         damage: 1,
                         range: 1,
-                        description: "Une attaque peu douloureuse mais mortelle quand elle est subie en grande quantité."
+                        description: "Une attaque peu douloureuse mais mortelle quand elle est subie en grande quantité.",
+                        zone: { type: "circle", size: 0 }
                     }
                 }
             }
@@ -2716,20 +2720,23 @@ class Data {
                         range: 1,
                         effect: "summon",
                         summonName: "crow",
-                        description: "Invocation d'un corbeau"
+                        description: "Invocation d'un corbeau",
+                        zone: { type: "circle", size: 0 }
                     },
                     motivation: {
                         displayName: "motivation",
                         damage: 0,
                         range: 2,
                         effect: "boostPA",
-                        description: "Les encouragements en combat peuvent transformer une défaite en victoire"
+                        description: "Les encouragements en combat peuvent transformer une défaite en victoire",
+                        zone: { type: "circle", size: 0 }
                     },
                     frappe: {
                         displayName: "frappe",
                         damage: 1,
                         range: 1,
-                        description: "La façon la plus simple d'exprimer de la violence"
+                        description: "La façon la plus simple d'exprimer de la violence",
+                        zone: { type: "circle", size: 0 }
                     }
                 }
             },
@@ -2754,20 +2761,23 @@ class Data {
                         damage: 0,
                         range: 3,
                         effect: "transposition",
-                        description: "Une ruse permettant de prendre la place d'une autre entité"
+                        description: "Une ruse permettant de prendre la place d'une autre entité",
+                        zone: { type: "circle", size: 0 }
                     },
                     vision: {
                         displayName: "vision",
                         damage: 0,
                         range: 5,
                         effect: "vision",
-                        description: "Interprétation des histoires locales permettant d'obtenir des informations sur des lieux éloignés"
+                        description: "Interprétation des histoires locales permettant d'obtenir des informations sur des lieux éloignés",
+                        zone: { type: "circle", size: 0 }
                     },
                     frappe: {
                         displayName: "frappe",
                         damage: 1,
                         range: 1,
-                        description: "La façon la plus simple d'exprimer de la violence"
+                        description: "La façon la plus simple d'exprimer de la violence",
+                        zone: { type: "circle", size: 0 }
                     }
                 }
             },
@@ -2791,14 +2801,16 @@ class Data {
                         displayName: "Coup de fourche",
                         damage: 3,
                         range: 1,
-                        description: "Les outils ne sont pas des armes, leurs coups font néanmoins très mal"
+                        description: "Les outils ne sont pas des armes, leurs coups font néanmoins très mal",
+                        zone: { type: "circle", size: 0 }
                     },
                     sandThrow: {
                         displayName: "Jet de sable",
                         damage: 1,
                         range: 2,
                         effect: "ral",
-                        description: "Un jet de sable qui aveugle l'ennemi"
+                        description: "Un jet de sable qui aveugle l'ennemi",
+                        zone: { type: "circle", size: 0 }
                     }
                 }
             },
@@ -2822,14 +2834,16 @@ class Data {
                         displayName: "coup d'épée",
                         damage: 4,
                         range: 1,
-                        description: "Comme son nom l'indique"
+                        description: "Comme son nom l'indique",
+                        zone: { type: "circle", size: 0 }
                     },
                     jump: {
                         displayName: "bond",
                         damage: 0,
                         range: 2,
                         effect: "jump",
-                        description: "Un gigantesque bond permettant d'atteindre l'ennemi où qu'il se cache"
+                        description: "Un gigantesque bond permettant d'atteindre l'ennemi où qu'il se cache",
+                        zone: { type: "circle", size: 0 }
                     },
                     taille: {
                         displayName: "taille",
