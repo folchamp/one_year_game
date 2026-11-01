@@ -2544,7 +2544,7 @@ class Data {
                         "anatomy",
                         "tanning"
                     ],
-                    "get": "meat",
+                    "get": "domesticated_animals",
                     "displayName": "Abattre"
                 },
                 "skin": {
