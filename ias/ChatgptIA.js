@@ -720,7 +720,6 @@ class IA {
 
     createUnits() {
         const createdUnits = [];
-
         if (!this.owner.startHexPosition) return createdUnits;
 
         if (
@@ -734,7 +733,6 @@ class IA {
         // la priorité de production.
         for (const unitName of Data.creatableUnits) {
             const unit = Data.units[unitName];
-
             if (!unit) continue;
 
             if (this.owner.inventory.has(unit.unitPrice)) {

@@ -272,10 +272,12 @@ class Game {
             this.world.seeNeighbours(this.ECS.Position.get(entity), value.range, this.ECS.Owner.get(entity));
         });
     }
-    makeAvailable() {
+    makeAvailable(player) {
         this.ECS.Available.forEach((isAvailable, entity, map) => {
-            const maxActions = this.ECS.CombatStats.get(entity).actions;
-            this.ECS.Available.set(entity, maxActions);
+            if (this.ECS.Owner.get(entity) === player) {
+                const maxActions = this.ECS.CombatStats.get(entity).actions;
+                this.ECS.Available.set(entity, maxActions);
+            }
         });
     }
     resolveTick(player) {
@@ -284,12 +286,12 @@ class Game {
             let idles = this.getIdles(player);
             player.IA.act(idles);
         }
+        this.makeAvailable(player);
         this.world.update();
         // au cas où des ressources ont disparu, les explorateurs doivent arrêter de travailler
         this.cleanOrders();
         // this.cleanPowers();
         this.cleanKilledEntities();
-        this.makeAvailable();
     }
     tick() {
         let players = [this.humanPlayer, ...this.computers];
