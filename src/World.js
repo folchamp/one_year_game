@@ -145,7 +145,7 @@ class World {
         return result;
     }
     resetFogOfWar() {
-        // this.hexes.forEach((hex) => hex.unSeeAll());
+        this.hexes.forEach((hex) => hex.unSeeAll());
     }
     seeNeighbours(position, range, player) {
         const hexes = this.getHexesWithinRange(position, range);

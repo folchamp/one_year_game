@@ -72,6 +72,7 @@ class Game {
         this.powerSystem = new PowerSystem(this.world, this.ECS, this.unitCreator, this.eventDispatcher);
 
         // player
+        Settings.startHexPositions = Util.shuffle(Settings.startHexPositions);
         this.inventory = new Inventory();
         this.community = new Community();
         this.humanPlayer = new Player(0, this.community, this.inventory, new IA(this.ECS, this.world, this.iaActions));
@@ -98,7 +99,6 @@ class Game {
         this.render = new Render(this.context, this.display, this.camera, this.world, this.ECS, this.selection, this.humanPlayer, this.animator);
 
         // init game
-        Settings.startHexPositions = Util.shuffle(Settings.startHexPositions);
         this.unitCreator.create("campfire", Settings.startHexPositions[0], this.humanPlayer);
         this.unitCreator.create("harvester", this.world.getRandomAdjacentHex(Settings.startHexPositions[0]), this.humanPlayer);
 
@@ -264,6 +264,7 @@ class Game {
             this.selection.selectHex(hex);
             if (hex.q === this.humanPlayer.startHexPosition.q && hex.r === this.humanPlayer.startHexPosition.r) {
                 this.selection.selectCommunity();
+                console.log("top");
             }
         }
     }

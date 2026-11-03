@@ -526,6 +526,8 @@ sorts en ligne
 position aléatoire (shuffle)
 tester le jeu à deux joueurs 
 faire spawner la première unité à côté du feu de camp
+brouillard de guerre
+bug edge panning 
 
 
 
@@ -533,9 +535,7 @@ faire spawner la première unité à côté du feu de camp
 TODO
 ********************
 ---------- EN COURS ----------
-brouillard de guerre - continue working on it
 le boost de PA ne sert qu'au tour suivant
-bug edge panning 
 
 chaque categorie de ressource sert pour une unité
 les hexagones que tu es le seul à avoir exploré ont un marquage

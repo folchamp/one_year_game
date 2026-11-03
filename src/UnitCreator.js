@@ -56,6 +56,7 @@ class UnitCreator {
         this.ECS.Passable.set(entity, true);
         this.ECS.Summons.set(entity, []);
         this.ECS.WorldPosition.set(entity, World.hexToWorld(pos));
+        this.ECS.Explorer.set(entity, { range: 1 });
         return entity;
     }
     killUnit(entity) {

@@ -15,6 +15,7 @@ class Hex {
         // visibility attributes
         this.isExploredBy = [];
         this.isSeenThroughFogBy = [];
+        this.wasSeenOnceBy = [];
 
         // fatigue
         this.fatigue = 0;
@@ -30,9 +31,15 @@ class Hex {
     hasSeen(player) {
         return this.isSeenThroughFogBy.includes(player);
     }
+    hasSeenOnce(player) {
+        return this.wasSeenOnceBy.includes(player);
+    }
     see(player) {
         if (!this.isSeenThroughFogBy.includes(player)) {
             this.isSeenThroughFogBy.push(player);
+        }
+        if (!this.wasSeenOnceBy.includes(player)) {
+            this.wasSeenOnceBy.push(player);
         }
     }
     unSeeAll() {

@@ -377,17 +377,20 @@ class Render {
     }
     drawHex(hex) {
         const pos = this.getWorldPosition(hex);
-        if (hex.hasSeen(this.humanPlayer) || !Settings.production) {
+        if (hex.hasSeenOnce(this.humanPlayer) || hex.hasSeen(this.humanPlayer) || !Settings.production) {
             this.context.drawImage(Images.tileImages[hex.biome.imageName], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);
             this.drawResources(hex);
-            // } else if (hex.hasExplored(this.humanPlayer)) {
-            //     this.context.save();
-            //     this.context.globalAlpha = 0.4;
-            //     this.context.drawImage(Images.tileImages["fog_of_war"], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);
-            //     this.context.restore();
-        } else {
+        }
+        if (hex.hasSeenOnce(this.humanPlayer) && !hex.hasSeen(this.humanPlayer)) {
+            this.context.save();
+            this.context.globalAlpha = 0.70;
+            this.context.drawImage(Images.tileImages["fog_of_war"], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);
+            this.context.restore();
+        }
+        if (!hex.hasSeenOnce(this.humanPlayer) && !hex.hasSeen(this.humanPlayer)) {
             this.context.drawImage(Images.tileImages["fog_of_war"], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);
         }
+
         if (!Settings.production) {
             // draw coordinates
             const text = `${hex.q},${hex.r}`;
