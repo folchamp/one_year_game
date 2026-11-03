@@ -20,7 +20,7 @@ class Camera {
             this.lastMousePosition = Util.getMousePosition(this.canvas, event);
             this.canvas.setPointerCapture(event.pointerId);
         });
-        this.canvas.addEventListener("pointermove", (event) => {
+        document.body.addEventListener("pointermove", (event) => {
             this.edgePanningMousePosition = Util.getMousePosition(this.canvas, event);
             if (this.isDragging) {
                 const mousePosition = Util.getMousePosition(this.canvas, event);

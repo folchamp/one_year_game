@@ -51,6 +51,15 @@ class World {
             }
         });
     }
+    getRandomAdjacentHex(position) {
+        const direction = Random.fromArray(World.getNeighbors(0, 0));
+        let randomPosition = { q: position.q + direction.q, r: position.r + direction.r };
+        const hex = this.get(randomPosition.q, randomPosition.r);
+        if (hex === undefined) {
+            randomPosition = this.getRandomAdjacentHex(position);
+        }
+        return hex;
+    }
     findDirection(from, to) {
         const directions = World.getDirections();
         let foundDirection;
@@ -134,6 +143,9 @@ class World {
             }
         }
         return result;
+    }
+    resetFogOfWar() {
+        // this.hexes.forEach((hex) => hex.unSeeAll());
     }
     seeNeighbours(position, range, player) {
         const hexes = this.getHexesWithinRange(position, range);

@@ -380,6 +380,11 @@ class Render {
         if (hex.hasSeen(this.humanPlayer) || !Settings.production) {
             this.context.drawImage(Images.tileImages[hex.biome.imageName], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);
             this.drawResources(hex);
+            // } else if (hex.hasExplored(this.humanPlayer)) {
+            //     this.context.save();
+            //     this.context.globalAlpha = 0.4;
+            //     this.context.drawImage(Images.tileImages["fog_of_war"], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);
+            //     this.context.restore();
         } else {
             this.context.drawImage(Images.tileImages["fog_of_war"], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);
         }

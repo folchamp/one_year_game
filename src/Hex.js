@@ -35,6 +35,9 @@ class Hex {
             this.isSeenThroughFogBy.push(player);
         }
     }
+    unSeeAll() {
+        this.isSeenThroughFogBy = [];
+    }
     hasExplored(player) {
         return this.isExploredBy.includes(player);
     }

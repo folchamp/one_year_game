@@ -98,8 +98,9 @@ class Game {
         this.render = new Render(this.context, this.display, this.camera, this.world, this.ECS, this.selection, this.humanPlayer, this.animator);
 
         // init game
+        Settings.startHexPositions = Util.shuffle(Settings.startHexPositions);
         this.unitCreator.create("campfire", Settings.startHexPositions[0], this.humanPlayer);
-        this.unitCreator.create("harvester", Settings.startHexPositions[0], this.humanPlayer);
+        this.unitCreator.create("harvester", this.world.getRandomAdjacentHex(Settings.startHexPositions[0]), this.humanPlayer);
 
         this.computers = [];
         for (let index = 1; index < Math.min(Settings.amountOfPlayers, Settings.maxAmountOfPlayers); index++) {
@@ -107,7 +108,7 @@ class Game {
             this.computers.push(computer);
 
             this.unitCreator.create("campfire", Settings.startHexPositions[index], computer);
-            this.unitCreator.create("harvester", Settings.startHexPositions[index], computer);
+            this.unitCreator.create("harvester", this.world.getRandomAdjacentHex(Settings.startHexPositions[index]), computer);
         }
 
         this.idleCycleCounter = 0;
@@ -267,6 +268,7 @@ class Game {
         }
     }
     explore() {
+        this.world.resetFogOfWar();
         this.ECS.Explorer.forEach((value, entity, map) => {
             this.world.exploreTile(this.ECS.Position.get(entity), this.ECS.Owner.get(entity));
             this.world.seeNeighbours(this.ECS.Position.get(entity), value.range, this.ECS.Owner.get(entity));

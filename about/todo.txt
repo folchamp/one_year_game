@@ -517,16 +517,26 @@ trop pénible de ne pas voir les attaques : ajouter des animations d'attaque
 rework RAC, chaque action d'une même ressource donne une ressource différente
 ♥ 01/11/2026
 préparer l'archer
+♥ 02/11/2026
+coup de pied
+soins
+tir de précision
+sorts en ligne
+♥ 03/11/2026
+position aléatoire (shuffle)
+tester le jeu à deux joueurs 
+faire spawner la première unité à côté du feu de camp
+
+
 
 ********************
 TODO
 ********************
 ---------- EN COURS ----------
-coup de pied
-soins
-tir de précision
+brouillard de guerre - continue working on it
+le boost de PA ne sert qu'au tour suivant
+bug edge panning 
 
-sorts en ligne
 chaque categorie de ressource sert pour une unité
 les hexagones que tu es le seul à avoir exploré ont un marquage
 menu ♦ new game ♦ continue ♦ help ♦ about  

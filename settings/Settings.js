@@ -9,12 +9,12 @@ class Settings {
     static resourceImageSize = 64;
     static categoryImageSize = 32;
     static startHexPositions = [
-        { q: 0, r: -6 },
-        { q: 6, r: -6 },
-        { q: 6, r: 0 },
-        { q: 0, r: 6 },
-        { q: -6, r: 6 },
-        { q: -6, r: 0 }
+        { q: 0, r: -5 },
+        { q: 5, r: -5 },
+        { q: 5, r: 0 },
+        { q: 0, r: 5 },
+        { q: -5, r: 5 },
+        { q: -5, r: 0 }
     ];
     // static startHexPositions = [
     //     { q: 0, r: -20 },
@@ -32,7 +32,7 @@ class Settings {
         "purple",
         "orange"
     ]
-    static amountOfPlayers = 3;
+    static amountOfPlayers = 2;
     static maxAmountOfPlayers = 6; // TODO make this bigger
     static playerColorArcRadius = 20;
     static playerColorArcOffset = 8;
