@@ -235,8 +235,8 @@ class Game {
     }
     getIdles(owner) {
         let idles = [];
-        this.ECS.Available.forEach((isAvailable, entity, array) => {
-            if (this.ECS.Owner.get(entity) === owner && isAvailable > 0) {
+        this.ECS.Available.forEach((availableActions, entity, array) => {
+            if (this.ECS.Owner.get(entity) === owner && availableActions > 0) {
                 idles.push(entity);
             }
         });
@@ -283,7 +283,7 @@ class Game {
         });
     }
     makeAvailable(player) {
-        this.ECS.Available.forEach((isAvailable, entity, map) => {
+        this.ECS.Available.forEach((availableActions, entity, map) => {
             if (this.ECS.Owner.get(entity) === player) {
                 const maxActions = this.ECS.CombatStats.get(entity).actions;
                 this.ECS.Available.set(entity, maxActions);
@@ -292,8 +292,9 @@ class Game {
     }
     resolveTick(player) {
         this.ECS.UnitsCreated.forEach((unitsCreated, campfire) => {
-            // TODO if player = owner
-            this.ECS.UnitsCreated.set(campfire, 0);
+            if (player === this.ECS.Owner.get(campfire)) {
+                this.ECS.UnitsCreated.set(campfire, 0);
+            }
         });
         if (player !== this.humanPlayer) {
             let idles = this.getIdles(player);
@@ -301,9 +302,6 @@ class Game {
         }
         this.makeAvailable(player);
         this.world.update();
-        // au cas où des ressources ont disparu, les explorateurs doivent arrêter de travailler
-        this.cleanOrders();
-        // this.cleanPowers();
         this.cleanKilledEntities();
     }
     tick() {
@@ -362,20 +360,20 @@ class Game {
         this.world.cleanAffects();
         this.targetting = undefined;
     }
-    cleanOrders() {
-        this.ECS.Order.forEach((order, entity) => {
-            const stillThere = order.hex.resources.some((resource) => {
-                return resource.resourceData.resourceName === order.resource.resourceData.resourceName;
-            });
-            if (!stillThere) {
-                // la ressource a été supprimée de la tuile, l'ordre ne peut plus être exécuté
-                this.ECS.Order.delete(entity);
-            }
-            // TODO think about this
-            // retirer l'ordre de toute façon (test)
-            this.ECS.Order.delete(entity);
-        });
-    }
+    // cleanOrders() {
+    //     this.ECS.Order.forEach((order, entity) => {
+    //         const stillThere = order.hex.resources.some((resource) => {
+    //             return resource.resourceData.resourceName === order.resource.resourceData.resourceName;
+    //         });
+    //         if (!stillThere) {
+    //             // la ressource a été supprimée de la tuile, l'ordre ne peut plus être exécuté
+    //             this.ECS.Order.delete(entity);
+    //         }
+    //         // TODO think about this
+    //         // retirer l'ordre de toute façon (test)
+    //         this.ECS.Order.delete(entity);
+    //     });
+    // }
     setPower(targetHex, targetting) {
         if (this.ECS.Available.get(targetting.attacker) > 0) {
             const isTargetable = targetting.targetableHexes.some((hex) => targetHex.q === hex.q && targetHex.r === hex.r);

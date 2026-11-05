@@ -2626,10 +2626,56 @@ class Data {
     }
 
     static creatableUnits = [
-        "harvester", "explorer", "hunter", "fighter", "archer"
+        "harvester", "explorer", "hunter", "fighter", "archer", "berserker"
     ]
 
     static units = {
+        berserker: {
+            unitName: "berserker",
+            isHarvester: false,
+            range: 2,
+            sprite: { imageName: "berserker", width: 64, height: 64, radius: 48 },
+            hitbox: { type: "circle", radius: 48 },
+            unitPrice: {
+                food: 4,
+                misc: 4
+            },
+            combatStats: {
+                hp: 15,
+                actions: 4,
+                amountOfSummons: 1,
+                powers: {
+                    basicAttack: {
+                        displayName: "frappe absorbante",
+                        damage: 1,
+                        range: 1,
+                        effect: "lifesteal",
+                        description: "Verser le sang donne un sentiment de puissance",
+                        zone: { type: "circle", size: 0 }
+                    },
+                    attraction: {
+                        displayName: "Attirance",
+                        damage: 0,
+                        range: 4,
+                        effect: "attract",
+                        attractDistance: 3,
+                        inline: true,
+                        description: "Viens te battre, mauviette",
+                        zone: { type: "circle", size: 0 }
+                    },
+                    rage: {
+                        displayName: "enragement",
+                        damage: 0,
+                        range: 0,
+                        effect: "rage",
+                        damage : 3,
+                        description: "La souffrance pour s'énergiser",
+                        zone: { type: "circle", size: 0 }
+                    }
+                }
+            },
+            description: "Le chasseur dresse des corbeaux pour accomplir ses sales besognes à sa place."
+        },
         archer: {
             unitName: "archer",
             isHarvester: false,
@@ -2637,8 +2683,8 @@ class Data {
             sprite: { imageName: "archer", width: 64, height: 64, radius: 48 },
             hitbox: { type: "circle", radius: 48 },
             unitPrice: {
-                food: 5,
-                medicine: 6
+                food: 4,
+                medicine: 4
             },
             combatStats: {
                 hp: 10,
@@ -2682,7 +2728,7 @@ class Data {
             sprite: { imageName: "crow", width: 64, height: 64, radius: 48 },
             hitbox: { type: "circle", radius: 48 },
             unitPrice: {
-                food: 5,
+                food: 4,
                 tool: 3
             },
             combatStats: {
@@ -2706,12 +2752,12 @@ class Data {
             sprite: { imageName: "hunter", width: 64, height: 64, radius: 48 },
             hitbox: { type: "circle", radius: 48 },
             unitPrice: {
-                food: 5,
+                food: 4,
                 living: 3
             },
             combatStats: {
                 hp: 6,
-                actions: 3,
+                actions: 1,
                 amountOfSummons: 1,
                 powers: {
                     basicAttack: {
@@ -2720,7 +2766,7 @@ class Data {
                         range: 1,
                         effect: "summon",
                         summonName: "crow",
-                        description: "Invocation d'un corbeau (1 nourriture)",
+                        description: "Invocation d'un corbeau (1 nourriture)",
                         zone: { type: "circle", size: 0 },
                         price: { food: 1 }
                     },
@@ -2734,7 +2780,7 @@ class Data {
                     },
                     frappe: {
                         displayName: "frappe",
-                        damage: 1,
+                        damage: 6,
                         range: 1,
                         description: "La façon la plus simple d'exprimer de la violence",
                         zone: { type: "circle", size: 0 }
@@ -2750,7 +2796,7 @@ class Data {
             sprite: { imageName: "explorer", width: 64, height: 64, radius: 48 },
             hitbox: { type: "circle", radius: 48 },
             unitPrice: {
-                food: 5,
+                food: 4,
                 tool: 3
             },
             combatStats: {
@@ -2820,7 +2866,7 @@ class Data {
                         range: 1,
                         effect: "summon",
                         summonName: "campfire",
-                        description: "creation d'un feu de camp (5 énergie, 5 confort)",
+                        description: "Monter un campement (5 énergie, 5 confort)",
                         zone: { type: "circle", size: 0 },
                         price: { comfort: 5, energy: 5 }
                     }
@@ -2835,8 +2881,8 @@ class Data {
             sprite: { imageName: "fighter", width: 64, height: 64, radius: 48 },
             hitbox: { type: "circle", radius: 48 },
             unitPrice: {
-                food: 5,
-                building_material: 5
+                food: 4,
+                building_material: 4
             },
             combatStats: {
                 hp: 30,

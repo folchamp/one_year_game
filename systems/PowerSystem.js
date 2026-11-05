@@ -16,6 +16,11 @@ class PowerSystem {
             this.eventDispatcher.emit("attack", { entity });
         }
     }
+    heal(entity, heal) {
+        const combatStats = this.ECS.CombatStats.get(entity);
+        combatStats.actualHP = Math.min(combatStats.hp, combatStats.actualHP + heal);
+        this.eventDispatcher.emit("boostPA", { entity: entity });
+    }
     usePower(power) {
         const attackerOwner = this.ECS.Owner.get(power.attacker);
         const attackerPosition = this.ECS.Position.get(power.attacker);
@@ -26,14 +31,15 @@ class PowerSystem {
             // ----
             if (power.powerData.damage !== undefined && power.powerData.damage > 0 && targetEntity !== power.attacker) {
                 this.hit(targetEntity, power.powerData.damage);
+                if (power.powerData.effect === "lifesteal") {
+                    this.heal(power.attacker, power.powerData.damage);
+                }
             }
             // ----
             // heal
             // ----
             if (power.powerData.effect === "heal" && targetEntity !== undefined) {
-                const combatStats = this.ECS.CombatStats.get(targetEntity);
-                combatStats.actualHP = Math.min(combatStats.hp, combatStats.actualHP + power.powerData.healAmount);
-                this.eventDispatcher.emit("boostPA", { entity: targetEntity });
+                this.heal(targetEntity, power.powerData.healAmount);
             }
             // ----
             // ral (multiple targets)
@@ -61,8 +67,33 @@ class PowerSystem {
         // ----
         // push (single target)
         // ----
+        if (power.powerData.effect === "attract" && power.targetEntity !== undefined) {
+            const direction = this.world.findDirection(targetPosition, attackerPosition);
+            let movementIsPossible = true;
+            if (direction !== undefined) {
+                const attractDistance = power.powerData.attractDistance;
+                for (let distance = 1; distance <= attractDistance; distance++) {
+                    let newPosition = {
+                        q: targetPosition.q + direction.q * distance,
+                        r: targetPosition.r + direction.r * distance
+                    };
+                    this.ECS.Position.forEach((position, entity) => {
+                        if (position.q === newPosition.q && position.r === newPosition.r && !this.ECS.Passable.get(entity)) {
+                            movementIsPossible = false;
+                        }
+                    });
+                    if (movementIsPossible) {
+                        this.ECS.Position.set(power.targetEntity, { q: newPosition.q, r: newPosition.r });
+                    }
+                }
+            }
+        }
+        // ----
+        // push (single target)
+        // ----
         if (power.powerData.effect === "push" && power.targetEntity !== undefined) {
             const direction = this.world.findDirection(attackerPosition, targetPosition);
+            let movementIsPossible = true;
             if (direction !== undefined) {
                 const pushDistance = power.powerData.pushDistance;
                 for (let distance = 1; distance <= pushDistance; distance++) {
@@ -70,7 +101,6 @@ class PowerSystem {
                         q: targetPosition.q + direction.q * distance,
                         r: targetPosition.r + direction.r * distance
                     };
-                    let movementIsPossible = true;
                     this.ECS.Position.forEach((position, entity) => {
                         if (position.q === newPosition.q && position.r === newPosition.r && !this.ECS.Passable.get(entity)) {
                             movementIsPossible = false;
@@ -113,13 +143,23 @@ class PowerSystem {
             this.world.seeNeighbours(power.targetHex, 0, attackerOwner);
             this.world.exploreTile(power.targetHex, attackerOwner);
         }
+        // ----
+        // rage (single hex target)
+        // ----
+        if (power.powerData.effect === "rage") {
+            let availableActions = this.ECS.Available.get(power.attacker);
+            this.hit(power.attacker, power.powerData.damage);
+            availableActions = availableActions + 2;
+            this.ECS.Available.set(power.attacker, availableActions);
+            this.eventDispatcher.emit("boostPA", { entity: power.attacker });
+            console.log(this.ECS.Available.get(power.attacker))
+        }
     }
     update(entity) {
         const power = this.ECS.Power.get(entity);
-        const actualActions = this.ECS.Available.get(entity);
-        if (actualActions > 0) {
+        if (this.ECS.Available.get(entity) > 0) {
             this.usePower(power);
-            this.ECS.Available.set(entity, actualActions - 1);
+            this.ECS.Available.set(entity, this.ECS.Available.get(entity) - 1);
         }
     }
 }

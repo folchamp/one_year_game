@@ -564,6 +564,13 @@ retirer toutes les valeurs encodées en dur et aller les glisser dans Settings
 victoryscreen
 revoir les alert() et faire un système propre
 
+********************
+IDÉES D'UNITÉS
+********************
+moine qui prend le contrôle d'une unité adverse
+sacrieur qui attire de loin
+
+
 ---------- MUST ----------
 hôtel de vente dans lequel tu peux échanger des ressources, 1 pour 1
 persistance des données
