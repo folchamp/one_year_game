@@ -95,8 +95,9 @@ class PowerSystem {
         // summon (single hex target)
         // ----
         if (power.powerData.effect === "summon") {
-            if (this.ECS.Summons.get(power.attacker).length < this.ECS.CombatStats.get(power.attacker).amountOfSummons) {
-                this.unitCreator.createSummon(power.powerData.summonName, power.targetHex, this.ECS.Owner.get(power.attacker), power.attacker);
+            if (this.ECS.Summons.get(power.attacker).length < this.ECS.CombatStats.get(power.attacker).amountOfSummons && attackerOwner.inventory.has(power.powerData.price)) {
+                attackerOwner.inventory.consume(power.powerData.price);
+                this.unitCreator.createSummon(power.powerData.summonName, power.targetHex, attackerOwner, power.attacker);
             }
         }
         // ----

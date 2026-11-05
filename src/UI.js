@@ -85,7 +85,7 @@ class UI {
             );
             this.tooltip.attach(this.uiCreateExplorerContainer, unit.description);
             this.uiCreateUnitImage.src = Images.unitImages[unitName].src;
-            this.uiCreateExplorerContainer.addEventListener("click", () => { this.uiActions.createUnit(unitName, this.humanPlayer); });
+            this.uiCreateExplorerContainer.addEventListener("click", () => { this.uiActions.createUnit(unitName, this.humanPlayer, this.selection.selectedCommunity); });
             for (const resourceCategoryName in unitPrice) {
                 const amount = unitPrice[resourceCategoryName];
                 const amountPriceText = Util.createDOMElement("amountPriceText", "span", this.uiUnitPriceContainer);
@@ -264,7 +264,7 @@ class UI {
         if (this.selection.selectedHex !== undefined) {
             this.updateHex(this.selection.selectedHex);
         }
-        if (this.selection.isCommunity) {
+        if (this.selection.selectedCommunity !== undefined) {
             Util.show(this.uiCommunityActionsContainer);
             this.unitImage.src = Images.unitImages["campfire"].src;
         }

@@ -2720,8 +2720,9 @@ class Data {
                         range: 1,
                         effect: "summon",
                         summonName: "crow",
-                        description: "Invocation d'un corbeau",
-                        zone: { type: "circle", size: 0 }
+                        description: "Invocation d'un corbeau (1 nourriture)",
+                        zone: { type: "circle", size: 0 },
+                        price: { food: 1 }
                     },
                     motivation: {
                         displayName: "motivation",
@@ -2796,6 +2797,7 @@ class Data {
             combatStats: {
                 hp: 9,
                 actions: 4,
+                amountOfSummons: 1,
                 powers: {
                     basicAttack: {
                         displayName: "Coup de fourche",
@@ -2811,6 +2813,16 @@ class Data {
                         effect: "ral",
                         description: "Un jet de sable qui aveugle l'ennemi",
                         zone: { type: "circle", size: 0 }
+                    },
+                    campfire: {
+                        displayName: "feu de camp",
+                        damage: 0,
+                        range: 1,
+                        effect: "summon",
+                        summonName: "campfire",
+                        description: "creation d'un feu de camp (5 énergie, 5 confort)",
+                        zone: { type: "circle", size: 0 },
+                        price: { comfort: 5, energy: 5 }
                     }
                 }
             },

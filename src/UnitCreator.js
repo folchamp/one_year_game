@@ -57,6 +57,7 @@ class UnitCreator {
         this.ECS.Summons.set(entity, []);
         this.ECS.WorldPosition.set(entity, World.hexToWorld(pos));
         this.ECS.Explorer.set(entity, { range: 1 });
+        this.ECS.UnitsCreated.set(entity, 0);
         return entity;
     }
     killUnit(entity) {
@@ -87,5 +88,6 @@ class UnitCreator {
         this.ECS.Summoner.delete(entity);
         this.ECS.Passable.delete(entity);
         // this.ECS.WorldPosition.delete(entity); // still used for animations
+        this.ECS.UnitsCreated.delete(entity);
     }
 }

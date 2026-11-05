@@ -18,7 +18,7 @@ class Game {
             usePower4: { description: "use power", f: () => this.ui.usePower(3) }
         };
         this.uiActions = {
-            createUnit: (unitName, player) => { return this.createUnit(unitName, player); },
+            createUnit: (unitName, player, campfire) => { return this.createUnit(unitName, player, campfire); },
             powerButtonClick: (entity, powerData) => this.powerButtonClick(entity, powerData),
             actionButtonClick: (hex, resource, actionName) => this.actionButtonClick(hex, resource, actionName),
             cameraLeft: () => this.camera.cameraLeft(),
@@ -28,7 +28,7 @@ class Game {
             nextTick: () => this.tick()
         }
         this.iaActions = {
-            createUnit: (unitName, player) => { return this.createUnit(unitName, player); },
+            createUnit: (unitName, player, campfire) => { return this.createUnit(unitName, player, campfire); },
             setMove: (entity, hex) => this.setMove(entity, hex),
             setOrder: (hex, resource, actionName, entity) => this.setOrder(hex, resource, actionName, entity),
             setPower: (targetHex, targetting) => this.setPower(targetHex, targetting)
@@ -57,6 +57,7 @@ class Game {
         this.ECS.Summoner = new Map();
         this.ECS.Passable = new Map();
         this.ECS.WorldPosition = new Map();
+        this.ECS.UnitsCreated = new Map();
 
         // engine
         this.log = new Log();
@@ -116,7 +117,6 @@ class Game {
         this.targetting = undefined;
 
         // start
-        this.humanPlayer.newTurn();
         this.explore();
         this.ui.update();
         this.selectNextIdle(this.humanPlayer);
@@ -186,20 +186,25 @@ class Game {
         });
         return entity;
     }
-    createUnit(unitName, owner) {
+    createUnit(unitName, owner, campfire) {
         const unitData = Data.units[unitName];
         const price = unitData.unitPrice;
+        const position = this.ECS.Position.get(campfire);
         let unit;
-        if (owner === this.humanPlayer && this.movementSystem.isHexPositionOccupied({ q: owner.startHexPosition.q, r: owner.startHexPosition.r })) {
+        if (campfire === undefined) {
+            alert("no campfire selected");
+        } else if (owner === this.humanPlayer && this.movementSystem.isHexPositionOccupied({ q: position.q, r: position.r })) {
             alert("hex is not free");
         } else if (!owner.inventory.has(price) && Settings.production) {
             alert("not enough resources");
-        } else if (owner.unitsCreated >= Settings.unitsPerTurn) {
+        } else if (this.ECS.UnitsCreated.get(campfire) >= Settings.unitsPerTurn) {
             alert(`only ${Settings.unitsPerTurn} per turn`)
         } else {
+            let unitsCreated = this.ECS.UnitsCreated.get(campfire);
+            unitsCreated++;
             owner.inventory.consume(price)
-            owner.unitsCreated++;
-            unit = this.unitCreator.create(unitName, owner.startHexPosition, owner);
+            this.ECS.UnitsCreated.set(campfire, unitsCreated);
+            unit = this.unitCreator.create(unitName, position, owner);
         }
         this.explore();
         this.ui.update();
@@ -262,10 +267,12 @@ class Game {
     selectHex(hex) {
         if (hex !== undefined) {
             this.selection.selectHex(hex);
-            if (hex.q === this.humanPlayer.startHexPosition.q && hex.r === this.humanPlayer.startHexPosition.r) {
-                this.selection.selectCommunity();
-                console.log("top");
-            }
+            this.ECS.UnitsCreated.forEach((unitsCreated, campfire) => {
+                const position = this.ECS.Position.get(campfire);
+                if (hex.q === position.q && hex.r === position.r) {
+                    this.selection.selectCommunity(campfire);
+                }
+            });
         }
     }
     explore() {
@@ -284,7 +291,10 @@ class Game {
         });
     }
     resolveTick(player) {
-        player.newTurn();
+        this.ECS.UnitsCreated.forEach((unitsCreated, campfire) => {
+            // TODO if player = owner
+            this.ECS.UnitsCreated.set(campfire, 0);
+        });
         if (player !== this.humanPlayer) {
             let idles = this.getIdles(player);
             player.IA.act(idles);
@@ -300,7 +310,7 @@ class Game {
         let players = [this.humanPlayer, ...this.computers];
         players.forEach((player) => {
             this.resolveTick(player);
-            this.ui.update();
+            // this.ui.update();
         });
         // toujours en dernier : on refresh les données de contexte de l'entité sélectionnée (sur quelle tuile elle se trouve etc.)
         this.selectEntity(this.selection.selectedEntity);

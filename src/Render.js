@@ -228,8 +228,13 @@ class Render {
             } else {
                 this.fillWithoutSelectionStyle(owner.playerColor);
             }
-            this.context.drawImage(Images.unitImages[sprite.imageName],
-                worldPosition.x - sprite.width / 2, worldPosition.y - sprite.height / 2, sprite.width, sprite.height);
+            if (this.ECS.UnitsCreated.get(entity) >= Settings.unitsPerTurn) {
+                this.context.drawImage(Images.unitImages["campfire_off"],
+                    worldPosition.x - sprite.width / 2, worldPosition.y - sprite.height / 2, sprite.width, sprite.height);
+            } else {
+                this.context.drawImage(Images.unitImages[sprite.imageName],
+                    worldPosition.x - sprite.width / 2, worldPosition.y - sprite.height / 2, sprite.width, sprite.height);
+            }
             if (this.ECS.Available.get(entity) > 0) {
                 // actions disponibles
                 this.context.save();
@@ -381,13 +386,13 @@ class Render {
             this.context.drawImage(Images.tileImages[hex.biome.imageName], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);
             this.drawResources(hex);
         }
-        if (hex.hasSeenOnce(this.humanPlayer) && !hex.hasSeen(this.humanPlayer)) {
+        if (hex.hasSeenOnce(this.humanPlayer) && !hex.hasSeen(this.humanPlayer) && Settings.production) {
             this.context.save();
             this.context.globalAlpha = 0.70;
             this.context.drawImage(Images.tileImages["fog_of_war"], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);
             this.context.restore();
         }
-        if (!hex.hasSeenOnce(this.humanPlayer) && !hex.hasSeen(this.humanPlayer)) {
+        if (!hex.hasSeenOnce(this.humanPlayer) && !hex.hasSeen(this.humanPlayer) && Settings.production) {
             this.context.drawImage(Images.tileImages["fog_of_war"], pos.x - Settings.tileWidth / 2, pos.y - Settings.tileHeight / 2);
         }
 

@@ -535,6 +535,10 @@ rangement
 enfants à la maison
 rien fait :-( 
 ♥ 05/11/2026
+quand un feu de camp a créé son maximum d'untités, il s'éteint
+les feux de camps ont leur attribut "nombre d'unités créées"
+on peut créer des feux de camp
+faire en sorte que les invocations coûtent des ressources
 
 
 
@@ -543,6 +547,8 @@ TODO
 ********************
 ---------- EN COURS ----------
 le boost de PA ne sert qu'au tour suivant
+on perd quand on n'a plus de feu de camp
+isHexPositionOccupied
 
 chaque categorie de ressource sert pour une unité
 les hexagones que tu es le seul à avoir exploré ont un marquage

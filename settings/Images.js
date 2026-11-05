@@ -41,6 +41,7 @@ class Images {
         "explorer",
         "harvester",
         "campfire",
+        "campfire_off",
         "hunter",
         "crow",
         "fighter",

@@ -59,17 +59,18 @@ class IA {
         }
     }
     createUnits() {
-        let units = [];
-        Data.creatableUnits.forEach((unitName) => {
-            const unit = Data.units[unitName];
-            if (this.owner.inventory.has(unit.unitPrice) &&
-                this.owner.unitsCreated < Settings.unitsPerTurn &&
-                !this.isHexPositionOccupied({ q: this.owner.startHexPosition.q, r: this.owner.startHexPosition.r })) {
-                const newUnit = this.actions.createUnit(unitName, this.owner);
-                units.push(newUnit);
-            }
-        });
-        return units;
+        // TODO à réécrire avec le nouveau createUnit();
+        // let units = [];
+        // Data.creatableUnits.forEach((unitName) => {
+        //     const unit = Data.units[unitName];
+        //     if (this.owner.inventory.has(unit.unitPrice) &&
+        //         this.owner.unitsCreated < Settings.unitsPerTurn &&
+        //         !this.isHexPositionOccupied({ q: this.owner.startHexPosition.q, r: this.owner.startHexPosition.r })) {
+        //         const newUnit = this.actions.createUnit(unitName, this.owner);
+        //         units.push(newUnit);
+        //     }
+        // });
+        // return units;
     }
     getTargetting(entity) {
         let targetting;

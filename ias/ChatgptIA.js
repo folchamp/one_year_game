@@ -723,7 +723,6 @@ class IA {
         if (!this.owner.startHexPosition) return createdUnits;
 
         if (
-            this.owner.unitsCreated >= Settings.unitsPerTurn ||
             this.isHexPositionOccupied(this.owner.startHexPosition)
         ) {
             return createdUnits;
@@ -731,24 +730,29 @@ class IA {
 
         // L'ordre de Data.creatableUnits définit ici
         // la priorité de production.
-        for (const unitName of Data.creatableUnits) {
-            const unit = Data.units[unitName];
-            if (!unit) continue;
+        this.ECS.UnitsCreated.forEach((unitsCreated, campfire) => {
+            if (unitsCreated < Settings.unitsPerTurn && this.ECS.Owner.get(campfire) === this.owner) {
+                for (const unitName of Data.creatableUnits) {
+                    const unit = Data.units[unitName];
+                    if (!unit) continue;
 
-            if (this.owner.inventory.has(unit.unitPrice)) {
-                const newUnit = this.actions.createUnit(
-                    unitName,
-                    this.owner
-                );
+                    if (this.owner.inventory.has(unit.unitPrice)) {
+                        const newUnit = this.actions.createUnit(
+                            unitName,
+                            this.owner,
+                            campfire
+                        );
 
-                if (newUnit !== undefined) {
-                    createdUnits.push(newUnit);
+                        if (newUnit !== undefined) {
+                            createdUnits.push(newUnit);
+                        }
+
+                        // Une unité par emplacement de production.
+                        break;
+                    }
                 }
-
-                // Une unité par emplacement de production.
-                break;
             }
-        }
+        });
 
         return createdUnits;
     }

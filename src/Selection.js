@@ -14,13 +14,13 @@ class Selection {
         this.reset();
         this.selectedHex = hex;
     }
-    selectCommunity() {
-        this.isCommunity = true;
+    selectCommunity(campfire) {
+        this.selectedCommunity = campfire;
     }
     reset() {
         this.hoveredHex = undefined;
         this.selectedHex = undefined;
         this.selectedEntity = undefined;
-        this.isCommunity = false;
+        this.selectedCommunity = undefined;
     }
 }
