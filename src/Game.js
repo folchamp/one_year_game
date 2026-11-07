@@ -375,6 +375,7 @@ class Game {
     //     });
     // }
     setPower(targetHex, targetting) {
+        // console.log(targetHex, targetting);
         if (this.ECS.Available.get(targetting.attacker) > 0) {
             const isTargetable = targetting.targetableHexes.some((hex) => targetHex.q === hex.q && targetHex.r === hex.r);
             if (isTargetable) {

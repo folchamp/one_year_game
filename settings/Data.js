@@ -2668,7 +2668,7 @@ class Data {
                         damage: 0,
                         range: 0,
                         effect: "rage",
-                        damage : 3,
+                        damage: 3,
                         description: "La souffrance pour s'énergiser",
                         zone: { type: "circle", size: 0 }
                     }

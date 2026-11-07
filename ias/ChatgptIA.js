@@ -368,10 +368,12 @@ class IA {
             const stats = this.ECS.CombatStats.get(entity);
             const summons = this.ECS.Summons?.get(entity) ?? [];
             const maxSummons = stats.amountOfSummons ?? 0;
+            const price = powerData.price;
 
             if (
                 summons.length < maxSummons &&
-                !this.isHexPositionOccupied(center)
+                !this.isHexPositionOccupied(center) &&
+                this.owner.inventory.has(price)
             ) {
                 const enemyDistance = this.getNearestEnemyDistance(center);
 
@@ -766,11 +768,11 @@ class IA {
         const targetting = this.getTargetting(entity);
 
         if (targetting && targetting.score > 0) {
+            console.log(targetting);
             this.actions.setPower(
                 targetting.targetHexPosition,
                 targetting
             );
-
             return true;
         }
 
@@ -780,6 +782,7 @@ class IA {
         if (
             unitData?.isHarvester &&
             this.harvest(entity)
+
         ) {
             return true;
         }
@@ -795,6 +798,8 @@ class IA {
                 ...this.createUnits()
             ])
         ];
+
+        console.log(activeEntities);
 
         // On utilise une boucle bornée plutôt qu'une récursion.
         for (let pass = 0; pass < this.maxActionPasses; pass++) {

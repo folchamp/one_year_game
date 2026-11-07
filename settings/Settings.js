@@ -32,7 +32,7 @@ class Settings {
         "purple",
         "orange"
     ]
-    static amountOfPlayers = 2;
+    static amountOfPlayers = 6;
     static maxAmountOfPlayers = 6; // TODO make this bigger
     static playerColorArcRadius = 20;
     static playerColorArcOffset = 8;
