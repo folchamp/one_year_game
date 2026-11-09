@@ -2674,7 +2674,7 @@ class Data {
                     }
                 }
             },
-            description: "Le chasseur dresse des corbeaux pour accomplir ses sales besognes à sa place."
+            description: "Le berserke aime exprimer la violence qui l'habite. Il attire les ennemis à lui et n'hésite pas à subir des coups pour en infliger de plus grands."
         },
         archer: {
             unitName: "archer",
@@ -2719,7 +2719,7 @@ class Data {
                     }
                 }
             },
-            description: "Le chasseur dresse des corbeaux pour accomplir ses sales besognes à sa place."
+            description: "L'archer garde ses adversaires loin de lui et peut soigner."
         },
         crow: {
             unitName: "crow",

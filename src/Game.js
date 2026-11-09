@@ -71,6 +71,7 @@ class Game {
         this.movementSystem = new MovementSystem(this.world, this.ECS);
         this.actionSystem = new ActionSystem(this.world, this.ECS);
         this.powerSystem = new PowerSystem(this.world, this.ECS, this.unitCreator, this.eventDispatcher);
+        this.notificationsManager = new NotificationsManager(this.eventDispatcher);
 
         // player
         Settings.startHexPositions = Util.shuffle(Settings.startHexPositions);
@@ -194,7 +195,8 @@ class Game {
         if (campfire === undefined) {
             alert("no campfire selected");
         } else if (owner === this.humanPlayer && this.movementSystem.isHexPositionOccupied({ q: position.q, r: position.r })) {
-            alert("hex is not free");
+            // alert("hex is not free");
+            this.eventDispatcher.emit("notify", "hex is not freeqqq");
         } else if (!owner.inventory.has(price) && Settings.production) {
             alert("not enough resources");
         } else if (this.ECS.UnitsCreated.get(campfire) >= Settings.unitsPerTurn) {

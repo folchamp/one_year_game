@@ -544,6 +544,13 @@ rangement grenier
 rien fait :-( 
 ♥ 07/11/2026
 testing
+correction bug price
+♥ 08/11/2026
+rallye du Père Fouettard
+rien fait :-( 
+♥ 09/11/2026
+corriger les descriptions des unités
+
 
 
 ********************
@@ -554,6 +561,7 @@ le boost de PA ne sert qu'au tour suivant
 on perd quand on n'a plus de feu de camp
 isHexPositionOccupied
 
+victoryscreen
 chaque categorie de ressource sert pour une unité
 les hexagones que tu es le seul à avoir exploré ont un marquage
 menu ♦ new game ♦ continue ♦ help ♦ about  
@@ -565,7 +573,6 @@ améliorer l'ia
 l'IA n'utilise pas les invocations
 pouvoir de déplacement "galop" en ligne qui touche tous les adversaires sur le chemin
 retirer toutes les valeurs encodées en dur et aller les glisser dans Settings
-victoryscreen
 revoir les alert() et faire un système propre
 
 ********************
