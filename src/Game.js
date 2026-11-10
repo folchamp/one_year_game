@@ -193,14 +193,13 @@ class Game {
         const position = this.ECS.Position.get(campfire);
         let unit;
         if (campfire === undefined) {
-            alert("no campfire selected");
+            this.eventDispatcher.emit("no campfire selected");
         } else if (owner === this.humanPlayer && this.movementSystem.isHexPositionOccupied({ q: position.q, r: position.r })) {
-            // alert("hex is not free");
-            this.eventDispatcher.emit("notify", "hex is not freeqqq");
+            this.eventDispatcher.emit("notify", "hex is not free");
         } else if (!owner.inventory.has(price) && Settings.production) {
-            alert("not enough resources");
+            this.eventDispatcher.emit("notify", "not enough resources");
         } else if (this.ECS.UnitsCreated.get(campfire) >= Settings.unitsPerTurn) {
-            alert(`only ${Settings.unitsPerTurn} per turn`)
+            this.eventDispatcher.emit("notify", `only ${Settings.unitsPerTurn} per turn`)
         } else {
             let unitsCreated = this.ECS.UnitsCreated.get(campfire);
             unitsCreated++;
@@ -233,7 +232,7 @@ class Game {
                 done = true;
             }
         });
-        if (!done) alert("no harvester on this tile");
+        if (!done) this.eventDispatcher.emit("no harvester on this tile");
     }
     getIdles(owner) {
         let idles = [];
@@ -323,7 +322,7 @@ class Game {
             factionsAlive.add(owner);
         });
         if (factionsAlive.size <= 1) {
-            alert("game over, the last standing wins");
+            this.eventDispatcher.emit("game over, the last standing wins");
         }
     }
     loop() {
@@ -416,7 +415,7 @@ class Game {
                 this.selectEntity(this.selection.selectedEntity);
                 this.ui.update();
             } else {
-                alert("out of range");
+                this.eventDispatcher.emit("out of range");
             }
         } else {
             // j'ai retiré ceci parce que, BUG, certaines IA tentent de faire des actions alors qu'elles n'en ont plus

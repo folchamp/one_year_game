@@ -550,7 +550,8 @@ rallye du Père Fouettard
 rien fait :-( 
 ♥ 09/11/2026
 corriger les descriptions des unités
-
+♥ 10/11/2026
+avancer sur le système de notifications
 
 
 ********************
