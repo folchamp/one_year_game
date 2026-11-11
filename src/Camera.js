@@ -102,4 +102,18 @@ class Camera {
             y: (position.y - this.canvas.height / 2) / this.zoom + this.position.y
         };
     }
+    worldToCanvas(position) {
+        return {
+            x: (position.x - this.position.x) * this.zoom + this.canvas.width / 2,
+            y: (position.y - this.position.y) * this.zoom + this.canvas.height / 2
+        };
+    }
+    worldToScreen(position) {
+        const canvasPosition = this.worldToCanvas(position);
+        const rect = this.canvas.getBoundingClientRect();
+        return {
+            x: rect.left + canvasPosition.x * (rect.width / this.canvas.width),
+            y: rect.top + canvasPosition.y * (rect.height / this.canvas.height)
+        };
+    }
 }

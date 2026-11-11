@@ -32,6 +32,7 @@ class Settings {
         "purple",
         "orange"
     ]
+    // static amountOfPlayers = 1;
     static amountOfPlayers = 6;
     static maxAmountOfPlayers = 6; // TODO make this bigger
     static playerColorArcRadius = 20;
@@ -50,8 +51,10 @@ class Settings {
     static fatigueBarVerticalOffset = 58;
     static edgePanningWidth = 10;
     static startingResources = 4;
+    // static startingResources = 14;
     static unitsPerTurn = 1;
     static damageAnimationDuration = 1800;
     static damageAnimationDelay = 600;
     static attackAnimationDuration = 800;
+    static disappearTimeout = 800;
 }

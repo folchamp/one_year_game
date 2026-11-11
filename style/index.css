@@ -86,7 +86,7 @@ body {
             align-items: center;
             user-select: none;
 
-            .inventoryCategoryImage {}
+            /* .inventoryCategoryImage {} */
         }
     }
 }
@@ -146,7 +146,7 @@ body {
                             margin: 6px;
                             box-shadow: 2px 2px 1px 1px black;
 
-                            .getImage {}
+                            /* .getImage {} */
                         }
 
                         .actionContainer.grayedOut {
@@ -180,7 +180,7 @@ body {
         border-top-left-radius: 2px;
         margin-right: 4px;
 
-        .unitImage {}
+        /* .unitImage {} */
 
         .unitSpellsContainer {
 
@@ -234,8 +234,80 @@ body {
 
             .uiUnitPriceContainer {
 
-                .resourceCategoryPriceImage {}
+                /* .resourceCategoryPriceImage {} */
             }
+        }
+    }
+}
+
+.notificationContainer {
+    position: fixed;
+    z-index: 50;
+    padding: 8px 12px;
+    color: white;
+    /* background-color: rgb(40, 40, 40); */
+    /* border: 1px solid rgb(130, 110, 75); */
+    background-color: rgb(65, 32, 32);
+    border: 1px solid rgb(190, 65, 65);
+    border-radius: 6px;
+    box-shadow: 2px 3px 6px black;
+    transform: translate(-50%, -110%);
+    text-align: center;
+    pointer-events: none;
+
+    .notificationTitle {
+        font-weight: bold;
+        color: #e6c373;
+        margin-bottom: 4px;
+    }
+
+    .notificationText {
+        font-size: 13px;
+        line-height: 16px;
+    }
+}
+
+.victoryScreenContainer {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+
+    .victoryScreenSubContainer {
+        width: 350px;
+        padding: 35px;
+        background-color: rgb(35, 35, 35);
+        border: 2px solid rgb(190, 155, 75);
+        border-radius: 10px;
+        box-shadow: 0 0 30px black;
+        text-align: center;
+        color: white;
+
+        .victoryScreenTitle {
+            font-size: 36px;
+            font-weight: bold;
+            color: rgb(230, 195, 115);
+            margin-bottom: 25px;
+        }
+
+        .victoryScreenText {
+            font-size: 16px;
+            line-height: 22px;
+            margin-bottom: 30px;
+        }
+
+        .victoryScreenButton {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: rgb(90, 75, 40);
+            color: white;
+            border: 1px solid rgb(190, 155, 75);
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
         }
     }
 }

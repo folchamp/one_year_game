@@ -71,7 +71,8 @@ class Game {
         this.movementSystem = new MovementSystem(this.world, this.ECS);
         this.actionSystem = new ActionSystem(this.world, this.ECS);
         this.powerSystem = new PowerSystem(this.world, this.ECS, this.unitCreator, this.eventDispatcher);
-        this.notificationsManager = new NotificationsManager(this.eventDispatcher);
+        this.notificationsManager = new NotificationsManager(this.eventDispatcher, this.camera);
+        this.victoryScreen = new VictoryScreen(this.eventDispatcher);
 
         // player
         Settings.startHexPositions = Util.shuffle(Settings.startHexPositions);
@@ -193,13 +194,13 @@ class Game {
         const position = this.ECS.Position.get(campfire);
         let unit;
         if (campfire === undefined) {
-            this.eventDispatcher.emit("no campfire selected");
+            this.eventDispatcher.emit("notify", { hexPosition: position, content: "no campfire selected" });
         } else if (owner === this.humanPlayer && this.movementSystem.isHexPositionOccupied({ q: position.q, r: position.r })) {
-            this.eventDispatcher.emit("notify", "hex is not free");
+            this.eventDispatcher.emit("notify", { hexPosition: position, content: "hex is not free" });
         } else if (!owner.inventory.has(price) && Settings.production) {
-            this.eventDispatcher.emit("notify", "not enough resources");
+            this.eventDispatcher.emit("notify", { hexPosition: position, content: "not enough resources" });
         } else if (this.ECS.UnitsCreated.get(campfire) >= Settings.unitsPerTurn) {
-            this.eventDispatcher.emit("notify", `only ${Settings.unitsPerTurn} per turn`)
+            this.eventDispatcher.emit("notify", { hexPosition: position, content: `only ${Settings.unitsPerTurn} per turn` })
         } else {
             let unitsCreated = this.ECS.UnitsCreated.get(campfire);
             unitsCreated++;
@@ -232,7 +233,7 @@ class Game {
                 done = true;
             }
         });
-        if (!done) this.eventDispatcher.emit("no harvester on this tile");
+        if (!done) this.eventDispatcher.emit("notify", { hexPosition: hex, content: "no harvester on this tile" });
     }
     getIdles(owner) {
         let idles = [];
@@ -319,10 +320,20 @@ class Game {
     checkVictory() {
         const factionsAlive = new Set();
         this.ECS.Owner.forEach((owner, entity, map) => {
-            factionsAlive.add(owner);
+            if (this.ECS.Name.get(entity) === "campfire") {
+                factionsAlive.add(owner);
+            }
         });
-        if (factionsAlive.size <= 1) {
-            this.eventDispatcher.emit("game over, the last standing wins");
+        if (!factionsAlive.has(this.humanPlayer)) {
+            this.eventDispatcher.emit("notify", { content: "you lose" });
+        } else if (factionsAlive.size <= 1) {
+            console.log("victory");
+            this.eventDispatcher.emit("victory", {
+                title: "Victoire !",
+                content: "Votre peuple a triomphé de ses ennemis."
+            });
+        } else {
+            console.log(`Amount of factions alive : ${factionsAlive.size}`);
         }
     }
     loop() {
@@ -361,20 +372,6 @@ class Game {
         this.world.cleanAffects();
         this.targetting = undefined;
     }
-    // cleanOrders() {
-    //     this.ECS.Order.forEach((order, entity) => {
-    //         const stillThere = order.hex.resources.some((resource) => {
-    //             return resource.resourceData.resourceName === order.resource.resourceData.resourceName;
-    //         });
-    //         if (!stillThere) {
-    //             // la ressource a été supprimée de la tuile, l'ordre ne peut plus être exécuté
-    //             this.ECS.Order.delete(entity);
-    //         }
-    //         // TODO think about this
-    //         // retirer l'ordre de toute façon (test)
-    //         this.ECS.Order.delete(entity);
-    //     });
-    // }
     setPower(targetHex, targetting) {
         // console.log(targetHex, targetting);
         if (this.ECS.Available.get(targetting.attacker) > 0) {
@@ -415,11 +412,8 @@ class Game {
                 this.selectEntity(this.selection.selectedEntity);
                 this.ui.update();
             } else {
-                this.eventDispatcher.emit("out of range");
+                this.eventDispatcher.emit("notify", { content: "out of range" });
             }
-        } else {
-            // j'ai retiré ceci parce que, BUG, certaines IA tentent de faire des actions alors qu'elles n'en ont plus
-            // alert("no more actions");
         }
         this.cleanKilledEntities();
         this.cleanTargetting();

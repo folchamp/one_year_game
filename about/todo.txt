@@ -552,17 +552,21 @@ rien fait :-(
 corriger les descriptions des unités
 ♥ 10/11/2026
 avancer sur le système de notifications
+♥ 11/11/2026
+on perd quand on n'a plus de feu de camp
+victoryscreen
+terminer le système de notifications
+revoir les alert() et faire un système propre
 
 
 ********************
 TODO
 ********************
 ---------- EN COURS ----------
+ajouter de la nourriture dans les montagnes
+regrouper le minerai en un seul ???
 le boost de PA ne sert qu'au tour suivant
-on perd quand on n'a plus de feu de camp
 isHexPositionOccupied
-
-victoryscreen
 chaque categorie de ressource sert pour une unité
 les hexagones que tu es le seul à avoir exploré ont un marquage
 menu ♦ new game ♦ continue ♦ help ♦ about  
@@ -574,7 +578,6 @@ améliorer l'ia
 l'IA n'utilise pas les invocations
 pouvoir de déplacement "galop" en ligne qui touche tous les adversaires sur le chemin
 retirer toutes les valeurs encodées en dur et aller les glisser dans Settings
-revoir les alert() et faire un système propre
 
 ********************
 IDÉES D'UNITÉS
@@ -594,7 +597,6 @@ les unités nouvellement construites n'agissent pas encore
 les IA cherchent en priorité les tuiles avec de la nourriture et des outils
 refactor/remove "improve" actions
 êtes-vous sûr ? oui, non 
-
 Écrire des rencontres, des lieux, des morceaux d’histoire pour les tuiles
 un hex doit être vidé de ressources pour être constructible
 Le joueur qui a le plus de misc (science etc.) gagne un bonus de combat (+10 attaque)
@@ -614,7 +616,6 @@ Créer une fatigue du village
 Créer une diversité génétique (=condition de victoire)
 animaux -> entités
 decide the next steps
-
 
 ---------- SHOULD ----------
 coût logistique en fonction de la distance avec la communauté (récolter des ressources plus loin coûte plus cher)
@@ -643,12 +644,10 @@ change tick system ? not sure ?
 
 ---------- WONT ----------
 multiplayer
-
----------- Archives ----------
+all drawings by me
 créer un arbre de dépendance des resources (une voiture contient des pneus, un moteur etc. et peut être utilisée pour remplacer n'importe lequel de ces éléments)
 Uciana : issue orders, units obbey during next tick
 civilisations : explorers have one movement and move immediatly, they recover their movement after the tick
-all drawings by me
 
  "aurochs": "aurochs",
  "livestock": "bétail",

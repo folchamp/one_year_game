@@ -2642,7 +2642,7 @@ class Data {
             },
             combatStats: {
                 hp: 15,
-                actions: 4,
+                actions: 2,
                 amountOfSummons: 1,
                 powers: {
                     basicAttack: {
@@ -3036,6 +3036,8 @@ class Data {
             treshold: 0.45,
             amountOfResources: 1,
             resources: [
+                "animals",
+                "fruits",
                 "iron_ore",
                 "copper_ore",
                 "limestone",

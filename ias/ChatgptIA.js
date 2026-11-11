@@ -274,6 +274,38 @@ class IA {
         }
 
         // ------------------------------
+        // PUSH
+        // ------------------------------
+
+        if (effect === "push") {
+            for (const unit of units) {
+                if (unit.entity === entity) continue;
+
+                if (unit.owner !== this.owner) {
+                    score += 5 + this.getThreatValue(unit) * 0.5;
+                } else {
+                    score -= 8;
+                }
+            }
+        }
+
+        // ------------------------------
+        // LIFESTEAL
+        // ------------------------------
+
+        if (effect === "lifesteal") {
+            for (const unit of units) {
+                if (unit.entity === entity) continue;
+
+                if (unit.owner !== this.owner) {
+                    score += 5 + this.getThreatValue(unit) * 0.5;
+                } else {
+                    score -= 8;
+                }
+            }
+        }
+
+        // ------------------------------
         // SOIN
         // ------------------------------
 
@@ -768,7 +800,6 @@ class IA {
         const targetting = this.getTargetting(entity);
 
         if (targetting && targetting.score > 0) {
-            console.log(targetting);
             this.actions.setPower(
                 targetting.targetHexPosition,
                 targetting
