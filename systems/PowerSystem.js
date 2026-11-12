@@ -64,6 +64,12 @@ class PowerSystem {
                 }
             }
         });
+        if (power.powerData.effect === "regeneration") {
+            console.log(power);
+            power.affectedHexes.forEach((hex) => {
+                hex.regenerateFatigue(power.powerData.regenerationAmount);
+            });
+        }
         // ----
         // push (single target)
         // ----

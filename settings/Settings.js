@@ -50,8 +50,8 @@ class Settings {
     static fatigueBarHeight = 8;
     static fatigueBarVerticalOffset = 58;
     static edgePanningWidth = 10;
-    static startingResources = 4;
-    // static startingResources = 14;
+    // static startingResources = 4;
+    static startingResources = 14;
     static unitsPerTurn = 1;
     static damageAnimationDuration = 1800;
     static damageAnimationDelay = 600;

@@ -74,11 +74,14 @@ class Hex {
             }
         }
     }
+    regenerateFatigue(fatigueToRecover) {
+        this.fatigue = Math.min(this.fatigue, Settings.maxFatigue);
+        this.fatigue = Math.max(0, this.fatigue - fatigueToRecover); // ne pas descendre en dessous de 0 de fatigue
+    }
     update() {
         if (this.fatigue > 0 && this.biome.biomeName !== "city") {
             const fatigueToRecover = Settings.fatigueRecovery / Settings.amountOfPlayers; // combien de fatigue on perd par tour
-            this.fatigue = Math.min(this.fatigue, Settings.maxFatigue);
-            this.fatigue = Math.max(0, this.fatigue - fatigueToRecover); // ne pas descendre en dessous de 0 de fatigue
+            this.regenerateFatigue(fatigueToRecover);
         }
         this.resources.forEach((resource) => {
             if (resource.regeneratesIn > 0) {

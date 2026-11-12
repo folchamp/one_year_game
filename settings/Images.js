@@ -46,7 +46,8 @@ class Images {
         "crow",
         "fighter",
         "archer",
-        "berserker"
+        "berserker",
+        "druid"
     ]);
 
     static resourceImages = Util.loadImages("resources/", [

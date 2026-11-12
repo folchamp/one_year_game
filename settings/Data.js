@@ -2626,10 +2626,57 @@ class Data {
     }
 
     static creatableUnits = [
-        "harvester", "explorer", "hunter", "fighter", "archer", "berserker"
+        "harvester", "explorer", "hunter", "fighter", "archer", "berserker", "druid"
     ]
 
     static units = {
+
+        druid: {
+            unitName: "druid",
+            isHarvester: true,
+            range: 3,
+            sprite: { imageName: "druid", width: 64, height: 64, radius: 48 },
+            hitbox: { type: "circle", radius: 48 },
+            unitPrice: {
+                food: 5,
+                misc: 1
+            },
+            combatStats: {
+                hp: 12,
+                actions: 2,
+                powers: {
+                    basicAttack: {
+                        displayName: "coup de liane",
+                        damage: 1,
+                        range: 2,
+                        effect: "push",
+                        inline: true,
+                        pushDistance: 1,
+                        description: "Un coup de liane pour éloigner les malpropres",
+                        zone: { type: "circle", size: 0 }
+                    },
+                    heal: {
+                        displayName: "herbes curatives",
+                        damage: 0,
+                        range: 0,
+                        effect: "heal",
+                        healAmount: 1,
+                        description: "La nature rend bien des services",
+                        zone: { type: "circle", size: 1 }
+                    },
+                    frappe: {
+                        displayName: "régénération",
+                        damage: 0,
+                        range: 0,
+                        effect: "regeneration",
+                        regenerationAmount: 1,
+                        description: "Des incantations magiques pour encourager la croissance naturelle",
+                        zone: { type: "circle", size: 1 }
+                    }
+                }
+            },
+            description: "L'archer garde ses adversaires loin de lui et peut soigner."
+        },
         berserker: {
             unitName: "berserker",
             isHarvester: false,

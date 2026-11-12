@@ -557,13 +557,14 @@ on perd quand on n'a plus de feu de camp
 victoryscreen
 terminer le système de notifications
 revoir les alert() et faire un système propre
+♥ 12/11/2026
+ajouter de la nourriture dans les montagnes
 
 
 ********************
 TODO
 ********************
 ---------- EN COURS ----------
-ajouter de la nourriture dans les montagnes
 regrouper le minerai en un seul ???
 le boost de PA ne sert qu'au tour suivant
 isHexPositionOccupied
