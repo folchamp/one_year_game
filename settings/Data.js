@@ -2626,11 +2626,38 @@ class Data {
     }
 
     static creatableUnits = [
-        "harvester", "explorer", "hunter", "fighter", "archer", "berserker", "druid"
+        "harvester", "explorer", "hunter", "fighter", "archer", "berserker", "druid", "healer"
     ]
 
     static units = {
 
+        healer: {
+            unitName: "healer",
+            isHarvester: true,
+            range: 3,
+            sprite: { imageName: "healer", width: 64, height: 64, radius: 48 },
+            hitbox: { type: "circle", radius: 48 },
+            unitPrice: {
+                food: 5,
+                energy: 1
+            },
+            combatStats: {
+                hp: 4,
+                actions: 3,
+                powers: {
+                    heal: {
+                        displayName: "Une simple prière de soins",
+                        damage: 0,
+                        range: 2,
+                        effect: "heal",
+                        healAmount: 1,
+                        description: "La foi apaise les corps",
+                        zone: { type: "circle", size: 0 }
+                    }
+                }
+            },
+            description: "Le prêtre aide au moral et peut prodiguer des soins."
+        },
         druid: {
             unitName: "druid",
             isHarvester: true,
@@ -2639,7 +2666,7 @@ class Data {
             hitbox: { type: "circle", radius: 48 },
             unitPrice: {
                 food: 5,
-                misc: 1
+                comfort: 1
             },
             combatStats: {
                 hp: 12,
