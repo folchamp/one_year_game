@@ -559,6 +559,11 @@ terminer le système de notifications
 revoir les alert() et faire un système propre
 ♥ 12/11/2026
 ajouter de la nourriture dans les montagnes
+♥ 13/11/2026
+journée rangement de cartes MTG
+rien fait :-( 
+♥ 14/11/2026
+healer
 
 
 ********************
