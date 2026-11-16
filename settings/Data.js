@@ -2614,15 +2614,15 @@ class Data {
     };
 
     static categories = {
-        food: { categoryName: "food", categoryImageName: "food", categoryDisplayName: "Nourriture", fatigue: 4 },
-        tool: { categoryName: "tool", categoryImageName: "tool", categoryDisplayName: "Outils", fatigue: 5 },
-        raw_material: { categoryName: "raw_material", categoryImageName: "raw_material", categoryDisplayName: "Matériaux", fatigue: 6 },
-        building_material: { categoryName: "building_material", categoryImageName: "building_material", categoryDisplayName: "Matériaux de construction", fatigue: 7 },
-        comfort: { categoryName: "comfort", categoryImageName: "comfort", categoryDisplayName: "Confort", fatigue: 7 },
-        misc: { categoryName: "misc", categoryImageName: "misc", categoryDisplayName: "Autres", fatigue: 6 },
+        food: { categoryName: "food", categoryImageName: "food", categoryDisplayName: "Nourriture", fatigue: 3 },
+        tool: { categoryName: "tool", categoryImageName: "tool", categoryDisplayName: "Outils", fatigue: 3 },
+        raw_material: { categoryName: "raw_material", categoryImageName: "raw_material", categoryDisplayName: "Matériaux", fatigue: 4 },
+        building_material: { categoryName: "building_material", categoryImageName: "building_material", categoryDisplayName: "Matériaux de construction", fatigue: 4 },
+        comfort: { categoryName: "comfort", categoryImageName: "comfort", categoryDisplayName: "Confort", fatigue: 4 },
+        misc: { categoryName: "misc", categoryImageName: "misc", categoryDisplayName: "Autres", fatigue: 5 },
         energy: { categoryName: "energy", categoryImageName: "energy", categoryDisplayName: "Énergie", fatigue: 5 },
-        medicine: { categoryName: "medicine", categoryImageName: "medicine", categoryDisplayName: "Médicaments", fatigue: 5 },
-        living: { categoryName: "living", categoryImageName: "living", categoryDisplayName: "Animaux", fatigue: 8 }
+        medicine: { categoryName: "medicine", categoryImageName: "medicine", categoryDisplayName: "Médicaments", fatigue: 4 },
+        living: { categoryName: "living", categoryImageName: "living", categoryDisplayName: "Animaux", fatigue: 4 }
     }
 
     static creatableUnits = [
@@ -2638,11 +2638,11 @@ class Data {
             sprite: { imageName: "healer", width: 64, height: 64, radius: 48 },
             hitbox: { type: "circle", radius: 48 },
             unitPrice: {
-                food: 5,
-                energy: 1
+                food: 3,
+                energy: 3
             },
             combatStats: {
-                hp: 4,
+                hp: 60,
                 actions: 3,
                 powers: {
                     heal: {
@@ -2650,7 +2650,7 @@ class Data {
                         damage: 0,
                         range: 2,
                         effect: "heal",
-                        healAmount: 1,
+                        healAmount: 12,
                         description: "La foi apaise les corps",
                         zone: { type: "circle", size: 0 }
                     }
@@ -2665,16 +2665,16 @@ class Data {
             sprite: { imageName: "druid", width: 64, height: 64, radius: 48 },
             hitbox: { type: "circle", radius: 48 },
             unitPrice: {
-                food: 5,
-                comfort: 1
+                food: 3,
+                comfort: 3
             },
             combatStats: {
-                hp: 12,
+                hp: 80,
                 actions: 2,
                 powers: {
                     basicAttack: {
                         displayName: "coup de liane",
-                        damage: 1,
+                        damage: 12,
                         range: 2,
                         effect: "push",
                         inline: true,
@@ -2687,11 +2687,11 @@ class Data {
                         damage: 0,
                         range: 0,
                         effect: "heal",
-                        healAmount: 1,
+                        healAmount: 9,
                         description: "La nature rend bien des services",
                         zone: { type: "circle", size: 1 }
                     },
-                    frappe: {
+                    regenerateNature: {
                         displayName: "régénération",
                         damage: 0,
                         range: 0,
@@ -2711,17 +2711,17 @@ class Data {
             sprite: { imageName: "berserker", width: 64, height: 64, radius: 48 },
             hitbox: { type: "circle", radius: 48 },
             unitPrice: {
-                food: 4,
-                misc: 4
+                food: 3,
+                misc: 3
             },
             combatStats: {
-                hp: 15,
-                actions: 2,
+                hp: 120,
+                actions: 3,
                 amountOfSummons: 1,
                 powers: {
                     basicAttack: {
                         displayName: "frappe absorbante",
-                        damage: 1,
+                        damage: 6,
                         range: 1,
                         effect: "lifesteal",
                         description: "Verser le sang donne un sentiment de puissance",
@@ -2742,7 +2742,7 @@ class Data {
                         damage: 0,
                         range: 0,
                         effect: "rage",
-                        damage: 3,
+                        damage: 18,
                         description: "La souffrance pour s'énergiser",
                         zone: { type: "circle", size: 0 }
                     }
@@ -2757,17 +2757,17 @@ class Data {
             sprite: { imageName: "archer", width: 64, height: 64, radius: 48 },
             hitbox: { type: "circle", radius: 48 },
             unitPrice: {
-                food: 4,
-                medicine: 4
+                food: 3,
+                medicine: 3
             },
             combatStats: {
-                hp: 10,
+                hp: 60,
                 actions: 2,
                 amountOfSummons: 1,
                 powers: {
                     basicAttack: {
                         displayName: "coup de pied",
-                        damage: 1,
+                        damage: 15,
                         range: 1,
                         effect: "push",
                         pushDistance: 2,
@@ -2779,13 +2779,13 @@ class Data {
                         damage: 0,
                         range: 1,
                         effect: "heal",
-                        healAmount: 2,
+                        healAmount: 25,
                         description: "Vous connaissez l’athelas ? On l'appelle feuille de roi.",
                         zone: { type: "circle", size: 0 }
                     },
                     frappe: {
                         displayName: "tir de précision",
-                        damage: 5,
+                        damage: 29,
                         range: 5,
                         inline: true,
                         description: "Un tir à longue distance qui nécessite d'avoir le vent dans le dos",
@@ -2802,16 +2802,15 @@ class Data {
             sprite: { imageName: "crow", width: 64, height: 64, radius: 48 },
             hitbox: { type: "circle", radius: 48 },
             unitPrice: {
-                food: 4,
-                tool: 3
+                food: 1
             },
             combatStats: {
-                hp: 1,
+                hp: 10,
                 actions: 6,
                 powers: {
                     basicAttack: {
                         displayName: "bécot",
-                        damage: 1,
+                        damage: 9,
                         range: 1,
                         description: "Une attaque peu douloureuse mais mortelle quand elle est subie en grande quantité.",
                         zone: { type: "circle", size: 0 }
@@ -2826,11 +2825,11 @@ class Data {
             sprite: { imageName: "hunter", width: 64, height: 64, radius: 48 },
             hitbox: { type: "circle", radius: 48 },
             unitPrice: {
-                food: 4,
+                food: 3,
                 living: 3
             },
             combatStats: {
-                hp: 6,
+                hp: 60,
                 actions: 1,
                 amountOfSummons: 1,
                 powers: {
@@ -2854,10 +2853,10 @@ class Data {
                     },
                     frappe: {
                         displayName: "frappe",
-                        damage: 6,
+                        damage: 35,
                         range: 1,
-                        description: "La façon la plus simple d'exprimer de la violence",
-                        zone: { type: "circle", size: 0 }
+                        description: "La façon la plus simple d'exprimer de la violence : sans retenue ni cible précise",
+                        zone: { type: "circle", size: 1 }
                     }
                 }
             },
@@ -2870,11 +2869,11 @@ class Data {
             sprite: { imageName: "explorer", width: 64, height: 64, radius: 48 },
             hitbox: { type: "circle", radius: 48 },
             unitPrice: {
-                food: 4,
+                food: 3,
                 tool: 3
             },
             combatStats: {
-                hp: 20,
+                hp: 100,
                 actions: 3,
                 powers: {
                     basicAttack: {
@@ -2895,8 +2894,9 @@ class Data {
                     },
                     frappe: {
                         displayName: "frappe",
-                        damage: 1,
+                        damage: 5,
                         range: 1,
+                        effect: "ral",
                         description: "La façon la plus simple d'exprimer de la violence",
                         zone: { type: "circle", size: 0 }
                     }
@@ -2915,23 +2915,22 @@ class Data {
                 raw_material: 3
             },
             combatStats: {
-                hp: 9,
+                hp: 40,
                 actions: 4,
                 amountOfSummons: 1,
                 powers: {
                     basicAttack: {
                         displayName: "Coup de fourche",
-                        damage: 3,
+                        damage: 18,
                         range: 1,
                         description: "Les outils ne sont pas des armes, leurs coups font néanmoins très mal",
                         zone: { type: "circle", size: 0 }
                     },
                     sandThrow: {
-                        displayName: "Jet de sable",
-                        damage: 1,
+                        displayName: "Tir de fronde",
+                        damage: 9,
                         range: 2,
-                        effect: "ral",
-                        description: "Un jet de sable qui aveugle l'ennemi",
+                        description: "Une arme de chasse archaïque mais bien utilisée",
                         zone: { type: "circle", size: 0 }
                     },
                     campfire: {
@@ -2955,16 +2954,16 @@ class Data {
             sprite: { imageName: "fighter", width: 64, height: 64, radius: 48 },
             hitbox: { type: "circle", radius: 48 },
             unitPrice: {
-                food: 4,
-                building_material: 4
+                food: 3,
+                building_material: 3
             },
             combatStats: {
-                hp: 30,
+                hp: 120,
                 actions: 3,
                 powers: {
                     basicAttack: {
                         displayName: "coup d'épée",
-                        damage: 4,
+                        damage: 35,
                         range: 1,
                         description: "Comme son nom l'indique",
                         zone: { type: "circle", size: 0 }
@@ -2979,7 +2978,7 @@ class Data {
                     },
                     taille: {
                         displayName: "taille",
-                        damage: 2,
+                        damage: 22,
                         range: 1,
                         zone: { type: "circle", size: "1" },
                         description: "Un large coup (maladroit) qui peut atteindre plusieurs adversaires"
@@ -2992,7 +2991,7 @@ class Data {
             unitName: "campfire",
             sprite: { imageName: "campfire", width: 170, height: 170, radius: 100 },
             combatStats: {
-                hp: 15,
+                hp: 200,
             }
         }
     }
