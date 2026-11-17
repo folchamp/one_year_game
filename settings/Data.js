@@ -2634,7 +2634,7 @@ class Data {
         healer: {
             unitName: "healer",
             isHarvester: true,
-            range: 3,
+            range: 2,
             sprite: { imageName: "healer", width: 64, height: 64, radius: 48 },
             hitbox: { type: "circle", radius: 48 },
             unitPrice: {
@@ -2642,11 +2642,11 @@ class Data {
                 energy: 3
             },
             combatStats: {
-                hp: 60,
+                hp: 80,
                 actions: 3,
                 powers: {
                     heal: {
-                        displayName: "Une simple prière de soins",
+                        displayName: "Prière de soins",
                         damage: 0,
                         range: 2,
                         effect: "heal",
@@ -2661,7 +2661,7 @@ class Data {
         druid: {
             unitName: "druid",
             isHarvester: true,
-            range: 3,
+            range: 2,
             sprite: { imageName: "druid", width: 64, height: 64, radius: 48 },
             hitbox: { type: "circle", radius: 48 },
             unitPrice: {
@@ -2702,7 +2702,7 @@ class Data {
                     }
                 }
             },
-            description: "L'archer garde ses adversaires loin de lui et peut soigner."
+            description: "Le druide et sa magie soigne la faune et la flore."
         },
         berserker: {
             unitName: "berserker",
@@ -2753,7 +2753,7 @@ class Data {
         archer: {
             unitName: "archer",
             isHarvester: false,
-            range: 3,
+            range: 2,
             sprite: { imageName: "archer", width: 64, height: 64, radius: 48 },
             hitbox: { type: "circle", radius: 48 },
             unitPrice: {
@@ -2865,7 +2865,7 @@ class Data {
         explorer: {
             unitName: "explorer",
             isHarvester: false,
-            range: 2,
+            range: 3,
             sprite: { imageName: "explorer", width: 64, height: 64, radius: 48 },
             hitbox: { type: "circle", radius: 48 },
             unitPrice: {
@@ -2915,7 +2915,7 @@ class Data {
                 raw_material: 3
             },
             combatStats: {
-                hp: 40,
+                hp: 80,
                 actions: 4,
                 amountOfSummons: 1,
                 powers: {
