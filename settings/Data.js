@@ -2694,7 +2694,7 @@ class Data {
                     regenerateNature: {
                         displayName: "régénération",
                         damage: 0,
-                        range: 0,
+                        range: 1,
                         effect: "regeneration",
                         regenerationAmount: 1,
                         description: "Des incantations magiques pour encourager la croissance naturelle",
